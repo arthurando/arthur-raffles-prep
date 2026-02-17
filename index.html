@@ -585,6 +585,66 @@
     .phase-grid { grid-template-columns: 1fr; }
     .card-grid { grid-template-columns: 1fr; }
     .ask-grid { grid-template-columns: 1fr; }
+
+    /* --- Mobile tables: stack into cards --- */
+    .intel-table thead { display: none; }
+    .intel-table,
+    .intel-table tbody,
+    .intel-table tr,
+    .intel-table td {
+      display: block;
+      width: 100%;
+    }
+    .intel-table tr {
+      margin-bottom: 1rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.75rem;
+      background: var(--surface);
+    }
+    .intel-table td {
+      padding: 0.25rem 0;
+      border-bottom: none;
+      font-size: 13px;
+    }
+    .intel-table td:first-child {
+      font-weight: 600;
+      color: var(--accent);
+      font-size: 14px;
+      margin-bottom: 0.25rem;
+    }
+    .intel-table td:last-child {
+      color: var(--text-dim);
+      font-size: 12px;
+    }
+
+    /* Education overlap table */
+    .edu-table thead { display: none; }
+    .edu-table,
+    .edu-table tbody,
+    .edu-table tr,
+    .edu-table td {
+      display: block;
+      width: 100%;
+    }
+    .edu-table tr {
+      margin-bottom: 1rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.75rem;
+      background: var(--surface);
+    }
+    .edu-table td {
+      padding: 0.25rem 0 !important;
+      border-bottom: none !important;
+      font-size: 13px;
+    }
+    .edu-table td:first-child {
+      font-weight: 600;
+      color: var(--accent);
+      font-size: 14px;
+      margin-bottom: 0.25rem;
+    }
   }
 </style>
 </head>
@@ -1132,7 +1192,7 @@
   <div class="alert alert-success" style="margin-top: 1.5rem;">
     <strong>Education Overlap &mdash; Rapport Builders</strong><br><br>
     <strong>Your background:</strong> MEng Chemical Engineering, Imperial College London (QS #2)<br><br>
-    <table style="width:100%; border-collapse: collapse; font-size: 14px;">
+    <table class="edu-table" style="width:100%; border-collapse: collapse; font-size: 14px;">
       <tr style="border-bottom: 1px solid rgba(201,168,76,0.2);">
         <td style="padding: 6px 8px;"><strong>Chi-man Kwan</strong></td>
         <td style="padding: 6px 8px;">BSc Economics &amp; Business Mgmt, Lancaster &bull; Executive MBA, Tsinghua&ndash;INSEAD &bull; Adjunct Prof, HKU</td>
