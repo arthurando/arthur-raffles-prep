@@ -537,7 +537,8 @@
     <li><a href="#ask-them">Questions to Ask</a></li>
     <li><a href="#ninety-days">First 90 Days</a></li>
     <li><a href="#landmines">Landmines</a></li>
-    <li><a href="resume.html" style="color: var(--accent);">Full Resume &rarr;</a></li>
+    <li><a href="strategy.html" style="color: var(--accent);">Strategy &rarr;</a></li>
+    <li><a href="resume.html" style="color: var(--accent);">Resume &rarr;</a></li>
   </ul>
 </nav>
 
@@ -579,7 +580,7 @@
     <tr><th style="width:180px">Attribute</th><th>Detail</th></tr>
     <tr><td><strong>Type</strong></td><td>Multi-family office (MFO) serving ultra-high-net-worth (UHNW) families</td></tr>
     <tr><td><strong>HQ</strong></td><td>Dual: Hong Kong + Singapore. Presence in Shanghai, Beijing, Taipei, Bangkok</td></tr>
-    <tr><td><strong>Leadership</strong></td><td>Chi-man Kwan (Group CEO & Co-Founder), Ray Tam (Co-Founder & Managing Partner; CEO of Revo Digital &mdash; ex-DBS, Standard Chartered, BNP Paribas; Oxford), William Chow (Deputy Group CEO), Kendrick Lee (Founder & Managing Partner)</td></tr>
+    <tr><td><strong>Leadership</strong></td><td>Chi-man Kwan (Group CEO & Co-Founder), Ray Tam (Co-Founder &amp; Managing Partner; CEO of Revo Digital &mdash; ex-BNP Paribas Private Banking, DBS, Standard Chartered), William Chow (Deputy Group CEO), Kendrick Lee (Founder & Managing Partner)</td></tr>
     <tr><td><strong>Core Team</strong></td><td>~8 members reported (likely larger with recent senior hires: Michael Tung as MD, Jennie Liang as ED)</td></tr>
     <tr><td><strong>Services</strong></td><td>Wealth management, investment advisory, succession planning, tax structuring, digital assets</td></tr>
     <tr><td><strong>Digital Assets</strong></td><td>Revo Digital Family Office &mdash; Asia&rsquo;s first digital-assets-focused MFO, co-founded with Huobi Technology. SFC-licensed in HK. Led by Ray Tam (CEO) and Zann Kwan (CIO; introduced Asia&rsquo;s first public Bitcoin ATM in 2014; ex-GIC Real Estate, Arthur Andersen, KPMG). Zodia Custody partnership for institutional-grade custody.</td></tr>
@@ -599,62 +600,181 @@
     <strong>CRITICAL INTEL: Group COO Terence Chow is departing.</strong> He was appointed Jul 2024 (ex-CEO Asia, RBC Wealth Management) and led technology, operations, business transformation, risk management, and corporate functions. His departure after ~18 months creates a significant gap &mdash; <em>Arthur&rsquo;s CRM/technology role may be filling part of what Terence was responsible for.</em> Do NOT mention this unless they bring it up &mdash; but be ready for it to inform the scope of the role.
   </div>
 
-  <div style="margin: 1.5rem 0; padding: 2rem; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; font-family: var(--mono, monospace); font-size: 12.5px; line-height: 1.55; overflow-x: auto; white-space: pre; color: var(--text-dim);">
-<span style="color: var(--accent); font-weight: 700;">              RAFFLES FAMILY OFFICE GROUP (~121 employees)</span>
-<span style="color: var(--accent);">              =========================================</span>
+  <!-- CSS ORG CHART -->
+  <style>
+    .org { text-align: center; padding: 1.5rem 0; }
+    .org-title { font-size: 14px; font-weight: 700; color: var(--accent); margin-bottom: 0.25rem; letter-spacing: 0.04em; }
+    .org-subtitle { font-size: 12px; color: var(--text-dim); margin-bottom: 1.5rem; }
+    .org-row { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 0.5rem; position: relative; }
+    .org-row::before {
+      content: ''; position: absolute; top: -0.5rem; left: 50%; width: 1px; height: 0.5rem;
+      background: var(--border);
+    }
+    .org-row:first-child::before { display: none; }
+    .org-connector { display: flex; justify-content: center; padding: 0.5rem 0; }
+    .org-connector .line { width: 1px; height: 1.5rem; background: var(--border); }
+    .org-box {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
+      padding: 0.65rem 1rem; min-width: 155px; text-align: center; transition: border-color 0.2s;
+    }
+    .org-box:hover { border-color: var(--accent); }
+    .org-box.departing { border-color: var(--danger); opacity: 0.7; }
+    .org-box .name { font-weight: 600; font-size: 13px; color: var(--accent); }
+    .org-box.departing .name { color: var(--danger); }
+    .org-box .role { font-size: 11px; color: var(--text-dim); margin-top: 0.1rem; }
+    .org-box .loc { font-size: 10px; color: var(--text-dim); opacity: 0.6; }
+    .org-box .badge {
+      display: inline-block; padding: 0.1rem 0.4rem; border-radius: 3px;
+      font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin-top: 0.2rem;
+    }
+    .org-box .badge-warn { background: rgba(224,82,82,0.15); color: var(--danger); }
+    .org-box .badge-new { background: rgba(76,175,124,0.15); color: var(--success); }
+    .org-section {
+      margin-top: 1.5rem; padding-top: 1rem; border-top: 1px dashed var(--border); text-align: left;
+    }
+    .org-section-title {
+      font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em;
+      color: var(--text-dim); margin-bottom: 0.75rem;
+    }
+    .org-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.4rem; }
+    .org-list-item { font-size: 12px; color: var(--text-dim); padding: 0.25rem 0; }
+    .org-list-item strong { color: var(--text); font-weight: 500; }
+  </style>
 
-                        <span style="color: var(--text);">CO-FOUNDERS</span>
-           <span style="color: var(--accent);">Chi-man Kwan</span>  &bull;  <span style="color: var(--accent);">Ray Tam</span>  &bull;  <span style="color: var(--accent);">Kendrick Lee</span>
+  <div style="margin: 1.5rem 0; padding: 2rem; background: var(--surface); border: 1px solid var(--border); border-radius: 12px;">
+    <div class="org">
+      <div class="org-title">RAFFLES FAMILY OFFICE GROUP</div>
+      <div class="org-subtitle">~121 employees &bull; HQ: Hong Kong + Singapore</div>
 
-                             |
-        ┌────────────────────┼────────────────────┐
-        |                    |                    |
-<span style="color: var(--text);">┌────────────────┐  ┌────────────────┐  ┌────────────────┐</span>
-<span style="color: var(--text);">│</span> <span style="color: var(--accent);">Chi-man Kwan</span>    <span style="color: var(--text);">│  │</span> <span style="color: var(--accent);">Kendrick Lee</span>    <span style="color: var(--text);">│  │</span> <span style="color: var(--accent);">Ray Tam</span>         <span style="color: var(--text);">│</span>
-<span style="color: var(--text);">│</span> Group CEO       <span style="color: var(--text);">│  │</span> CEO, Singapore  <span style="color: var(--text);">│  │</span> CEO, Revo      <span style="color: var(--text);">│</span>
-<span style="color: var(--text);">│</span> HQ: Hong Kong   <span style="color: var(--text);">│  │</span> HQ: Singapore   <span style="color: var(--text);">│  │</span> Digital Assets <span style="color: var(--text);">│</span>
-<span style="color: var(--text);">└────────────────┘  └────────────────┘  └────────────────┘</span>
-        |                    |                    |
-   ┌────┴──────────┐        |           ┌────────┴────────┐
-   |               |        |           |                 |
-<span style="color: var(--text);">┌──────────────┐┌──────────────┐  ┌──────────────┐┌──────────────┐</span>
-<span style="color: var(--text);">│</span><span style="color: var(--accent);">William Chow</span>  <span style="color: var(--text);">││</span><span style="color: var(--danger);">Terence Chow</span>  <span style="color: var(--text);">│  │</span><span style="color: var(--accent);">Zann Kwan CFA</span> <span style="color: var(--text);">││</span><span style="color: var(--accent);">Jupiter Zheng</span> <span style="color: var(--text);">│</span>
-<span style="color: var(--text);">│</span>Deputy Grp CEO <span style="color: var(--text);">││</span><span style="color: var(--danger);">Group COO</span>      <span style="color: var(--text);">│  │</span>MP &amp; CIO, Revo <span style="color: var(--text);">││</span>CFA, Revo Team <span style="color: var(--text);">│</span>
-<span style="color: var(--text);">│</span>Board+Inv Ctte <span style="color: var(--text);">││</span><span style="color: var(--danger);">⚠ DEPARTING</span>    <span style="color: var(--text);">│  │</span>Digital Assets  <span style="color: var(--text);">││</span>               <span style="color: var(--text);">│</span>
-<span style="color: var(--text);">└──────────────┘└──────────────┘  └──────────────┘└──────────────┘</span>
-        |
-   ┌────┴──────────────────────────────────┐
-   |               |              |        |
-<span style="color: var(--text);">┌──────────────┐┌──────────────┐┌──────────────┐┌──────────────┐</span>
-<span style="color: var(--text);">│</span><span style="color: var(--accent);">Michael Tung</span>  <span style="color: var(--text);">││</span><span style="color: var(--accent);">Jennie Liang</span>  <span style="color: var(--text);">││</span><span style="color: var(--accent);">Kevin King</span>    <span style="color: var(--text);">││</span><span style="color: var(--accent);">Jo Huang CFA</span>  <span style="color: var(--text);">│</span>
-<span style="color: var(--text);">│</span>Managing Dir   <span style="color: var(--text);">││</span>Executive Dir  <span style="color: var(--text);">││</span>MD, Head of   <span style="color: var(--text);">││</span>Head of       <span style="color: var(--text);">│</span>
-<span style="color: var(--text);">│</span>RM Team, HK    <span style="color: var(--text);">││</span>RM Team, HK    <span style="color: var(--text);">││</span>Greater China  <span style="color: var(--text);">││</span>Private Equity <span style="color: var(--text);">│</span>
-<span style="color: var(--text);">└──────────────┘└──────────────┘└──────────────┘└──────────────┘</span>
+      <!-- Co-Founders -->
+      <div class="org-row" style="margin-bottom: 0;">
+        <div class="org-box" style="min-width: 320px; border-color: var(--accent);">
+          <div class="name">Chi-man Kwan &bull; Ray Tam &bull; Kendrick Lee</div>
+          <div class="role">Co-Founders</div>
+        </div>
+      </div>
 
-<span style="color: var(--text);">  FUNCTIONAL LEADS</span>
-<span style="color: var(--text);">  ────────────────</span>
-  Caroline Langston    &mdash; Chief People Officer
-  Cherie Liu           &mdash; Head of Marketing &amp; Communications
-  Gillian Cheng        &mdash; Vice President, Business Management
+      <div class="org-connector"><div class="line"></div></div>
 
-<span style="color: var(--text);">  TEAM MEMBERS (partial, from public sources)</span>
-<span style="color: var(--text);">  ──────────────────────────────────────────</span>
-  Benn Ng              &mdash; Team member
-  Julien Grunebaum     &mdash; Team member
-  Candy Zhou           &mdash; Team member
-  Leo Lai              &mdash; Team member
-  Leah Ng              &mdash; Team member (Singapore)
-  Sky Kwah             &mdash; Team member
-  Ivy Lim              &mdash; Team member
-  Christy Wong         &mdash; Assistant Relationship Manager
-  Chao Deng            &mdash; Revo Digital team
+      <!-- C-Suite Row -->
+      <div class="org-row">
+        <div class="org-box">
+          <div class="name">Chi-man Kwan</div>
+          <div class="role">Group CEO</div>
+          <div class="loc">Hong Kong</div>
+        </div>
+        <div class="org-box">
+          <div class="name">Kendrick Lee</div>
+          <div class="role">CEO, Singapore</div>
+          <div class="loc">Singapore &bull; BSc Manchester</div>
+        </div>
+        <div class="org-box">
+          <div class="name">Ray Tam</div>
+          <div class="role">CEO, Revo Digital</div>
+          <div class="loc">ex-BNP Paribas, DBS, StanChart</div>
+        </div>
+      </div>
 
-<span style="color: var(--text);">  INDEPENDENT ADVISORY BOARD</span>
-<span style="color: var(--text);">  ─────────────────────────</span>
-  Bruno Morel          &mdash; ex-CEO, VP Bank Singapore
-  Christina Lau        &mdash; ex-PwC Risk Assurance Partner
-  David Chang          &mdash; Vice Chairman Asia, PGIM
-  Rizal Wijono         &mdash; ex-MD Micro Connect; Europe FO gateway
+      <div class="org-connector"><div class="line"></div></div>
+
+      <!-- Senior Leadership -->
+      <div class="org-row">
+        <div class="org-box">
+          <div class="name">William Chow</div>
+          <div class="role">Deputy Group CEO</div>
+          <div class="loc">MSc Op. Research, LSE &bull; ex-BlackRock</div>
+        </div>
+        <div class="org-box departing">
+          <div class="name">Terence Chow</div>
+          <div class="role">Group COO</div>
+          <div class="badge badge-warn">Departing</div>
+          <div class="loc">MBA Ivey &bull; ex-CEO Asia RBC WM</div>
+        </div>
+        <div class="org-box">
+          <div class="name">Zann Kwan, CFA</div>
+          <div class="role">MP &amp; CIO, Revo</div>
+          <div class="loc">ex-GIC, KPMG &bull; 1st Asia BTC ATM</div>
+        </div>
+      </div>
+
+      <div class="org-connector"><div class="line"></div></div>
+
+      <!-- Directors / Heads -->
+      <div class="org-row">
+        <div class="org-box">
+          <div class="name">Michael Tung</div>
+          <div class="role">MD, RM Team HK</div>
+          <div class="badge badge-new">Oct 2025</div>
+          <div class="loc">ex-UBS, Morgan Stanley</div>
+        </div>
+        <div class="org-box">
+          <div class="name">Jennie Liang</div>
+          <div class="role">ED, RM Team HK</div>
+          <div class="badge badge-new">Oct 2025</div>
+          <div class="loc">ex-UBS, Credit Suisse</div>
+        </div>
+        <div class="org-box">
+          <div class="name">Kevin King &#40;龚衍晖&#41;</div>
+          <div class="role">MD, Head of Greater China</div>
+        </div>
+        <div class="org-box">
+          <div class="name">Jo Huang, CFA</div>
+          <div class="role">Head of Private Equity</div>
+          <div class="loc">SuperReturn Asia speaker</div>
+        </div>
+      </div>
+
+      <div class="org-connector"><div class="line"></div></div>
+
+      <!-- Functional Leads -->
+      <div class="org-row">
+        <div class="org-box">
+          <div class="name">Caroline Langston</div>
+          <div class="role">Chief People Officer</div>
+          <div class="badge badge-new">Nov 2025</div>
+          <div class="loc">Neuroscience, King&rsquo;s College London</div>
+        </div>
+        <div class="org-box">
+          <div class="name">Cherie Liu</div>
+          <div class="role">Head of Marketing &amp; Comms</div>
+        </div>
+        <div class="org-box">
+          <div class="name">Gillian Cheng</div>
+          <div class="role">VP, Business Management</div>
+        </div>
+        <div class="org-box">
+          <div class="name">Jupiter Zheng, CFA</div>
+          <div class="role">Revo Digital Team</div>
+        </div>
+      </div>
+
+      <!-- Team Members -->
+      <div class="org-section">
+        <div class="org-section-title">Team Members (partial, from public sources)</div>
+        <div class="org-list">
+          <div class="org-list-item"><strong>Benn Ng</strong> &mdash; Team member</div>
+          <div class="org-list-item"><strong>Julien Grunebaum</strong> &mdash; Team member</div>
+          <div class="org-list-item"><strong>Candy Zhou</strong> &mdash; Team member</div>
+          <div class="org-list-item"><strong>Leo Lai</strong> &mdash; Team member</div>
+          <div class="org-list-item"><strong>Leah Ng</strong> &mdash; Team member (SG)</div>
+          <div class="org-list-item"><strong>Sky Kwah</strong> &mdash; Team member</div>
+          <div class="org-list-item"><strong>Ivy Lim</strong> &mdash; Team member</div>
+          <div class="org-list-item"><strong>Christy Wong</strong> &mdash; Asst RM</div>
+          <div class="org-list-item"><strong>Chao Deng</strong> &mdash; Revo Digital</div>
+        </div>
+      </div>
+
+      <!-- Advisory Board -->
+      <div class="org-section">
+        <div class="org-section-title">Independent Advisory Board</div>
+        <div class="org-list">
+          <div class="org-list-item"><strong>Bruno Morel</strong> &mdash; ex-CEO, VP Bank Singapore</div>
+          <div class="org-list-item"><strong>Christina Lau</strong> &mdash; ex-PwC Risk Assurance</div>
+          <div class="org-list-item"><strong>David Chang</strong> &mdash; Vice Chairman Asia, PGIM</div>
+          <div class="org-list-item"><strong>Rizal Wijono</strong> &mdash; ex-MD Micro Connect; Europe FO gateway</div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <h3>Key Personnel Backgrounds</h3>
@@ -704,8 +824,8 @@
       <ul>
         <li>Co-Founder, Raffles Family Office</li>
         <li>Board Committee Member, Family Office Association HK</li>
-        <li>Previous: DBS, Standard Chartered, BNP Paribas</li>
-        <li>Education: University of Oxford</li>
+        <li>Previous: BNP Paribas Private Banking (Director), DBS, Standard Chartered</li>
+        <li>Board Committee Member, Family Office Association HK</li>
       </ul>
     </div>
     <div class="card">
@@ -746,10 +866,23 @@
       </ul>
     </div>
     <div class="card">
-      <div class="card-label">Functional Leads</div>
+      <div class="card-label">Chief People Officer (Nov 2025)</div>
+      <div class="card-title">Caroline Langston</div>
+      <ul>
+        <li>Newly created role (Nov 2025) &mdash; reports directly to Chi-man Kwan</li>
+        <li>Was RFO&rsquo;s executive coach for 5+ years before promotion</li>
+        <li>20+ years international experience across Asia, Middle East, Europe</li>
+        <li>Background in finance, consulting, and executive development</li>
+        <li>Postgrad in Neuroscience &amp; Psychology of Mental Health, King&rsquo;s College London</li>
+        <li>Pursuing MSc in Neuroscience &amp; Psychology of Mental Health</li>
+        <li>Oversees: people strategy, talent development, cultural initiatives, Raffles Group Academy</li>
+        <li><strong>If she interviews you:</strong> Lead with coaching leadership style, team building, the STT Mall journey from 2&rarr;35+ people</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-label">Other Functional Leads</div>
       <div class="card-title">Corporate Functions</div>
       <ul>
-        <li>Caroline Langston &mdash; Chief People Officer</li>
         <li>Cherie Liu &mdash; Head of Marketing &amp; Communications</li>
         <li>Gillian Cheng &mdash; VP, Business Management</li>
       </ul>

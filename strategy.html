@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Interview Strategy — Raffles Family Office</title>
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --surface: #12121a;
+    --surface-alt: #1a1a28;
+    --border: #2a2a3a;
+    --accent: #c9a84c;
+    --accent-dim: rgba(201, 168, 76, 0.15);
+    --accent-glow: rgba(201, 168, 76, 0.08);
+    --text: #e8e6e3;
+    --text-dim: #8a8a9a;
+    --danger: #e05252;
+    --success: #4caf7c;
+    --info: #5b8def;
+    --purple: #a78bfa;
+    --font: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: var(--font);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    font-size: 15px;
+    -webkit-font-smoothing: antialiased;
+  }
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(10,10,15,0.92); backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border); padding: 0 2rem;
+  }
+  nav ul { list-style: none; display: flex; gap: 0; max-width: 1100px; margin: 0 auto; overflow-x: auto; }
+  nav a {
+    display: block; padding: 1rem 1.15rem; color: var(--text-dim); text-decoration: none;
+    font-size: 12px; font-weight: 500; letter-spacing: 0.03em; text-transform: uppercase;
+    border-bottom: 2px solid transparent; transition: all 0.2s; white-space: nowrap;
+  }
+  nav a:hover, nav a.active { color: var(--accent); border-bottom-color: var(--accent); }
+  nav a.back { color: var(--accent); font-weight: 600; }
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+  section { padding: 3rem 0; border-bottom: 1px solid var(--border); }
+  section:last-child { border-bottom: none; }
+  h1 { font-size: 2.2rem; font-weight: 700; color: var(--accent); letter-spacing: -0.02em; }
+  h2 {
+    font-size: 1.4rem; font-weight: 600; margin-bottom: 1.5rem; color: var(--text);
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  h2 .num {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 32px; height: 32px; background: var(--accent); color: var(--bg);
+    border-radius: 8px; font-size: 14px; font-weight: 700; flex-shrink: 0;
+  }
+  h3 { font-size: 1.05rem; font-weight: 600; margin: 1.5rem 0 0.75rem; color: var(--accent); }
+  p { margin-bottom: 1rem; }
+  .dim { color: var(--text-dim); }
+  .small { font-size: 13px; }
+
+  .hero { padding: 4rem 0 3rem; border-bottom: 1px solid var(--border); }
+  .hero-sub { font-size: 1.1rem; color: var(--text-dim); margin-top: 0.5rem; }
+
+  .thesis-box {
+    margin: 2rem 0; padding: 2rem 2.5rem; background: var(--accent-glow);
+    border: 1px solid var(--accent); border-radius: 12px;
+  }
+  .thesis-box h3 { margin-top: 0; font-size: 1.15rem; }
+  .thesis-box p { font-size: 15px; line-height: 1.85; color: var(--text); margin-bottom: 0; }
+  .thesis-box em { color: var(--accent); font-style: normal; font-weight: 600; }
+
+  .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.25rem; }
+  .card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+    padding: 1.5rem; transition: border-color 0.2s;
+  }
+  .card:hover { border-color: var(--accent); }
+  .card-label {
+    font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--text-dim); margin-bottom: 0.5rem; font-weight: 600;
+  }
+  .card-title { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.75rem; }
+  .card ul { list-style: none; padding: 0; }
+  .card li {
+    padding: 0.3rem 0; padding-left: 1.2rem; position: relative;
+    font-size: 14px; color: var(--text-dim);
+  }
+  .card li::before { content: '›'; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
+
+  .alert {
+    padding: 1.25rem 1.5rem; border-radius: 10px; margin: 1rem 0; font-size: 14px; line-height: 1.7;
+  }
+  .alert-danger { background: rgba(224,82,82,0.08); border: 1px solid rgba(224,82,82,0.25); }
+  .alert-danger strong { color: var(--danger); }
+  .alert-success { background: rgba(76,175,124,0.08); border: 1px solid rgba(76,175,124,0.25); }
+  .alert-success strong { color: var(--success); }
+  .alert-info { background: rgba(91,141,239,0.08); border: 1px solid rgba(91,141,239,0.25); }
+  .alert-info strong { color: var(--info); }
+  .alert-purple { background: rgba(167,139,250,0.08); border: 1px solid rgba(167,139,250,0.25); }
+  .alert-purple strong { color: var(--purple); }
+
+  /* Scenario table */
+  .scenario-table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
+  .scenario-table th {
+    text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em;
+    color: var(--text-dim); padding: 0.75rem 1rem; border-bottom: 1px solid var(--border); font-weight: 600;
+  }
+  .scenario-table td {
+    padding: 0.85rem 1rem; border-bottom: 1px solid rgba(42,42,58,0.5);
+    font-size: 14px; vertical-align: top;
+  }
+  .scenario-table tr:hover td { background: var(--accent-glow); }
+
+  /* Flow steps */
+  .flow { counter-reset: flow-step; }
+  .flow-step {
+    position: relative; padding: 1.5rem 1.5rem 1.5rem 4rem;
+    background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+    margin-bottom: 1rem; counter-increment: flow-step;
+  }
+  .flow-step::before {
+    content: counter(flow-step);
+    position: absolute; left: 1.25rem; top: 1.5rem;
+    width: 28px; height: 28px; background: var(--accent); color: var(--bg);
+    border-radius: 8px; font-size: 13px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .flow-step h4 { font-size: 1rem; font-weight: 600; margin-bottom: 0.4rem; }
+  .flow-step p { font-size: 14px; color: var(--text-dim); margin-bottom: 0.3rem; }
+  .flow-step .timing {
+    display: inline-block; padding: 0.15rem 0.5rem; background: var(--accent-dim);
+    border-radius: 4px; font-size: 11px; color: var(--accent); font-weight: 600; margin-bottom: 0.4rem;
+  }
+
+  /* Checklist */
+  .checklist { list-style: none; padding: 0; }
+  .checklist li {
+    padding: 0.6rem 0 0.6rem 2rem; position: relative; font-size: 14px;
+    border-bottom: 1px solid rgba(42,42,58,0.3);
+  }
+  .checklist li::before {
+    content: '☐'; position: absolute; left: 0; font-size: 16px; color: var(--accent);
+  }
+
+  /* Persona cards */
+  .persona {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+    padding: 1.5rem; margin-bottom: 1rem;
+  }
+  .persona-name { font-weight: 700; font-size: 1rem; }
+  .persona-role { font-size: 13px; color: var(--text-dim); margin-bottom: 0.75rem; }
+  .persona-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .persona-col h4 { font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--accent); margin-bottom: 0.4rem; }
+  .persona-col p { font-size: 13px; color: var(--text-dim); margin: 0; line-height: 1.6; }
+
+  @media print {
+    body { background: white; color: #111; font-size: 11pt; }
+    nav { display: none; }
+    .card, .flow-step, .persona, .alert { border-color: #ddd; background: #fafafa; }
+    .thesis-box { border-color: #999; background: #f8f6f0; }
+    h1, h3, .persona-col h4 { color: #333 !important; }
+    section { padding: 1.5rem 0; }
+  }
+  @media (max-width: 768px) {
+    .container { padding: 0 1rem; }
+    h1 { font-size: 1.6rem; }
+    .card-grid { grid-template-columns: 1fr; }
+    .persona-grid { grid-template-columns: 1fr; }
+    nav a { padding: 0.75rem 0.6rem; font-size: 10px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <ul>
+    <li><a href="index.html" class="back">&larr; Interview Prep</a></li>
+    <li><a href="#thesis">Core Thesis</a></li>
+    <li><a href="#signals">Intel Signals</a></li>
+    <li><a href="#personas">Read the Room</a></li>
+    <li><a href="#conversation">Conversation Flow</a></li>
+    <li><a href="#scenarios">Scenarios</a></li>
+    <li><a href="#narratives">Key Narratives</a></li>
+    <li><a href="#close">Closing Strategy</a></li>
+    <li><a href="#checklist">Pre-Interview</a></li>
+    <li><a href="resume.html">Resume &rarr;</a></li>
+  </ul>
+</nav>
+
+<div class="container">
+
+<!-- ==================== HERO ==================== -->
+<section class="hero">
+  <h1>Interview Strategy</h1>
+  <div class="hero-sub">Raffles Family Office &mdash; CRM Project &amp; Beyond</div>
+  <p class="dim small" style="margin-top: 0.75rem;">Synthesised from Strategic Council deliberation (4/5 consensus), public intelligence on 20+ Raffles personnel, industry analysis, and Arthur&rsquo;s 18-year career mapping. This is your playbook.</p>
+</section>
+
+<!-- ==================== CORE THESIS ==================== -->
+<section id="thesis">
+  <h2><span class="num">1</span> Core Thesis &mdash; Why You, Why Now</h2>
+
+  <div class="thesis-box">
+    <h3>The One Sentence</h3>
+    <p>&ldquo;I am the <em>operator who codes</em> &mdash; the only candidate who has run a HKD&nbsp;120M business, sat in KKR deal rooms, led operational transformations at Proudfoot, AND built the AI-driven technology that powered all of it.&rdquo;</p>
+  </div>
+
+  <h3>Why This Thesis Wins</h3>
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-label">vs Traditional Developer</div>
+      <div class="card-title">You understand the business</div>
+      <ul>
+        <li>A developer builds what they&rsquo;re told. You build what&rsquo;s actually needed.</li>
+        <li>You&rsquo;ve sat in the investor&rsquo;s chair, the consultant&rsquo;s chair, the operator&rsquo;s chair</li>
+        <li>You can translate between what a RM needs and what a system should do</li>
+        <li>No requirements document needed &mdash; you can diagnose the problem yourself</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-label">vs Management Consultant</div>
+      <div class="card-title">You ship working systems</div>
+      <ul>
+        <li>Consultants deliver slide decks. You deliver working software.</li>
+        <li>Proudfoot trained you in the methodology. STT Mall proved you execute.</li>
+        <li>Your &ldquo;consultant phase&rdquo; makes you credible. Your &ldquo;builder phase&rdquo; makes you useful.</li>
+        <li>No handoff risk &mdash; you diagnose AND implement</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-label">vs Salesforce Partner</div>
+      <div class="card-title">You think beyond configuration</div>
+      <ul>
+        <li>A Salesforce partner configures what exists. You see what&rsquo;s missing.</li>
+        <li>Integration layer, custom AI features, internal tooling &mdash; the 30% that makes the difference</li>
+        <li>You can evaluate vendors, not just implement them</li>
+        <li>You understand build vs buy trade-offs from running your own business</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-label">vs In-House Hire</div>
+      <div class="card-title">Zero ramp-up time on business context</div>
+      <ul>
+        <li>A junior hire takes 6&ndash;12 months to understand wealth management</li>
+        <li>You bring Bloomberg treasury, ANZ corporate banking, KKR PE &mdash; day one</li>
+        <li>You speak the language: deal flow, IC presentations, AUM, mandates, suitability</li>
+        <li>Trilingual (EN/Cantonese/Mandarin) covering their entire APAC footprint</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== INTELLIGENCE SIGNALS ==================== -->
+<section id="signals">
+  <h2><span class="num">2</span> Intelligence Signals &mdash; What the Data Tells Us</h2>
+  <p class="dim">These are patterns from public information. Use them to inform your approach, not as talking points.</p>
+
+  <div class="alert alert-danger" style="margin-bottom: 1.25rem;">
+    <strong>Signal 1: The COO Gap.</strong> Terence Chow (Group COO, ex-CEO Asia RBC WM) is departing after 18 months. He owned technology, operations, business transformation, risk management, and procurement. The COO role was vacant 2021&ndash;2024 before him. This creates a <strong>massive leadership vacuum in tech/ops</strong>. Your CRM role may be scoped wider than advertised &mdash; possibly absorbing part of what Terence did. Be ready for questions about operational leadership, not just CRM features.
+  </div>
+
+  <div class="alert alert-info" style="margin-bottom: 1.25rem;">
+    <strong>Signal 2: Aggressive Scaling.</strong> Five senior hires in 18 months (William Chow, Terence Chow, Kevin King, Michael Tung, Jennie Liang). Expanding to UAE and Rwanda. 121 employees and growing. HK gov endorsement (Annual Forum). They are in <strong>growth mode</strong>, not maintenance mode. The CRM project is part of building infrastructure for scale.
+  </div>
+
+  <div class="alert alert-purple" style="margin-bottom: 1.25rem;">
+    <strong>Signal 3: AI is Already in Play.</strong> Their RFO app is on its 3rd upgrade with a proprietary AI function. Revo Digital is SFC-licensed for digital assets. They hired a quant (William Chow, MSc Operational Research). They are <strong>not AI-skeptics</strong> &mdash; they are AI-practitioners looking to deepen capability. Your AI methodology is relevant, but position it as deepening what they&rsquo;ve already started, not starting from scratch.
+  </div>
+
+  <div class="alert alert-success" style="margin-bottom: 1.25rem;">
+    <strong>Signal 4: Relationship-Centric Culture.</strong> Recent hires (Tung, Liang) come from PE/VC and private banking, not just traditional RM. Jo Huang heads PE investments. Rizal Wijono is on the advisory board for European FO gateway. Raffles is a <strong>deal-making, relationship-driven</strong> family office, not a passive wealth manager. Your KKR/ANZ deal experience is directly relevant.
+  </div>
+
+  <div class="alert alert-info">
+    <strong>Signal 5: Multi-Jurisdiction Complexity.</strong> HK + Singapore dual HQ. Expanding to UAE + Rwanda. SFC and MAS licences. PDPO and PDPA compliance. Digital assets across borders. Their technology must handle <strong>multi-jurisdictional data governance</strong> that&rsquo;s only getting more complex. This is a problem that requires someone who thinks architecturally, not just tactically.
+  </div>
+</section>
+
+<!-- ==================== READ THE ROOM ==================== -->
+<section id="personas">
+  <h2><span class="num">3</span> Read the Room &mdash; Who You Might Meet</h2>
+  <p class="dim">Adjust your emphasis based on who&rsquo;s across the table. Each person cares about different things.</p>
+
+  <div class="persona">
+    <div class="persona-name">Chi-man Kwan</div>
+    <div class="persona-role">Group CEO &amp; Co-Founder &mdash; Most likely your primary interviewer</div>
+    <div class="persona-grid">
+      <div class="persona-col">
+        <h4>What he cares about</h4>
+        <p>Vision, growth, can this person scale with us? Does he understand UHNW clients? Will he fit the culture? Can he lead, not just build? Does he get the Raffles ambition (global multi-family office, not a boutique)?</p>
+      </div>
+      <div class="persona-col">
+        <h4>Your play</h4>
+        <p>Lead with the <strong>operator story</strong>. HKD 120M business, 35+ staff at peak, survived the downturn, 10x efficiency. Show you understand scale. Reference KKR/ANZ to signal institutional credibility. Ask about his vision for the next 3 years. Show genuine curiosity about Raffles&rsquo; strategy.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="persona">
+    <div class="persona-name">William Chow</div>
+    <div class="persona-role">Deputy Group CEO &mdash; Quant, ex-BlackRock/State Street/China Life Franklin</div>
+    <div class="persona-grid">
+      <div class="persona-col">
+        <h4>What he cares about</h4>
+        <p>Data, systems, investment governance, risk management, operational rigour. He has a quant background (MSc Operational Research, LSE) and sits on the Investment Committee. He wants evidence-based decision-making.</p>
+      </div>
+      <div class="persona-col">
+        <h4>Your play</h4>
+        <p>Go <strong>deeper on architecture</strong>. Entity modelling, row-level security, event-sourced audit trails. Reference your Supabase/PostgreSQL experience. Mention TDD and quality gates. He&rsquo;ll appreciate systematic thinking. Use the phrase &ldquo;deterministic pipeline&rdquo; &mdash; it&rsquo;ll resonate with his quant brain.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="persona">
+    <div class="persona-name">Ray Tam</div>
+    <div class="persona-role">Co-Founder &amp; CEO, Revo Digital &mdash; ex-DBS, StanChart, BNP Paribas, Oxford</div>
+    <div class="persona-grid">
+      <div class="persona-col">
+        <h4>What he cares about</h4>
+        <p>Digital innovation, digital assets, client experience, the RFO app, bridging traditional wealth and crypto. He&rsquo;s the co-founder who chose to lead the digital subsidiary &mdash; he believes in tech as differentiator.</p>
+      </div>
+      <div class="persona-col">
+        <h4>Your play</h4>
+        <p>Show you understand the <strong>digital assets integration challenge</strong>. Ask about how traditional portfolio reporting handles crypto positions. Reference the RFO app&rsquo;s 3rd upgrade with genuine interest. Position your AI methodology as deepening what Revo has started. He&rsquo;ll be the most receptive to the AI conversation.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="persona">
+    <div class="persona-name">Jo Huang, CFA</div>
+    <div class="persona-role">Head of Private Equity</div>
+    <div class="persona-grid">
+      <div class="persona-col">
+        <h4>What she cares about</h4>
+        <p>Deal flow tracking, co-investment pipeline, LP reporting, portfolio monitoring. She speaks at SuperReturn Asia. She lives in the deal flow world.</p>
+      </div>
+      <div class="persona-col">
+        <h4>Your play</h4>
+        <p>This is where your <strong>KKR/Emerald Media experience shines</strong>. Talk about IC presentations, deal pipeline management, the aCommerce Series B. You can speak her language: sourcing, DD, IC, portfolio monitoring. You&rsquo;ve been in the seat she needs systems built for.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="persona">
+    <div class="persona-name">Caroline Langston</div>
+    <div class="persona-role">Chief People Officer</div>
+    <div class="persona-grid">
+      <div class="persona-col">
+        <h4>What she cares about</h4>
+        <p>Culture fit, team dynamics, growth potential, leadership style, can you work with the existing team, will you stay?</p>
+      </div>
+      <div class="persona-col">
+        <h4>Your play</h4>
+        <p>Lead with the <strong>coaching leadership story</strong> from STT Mall. &ldquo;I give people tools and frameworks, then let them solve problems.&rdquo; Mention building from 2 people to 35+. Show emotional intelligence. Reference your marathon &mdash; it signals commitment and resilience. Be warm, not just impressive.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== CONVERSATION FLOW ==================== -->
+<section id="conversation">
+  <h2><span class="num">4</span> Conversation Flow &mdash; Steering the Interview</h2>
+  <p class="dim">You can&rsquo;t control the questions, but you can control the arc. Here&rsquo;s the ideal flow.</p>
+
+  <div class="flow">
+    <div class="flow-step">
+      <span class="timing">First 5 minutes</span>
+      <h4>Establish Credibility Fast</h4>
+      <p>Lead with the institutional signal: &ldquo;I&rsquo;ve spent 18 years at the intersection of finance and technology &mdash; from Bloomberg and ANZ where I worked on deals like the Alibaba privatisation, to KKR where I built IC presentations for a $300M fund, to running my own business where I built the entire tech stack from scratch.&rdquo;</p>
+      <p><strong>Goal:</strong> Within 60 seconds, they should know you&rsquo;re not a typical developer.</p>
+    </div>
+
+    <div class="flow-step">
+      <span class="timing">Minutes 5&ndash;15</span>
+      <h4>Listen, Don&rsquo;t Pitch</h4>
+      <p>Turn the conversation to them. Ask: <em>&ldquo;Before I go deeper into my background, I&rsquo;d love to understand what you&rsquo;re looking for. What&rsquo;s the core problem you&rsquo;re trying to solve with this CRM project?&rdquo;</em></p>
+      <p>Listen for: Is this about CRM specifically, or broader tech/ops? Are they building or buying? What systems do they currently use? Who are the stakeholders?</p>
+      <p><strong>Goal:</strong> Understand the real scope before you position yourself.</p>
+    </div>
+
+    <div class="flow-step">
+      <span class="timing">Minutes 15&ndash;30</span>
+      <h4>Bridge Your Experience to Their Needs</h4>
+      <p>Based on what they said, select the most relevant stories from your experience bridge. If they mention deal flow &rarr; KKR story. If they mention client engagement &rarr; STT Mall CRM story. If they mention process improvement &rarr; Proudfoot story. If they mention scale challenges &rarr; STT Mall 10x efficiency story.</p>
+      <p><strong>Goal:</strong> Every answer connects your past to their future.</p>
+    </div>
+
+    <div class="flow-step">
+      <span class="timing">Minutes 30&ndash;40</span>
+      <h4>Demonstrate Domain Depth</h4>
+      <p>This is where you show you&rsquo;ve done the work. Reference: entity modelling for family structures, multi-jurisdiction compliance complexity, the build-vs-buy decision framework, integration challenges with custodians. Use vocabulary that signals you belong: &ldquo;suitability assessment&rdquo;, &ldquo;beneficial ownership&rdquo;, &ldquo;mandate tracking.&rdquo;</p>
+      <p><strong>Goal:</strong> They stop thinking of you as an outsider to wealth management.</p>
+    </div>
+
+    <div class="flow-step">
+      <span class="timing">Minutes 40&ndash;50</span>
+      <h4>Plant the AI Seed (Only If Natural)</h4>
+      <p>If the conversation has gone well and they&rsquo;re engaged, plant one AI idea that connects to a pain point they mentioned. &ldquo;One thing I&rsquo;ve been thinking about for your context &mdash; with new RMs joining (like Michael and Jennie), the onboarding challenge is getting context on every family fast. There are interesting approaches using relationship intelligence...&rdquo;</p>
+      <p><strong>Goal:</strong> Leave them thinking about what&rsquo;s possible, not just what you&rsquo;ve done.</p>
+    </div>
+
+    <div class="flow-step">
+      <span class="timing">Last 10 minutes</span>
+      <h4>Close with the First 90 Days</h4>
+      <p>When asked if you have questions: <em>&ldquo;I do &mdash; and I&rsquo;ve also been thinking about what the first 90 days would look like. My approach is listen-first: two weeks shadowing your team before recommending anything. Would you be open to me sharing that framework?&rdquo;</em></p>
+      <p><strong>Goal:</strong> Show you&rsquo;re already thinking like an employee, not an interviewee.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SCENARIO PLANNING ==================== -->
+<section id="scenarios">
+  <h2><span class="num">5</span> Scenario Planning &mdash; What If&hellip;</h2>
+  <p class="dim">The interview may not follow the ideal script. Be ready to adapt.</p>
+
+  <table class="scenario-table">
+    <tr>
+      <th style="width: 30%;">Scenario</th>
+      <th style="width: 35%;">What It Means</th>
+      <th style="width: 35%;">Your Response</th>
+    </tr>
+    <tr>
+      <td><strong>They want Salesforce configuration, not custom build</strong></td>
+      <td>Role is vendor management + customisation. Less technical autonomy, more coordination.</td>
+      <td>&ldquo;I can evaluate and manage vendors better than most because I understand both the business requirements and the technical capabilities. I&rsquo;ve built systems from scratch, so I know what&rsquo;s genuinely hard and what&rsquo;s just configuration.&rdquo;</td>
+    </tr>
+    <tr>
+      <td><strong>They mention Terence Chow&rsquo;s departure</strong></td>
+      <td>They&rsquo;re telling you the scope is wider. They want tech/ops leadership, not just CRM.</td>
+      <td>&ldquo;That&rsquo;s a significant mandate &mdash; technology, operations, and business transformation together. That&rsquo;s exactly the combination I&rsquo;ve spent 11 years doing at STT Mall, and it&rsquo;s the reason I&rsquo;m most excited about this conversation.&rdquo;</td>
+    </tr>
+    <tr>
+      <td><strong>They focus heavily on compliance</strong></td>
+      <td>This is a compliance-driven hire, not a technology-driven one. They need someone who won&rsquo;t break things.</td>
+      <td>Lean into Proudfoot methodology: diagnose, model, implement. &ldquo;I would work with your compliance team to define the governance framework first, then build the technology to enforce it. Technology follows policy, not the other way around.&rdquo;</td>
+    </tr>
+    <tr>
+      <td><strong>They seem skeptical of &ldquo;self-taught developer&rdquo;</strong></td>
+      <td>They&rsquo;re worried about code quality and maintainability.</td>
+      <td>&ldquo;I practice test-driven development, code review, and security review as standard methodology. I advocate for proven platforms for core systems. I&rsquo;m not proposing to be a solo cowboy coder &mdash; I&rsquo;m proposing to be the person who bridges business requirements and technical execution with professional engineering discipline.&rdquo;</td>
+    </tr>
+    <tr>
+      <td><strong>They ask about salary / rate expectations</strong></td>
+      <td>Standard. Don&rsquo;t underprice yourself.</td>
+      <td>&ldquo;I&rsquo;m flexible and more focused on fit and scope. What I&rsquo;d love to understand first is the full scope of the role &mdash; whether this is CRM-specific or broader tech/ops. That would help me give you a thoughtful answer.&rdquo; Deflect to scope, then negotiate.</td>
+    </tr>
+    <tr>
+      <td><strong>They ask you to whiteboard or demo</strong></td>
+      <td>Technical assessment. They want to see you think, not just talk.</td>
+      <td>Draw the entity model. Family Group &rarr; Members &rarr; Entities &rarr; Accounts &rarr; Assets. Show polymorphic relationships. Mention RLS for access control. This is your strongest visual &mdash; it shows architectural thinking.</td>
+    </tr>
+    <tr>
+      <td><strong>Multiple interviewers, rapid-fire questions</strong></td>
+      <td>Panel interview. Each person has 10 minutes with you.</td>
+      <td>Shorter answers. One proof point per answer, not three. Read the personas above &mdash; adjust for each person&rsquo;s lens. Ask each interviewer one tailored question to show you know who they are.</td>
+    </tr>
+    <tr>
+      <td><strong>They seem to already have a preferred candidate</strong></td>
+      <td>You&rsquo;re the alternative. You need to be memorable.</td>
+      <td>Go bolder on the operator-who-codes narrative. &ldquo;I don&rsquo;t know who else you&rsquo;re speaking to, but I can promise you won&rsquo;t find another candidate who has run a $15M+ operation, sat in institutional deal rooms, AND can build the systems themselves. That combination doesn&rsquo;t exist in the market.&rdquo;</td>
+    </tr>
+  </table>
+</section>
+
+<!-- ==================== KEY NARRATIVES ==================== -->
+<section id="narratives">
+  <h2><span class="num">6</span> Key Narratives &mdash; Stories to Weave In</h2>
+  <p class="dim">These aren&rsquo;t separate stories. They&rsquo;re threads to weave into answers naturally. Each takes 30&ndash;60 seconds to tell.</p>
+
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-label">The Origin Story</div>
+      <div class="card-title">&ldquo;I ran two lives for three years&rdquo;</div>
+      <ul>
+        <li>Built STT Mall as a side venture while working at ANZ and Emerald Media</li>
+        <li>Pick-packing orders at night, banking by day</li>
+        <li>Shows: drive, time management, entrepreneurial resilience</li>
+        <li><strong>Use when:</strong> They ask about your motivation or work ethic</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-label">The Survival Story</div>
+      <div class="card-title">&ldquo;10x or die&rdquo;</div>
+      <ul>
+        <li>Post-COVID, Hong Kong retail collapsed. HKD 120M to severe downturn.</li>
+        <li>Multiple restructurings. Rebuilt every system. 10x revenue per employee.</li>
+        <li>Shows: resilience, decisiveness, technology as a survival lever</li>
+        <li><strong>Use when:</strong> They ask about challenges, crisis management, or efficiency</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-label">The Credibility Story</div>
+      <div class="card-title">&ldquo;I was in the room for Alibaba&rdquo;</div>
+      <ul>
+        <li>Part of the bank financing syndicate for Alibaba&rsquo;s USD 2.5B HKEX privatisation</li>
+        <li>Built IC presentations for KKR senior leadership</li>
+        <li>Shows: you understand institutional-grade deal-making at the highest level</li>
+        <li><strong>Use when:</strong> They question your finance credibility or ask about deal experience</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-label">The Builder Story</div>
+      <div class="card-title">&ldquo;I taught myself to code because nobody else would build what I needed&rdquo;</div>
+      <ul>
+        <li>Excel/VBA &rarr; Apps Script &rarr; Next.js/Python/SQL/AI &mdash; driven by real problems</li>
+        <li>Built 7 integrated systems: OMS, CRM, fulfilment, content, social, SEO, PO management</li>
+        <li>Shows: self-directed learning, problem-solving from first principles</li>
+        <li><strong>Use when:</strong> They ask about your technical background or learning approach</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-label">The Consultant Story</div>
+      <div class="card-title">&ldquo;Proudfoot taught me to implement, not just recommend&rdquo;</div>
+      <ul>
+        <li>Embedded with Lafarge China. Floor to C-suite. Millions in annual savings.</li>
+        <li>The methodology: interview, map, model, present, implement, measure</li>
+        <li>Shows: you don&rsquo;t just build software &mdash; you transform operations</li>
+        <li><strong>Use when:</strong> They ask about your approach to the CRM project or change management</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-label">The Language Story</div>
+      <div class="card-title">&ldquo;I can cover your entire footprint&rdquo;</div>
+      <ul>
+        <li>English (fluent), Cantonese (native), Mandarin (fluent)</li>
+        <li>Hong Kong, Singapore, Shanghai, Beijing, Taipei, Bangkok &mdash; you speak their languages</li>
+        <li>Shows: operational versatility across Raffles&rsquo; entire APAC presence</li>
+        <li><strong>Use when:</strong> They discuss APAC expansion or Greater China operations</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== CLOSING STRATEGY ==================== -->
+<section id="close">
+  <h2><span class="num">7</span> Closing Strategy</h2>
+
+  <h3>The Final Impression</h3>
+  <p>The last 2 minutes determine what they remember. Choose one of these closings based on how the conversation went:</p>
+
+  <div class="alert alert-success" style="margin-bottom: 1rem;">
+    <strong>If the conversation went well (energy, engagement, follow-up questions):</strong><br><br>
+    &ldquo;I want to be direct: this is the most exciting opportunity I&rsquo;ve seen because it sits at the exact intersection of everything I&rsquo;ve built over 18 years &mdash; finance, operations, and technology. I don&rsquo;t need months to ramp up on your world because I&rsquo;ve lived in it. I&rsquo;d love to move forward.&rdquo;
+  </div>
+
+  <div class="alert alert-info" style="margin-bottom: 1rem;">
+    <strong>If they seemed focused on a narrow CRM scope:</strong><br><br>
+    &ldquo;Even if this starts as a CRM project, I see it as the foundation for something much bigger &mdash; a technology backbone that helps Raffles scale across markets while keeping the personal touch that UHNW clients expect. I&rsquo;d love to start with the CRM and prove the value from there.&rdquo;
+  </div>
+
+  <div class="alert alert-purple" style="margin-bottom: 1rem;">
+    <strong>If they raised concerns about your background:</strong><br><br>
+    &ldquo;I understand the gaps you might see. I&rsquo;m not a financial services CRM specialist. What I am is someone who has built a business, led teams, sat in deal rooms, and taught himself to build every system that business needed. That combination of judgment and execution is rare &mdash; and it&rsquo;s exactly what a growing organisation needs when the challenge isn&rsquo;t just building software, but building the right software.&rdquo;
+  </div>
+
+  <h3>After the Interview</h3>
+  <div class="card-grid" style="margin-top: 1rem;">
+    <div class="card">
+      <div class="card-label">Same Day</div>
+      <div class="card-title">Send a thank-you email</div>
+      <ul>
+        <li>Short (3&ndash;4 sentences). Reference one specific moment from the conversation.</li>
+        <li>&ldquo;I particularly enjoyed our discussion about [X] &mdash; it reinforced my conviction that this is a unique opportunity.&rdquo;</li>
+        <li>If you promised to share anything (a framework, a reference), attach it.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-label">Within 48 Hours</div>
+      <div class="card-title">Send a one-pager (optional power move)</div>
+      <ul>
+        <li>A concise &ldquo;Here&rsquo;s how I&rsquo;d approach the first 90 days&rdquo; document</li>
+        <li>Tailored to what they told you in the interview</li>
+        <li>Shows initiative, listening skills, and strategic thinking</li>
+        <li>Only do this if the interview went well &mdash; don&rsquo;t force it if energy was low</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== PRE-INTERVIEW CHECKLIST ==================== -->
+<section id="checklist">
+  <h2><span class="num">8</span> Pre-Interview Checklist</h2>
+
+  <h3>The Night Before</h3>
+  <ul class="checklist">
+    <li>Re-read this strategy page (focus on Core Thesis and Conversation Flow)</li>
+    <li>Review the <a href="index.html#org-chart" style="color: var(--accent);">org chart</a> &mdash; know who might interview you</li>
+    <li>Review the <a href="index.html#news" style="color: var(--accent);">latest news</a> &mdash; especially Terence Chow, UAE/Rwanda expansion, digital asset fund</li>
+    <li>Prepare 3 questions for THEM (from the <a href="index.html#ask-them" style="color: var(--accent);">Questions to Ask</a> section)</li>
+    <li>Practice the one-sentence thesis out loud until it feels natural</li>
+    <li>Set out clothes, charge devices, confirm meeting details (time, location, format)</li>
+  </ul>
+
+  <h3>Morning Of</h3>
+  <ul class="checklist">
+    <li>Re-read just the <a href="#thesis" style="color: var(--accent);">Core Thesis</a> and <a href="#conversation" style="color: var(--accent);">Conversation Flow</a></li>
+    <li>Review the <a href="index.html#landmines" style="color: var(--accent);">Landmines</a> &mdash; what NOT to say</li>
+    <li>Mentally rehearse the first 60 seconds (the credibility opener)</li>
+    <li>Arrive 10 minutes early. Observe the office environment. Note any awards, branding, culture signals.</li>
+  </ul>
+
+  <h3>During the Interview</h3>
+  <ul class="checklist">
+    <li>First 60 seconds: establish credibility (Bloomberg, ANZ, KKR, STT Mall COO)</li>
+    <li>Listen more than you talk for the first 15 minutes</li>
+    <li>Every answer bridges your past to their future</li>
+    <li>Use their vocabulary: &ldquo;families&rdquo; not &ldquo;clients&rdquo;, &ldquo;mandates&rdquo; not &ldquo;requirements&rdquo;</li>
+    <li>If you don&rsquo;t know something, say so &mdash; then bridge to what you do know</li>
+    <li>Ask at least one question that shows you&rsquo;ve researched them deeply</li>
+    <li>Close with conviction, not just politeness</li>
+  </ul>
+
+  <h3>Vocabulary Cheat Sheet</h3>
+  <table class="scenario-table">
+    <tr><th>Say This</th><th>Not This</th></tr>
+    <tr><td>&ldquo;families&rdquo; / &ldquo;family groups&rdquo;</td><td>&ldquo;clients&rdquo; / &ldquo;customers&rdquo; / &ldquo;users&rdquo;</td></tr>
+    <tr><td>&ldquo;entities&rdquo; / &ldquo;structures&rdquo;</td><td>&ldquo;accounts&rdquo;</td></tr>
+    <tr><td>&ldquo;mandates&rdquo; / &ldquo;investment mandates&rdquo;</td><td>&ldquo;requirements&rdquo; / &ldquo;specs&rdquo;</td></tr>
+    <tr><td>&ldquo;relationship managers&rdquo; / &ldquo;RMs&rdquo;</td><td>&ldquo;salespeople&rdquo; / &ldquo;account managers&rdquo;</td></tr>
+    <tr><td>&ldquo;principal families&rdquo;</td><td>&ldquo;end users&rdquo;</td></tr>
+    <tr><td>&ldquo;suitability assessment&rdquo;</td><td>&ldquo;needs analysis&rdquo;</td></tr>
+    <tr><td>&ldquo;beneficial ownership&rdquo;</td><td>&ldquo;who owns what&rdquo;</td></tr>
+    <tr><td>&ldquo;deal flow pipeline&rdquo;</td><td>&ldquo;sales funnel&rdquo;</td></tr>
+    <tr><td>&ldquo;custodian feeds&rdquo;</td><td>&ldquo;data imports&rdquo;</td></tr>
+    <tr><td>&ldquo;governance framework&rdquo;</td><td>&ldquo;admin settings&rdquo;</td></tr>
+  </table>
+</section>
+
+</div>
+
+<footer style="text-align: center; padding: 3rem; color: var(--text-dim); font-size: 12px; border-top: 1px solid var(--border);">
+  <a href="index.html" style="color: var(--accent); text-decoration: none; margin-right: 2rem;">&larr; Interview Prep</a>
+  <a href="resume.html" style="color: var(--accent); text-decoration: none;">Full Resume &rarr;</a>
+  <br><br>
+  Prepared by Strategic Council &bull; Consensus Score: 4/5 &bull; Confidential
+</footer>
+
+<script>
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('nav a[href^="#"]');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(link => {
+          link.classList.toggle('active', link.getAttribute('href') === '#' + entry.target.id);
+        });
+      }
+    });
+  }, { rootMargin: '-20% 0px -75% 0px' });
+  sections.forEach(section => observer.observe(section));
+</script>
+
+</body>
+</html>
