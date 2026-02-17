@@ -45,7 +45,7 @@ All data points below are sourced. Use this to update index.html.
 - **Previous:** Deputy CEO, China Life Franklin AM (US$35B AUM); PINS AM; Value Partners; BlackRock; State Street; UBS
 - **Education:** MSc Operational Research, London School of Economics (LSE)
 - **Role:** Board of Management, Investment Committee. Oversees Advanced Wealth Solutions division.
-- **Moderated:** AI panel at Annual Forum 2025 ("The AI Megacycle") with Google HK MD and Lanchi Ventures GP
+- **Moderated:** AI panel at Annual Forum 2025 ("The AI Megacycle") with Google HK MD and Managing Partner, Lanchi Ventures
 - **Personal:** Competitive table tennis player, amateur historian, avid hiker
 - **Sources:** rafflesgroup.co, fundselectorasia.com, citywire.com
 
@@ -167,7 +167,7 @@ All data points below are sourced. Use this to update index.html.
 | David Chang | Board Advisor | Vice Chairman Asia, PGIM |
 | Rizal Wijono | Board Advisor | ex-MD Micro Connect; Europe FO gateway |
 | Abdullatif Mohamed Kanoo | Board Advisor (Dec 2024) | 5th-gen Kanoo Group, Abu Dhabi. Middle East expansion. |
-| Chris Chong | Board Advisor | LVMH Group President S&SE Asia. Luxury sector advisor. |
+| Chris Chong | Board Advisor | ex-LVMH Group President S&SE Asia & Oceania (departed Feb 2026). Luxury sector advisor. |
 | Dr. Niti Nerngchamnong | Board Advisor (Aug 2024) | LL.D., Managing Partner NITI Law Office Bangkok. Family governance & succession. Harvard Law, Cambridge Judge exec ed. |
 
 ## STRATEGIC INITIATIVES
@@ -197,8 +197,8 @@ All data points below are sourced. Use this to update index.html.
 - Theme: "The Decade Before, A Century Beyond" (10th anniversary)
 - Keynote: Christopher Hui (Secretary for Financial Services & Treasury, HKSAR)
 - Guest: Yusuf Murangwa (Minister of Finance, Rwanda)
-- AI Panel: "The AI Megacycle" — moderated by William Chow, featuring Michael Yue (Google HK MD), Jui Tan (Lanchi Ventures GP)
-- Luxury Panel: Kevin Ching (Chairman, Christie's Asia), Chris Chong (LVMH Group President S&SE Asia; also RFO Board Advisor)
+- AI Panel: "The AI Megacycle" — moderated by William Chow, featuring Michael Yue (Google HK MD), Jui Tan (Managing Partner, Lanchi Ventures)
+- Luxury Panel: Kevin Ching (Chairman, Christie's Asia), Chris Chong (then-LVMH Group President S&SE Asia & Oceania; departed LVMH Feb 2026; also RFO Board Advisor)
 - Venue: Four Seasons Hotel Hong Kong
 - Source: rafflesgroup.co/annual-forum-2025, info.gov.hk/gia (SFST speech)
 
