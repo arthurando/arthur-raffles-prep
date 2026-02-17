@@ -207,7 +207,54 @@
             line-height: 1.6;
         }
 
-        /* PERSONA CARDS */
+        /* PERSONA PILLS */
+        .persona-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .persona-pill {
+            background-color: var(--surface-alt);
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            padding: 0.5rem 1.25rem;
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+
+        .persona-pill:hover {
+            border-color: var(--accent);
+            color: var(--text);
+        }
+
+        .persona-pill.active {
+            background-color: var(--accent);
+            border-color: var(--accent);
+            color: #0a0a0f;
+            font-weight: 600;
+        }
+
+        /* PERSONA PANELS */
+        .persona-panel {
+            display: none;
+            animation: fadeInPanel 0.3s ease;
+        }
+
+        .persona-panel.active {
+            display: block;
+        }
+
+        @keyframes fadeInPanel {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         .persona-card {
             background-color: var(--surface);
             border: 1px solid var(--border);
@@ -222,23 +269,37 @@
             box-shadow: 0 0 15px var(--accent-glow);
         }
 
+        .persona-header {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+
         .persona-name {
             color: var(--accent);
-            font-size: 1.2rem;
-            font-weight: 600;
+            font-size: 1.4rem;
+            font-weight: 700;
             margin-bottom: 0.25rem;
         }
 
         .persona-role {
             color: var(--text-dim);
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .persona-background {
+            color: var(--text);
             font-size: 0.9rem;
-            margin-bottom: 1rem;
+            line-height: 1.5;
         }
 
         .persona-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 1.5rem;
+            margin-bottom: 1.5rem;
         }
 
         .persona-column h4 {
@@ -252,6 +313,50 @@
         .persona-column p {
             color: var(--text);
             font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .persona-detail-section {
+            background-color: var(--surface-alt);
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            padding: 1.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .persona-detail-section h4 {
+            color: var(--accent);
+            font-size: 0.9rem;
+            margin-bottom: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .persona-detail-section ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .persona-detail-section ul li {
+            color: var(--text);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            padding: 0.25rem 0;
+            padding-left: 1rem;
+            position: relative;
+        }
+
+        .persona-detail-section ul li::before {
+            content: "\2022";
+            color: var(--accent);
+            position: absolute;
+            left: 0;
+        }
+
+        .persona-detail-section p {
+            color: var(--text);
+            font-size: 0.9rem;
             line-height: 1.6;
         }
 
@@ -548,6 +653,19 @@
                 grid-template-columns: 1fr;
             }
 
+            .persona-pills {
+                gap: 0.4rem;
+            }
+
+            .persona-pill {
+                font-size: 0.8rem;
+                padding: 0.4rem 0.9rem;
+            }
+
+            .persona-name {
+                font-size: 1.15rem;
+            }
+
             .cards-grid {
                 grid-template-columns: 1fr;
             }
@@ -582,8 +700,17 @@
 
             .card,
             .persona-card,
+            .persona-panel,
             .alert {
                 page-break-inside: avoid;
+            }
+
+            .persona-panel {
+                display: block !important;
+            }
+
+            .persona-pills {
+                display: none;
             }
         }
 
@@ -695,77 +822,177 @@
         <section id="personas">
             <h2>Read the Room — Who You Might Meet</h2>
 
-            <div class="persona-card">
-                <div class="persona-name">Chi-man Kwan</div>
-                <div class="persona-role">Group CEO</div>
-                <div class="persona-grid">
-                    <div class="persona-column">
-                        <h4>What He Cares About</h4>
-                        <p>Vision, growth, scale, UHNW understanding, culture fit, Raffles ambition</p>
+            <div class="persona-pills">
+                <button class="persona-pill active" data-persona="chiman">Chi-man Kwan</button>
+                <button class="persona-pill" data-persona="william">William Chow</button>
+                <button class="persona-pill" data-persona="ray">Ray Tam</button>
+                <button class="persona-pill" data-persona="jo">Jo Huang, CFA</button>
+                <button class="persona-pill" data-persona="caroline">Caroline Langston</button>
+            </div>
+
+            <!-- Chi-man Kwan -->
+            <div class="persona-panel active" id="panel-chiman">
+                <div class="persona-card">
+                    <div class="persona-header">
+                        <div class="persona-name">Chi-man Kwan</div>
+                        <div class="persona-role">Group CEO, Raffles Family Office</div>
+                        <div class="persona-background">Founded Raffles Family Office in 2016. Grew to 121+ employees managing billions in AUM. BSc Management Science, Lancaster University.</div>
                     </div>
-                    <div class="persona-column">
-                        <h4>Your Play</h4>
-                        <p>Lead with operator story: HKD 120M, 35+ staff, survived downturn, 10x efficiency. Reference KKR/ANZ. Ask about 3-year vision.</p>
+                    <div class="persona-grid">
+                        <div class="persona-column">
+                            <h4>What He Cares About</h4>
+                            <p>Vision, growth, scale, UHNW understanding, culture fit, Raffles ambition</p>
+                        </div>
+                        <div class="persona-column">
+                            <h4>Your Play</h4>
+                            <p>Lead with operator story: HKD 120M, 35+ staff, survived downturn, 10x efficiency. Reference KKR/ANZ. Ask about 3-year vision.</p>
+                        </div>
+                    </div>
+                    <div class="persona-detail-section">
+                        <h4>In-Depth Profile</h4>
+                        <ul>
+                            <li>Previously held senior roles at Citi Private Bank and Credit Suisse Private Banking</li>
+                            <li>Former semi-professional volleyball player</li>
+                            <li>Named in Fortune 40 Under 40 and Forbes 30 Under 30 (Finance)</li>
+                            <li>Featured in Hong Kong government family office case studies</li>
+                            <li>Entrepreneurial founder mindset -- will respect Arthur's operator background</li>
+                        </ul>
+                    </div>
+                    <div class="persona-detail-section">
+                        <h4>Recent News</h4>
+                        <p>Expanding aggressively -- new offices in UAE and Rwanda. Hong Kong government endorsement. Targeting 220 additional family offices by 2028. Growth is the dominant theme for Chi-man right now.</p>
                     </div>
                 </div>
             </div>
 
-            <div class="persona-card">
-                <div class="persona-name">William Chow</div>
-                <div class="persona-role">Deputy CEO</div>
-                <div class="persona-grid">
-                    <div class="persona-column">
-                        <h4>What He Cares About</h4>
-                        <p>Data, systems, investment governance, risk, operational rigour. Quant (MSc OR, LSE)</p>
+            <!-- William Chow -->
+            <div class="persona-panel" id="panel-william">
+                <div class="persona-card">
+                    <div class="persona-header">
+                        <div class="persona-name">William Chow</div>
+                        <div class="persona-role">Deputy CEO, Raffles Family Office</div>
+                        <div class="persona-background">Quantitative background, co-founded Raffles with Chi-man. MSc Operational Research, LSE.</div>
                     </div>
-                    <div class="persona-column">
-                        <h4>Your Play</h4>
-                        <p>Go deeper on architecture, entity modelling, RLS, event-sourced audit trails. Mention TDD, quality gates. Use "deterministic pipeline."</p>
+                    <div class="persona-grid">
+                        <div class="persona-column">
+                            <h4>What He Cares About</h4>
+                            <p>Data, systems, investment governance, risk, operational rigour. Quant (MSc OR, LSE)</p>
+                        </div>
+                        <div class="persona-column">
+                            <h4>Your Play</h4>
+                            <p>Go deeper on architecture, entity modelling, RLS, event-sourced audit trails. Mention TDD, quality gates. Use "deterministic pipeline."</p>
+                        </div>
                     </div>
-                </div>
-            </div>
-
-            <div class="persona-card">
-                <div class="persona-name">Ray Tam</div>
-                <div class="persona-role">CEO Revo Digital</div>
-                <div class="persona-grid">
-                    <div class="persona-column">
-                        <h4>What He Cares About</h4>
-                        <p>Digital innovation, digital assets, client experience, RFO app, bridging traditional/crypto</p>
+                    <div class="persona-detail-section">
+                        <h4>In-Depth Profile</h4>
+                        <ul>
+                            <li>Previously at Citi Private Bank and Credit Suisse</li>
+                            <li>Oversees investment governance, risk, and compliance across the group</li>
+                            <li>Quant mindset -- speak his language with data, architecture, audit trails</li>
+                            <li>Co-founder gives him deep strategic influence beyond his operational role</li>
+                        </ul>
                     </div>
-                    <div class="persona-column">
-                        <h4>Your Play</h4>
-                        <p>Show understanding of digital assets integration. Ask about traditional portfolio reporting with crypto. Reference RFO app's 3rd upgrade. Position AI methodology as deepening what Revo started.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="persona-card">
-                <div class="persona-name">Jo Huang, CFA</div>
-                <div class="persona-role">Head of PE</div>
-                <div class="persona-grid">
-                    <div class="persona-column">
-                        <h4>What She Cares About</h4>
-                        <p>Deal flow, co-investment pipeline, LP reporting, portfolio monitoring</p>
-                    </div>
-                    <div class="persona-column">
-                        <h4>Your Play</h4>
-                        <p>KKR/Emerald shines. IC presentations, deal pipeline, aCommerce Series B. Speak her language: sourcing, DD, IC, portfolio monitoring.</p>
+                    <div class="persona-detail-section">
+                        <h4>Recent News</h4>
+                        <p>Leading regulatory strategy across Hong Kong (SFC) and Singapore (MAS) dual-licensing. Multi-jurisdictional compliance is a top priority -- Arthur's understanding of data governance and RLS maps directly to this.</p>
                     </div>
                 </div>
             </div>
 
-            <div class="persona-card">
-                <div class="persona-name">Caroline Langston</div>
-                <div class="persona-role">Chief People Officer</div>
-                <div class="persona-grid">
-                    <div class="persona-column">
-                        <h4>What She Cares About</h4>
-                        <p>Culture fit, team dynamics, growth potential, leadership style</p>
+            <!-- Ray Tam -->
+            <div class="persona-panel" id="panel-ray">
+                <div class="persona-card">
+                    <div class="persona-header">
+                        <div class="persona-name">Ray Tam</div>
+                        <div class="persona-role">CEO, Revo Digital (Raffles Subsidiary)</div>
+                        <div class="persona-background">Leads Raffles' digital innovation arm. MPhil Engineering, Oxford University. Previously held technology and digital asset roles.</div>
                     </div>
-                    <div class="persona-column">
-                        <h4>Your Play</h4>
-                        <p>Coaching leadership from STT Mall. "I give people tools and frameworks." Building from 2 to 35+. Mention marathon. Be warm, not just impressive.</p>
+                    <div class="persona-grid">
+                        <div class="persona-column">
+                            <h4>What He Cares About</h4>
+                            <p>Digital innovation, digital assets, client experience, RFO app, bridging traditional/crypto</p>
+                        </div>
+                        <div class="persona-column">
+                            <h4>Your Play</h4>
+                            <p>Show understanding of digital assets integration. Ask about traditional portfolio reporting with crypto. Reference RFO app's 3rd upgrade. Position AI methodology as deepening what Revo started.</p>
+                        </div>
+                    </div>
+                    <div class="persona-detail-section">
+                        <h4>In-Depth Profile</h4>
+                        <ul>
+                            <li>SFC-licensed digital asset platform under Revo Digital</li>
+                            <li>RFO app now on its 3rd upgrade, incorporating AI capabilities</li>
+                            <li>Bridging traditional wealth management with digital assets</li>
+                            <li>Oxford engineering background -- values technical rigour and innovation</li>
+                        </ul>
+                    </div>
+                    <div class="persona-detail-section">
+                        <h4>Recent News</h4>
+                        <p>Revo Digital obtained SFC licence for digital asset services. This is a major regulatory milestone and positions Raffles at the intersection of traditional and digital wealth management.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Jo Huang -->
+            <div class="persona-panel" id="panel-jo">
+                <div class="persona-card">
+                    <div class="persona-header">
+                        <div class="persona-name">Jo Huang, CFA</div>
+                        <div class="persona-role">Head of Private Equity, Raffles Family Office</div>
+                        <div class="persona-background">Leads PE/VC deal sourcing, co-investment, and portfolio monitoring. CFA charterholder with private equity and venture capital experience across Asia.</div>
+                    </div>
+                    <div class="persona-grid">
+                        <div class="persona-column">
+                            <h4>What She Cares About</h4>
+                            <p>Deal flow, co-investment pipeline, LP reporting, portfolio monitoring</p>
+                        </div>
+                        <div class="persona-column">
+                            <h4>Your Play</h4>
+                            <p>KKR/Emerald shines. IC presentations, deal pipeline, aCommerce Series B. Speak her language: sourcing, DD, IC, portfolio monitoring.</p>
+                        </div>
+                    </div>
+                    <div class="persona-detail-section">
+                        <h4>In-Depth Profile</h4>
+                        <ul>
+                            <li>Manages deal flow pipeline, LP reporting, and co-investment opportunities</li>
+                            <li>Arthur's KKR/Emerald experience is directly relevant to her domain</li>
+                            <li>CFA designation signals analytical rigour -- back up claims with data</li>
+                            <li>PE/VC across Asia means she values cross-border deal experience</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Caroline Langston -->
+            <div class="persona-panel" id="panel-caroline">
+                <div class="persona-card">
+                    <div class="persona-header">
+                        <div class="persona-name">Caroline Langston</div>
+                        <div class="persona-role">Chief People Officer, Raffles Family Office</div>
+                        <div class="persona-background">Leads people strategy, talent development, cultural initiatives, and Raffles Group Academy. Was RFO coach for 5+ years before taking this strategic role.</div>
+                    </div>
+                    <div class="persona-grid">
+                        <div class="persona-column">
+                            <h4>What She Cares About</h4>
+                            <p>Culture fit, team dynamics, growth potential, leadership style</p>
+                        </div>
+                        <div class="persona-column">
+                            <h4>Your Play</h4>
+                            <p>Coaching leadership from STT Mall. "I give people tools and frameworks." Building from 2 to 35+. Mention marathon. Be warm, not just impressive.</p>
+                        </div>
+                    </div>
+                    <div class="persona-detail-section">
+                        <h4>In-Depth Profile</h4>
+                        <ul>
+                            <li>Reports directly to Chi-man Kwan -- her opinion carries weight</li>
+                            <li>Building Raffles Group Academy for structured talent development</li>
+                            <li>Coaching background means she reads people carefully -- be authentic</li>
+                            <li>Transitioned from external coach to strategic CPO role -- values growth journeys</li>
+                        </ul>
+                    </div>
+                    <div class="persona-detail-section">
+                        <h4>Recent News</h4>
+                        <p>Scaling the team from approximately 100 to support aggressive growth plans. Talent acquisition and culture preservation during rapid expansion is her top challenge.</p>
                     </div>
                 </div>
             </div>
@@ -1112,5 +1339,26 @@
     </footer>
 
     <script src="../shared/nav.js"></script>
+    <script>
+        (function() {
+            var pills = document.querySelectorAll('.persona-pill');
+            var panels = document.querySelectorAll('.persona-panel');
+
+            pills.forEach(function(pill) {
+                pill.addEventListener('click', function() {
+                    var target = pill.getAttribute('data-persona');
+
+                    pills.forEach(function(p) { p.classList.remove('active'); });
+                    panels.forEach(function(p) { p.classList.remove('active'); });
+
+                    pill.classList.add('active');
+                    var panel = document.getElementById('panel-' + target);
+                    if (panel) {
+                        panel.classList.add('active');
+                    }
+                });
+            });
+        })();
+    </script>
 </body>
 </html>
