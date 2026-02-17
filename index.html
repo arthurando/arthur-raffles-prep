@@ -38,25 +38,59 @@
     position: sticky;
     top: 0;
     z-index: 100;
-    background: rgba(10, 10, 15, 0.92);
+    background: rgba(10, 10, 15, 0.95);
     backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--border);
-    padding: 0 2rem;
   }
+  .nav-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .nav-brand {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent);
+    text-decoration: none;
+    padding: 0.85rem 0;
+    white-space: nowrap;
+    letter-spacing: 0.02em;
+  }
+  .hamburger {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .hamburger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--text-dim);
+    border-radius: 1px;
+    transition: all 0.3s;
+  }
+  .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
   nav ul {
     list-style: none;
     display: flex;
     gap: 0;
-    max-width: 1100px;
-    margin: 0 auto;
     overflow-x: auto;
   }
   nav a {
     display: block;
-    padding: 1rem 1.25rem;
+    padding: 0.85rem 1rem;
     color: var(--text-dim);
     text-decoration: none;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 500;
     letter-spacing: 0.03em;
     text-transform: uppercase;
@@ -67,6 +101,34 @@
   nav a:hover, nav a.active {
     color: var(--accent);
     border-bottom-color: var(--accent);
+  }
+  @media (max-width: 900px) {
+    .hamburger { display: flex; }
+    nav ul {
+      display: none;
+      flex-direction: column;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: rgba(10, 10, 15, 0.98);
+      border-bottom: 1px solid var(--border);
+      padding: 0.5rem 0;
+      max-height: 80vh;
+      overflow-y: auto;
+    }
+    nav ul.open { display: flex; }
+    nav a {
+      padding: 0.75rem 2rem;
+      font-size: 13px;
+      border-bottom: none;
+      border-left: 2px solid transparent;
+    }
+    nav a:hover, nav a.active {
+      border-bottom: none;
+      border-left-color: var(--accent);
+      background: var(--accent-glow);
+    }
   }
 
   /* === LAYOUT === */
@@ -517,7 +579,7 @@
     h1 { font-size: 1.6rem; }
     .phase-grid { grid-template-columns: 1fr; }
     .card-grid { grid-template-columns: 1fr; }
-    nav a { padding: 0.75rem; font-size: 11px; }
+    .ask-grid { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -525,21 +587,27 @@
 
 <!-- NAV -->
 <nav>
-  <ul>
-    <li><a href="#positioning">Positioning</a></li>
-    <li><a href="#intel">Raffles Intel</a></li>
-    <li><a href="#org-chart">Org Chart</a></li>
-    <li><a href="#news">Latest News</a></li>
-    <li><a href="#experience">Experience Bridge</a></li>
-    <li><a href="#fluency">Technical Fluency</a></li>
-    <li><a href="#ai-proposals">AI Proposals</a></li>
-    <li><a href="#questions">Hard Questions</a></li>
-    <li><a href="#ask-them">Questions to Ask</a></li>
-    <li><a href="#ninety-days">First 90 Days</a></li>
-    <li><a href="#landmines">Landmines</a></li>
-    <li><a href="strategy.html" style="color: var(--accent);">Strategy &rarr;</a></li>
-    <li><a href="resume.html" style="color: var(--accent);">Resume &rarr;</a></li>
-  </ul>
+  <div class="nav-inner">
+    <a href="#" class="nav-brand">RAFFLES PREP</a>
+    <button class="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul>
+      <li><a href="#positioning">Positioning</a></li>
+      <li><a href="#intel">Raffles Intel</a></li>
+      <li><a href="#org-chart">Org Chart</a></li>
+      <li><a href="#news">Latest News</a></li>
+      <li><a href="#experience">Experience Bridge</a></li>
+      <li><a href="#fluency">Technical Fluency</a></li>
+      <li><a href="#ai-proposals">AI Proposals</a></li>
+      <li><a href="#questions">Hard Questions</a></li>
+      <li><a href="#ask-them">Questions to Ask</a></li>
+      <li><a href="#ninety-days">First 90 Days</a></li>
+      <li><a href="#landmines">Landmines</a></li>
+      <li><a href="strategy.html" style="color: var(--accent);">Strategy &rarr;</a></li>
+      <li><a href="resume.html" style="color: var(--accent);">Resume &rarr;</a></li>
+    </ul>
+  </div>
 </nav>
 
 <div class="container">
@@ -1396,20 +1464,35 @@
 </footer>
 
 <script>
-  // Smooth scroll for nav links
+  // Hamburger menu toggle
+  const hamburger = document.querySelector('.hamburger');
+  const navMenu = document.querySelector('nav ul');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    navMenu.classList.toggle('open');
+  });
+
+  // Smooth scroll for internal nav links + close menu on click
   document.querySelectorAll('nav a').forEach(link => {
     link.addEventListener('click', (e) => {
-      e.preventDefault();
-      const target = document.querySelector(link.getAttribute('href'));
-      if (target) {
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      const href = link.getAttribute('href');
+      // Close mobile menu on any click
+      hamburger.classList.remove('open');
+      navMenu.classList.remove('open');
+      // Only smooth-scroll for internal anchors
+      if (href && href.startsWith('#')) {
+        e.preventDefault();
+        const target = document.querySelector(href);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
       }
     });
   });
 
   // Active nav highlighting on scroll
   const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('nav a');
+  const navLinks = document.querySelectorAll('nav a[href^="#"]');
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
