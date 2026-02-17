@@ -52,7 +52,7 @@ All data points below are sourced. Use this to update index.html.
 ### Ray Tam — Co-Founder & CEO, Revo Digital Family Office
 - **Photo:** https://www.rafflesgroup.co/wp-content/uploads/2025/05/Picture2-1024x1024.png
 - **Previous:** Director, BNP Paribas Private Banking; DBS; Standard Chartered
-- **Education:** Oxford Blockchain Strategy Programme (Said Business School, certificate)
+- **Education:** University of Oxford (per LinkedIn); Oxford Blockchain Strategy Programme (Saïd Business School). Secondary: Saint Michael's College, Tenbury Wells (UK boarding school)
 - **Board:** Board Committee Member, Family Office Association Hong Kong
 - **Revo:** Co-founded with Huobi Technology. SFC Type 4 & Type 9 licences. First digital MFO in Asia.
 - **Sources:** rafflesgroup.co, fundselectorasia.com, blockhead.co
