@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Raffles Family Office Overview — Arthur Chan</title>
+    <link rel="stylesheet" href="../shared/nav.css">
     <style>
         :root {
             --bg: #0a0a0f;
@@ -37,164 +38,6 @@
             color: var(--text);
             line-height: 1.6;
             overflow-x: hidden;
-        }
-
-        /* HEADER & NAVIGATION */
-        header {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            background-color: rgba(10, 10, 15, 0.95);
-            border-bottom: 1px solid var(--border);
-            backdrop-filter: blur(8px);
-        }
-
-        nav {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 1rem 2rem;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .nav-brand {
-            font-size: 1.1rem;
-            font-weight: 600;
-            letter-spacing: 0.05em;
-            color: var(--accent);
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .nav-brand:hover {
-            color: #dbb95f;
-        }
-
-        .nav-menu {
-            display: flex;
-            gap: 2rem;
-            align-items: center;
-            list-style: none;
-        }
-
-        .nav-item {
-            position: relative;
-        }
-
-        .nav-link {
-            color: var(--text);
-            text-decoration: none;
-            font-size: 0.95rem;
-            transition: var(--transition);
-            padding: 0.5rem 0;
-            border-bottom: 2px solid transparent;
-        }
-
-        .nav-link:hover {
-            color: var(--accent);
-            border-bottom-color: var(--accent);
-        }
-
-        .nav-link.active {
-            color: var(--accent);
-            border-bottom-color: var(--accent);
-        }
-
-        /* DROPDOWN MENU */
-        .dropdown {
-            position: relative;
-        }
-
-        .dropdown-toggle {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            cursor: pointer;
-        }
-
-        .dropdown-menu {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background-color: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 0.5rem;
-            min-width: 200px;
-            margin-top: 0.5rem;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-8px);
-            transition: var(--transition);
-            list-style: none;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-        }
-
-        .dropdown:hover .dropdown-menu,
-        .dropdown.active .dropdown-menu {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        .dropdown-menu li {
-            border-bottom: 1px solid var(--border);
-        }
-
-        .dropdown-menu li:last-child {
-            border-bottom: none;
-        }
-
-        .dropdown-menu a {
-            display: block;
-            padding: 0.75rem 1.25rem;
-            color: var(--text);
-            text-decoration: none;
-            transition: var(--transition);
-            font-size: 0.9rem;
-        }
-
-        .dropdown-menu a:hover {
-            background-color: var(--surface-alt);
-            color: var(--accent);
-            padding-left: 1.5rem;
-        }
-
-        .dropdown-menu a.active {
-            background-color: var(--accent-dim);
-            color: var(--accent);
-            font-weight: 500;
-        }
-
-        /* HAMBURGER MENU */
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            gap: 0.4rem;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 0.5rem;
-        }
-
-        .hamburger span {
-            width: 24px;
-            height: 2px;
-            background-color: var(--text);
-            border-radius: 1px;
-            transition: var(--transition);
-        }
-
-        .hamburger.active span:nth-child(1) {
-            transform: rotate(45deg) translateY(9px);
-        }
-
-        .hamburger.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .hamburger.active span:nth-child(3) {
-            transform: rotate(-45deg) translateY(-9px);
         }
 
         /* HERO SECTION */
@@ -437,66 +280,6 @@
 
         /* RESPONSIVE */
         @media (max-width: 768px) {
-            nav {
-                padding: 1rem;
-            }
-
-            .hamburger {
-                display: flex;
-            }
-
-            .nav-menu {
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                flex-direction: column;
-                background-color: var(--surface);
-                border: 1px solid var(--border);
-                max-height: 0;
-                overflow: hidden;
-                transition: max-height 0.3s ease;
-                gap: 0;
-                padding: 0;
-                margin-top: 0;
-            }
-
-            .nav-menu.active {
-                max-height: 500px;
-                padding: 1rem 0;
-            }
-
-            .nav-item {
-                width: 100%;
-                border-bottom: 1px solid var(--border);
-            }
-
-            .nav-link {
-                display: block;
-                padding: 1rem 2rem;
-                border: none;
-            }
-
-            .dropdown-menu {
-                position: static;
-                opacity: 0;
-                visibility: hidden;
-                max-height: 0;
-                overflow: hidden;
-                transform: none;
-                transition: var(--transition);
-                box-shadow: none;
-                border: none;
-                background-color: var(--surface-alt);
-                margin: 0;
-            }
-
-            .dropdown.active .dropdown-menu {
-                opacity: 1;
-                visibility: visible;
-                max-height: 500px;
-            }
-
             .hero {
                 grid-template-columns: 1fr;
                 gap: 2rem;
@@ -557,34 +340,28 @@
 </head>
 <body>
     <!-- HEADER & NAVIGATION -->
-    <header>
-        <nav>
+    <header class="site-header">
+        <div class="nav-container">
             <a href="../index.html" class="nav-brand">ARTHUR CHAN</a>
             <button class="hamburger" id="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
+                <span></span><span></span><span></span>
             </button>
             <ul class="nav-menu" id="navMenu">
-                <li class="nav-item">
-                    <a href="../index.html" class="nav-link">Resume</a>
-                </li>
-                <li class="nav-item dropdown" id="rafflesDropdown">
-                    <div class="dropdown-toggle">
-                        <span>Raffles ▾</span>
+                <li class="nav-item dropdown">
+                    <button class="dropdown-toggle" id="interviewPrepToggle">Interview Prep &#9662;</button>
+                    <div class="dropdown-menu" id="interviewPrepMenu">
+                        <div class="dropdown-label">Raffles Family Office</div>
+                        <a href="index.html" class="active">Overview &amp; Intel</a>
+                        <a href="strategy.html">Interview Strategy</a>
+                        <a href="org-chart.html">Org Chart &amp; Profiles</a>
+                        <a href="news.html">Latest News</a>
+                        <a href="experience.html">Experience Bridge</a>
+                        <a href="technical.html">Technical &amp; AI</a>
+                        <a href="questions.html">Questions &amp; 90-Day Plan</a>
                     </div>
-                    <ul class="dropdown-menu">
-                        <li><a href="index.html" class="nav-link active">Overview</a></li>
-                        <li><a href="strategy.html" class="nav-link">Strategy</a></li>
-                        <li><a href="org-chart.html" class="nav-link">Org Chart</a></li>
-                        <li><a href="news.html" class="nav-link">News</a></li>
-                        <li><a href="experience.html" class="nav-link">Experience Bridge</a></li>
-                        <li><a href="technical.html" class="nav-link">Technical</a></li>
-                        <li><a href="questions.html" class="nav-link">Questions</a></li>
-                    </ul>
                 </li>
             </ul>
-        </nav>
+        </div>
     </header>
 
     <!-- HERO SECTION -->
@@ -813,52 +590,6 @@
     </footer>
 
     <script>
-        // Hamburger menu toggle
-        const hamburger = document.getElementById('hamburger');
-        const navMenu = document.getElementById('navMenu');
-        const rafflesDropdown = document.getElementById('rafflesDropdown');
-
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            navMenu.classList.toggle('active');
-        });
-
-        // Close menu when link clicked
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', () => {
-                hamburger.classList.remove('active');
-                navMenu.classList.remove('active');
-            });
-        });
-
-        // Mobile dropdown toggle
-        rafflesDropdown.addEventListener('click', (e) => {
-            if (window.innerWidth <= 768) {
-                e.preventDefault();
-                rafflesDropdown.classList.toggle('active');
-            }
-        });
-
-        // Close dropdown when outside clicked
-        document.addEventListener('click', (e) => {
-            if (!e.target.closest('.dropdown')) {
-                rafflesDropdown.classList.remove('active');
-            }
-        });
-
-        // Active nav link based on current page
-        document.addEventListener('DOMContentLoaded', () => {
-            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-            document.querySelectorAll('.nav-link').forEach(link => {
-                const href = link.getAttribute('href');
-                if (href === currentPage || (currentPage === '' && href === 'index.html')) {
-                    link.classList.add('active');
-                } else {
-                    link.classList.remove('active');
-                }
-            });
-        });
-
         // Smooth scroll to anchors
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
@@ -870,5 +601,6 @@
             });
         });
     </script>
+    <script src="../shared/nav.js"></script>
 </body>
 </html>

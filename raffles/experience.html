@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Experience Bridge — Arthur Chan</title>
+    <link rel="stylesheet" href="../shared/nav.css">
     <style>
         :root {
             --bg: #0a0a0f;
@@ -37,144 +38,6 @@
             font-family: var(--font-family);
             line-height: 1.6;
             overflow-x: hidden;
-        }
-
-        /* HEADER & NAVIGATION */
-        header {
-            background-color: var(--surface);
-            border-bottom: 1px solid var(--border);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        nav {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 1rem 1.5rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .brand {
-            font-size: 1.1rem;
-            font-weight: 600;
-            letter-spacing: 0.05em;
-            text-decoration: none;
-            color: var(--accent);
-            transition: opacity 0.3s ease;
-        }
-
-        .brand:hover {
-            opacity: 0.8;
-        }
-
-        .nav-menu {
-            display: flex;
-            gap: 2rem;
-            align-items: center;
-            list-style: none;
-        }
-
-        .nav-item {
-            position: relative;
-        }
-
-        .nav-link {
-            color: var(--text);
-            text-decoration: none;
-            font-size: 0.95rem;
-            transition: color 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .nav-link:hover {
-            color: var(--accent);
-        }
-
-        .dropdown {
-            position: relative;
-        }
-
-        .dropdown-toggle::after {
-            content: '▾';
-            font-size: 0.7rem;
-            margin-left: 0.3rem;
-        }
-
-        .dropdown-menu {
-            display: none;
-            position: absolute;
-            top: 100%;
-            right: 0;
-            background-color: var(--surface-alt);
-            border: 1px solid var(--border);
-            border-radius: 0.5rem;
-            min-width: 200px;
-            list-style: none;
-            margin-top: 0.5rem;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-        }
-
-        .dropdown:hover .dropdown-menu {
-            display: block;
-        }
-
-        .dropdown-menu li {
-            padding: 0;
-        }
-
-        .dropdown-menu a {
-            display: block;
-            padding: 0.75rem 1rem;
-            color: var(--text);
-            text-decoration: none;
-            font-size: 0.9rem;
-            border-bottom: 1px solid var(--border);
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-
-        .dropdown-menu a:last-child {
-            border-bottom: none;
-        }
-
-        .dropdown-menu a:hover {
-            background-color: var(--accent-dim);
-            color: var(--accent);
-        }
-
-        .dropdown-menu a.active {
-            color: var(--accent);
-            background-color: var(--accent-dim);
-        }
-
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            gap: 0.4rem;
-        }
-
-        .hamburger span {
-            width: 25px;
-            height: 2px;
-            background-color: var(--accent);
-            transition: all 0.3s ease;
-        }
-
-        .hamburger.active span:nth-child(1) {
-            transform: rotate(45deg) translate(8px, 8px);
-        }
-
-        .hamburger.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .hamburger.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(7px, -7px);
         }
 
         /* HERO SECTION */
@@ -504,70 +367,12 @@
 
         /* RESPONSIVE */
         @media (max-width: 768px) {
-            .nav-menu {
-                gap: 1rem;
-            }
-
             .hero h1 {
                 font-size: 1.8rem;
             }
 
             .hero p {
                 font-size: 1rem;
-            }
-
-            .hamburger {
-                display: flex;
-            }
-
-            .nav-menu {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                flex-direction: column;
-                background-color: var(--surface-alt);
-                padding: 1rem;
-                gap: 0;
-                border-bottom: 1px solid var(--border);
-            }
-
-            .nav-menu.active {
-                display: flex;
-            }
-
-            .nav-item {
-                width: 100%;
-            }
-
-            .nav-link {
-                padding: 0.75rem 0;
-                border-bottom: 1px solid var(--border);
-                width: 100%;
-            }
-
-            .dropdown-menu {
-                position: static;
-                display: none;
-                border: none;
-                background-color: var(--surface);
-                box-shadow: none;
-                min-width: auto;
-                margin-top: 0;
-            }
-
-            .dropdown.active .dropdown-menu {
-                display: block;
-            }
-
-            .dropdown-toggle::after {
-                transform: rotate(-90deg);
-                transition: transform 0.3s ease;
-            }
-
-            .dropdown.active .dropdown-toggle::after {
-                transform: rotate(0deg);
             }
 
             .timeline::before {
@@ -601,10 +406,6 @@
 
         /* PRINT STYLES */
         @media print {
-            header {
-                position: static;
-            }
-
             .page-nav {
                 display: none;
             }
@@ -630,29 +431,28 @@
 </head>
 <body>
     <!-- HEADER & NAVIGATION -->
-    <header>
-        <nav>
-            <a href="../index.html" class="brand">ARTHUR CHAN</a>
-            <div class="hamburger" id="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
+    <header class="site-header">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-brand">ARTHUR CHAN</a>
+            <button class="hamburger" id="hamburger">
+                <span></span><span></span><span></span>
+            </button>
             <ul class="nav-menu" id="navMenu">
                 <li class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" id="rafflesDropdown">Raffles ▾</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="experience.html" class="active">Experience Bridge</a></li>
-                        <li><a href="values.html">Core Values</a></li>
-                        <li><a href="approach.html">Approach</a></li>
-                        <li><a href="technical.html">Technical Foundation</a></li>
-                        <li><a href="reference.html">Reference</a></li>
-                        <li><a href="closing.html">Closing Statement</a></li>
-                    </ul>
+                    <button class="dropdown-toggle" id="interviewPrepToggle">Interview Prep &#9662;</button>
+                    <div class="dropdown-menu" id="interviewPrepMenu">
+                        <div class="dropdown-label">Raffles Family Office</div>
+                        <a href="index.html">Overview &amp; Intel</a>
+                        <a href="strategy.html">Interview Strategy</a>
+                        <a href="org-chart.html">Org Chart &amp; Profiles</a>
+                        <a href="news.html">Latest News</a>
+                        <a href="experience.html" class="active">Experience Bridge</a>
+                        <a href="technical.html">Technical &amp; AI</a>
+                        <a href="questions.html">Questions &amp; 90-Day Plan</a>
+                    </div>
                 </li>
             </ul>
-        </nav>
+        </div>
     </header>
 
     <!-- HERO SECTION -->
@@ -913,42 +713,6 @@
             toggle.classList.toggle('open');
         }
 
-        // Hamburger menu toggle
-        const hamburger = document.getElementById('hamburger');
-        const navMenu = document.getElementById('navMenu');
-
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            navMenu.classList.toggle('active');
-        });
-
-        // Close mobile menu on link click
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', () => {
-                hamburger.classList.remove('active');
-                navMenu.classList.remove('active');
-            });
-        });
-
-        // Handle dropdown menu on mobile
-        const rafflesDropdown = document.getElementById('rafflesDropdown');
-        rafflesDropdown.addEventListener('click', (e) => {
-            if (window.innerWidth <= 768) {
-                e.preventDefault();
-                const dropdown = e.target.closest('.dropdown');
-                dropdown.classList.toggle('active');
-            }
-        });
-
-        // Close dropdown when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!e.target.closest('.dropdown')) {
-                document.querySelectorAll('.dropdown').forEach(d => {
-                    d.classList.remove('active');
-                });
-            }
-        });
-
         // Smooth scroll for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -962,5 +726,6 @@
             });
         });
     </script>
+    <script src="../shared/nav.js"></script>
 </body>
 </html>

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Latest News & Developments | Raffles Family Office</title>
+    <link rel="stylesheet" href="../shared/nav.css">
     <style>
         :root {
             --bg: #0a0a0f;
@@ -38,140 +39,6 @@
             color: var(--text);
             line-height: 1.6;
             overflow-x: hidden;
-        }
-
-        /* Header & Navigation */
-        header {
-            position: sticky;
-            top: 0;
-            background-color: var(--surface);
-            border-bottom: 1px solid var(--border);
-            z-index: 100;
-            backdrop-filter: blur(10px);
-            background-color: rgba(18, 18, 26, 0.95);
-        }
-
-        nav {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .nav-brand {
-            font-size: 1.1rem;
-            font-weight: 600;
-            letter-spacing: 0.05em;
-            color: var(--accent);
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .nav-brand:hover {
-            color: #e8d6a0;
-        }
-
-        .nav-menu {
-            display: flex;
-            gap: 2rem;
-            align-items: center;
-            list-style: none;
-        }
-
-        .nav-item {
-            position: relative;
-        }
-
-        .nav-link {
-            color: var(--text);
-            text-decoration: none;
-            font-size: 0.95rem;
-            transition: var(--transition);
-            padding: 0.5rem 0;
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-        }
-
-        .nav-link:hover {
-            color: var(--accent);
-        }
-
-        .dropdown-toggle::after {
-            content: '▾';
-            font-size: 0.7rem;
-            transition: var(--transition);
-        }
-
-        .dropdown-menu {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background-color: var(--surface-alt);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            min-width: 200px;
-            margin-top: 0.5rem;
-            list-style: none;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
-        }
-
-        .nav-item:hover .dropdown-menu {
-            display: block;
-        }
-
-        .nav-item:hover .dropdown-toggle::after {
-            transform: rotate(180deg);
-        }
-
-        .dropdown-menu li {
-            padding: 0;
-        }
-
-        .dropdown-menu a {
-            display: block;
-            padding: 0.75rem 1.25rem;
-            color: var(--text);
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: var(--transition);
-            border-bottom: 1px solid var(--border);
-        }
-
-        .dropdown-menu a:last-child {
-            border-bottom: none;
-        }
-
-        .dropdown-menu a:hover {
-            background-color: var(--accent-dim);
-            color: var(--accent);
-        }
-
-        .dropdown-menu a.active {
-            background-color: var(--accent-dim);
-            color: var(--accent);
-            font-weight: 600;
-        }
-
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            gap: 5px;
-            background: none;
-            border: none;
-            padding: 0.5rem;
-        }
-
-        .hamburger span {
-            width: 24px;
-            height: 2px;
-            background-color: var(--accent);
-            transition: var(--transition);
-            border-radius: 2px;
         }
 
         /* Main Content */
@@ -386,60 +253,6 @@
 
         /* Responsive */
         @media (max-width: 768px) {
-            .hamburger {
-                display: flex;
-            }
-
-            .nav-menu {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                flex-direction: column;
-                background-color: var(--surface-alt);
-                border-bottom: 1px solid var(--border);
-                gap: 0;
-                border-radius: 0;
-            }
-
-            .nav-menu.active {
-                display: flex;
-            }
-
-            .nav-item {
-                width: 100%;
-            }
-
-            .nav-link {
-                padding: 1rem 2rem;
-                border-bottom: 1px solid var(--border);
-            }
-
-            .dropdown-menu {
-                position: static;
-                display: none;
-                border: none;
-                border-top: 1px solid var(--border);
-                border-radius: 0;
-                box-shadow: none;
-                margin-top: 0;
-                background-color: var(--bg);
-            }
-
-            .nav-item:hover .dropdown-menu {
-                display: none;
-            }
-
-            .nav-item.active .dropdown-menu {
-                display: flex;
-                flex-direction: column;
-            }
-
-            .dropdown-menu a {
-                padding: 0.75rem 3rem;
-            }
-
             .hero h1 {
                 font-size: 1.8rem;
             }
@@ -507,47 +320,28 @@
     </style>
 </head>
 <body>
-    <header>
-        <nav>
+    <header class="site-header">
+        <div class="nav-container">
             <a href="../index.html" class="nav-brand">ARTHUR CHAN</a>
-            <button class="hamburger" aria-label="Toggle menu">
-                <span></span>
-                <span></span>
-                <span></span>
+            <button class="hamburger" id="hamburger">
+                <span></span><span></span><span></span>
             </button>
-            <ul class="nav-menu">
-                <li class="nav-item">
-                    <a href="overview.html" class="nav-link">Overview</a>
-                </li>
-                <li class="nav-item">
-                    <a href="strategy.html" class="nav-link">Strategy</a>
-                </li>
-                <li class="nav-item">
-                    <a href="org-chart.html" class="nav-link">Org Chart</a>
-                </li>
+            <ul class="nav-menu" id="navMenu">
                 <li class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle">Raffles ▾</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="overview.html">Overview</a></li>
-                        <li><a href="strategy.html">Strategy</a></li>
-                        <li><a href="org-chart.html">Org Chart</a></li>
-                        <li><a href="news.html" class="active">News</a></li>
-                        <li><a href="experience-bridge.html">Experience Bridge</a></li>
-                        <li><a href="technical.html">Technical</a></li>
-                        <li><a href="questions.html">Questions</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a href="experience-bridge.html" class="nav-link">Experience Bridge</a>
-                </li>
-                <li class="nav-item">
-                    <a href="technical.html" class="nav-link">Technical</a>
-                </li>
-                <li class="nav-item">
-                    <a href="questions.html" class="nav-link">Questions</a>
+                    <button class="dropdown-toggle" id="interviewPrepToggle">Interview Prep &#9662;</button>
+                    <div class="dropdown-menu" id="interviewPrepMenu">
+                        <div class="dropdown-label">Raffles Family Office</div>
+                        <a href="index.html">Overview &amp; Intel</a>
+                        <a href="strategy.html">Interview Strategy</a>
+                        <a href="org-chart.html">Org Chart &amp; Profiles</a>
+                        <a href="news.html" class="active">Latest News</a>
+                        <a href="experience.html">Experience Bridge</a>
+                        <a href="technical.html">Technical &amp; AI</a>
+                        <a href="questions.html">Questions &amp; 90-Day Plan</a>
+                    </div>
                 </li>
             </ul>
-        </nav>
+        </div>
     </header>
 
     <main>
@@ -848,33 +642,6 @@
     </footer>
 
     <script>
-        // Mobile menu toggle
-        const hamburger = document.querySelector('.hamburger');
-        const navMenu = document.querySelector('.nav-menu');
-        const dropdowns = document.querySelectorAll('.nav-item.dropdown');
-
-        hamburger.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-        });
-
-        // Close menu when a link is clicked
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', (e) => {
-                if (!link.classList.contains('dropdown-toggle')) {
-                    navMenu.classList.remove('active');
-                }
-            });
-        });
-
-        // Mobile dropdown toggle
-        dropdowns.forEach(dropdown => {
-            const toggle = dropdown.querySelector('.dropdown-toggle');
-            toggle.addEventListener('click', (e) => {
-                e.preventDefault();
-                dropdown.classList.toggle('active');
-            });
-        });
-
         // News card expansion
         const newsCards = document.querySelectorAll('.news-card');
         newsCards.forEach(card => {
@@ -894,14 +661,7 @@
                 }
             });
         });
-
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!e.target.closest('nav')) {
-                navMenu.classList.remove('active');
-                dropdowns.forEach(d => d.classList.remove('active'));
-            }
-        });
     </script>
+    <script src="../shared/nav.js"></script>
 </body>
 </html>

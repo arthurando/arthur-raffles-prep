@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Questions, 90-Day Plan & Landmines | Raffles Interview Prep</title>
+    <link rel="stylesheet" href="../shared/nav.css">
     <style>
         :root {
             --bg: #0a0a0f;
@@ -37,158 +38,6 @@
             color: var(--text);
             font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
             line-height: 1.6;
-        }
-
-        /* Header & Navigation */
-        header {
-            background-color: var(--surface);
-            border-bottom: 1px solid var(--border);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .header-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .brand {
-            font-size: 1.2rem;
-            font-weight: 600;
-            letter-spacing: 0.05em;
-            color: var(--accent);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .brand:hover {
-            color: #e8d5a8;
-        }
-
-        nav {
-            display: flex;
-            gap: 2rem;
-            align-items: center;
-        }
-
-        .nav-menu {
-            display: flex;
-            gap: 1.5rem;
-            align-items: center;
-        }
-
-        .dropdown {
-            position: relative;
-        }
-
-        .dropdown-toggle {
-            background: none;
-            border: none;
-            color: var(--text-dim);
-            font-family: inherit;
-            font-size: 1rem;
-            cursor: pointer;
-            padding: 0.5rem 0;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: color 0.3s ease;
-        }
-
-        .dropdown-toggle:hover {
-            color: var(--accent);
-        }
-
-        .dropdown-menu {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background-color: var(--surface-alt);
-            border: 1px solid var(--border);
-            border-radius: 0.5rem;
-            min-width: 220px;
-            margin-top: 0.5rem;
-            display: none;
-            flex-direction: column;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        .dropdown-menu.active {
-            display: flex;
-        }
-
-        .dropdown-menu a {
-            padding: 0.75rem 1.5rem;
-            color: var(--text-dim);
-            text-decoration: none;
-            transition: all 0.3s ease;
-            font-size: 0.95rem;
-        }
-
-        .dropdown-menu a:hover {
-            background-color: var(--accent-dim);
-            color: var(--accent);
-        }
-
-        .dropdown-menu a.active {
-            background-color: var(--accent-dim);
-            color: var(--accent);
-            border-left: 3px solid var(--accent);
-            padding-left: calc(1.5rem - 3px);
-        }
-
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            gap: 0.4rem;
-        }
-
-        .hamburger span {
-            width: 25px;
-            height: 2px;
-            background-color: var(--text);
-            transition: all 0.3s ease;
-        }
-
-        @media (max-width: 768px) {
-            .hamburger {
-                display: flex;
-            }
-
-            .nav-menu {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                flex-direction: column;
-                background-color: var(--surface);
-                border-bottom: 1px solid var(--border);
-                padding: 1rem;
-                gap: 0.5rem;
-            }
-
-            .nav-menu.active {
-                display: flex;
-            }
-
-            .dropdown-menu {
-                position: static;
-                border: none;
-                background-color: var(--surface-alt);
-                box-shadow: none;
-                margin-top: 0;
-            }
-
-            .dropdown-menu.active {
-                display: flex;
-            }
         }
 
         /* Hero Section */
@@ -690,31 +539,27 @@
     </style>
 </head>
 <body>
-    <!-- Header & Navigation -->
-    <header>
-        <div class="header-container">
-            <a href="../index.html" class="brand">ARTHUR CHAN</a>
-            <nav>
-                <div class="nav-menu">
-                    <div class="dropdown">
-                        <button class="dropdown-toggle" id="rafflesBtn">Raffles ▾</button>
-                        <div class="dropdown-menu" id="rafflesMenu">
-                            <a href="overview.html">Overview</a>
-                            <a href="context.html">Context & Background</a>
-                            <a href="capabilities.html">Capabilities & Proof</a>
-                            <a href="approach.html">CRM Approach</a>
-                            <a href="questions.html" class="active">Questions & 90 Days</a>
-                            <a href="success.html">Success & Risks</a>
-                            <a href="next-steps.html">Next Steps</a>
-                        </div>
+    <header class="site-header">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-brand">ARTHUR CHAN</a>
+            <button class="hamburger" id="hamburger">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li class="nav-item dropdown">
+                    <button class="dropdown-toggle" id="interviewPrepToggle">Interview Prep &#9662;</button>
+                    <div class="dropdown-menu" id="interviewPrepMenu">
+                        <div class="dropdown-label">Raffles Family Office</div>
+                        <a href="index.html">Overview &amp; Intel</a>
+                        <a href="strategy.html">Interview Strategy</a>
+                        <a href="org-chart.html">Org Chart &amp; Profiles</a>
+                        <a href="news.html">Latest News</a>
+                        <a href="experience.html">Experience Bridge</a>
+                        <a href="technical.html">Technical &amp; AI</a>
+                        <a href="questions.html" class="active">Questions &amp; 90-Day Plan</a>
                     </div>
-                </div>
-                <div class="hamburger" id="hamburger">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-            </nav>
+                </li>
+            </ul>
         </div>
     </header>
 
@@ -1109,35 +954,6 @@
 
     <!-- Scripts -->
     <script>
-        // Dropdown Menu Toggle
-        const rafflesBtn = document.getElementById('rafflesBtn');
-        const rafflesMenu = document.getElementById('rafflesMenu');
-        const hamburger = document.getElementById('hamburger');
-        const navMenu = document.querySelector('.nav-menu');
-
-        rafflesBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            rafflesMenu.classList.toggle('active');
-        });
-
-        // Close dropdown when clicking outside
-        document.addEventListener('click', () => {
-            rafflesMenu.classList.remove('active');
-        });
-
-        // Hamburger Menu Toggle
-        hamburger.addEventListener('click', (e) => {
-            e.stopPropagation();
-            navMenu.classList.toggle('active');
-        });
-
-        // Close menu when clicking a link
-        document.querySelectorAll('.nav-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                navMenu.classList.remove('active');
-            });
-        });
-
         // Smooth scroll for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -1171,5 +987,6 @@
             });
         });
     </script>
+    <script src="../shared/nav.js"></script>
 </body>
 </html>

@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Technical Fluency & AI Proposals | Arthur Chan</title>
+  <link rel="stylesheet" href="../shared/nav.css">
   <style>
     :root {
       --bg: #0a0a0f;
@@ -44,149 +45,6 @@
       background-color: var(--bg);
       color: var(--text);
       line-height: 1.6;
-    }
-
-    /* Navigation */
-    nav {
-      background-color: var(--surface);
-      border-bottom: 1px solid var(--border);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-
-    nav .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: var(--spacing-md);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .nav-brand {
-      font-weight: 700;
-      font-size: 1.1rem;
-      letter-spacing: 0.05em;
-      color: var(--accent);
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
-
-    .nav-brand:hover {
-      color: var(--text);
-    }
-
-    .nav-menu {
-      display: flex;
-      gap: var(--spacing-md);
-      align-items: center;
-    }
-
-    .dropdown {
-      position: relative;
-    }
-
-    .dropdown-toggle {
-      background: none;
-      border: none;
-      color: var(--text);
-      font-family: var(--font-sans);
-      font-size: 1rem;
-      cursor: pointer;
-      padding: var(--spacing-xs) var(--spacing-sm);
-      border-radius: var(--radius);
-      transition: background-color 0.3s ease, color 0.3s ease;
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-    }
-
-    .dropdown-toggle:hover {
-      background-color: var(--accent-dim);
-      color: var(--accent);
-    }
-
-    .dropdown-menu {
-      position: absolute;
-      top: 100%;
-      left: 0;
-      background-color: var(--surface-alt);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      min-width: 200px;
-      display: none;
-      flex-direction: column;
-      margin-top: var(--spacing-xs);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-    }
-
-    .dropdown.active .dropdown-menu {
-      display: flex;
-    }
-
-    .dropdown-menu a {
-      padding: var(--spacing-sm);
-      color: var(--text);
-      text-decoration: none;
-      border-bottom: 1px solid var(--border);
-      transition: background-color 0.3s ease, color 0.3s ease;
-    }
-
-    .dropdown-menu a:last-child {
-      border-bottom: none;
-    }
-
-    .dropdown-menu a:hover {
-      background-color: var(--accent-dim);
-      color: var(--accent);
-    }
-
-    .dropdown-menu a.active {
-      background-color: var(--accent-dim);
-      color: var(--accent);
-      font-weight: 600;
-    }
-
-    .hamburger {
-      display: none;
-      background: none;
-      border: none;
-      color: var(--text);
-      font-size: 1.5rem;
-      cursor: pointer;
-      padding: var(--spacing-xs);
-    }
-
-    @media (max-width: 768px) {
-      .nav-menu {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background-color: var(--surface);
-        border-top: 1px solid var(--border);
-        flex-direction: column;
-        gap: 0;
-      }
-
-      .nav-menu.active {
-        display: flex;
-      }
-
-      .hamburger {
-        display: block;
-      }
-
-      .dropdown-menu {
-        position: static;
-        border: none;
-        box-shadow: none;
-        background-color: var(--surface-alt);
-        margin-top: 0;
-        border-left: 2px solid var(--accent-dim);
-      }
     }
 
     /* Main Container */
@@ -589,7 +447,7 @@
 
     /* Print Styles */
     @media print {
-      nav {
+      .site-header {
         display: none;
       }
 
@@ -628,27 +486,29 @@
   </style>
 </head>
 <body>
-  <!-- Navigation -->
-  <nav>
-    <div class="container">
-      <a href="../index.html" class="nav-brand">ARTHUR CHAN</a>
-      <button class="hamburger" id="hamburgerBtn">☰</button>
-      <div class="nav-menu" id="navMenu">
-        <div class="dropdown" id="rafflesDropdown">
-          <button class="dropdown-toggle" id="rafflesToggle">Raffles ▾</button>
-          <div class="dropdown-menu">
-            <a href="overview.html">Overview</a>
-            <a href="financials.html">Financials &amp; Deal Flow</a>
-            <a href="technical.html" class="active">Technical Fluency</a>
-            <a href="operations.html">Operations</a>
-            <a href="clients.html">Client Intelligence</a>
-            <a href="strategy.html">Strategy</a>
-            <a href="culture.html">Culture</a>
-          </div>
-        </div>
-      </div>
+  <header class="site-header">
+    <div class="nav-container">
+        <a href="../index.html" class="nav-brand">ARTHUR CHAN</a>
+        <button class="hamburger" id="hamburger">
+            <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-menu" id="navMenu">
+            <li class="nav-item dropdown">
+                <button class="dropdown-toggle" id="interviewPrepToggle">Interview Prep &#9662;</button>
+                <div class="dropdown-menu" id="interviewPrepMenu">
+                    <div class="dropdown-label">Raffles Family Office</div>
+                    <a href="index.html">Overview &amp; Intel</a>
+                    <a href="strategy.html">Interview Strategy</a>
+                    <a href="org-chart.html">Org Chart &amp; Profiles</a>
+                    <a href="news.html">Latest News</a>
+                    <a href="experience.html">Experience Bridge</a>
+                    <a href="technical.html" class="active">Technical &amp; AI</a>
+                    <a href="questions.html">Questions &amp; 90-Day Plan</a>
+                </div>
+            </li>
+        </ul>
     </div>
-  </nav>
+  </header>
 
   <!-- Page Anchors -->
   <div class="container">
@@ -1004,37 +864,6 @@
   </footer>
 
   <script>
-    // Hamburger Menu Toggle
-    const hamburgerBtn = document.getElementById('hamburgerBtn');
-    const navMenu = document.getElementById('navMenu');
-
-    hamburgerBtn.addEventListener('click', () => {
-      navMenu.classList.toggle('active');
-    });
-
-    // Dropdown Toggle
-    const rafflesDropdown = document.getElementById('rafflesDropdown');
-    const rafflesToggle = document.getElementById('rafflesToggle');
-
-    rafflesToggle.addEventListener('click', (e) => {
-      e.stopPropagation();
-      rafflesDropdown.classList.toggle('active');
-    });
-
-    // Close dropdown on link click
-    document.querySelectorAll('.dropdown-menu a').forEach(link => {
-      link.addEventListener('click', () => {
-        rafflesDropdown.classList.remove('active');
-        navMenu.classList.remove('active');
-      });
-    });
-
-    // Close dropdown when clicking outside
-    document.addEventListener('click', () => {
-      rafflesDropdown.classList.remove('active');
-      navMenu.classList.remove('active');
-    });
-
     // Collapsible Cards (Fluency Section)
     document.querySelectorAll('.card.collapsible').forEach(card => {
       const header = card.querySelector('.card-header');
@@ -1074,5 +903,6 @@
       });
     });
   </script>
+  <script src="../shared/nav.js"></script>
 </body>
 </html>

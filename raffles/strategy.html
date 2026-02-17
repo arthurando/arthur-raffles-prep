@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interview Strategy — Raffles Family Office | Arthur Chan</title>
+    <link rel="stylesheet" href="../shared/nav.css">
     <style>
         * {
             margin: 0;
@@ -36,107 +37,6 @@
             background-color: var(--bg);
             color: var(--text);
             line-height: 1.6;
-        }
-
-        /* HEADER & NAVIGATION */
-        header {
-            background-color: var(--surface);
-            border-bottom: 1px solid var(--border);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .header-container {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 1rem 2rem;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .brand {
-            font-weight: 600;
-            font-size: 1.1rem;
-            color: var(--accent);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .brand:hover {
-            color: var(--text);
-        }
-
-        .nav-toggle {
-            display: none;
-            background: none;
-            border: none;
-            color: var(--text);
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        nav {
-            display: flex;
-            gap: 2rem;
-            align-items: center;
-        }
-
-        .nav-dropdown {
-            position: relative;
-        }
-
-        .dropdown-toggle {
-            background: none;
-            border: none;
-            color: var(--text);
-            cursor: pointer;
-            padding: 0.5rem 0;
-            transition: color 0.3s;
-            font-size: 1rem;
-        }
-
-        .dropdown-toggle:hover {
-            color: var(--accent);
-        }
-
-        .dropdown-menu {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background-color: var(--surface-alt);
-            border: 1px solid var(--border);
-            border-radius: 0.5rem;
-            min-width: 180px;
-            margin-top: 0.5rem;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-        }
-
-        .dropdown-menu.active {
-            display: block;
-        }
-
-        .dropdown-menu a {
-            display: block;
-            padding: 0.75rem 1.25rem;
-            color: var(--text);
-            text-decoration: none;
-            transition: all 0.3s;
-            border-left: 3px solid transparent;
-        }
-
-        .dropdown-menu a:hover {
-            background-color: var(--accent-dim);
-            border-left-color: var(--accent);
-            color: var(--accent);
-        }
-
-        .dropdown-menu a.active {
-            background-color: var(--accent-dim);
-            border-left-color: var(--accent);
-            color: var(--accent);
         }
 
         /* PAGE ANCHORS */
@@ -626,27 +526,6 @@
 
         /* RESPONSIVE */
         @media (max-width: 768px) {
-            .nav-toggle {
-                display: block;
-            }
-
-            nav {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background-color: var(--surface);
-                border-bottom: 1px solid var(--border);
-                padding: 1rem;
-                gap: 1rem;
-            }
-
-            nav.mobile-open {
-                display: flex;
-            }
-
             .page-anchors {
                 margin-left: 0;
                 margin-top: 1rem;
@@ -677,10 +556,6 @@
                 padding: 2rem 1rem;
             }
 
-            .header-container {
-                padding: 1rem;
-            }
-
             table {
                 font-size: 0.9rem;
             }
@@ -692,9 +567,7 @@
 
         /* PRINT STYLES */
         @media print {
-            .nav-toggle,
-            .page-anchors,
-            nav {
+            .page-anchors {
                 display: none;
             }
 
@@ -714,53 +587,30 @@
             }
         }
 
-        /* SMOOTH SCROLL ACTIVE NAV */
-        .dropdown-menu a {
-            position: relative;
-        }
-
-        .dropdown-menu a.active::after {
-            content: '';
-            position: absolute;
-            right: 1rem;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 6px;
-            height: 6px;
-            background-color: var(--accent);
-            border-radius: 50%;
-        }
     </style>
 </head>
 <body>
-    <header>
-        <div class="header-container">
-            <a href="../index.html" class="brand">ARTHUR CHAN</a>
-            <button class="nav-toggle" id="navToggle">☰</button>
-            <nav id="navMenu">
-                <div class="nav-dropdown">
-                    <button class="dropdown-toggle" id="rafflesToggle">Raffles ▾</button>
-                    <div class="dropdown-menu" id="rafflesMenu">
-                        <a href="index.html">Overview</a>
-                        <a href="strategy.html" class="active">Strategy</a>
-                        <a href="org-chart.html">Org Chart</a>
-                        <a href="news.html">News</a>
+    <header class="site-header">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-brand">ARTHUR CHAN</a>
+            <button class="hamburger" id="hamburger">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li class="nav-item dropdown">
+                    <button class="dropdown-toggle" id="interviewPrepToggle">Interview Prep &#9662;</button>
+                    <div class="dropdown-menu" id="interviewPrepMenu">
+                        <div class="dropdown-label">Raffles Family Office</div>
+                        <a href="index.html">Overview &amp; Intel</a>
+                        <a href="strategy.html" class="active">Interview Strategy</a>
+                        <a href="org-chart.html">Org Chart &amp; Profiles</a>
+                        <a href="news.html">Latest News</a>
                         <a href="experience.html">Experience Bridge</a>
-                        <a href="technical.html">Technical</a>
-                        <a href="questions.html">Questions</a>
+                        <a href="technical.html">Technical &amp; AI</a>
+                        <a href="questions.html">Questions &amp; 90-Day Plan</a>
                     </div>
-                </div>
-            </nav>
-            <div class="page-anchors">
-                <a href="#thesis">Thesis</a>
-                <a href="#signals">Signals</a>
-                <a href="#personas">Personas</a>
-                <a href="#conversation">Conversation</a>
-                <a href="#scenarios">Scenarios</a>
-                <a href="#narratives">Narratives</a>
-                <a href="#close">Close</a>
-                <a href="#checklist">Checklist</a>
-            </div>
+                </li>
+            </ul>
         </div>
     </header>
 
@@ -1261,80 +1111,6 @@
         <p>&copy; 2026 Arthur Chan. Interview Strategy Guide.</p>
     </footer>
 
-    <script>
-        // Navigation Toggle
-        const navToggle = document.getElementById('navToggle');
-        const navMenu = document.getElementById('navMenu');
-        const rafflesToggle = document.getElementById('rafflesToggle');
-        const rafflesMenu = document.getElementById('rafflesMenu');
-
-        navToggle.addEventListener('click', () => {
-            navMenu.classList.toggle('mobile-open');
-        });
-
-        rafflesToggle.addEventListener('click', (e) => {
-            e.preventDefault();
-            rafflesMenu.classList.toggle('active');
-        });
-
-        // Close mobile menu when link is clicked
-        document.querySelectorAll('.dropdown-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                navMenu.classList.remove('mobile-open');
-            });
-        });
-
-        // Active nav link based on page anchors
-        const pageAnchors = document.querySelectorAll('.page-anchors a');
-        pageAnchors.forEach(anchor => {
-            anchor.addEventListener('click', (e) => {
-                pageAnchors.forEach(a => a.classList.remove('active'));
-                anchor.classList.add('active');
-            });
-        });
-
-        // Intersection Observer for smooth scroll active section
-        const sections = document.querySelectorAll('section[id]');
-        const navLinks = document.querySelectorAll('.page-anchors a');
-
-        window.addEventListener('scroll', () => {
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (pageYOffset >= sectionTop - 200) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href').slice(1) === current) {
-                    link.classList.add('active');
-                }
-            });
-        });
-
-        // Close dropdown when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!e.target.closest('.nav-dropdown')) {
-                rafflesMenu.classList.remove('active');
-            }
-        });
-
-        // Smooth scroll for dropdown links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                const href = this.getAttribute('href');
-                if (href !== '#') {
-                    e.preventDefault();
-                    const target = document.querySelector(href);
-                    if (target) {
-                        target.scrollIntoView({ behavior: 'smooth' });
-                    }
-                }
-            });
-        });
-    </script>
+    <script src="../shared/nav.js"></script>
 </body>
 </html>

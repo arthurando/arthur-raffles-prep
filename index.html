@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Arthur Chan Yat Long — Resume</title>
+    <link rel="stylesheet" href="shared/nav.css">
     <style>
         :root {
             --bg: #0a0a0f;
@@ -32,160 +33,9 @@
             line-height: 1.6;
         }
 
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background-color: rgba(18, 18, 26, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border);
-            z-index: 1000;
-            padding: 1rem 2rem;
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .nav-brand {
-            font-size: 1.1rem;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            text-decoration: none;
-            color: var(--accent);
-        }
-
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-            align-items: center;
-        }
-
-        .nav-item {
-            position: relative;
-        }
-
-        .nav-link {
-            text-decoration: none;
-            color: var(--text);
-            font-size: 0.95rem;
-            transition: color 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-        }
-
-        .nav-link:hover {
-            color: var(--accent);
-        }
-
-        .nav-link.active {
-            color: var(--accent);
-        }
-
-        /* Dropdown */
-        .dropdown {
-            position: relative;
-        }
-
-        .dropdown-toggle {
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-            user-select: none;
-            color: var(--text);
-            font-size: 0.95rem;
-            transition: color 0.3s ease;
-        }
-
-        .dropdown-toggle:hover {
-            color: var(--accent);
-        }
-
-        .dropdown-menu {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background-color: var(--surface-alt);
-            border: 1px solid var(--border);
-            border-radius: 0.5rem;
-            min-width: 200px;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-10px);
-            transition: all 0.3s ease;
-            margin-top: 0.5rem;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            z-index: 1001;
-        }
-
-        .dropdown:hover .dropdown-menu {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        .dropdown-item {
-            display: block;
-            padding: 0.75rem 1rem;
-            color: var(--text);
-            text-decoration: none;
-            transition: all 0.2s ease;
-            border-left: 3px solid transparent;
-        }
-
-        .dropdown-item:hover {
-            background-color: var(--surface);
-            color: var(--accent);
-            border-left-color: var(--accent);
-        }
-
-        .dropdown-item:first-child {
-            border-radius: 0.4rem 0.4rem 0 0;
-        }
-
-        .dropdown-item:last-child {
-            border-radius: 0 0 0.4rem 0.4rem;
-        }
-
-        /* Hamburger Menu */
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            gap: 0.35rem;
-        }
-
-        .hamburger span {
-            width: 25px;
-            height: 2px;
-            background-color: var(--text);
-            transition: all 0.3s ease;
-        }
-
-        .hamburger.active span:nth-child(1) {
-            transform: rotate(45deg) translate(8px, 8px);
-        }
-
-        .hamburger.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .hamburger.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(7px, -7px);
-        }
-
         /* Main Content */
         main {
-            padding-top: 80px;
+            padding-top: 0;
         }
 
         .container {
@@ -361,7 +211,7 @@
         }
 
         .experience-bullets li:before {
-            content: "▸";
+            content: "\25B8";
             position: absolute;
             left: 0;
             color: var(--accent);
@@ -423,29 +273,56 @@
         }
 
         /* References */
-        .references-list {
-            list-style: none;
+        .references-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
         }
 
-        .references-item {
-            margin-bottom: 1.5rem;
-            padding-bottom: 1.5rem;
-            border-bottom: 1px solid var(--border);
+        .reference-card {
+            display: block;
+            background: var(--surface-alt);
+            border: 1px solid var(--border);
+            border-radius: 0.75rem;
+            padding: 1.25rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
         }
 
-        .references-item:last-child {
-            border-bottom: none;
+        .reference-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(201, 168, 76, 0.15);
         }
 
         .reference-name {
+            font-size: 1.1rem;
             font-weight: 600;
-            color: var(--text);
-            margin-bottom: 0.3rem;
+            color: var(--accent);
+            margin-bottom: 0.25rem;
         }
 
         .reference-title {
-            color: var(--text-dim);
             font-size: 0.9rem;
+            color: var(--text);
+            margin-bottom: 0.25rem;
+        }
+
+        .reference-context {
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            margin-bottom: 0.5rem;
+        }
+
+        .reference-linkedin {
+            font-size: 0.8rem;
+            color: var(--accent);
+            opacity: 0.8;
+        }
+
+        .reference-card:hover .reference-linkedin {
+            opacity: 1;
         }
 
         /* Footer */
@@ -461,79 +338,6 @@
 
         /* Responsive */
         @media (max-width: 768px) {
-            nav {
-                padding: 1rem;
-            }
-
-            .nav-container {
-                flex-direction: row;
-                justify-content: space-between;
-            }
-
-            .nav-menu {
-                position: fixed;
-                left: 0;
-                top: 70px;
-                right: 0;
-                background-color: var(--surface);
-                flex-direction: column;
-                gap: 0;
-                max-height: 0;
-                overflow: hidden;
-                transition: max-height 0.3s ease;
-                border-bottom: 1px solid var(--border);
-            }
-
-            .nav-menu.active {
-                max-height: 500px;
-            }
-
-            .nav-item {
-                width: 100%;
-                border-bottom: 1px solid var(--border);
-            }
-
-            .nav-link {
-                padding: 1rem;
-                display: block;
-            }
-
-            .hamburger {
-                display: flex;
-            }
-
-            .dropdown-menu {
-                position: static;
-                opacity: 0;
-                visibility: hidden;
-                max-height: 0;
-                overflow: hidden;
-                transform: none;
-                background-color: var(--surface-alt);
-                transition: max-height 0.3s ease;
-                border: none;
-                border-top: 1px solid var(--border);
-                margin: 0;
-                border-radius: 0;
-                box-shadow: none;
-            }
-
-            .nav-item.active .dropdown-menu {
-                opacity: 1;
-                visibility: visible;
-                max-height: 400px;
-            }
-
-            .dropdown-item {
-                padding: 0.8rem 1rem 0.8rem 2rem;
-                border-left: none;
-            }
-
-            .dropdown-item:hover {
-                border-left: none;
-                padding-left: 2rem;
-            }
-
             .hero-content {
                 flex-direction: column;
                 gap: 2rem;
@@ -573,15 +377,11 @@
             }
 
             main {
-                padding-top: 70px;
+                padding-top: 0;
             }
         }
 
         @media (max-width: 480px) {
-            .nav-brand {
-                font-size: 0.9rem;
-            }
-
             .hero-text h1 {
                 font-size: 1.5rem;
             }
@@ -606,7 +406,7 @@
 
         /* Print Styles */
         @media print {
-            nav {
+            .site-header {
                 display: none;
             }
 
@@ -658,46 +458,38 @@
 </head>
 <body>
     <!-- Navigation -->
-    <nav>
+    <header class="site-header">
         <div class="nav-container">
-            <a href="/" class="nav-brand">ARTHUR CHAN</a>
+            <a href="index.html" class="nav-brand">ARTHUR CHAN</a>
             <button class="hamburger" id="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
+                <span></span><span></span><span></span>
             </button>
             <ul class="nav-menu" id="navMenu">
-                <li class="nav-item dropdown" id="rafflesDropdown">
-                    <div class="dropdown-toggle">
-                        Raffles ▾
-                    </div>
-                    <div class="dropdown-menu">
-                        <a href="raffles/index.html" class="dropdown-item">Overview</a>
-                        <a href="raffles/strategy.html" class="dropdown-item">Strategy</a>
-                        <a href="raffles/org-chart.html" class="dropdown-item">Org Chart</a>
-                        <a href="raffles/news.html" class="dropdown-item">News</a>
-                        <a href="raffles/experience.html" class="dropdown-item">Experience Bridge</a>
-                        <a href="raffles/technical.html" class="dropdown-item">Technical</a>
-                        <a href="raffles/questions.html" class="dropdown-item">Questions</a>
+                <li class="nav-item"><a href="#summary" class="nav-link">Summary</a></li>
+                <li class="nav-item"><a href="#experience" class="nav-link">Experience</a></li>
+                <li class="nav-item"><a href="#education" class="nav-link">Education</a></li>
+                <li class="nav-item"><a href="#skills" class="nav-link">Skills</a></li>
+                <li class="nav-item"><a href="#references" class="nav-link">References</a></li>
+                <li class="nav-item dropdown">
+                    <button class="dropdown-toggle" id="interviewPrepToggle">Interview Prep &#9662;</button>
+                    <div class="dropdown-menu" id="interviewPrepMenu">
+                        <div class="dropdown-label">Raffles Family Office</div>
+                        <a href="raffles/index.html">Overview &amp; Intel</a>
+                        <a href="raffles/strategy.html">Interview Strategy</a>
+                        <a href="raffles/org-chart.html">Org Chart &amp; Profiles</a>
+                        <a href="raffles/news.html">Latest News</a>
+                        <a href="raffles/experience.html">Experience Bridge</a>
+                        <a href="raffles/technical.html">Technical &amp; AI</a>
+                        <a href="raffles/questions.html">Questions &amp; 90-Day Plan</a>
                     </div>
                 </li>
             </ul>
         </div>
-    </nav>
+    </header>
 
     <!-- Main Content -->
     <main>
         <div class="container">
-            <!-- Resume Sidebar Navigation -->
-            <aside class="resume-sidebar">
-                <h3>Navigation</h3>
-                <a href="#summary" class="sidebar-nav active">Summary</a>
-                <a href="#experience" class="sidebar-nav">Experience</a>
-                <a href="#education" class="sidebar-nav">Education</a>
-                <a href="#skills" class="sidebar-nav">Skills</a>
-                <a href="#references" class="sidebar-nav">References</a>
-            </aside>
-
             <!-- Hero Section -->
             <section class="hero">
                 <div class="hero-content">
@@ -896,32 +688,44 @@
             <!-- References -->
             <section id="references">
                 <h2>References</h2>
-                <ul class="references-list">
-                    <li class="references-item">
+                <p style="color: var(--text-dim); font-size: 0.9rem; margin-bottom: 1.5rem;">Extraordinary individuals who mentored, challenged, and shaped the way I think about business and leadership. All available as professional references upon request.</p>
+                <div class="references-grid">
+                    <a href="https://www.linkedin.com/in/sherzad-desai-banker77828b8/" target="_blank" class="reference-card">
                         <div class="reference-name">Sherzad Desai</div>
-                        <div class="reference-title">Executive Director, TMT Coverage, ANZ</div>
-                    </li>
-                    <li class="references-item">
+                        <div class="reference-title">Managing Director — TMT &amp; Healthcare, ING</div>
+                        <div class="reference-context">Previously Executive Director, TMT Coverage at ANZ</div>
+                        <div class="reference-linkedin">View LinkedIn Profile &rarr;</div>
+                    </a>
+                    <a href="https://www.linkedin.com/in/sachin-goel-1326685/" target="_blank" class="reference-card">
                         <div class="reference-name">Sachin Goel</div>
-                        <div class="reference-title">Executive Director, TMT Coverage, ANZ</div>
-                    </li>
-                    <li class="references-item">
+                        <div class="reference-title">Managing Director, Head of TMT APAC — MUFG</div>
+                        <div class="reference-context">Previously Executive Director, TMT Coverage at ANZ</div>
+                        <div class="reference-linkedin">View LinkedIn Profile &rarr;</div>
+                    </a>
+                    <div class="reference-card">
                         <div class="reference-name">Benjamin Chen</div>
-                        <div class="reference-title">ex-McKinsey; MD, Crimson Capital</div>
-                    </li>
-                    <li class="references-item">
+                        <div class="reference-title">Managing Director — Crimson Capital Management</div>
+                        <div class="reference-context">Previously McKinsey &amp; Company</div>
+                    </div>
+                    <a href="https://www.linkedin.com/in/paiello" target="_blank" class="reference-card">
                         <div class="reference-name">Paul Aiello</div>
-                        <div class="reference-title">Founding CEO, CA Media / The Chernin Group; Co-Founder, Emerald Media</div>
-                    </li>
-                    <li class="references-item">
+                        <div class="reference-title">Founding CEO, CA Media / The Chernin Group</div>
+                        <div class="reference-context">Co-Founder &amp; CEO, Emerald Media Advisors (KKR)</div>
+                        <div class="reference-linkedin">View LinkedIn Profile &rarr;</div>
+                    </a>
+                    <a href="https://www.linkedin.com/in/joey-wong-a154ba4/" target="_blank" class="reference-card">
                         <div class="reference-name">Joey Wong</div>
-                        <div class="reference-title">ex-Director, Emerald Media; CFO, Lenovo Asia Pacific (PCSD)</div>
-                    </li>
-                    <li class="references-item">
+                        <div class="reference-title">CFO, Lenovo Asia Pacific (PCSD)</div>
+                        <div class="reference-context">Previously Director, Emerald Media Advisors</div>
+                        <div class="reference-linkedin">View LinkedIn Profile &rarr;</div>
+                    </a>
+                    <a href="https://www.mckinsey.com/our-people/james-wong" target="_blank" class="reference-card">
                         <div class="reference-name">James Wong</div>
-                        <div class="reference-title">MD, Alexander Proudfoot; Partner, McKinsey &amp; Company</div>
-                    </li>
-                </ul>
+                        <div class="reference-title">Partner — McKinsey &amp; Company</div>
+                        <div class="reference-context">Previously Managing Director, Alexander Proudfoot</div>
+                        <div class="reference-linkedin">View Profile &rarr;</div>
+                    </a>
+                </div>
             </section>
         </div>
     </main>
@@ -932,32 +736,6 @@
     </footer>
 
     <script>
-        // Hamburger Menu Toggle
-        const hamburger = document.getElementById('hamburger');
-        const navMenu = document.getElementById('navMenu');
-        const rafflesDropdown = document.getElementById('rafflesDropdown');
-
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            navMenu.classList.toggle('active');
-        });
-
-        // Mobile Dropdown Toggle
-        rafflesDropdown.addEventListener('click', (e) => {
-            if (window.innerWidth <= 768) {
-                e.preventDefault();
-                rafflesDropdown.classList.toggle('active');
-            }
-        });
-
-        // Close menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!e.target.closest('nav')) {
-                hamburger.classList.remove('active');
-                navMenu.classList.remove('active');
-            }
-        });
-
         // Sidebar Navigation Active State
         const sidebarLinks = document.querySelectorAll('.sidebar-nav');
         const sections = document.querySelectorAll('section[id]');
@@ -998,5 +776,6 @@
         // Set initial active link
         updateSidebarNav();
     </script>
+    <script src="shared/nav.js"></script>
 </body>
 </html>

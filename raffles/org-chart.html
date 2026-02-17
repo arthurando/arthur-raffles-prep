@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Org Chart — Raffles Family Office</title>
+  <link rel="stylesheet" href="../shared/nav.css">
   <style>
     :root {
       --bg: #0a0a0f;
@@ -35,131 +36,6 @@
       background-color: var(--bg);
       color: var(--text);
       line-height: 1.6;
-    }
-
-    /* ===== HEADER & NAVIGATION ===== */
-    header {
-      background: var(--surface);
-      border-bottom: 1px solid var(--border);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-
-    .header-content {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 1rem 1.5rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .brand {
-      font-size: 1.2rem;
-      font-weight: 700;
-      letter-spacing: 0.05em;
-      color: var(--accent);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-
-    .brand:hover {
-      color: var(--text);
-    }
-
-    nav {
-      display: flex;
-      gap: 2rem;
-      align-items: center;
-    }
-
-    .nav-dropdown {
-      position: relative;
-    }
-
-    .dropdown-trigger {
-      background: none;
-      border: none;
-      color: var(--text);
-      cursor: pointer;
-      font-size: 1rem;
-      padding: 0.5rem 0;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      transition: color 0.2s;
-    }
-
-    .dropdown-trigger:hover {
-      color: var(--accent);
-    }
-
-    .dropdown-menu {
-      display: none;
-      position: absolute;
-      top: 100%;
-      left: 0;
-      background: var(--surface-alt);
-      border: 1px solid var(--border);
-      border-radius: 0.5rem;
-      min-width: 200px;
-      margin-top: 0.5rem;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    }
-
-    .dropdown-menu.active {
-      display: block;
-    }
-
-    .dropdown-menu a {
-      display: block;
-      padding: 0.75rem 1rem;
-      color: var(--text);
-      text-decoration: none;
-      border-bottom: 1px solid var(--border);
-      transition: background-color 0.2s, color 0.2s;
-    }
-
-    .dropdown-menu a:last-child {
-      border-bottom: none;
-    }
-
-    .dropdown-menu a:hover {
-      background-color: var(--accent-dim);
-      color: var(--accent);
-    }
-
-    .dropdown-menu a.active {
-      background-color: var(--accent-dim);
-      color: var(--accent);
-      font-weight: 600;
-    }
-
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      cursor: pointer;
-      gap: 0.4rem;
-    }
-
-    .hamburger span {
-      width: 24px;
-      height: 2px;
-      background-color: var(--text);
-      transition: all 0.3s;
-    }
-
-    .hamburger.active span:nth-child(1) {
-      transform: rotate(45deg) translate(8px, 8px);
-    }
-
-    .hamburger.active span:nth-child(2) {
-      opacity: 0;
-    }
-
-    .hamburger.active span:nth-child(3) {
-      transform: rotate(-45deg) translate(7px, -7px);
     }
 
     .page-anchors {
@@ -529,27 +405,6 @@
         font-size: 2rem;
       }
 
-      nav {
-        display: none;
-      }
-
-      nav.active {
-        display: flex;
-        flex-direction: column;
-        position: absolute;
-        top: 60px;
-        left: 0;
-        right: 0;
-        background: var(--surface);
-        border-bottom: 1px solid var(--border);
-        gap: 0;
-        padding: 1rem;
-      }
-
-      .hamburger {
-        display: flex;
-      }
-
       .page-anchors {
         display: none;
       }
@@ -589,34 +444,27 @@
   </style>
 </head>
 <body>
-  <header>
-    <div class="header-content">
-      <a href="../index.html" class="brand">ARTHUR CHAN</a>
-      <nav id="nav">
-        <div class="nav-dropdown">
-          <button class="dropdown-trigger" id="dropdownBtn">Raffles ▾</button>
-          <div class="dropdown-menu" id="dropdownMenu">
-            <a href="index.html">Overview</a>
-            <a href="strategy.html">Strategy</a>
-            <a href="org-chart.html" class="active">Org Chart</a>
-            <a href="news.html">News</a>
-            <a href="experience.html">Experience Bridge</a>
-            <a href="technical.html">Technical</a>
-            <a href="questions.html">Questions</a>
-          </div>
-        </div>
-      </nav>
-      <div class="page-anchors">
-        <a href="#org-chart">Org Chart</a>
-        <a href="#personnel">Personnel</a>
-        <a href="#profiles">Profiles</a>
-        <a href="#education">Education</a>
-      </div>
-      <div class="hamburger" id="hamburger">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
+  <header class="site-header">
+    <div class="nav-container">
+        <a href="../index.html" class="nav-brand">ARTHUR CHAN</a>
+        <button class="hamburger" id="hamburger">
+            <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-menu" id="navMenu">
+            <li class="nav-item dropdown">
+                <button class="dropdown-toggle" id="interviewPrepToggle">Interview Prep &#9662;</button>
+                <div class="dropdown-menu" id="interviewPrepMenu">
+                    <div class="dropdown-label">Raffles Family Office</div>
+                    <a href="index.html">Overview &amp; Intel</a>
+                    <a href="strategy.html">Interview Strategy</a>
+                    <a href="org-chart.html" class="active">Org Chart &amp; Profiles</a>
+                    <a href="news.html">Latest News</a>
+                    <a href="experience.html">Experience Bridge</a>
+                    <a href="technical.html">Technical &amp; AI</a>
+                    <a href="questions.html">Questions &amp; 90-Day Plan</a>
+                </div>
+            </li>
+        </ul>
     </div>
   </header>
 
@@ -1114,30 +962,6 @@
   </footer>
 
   <script>
-    // Dropdown menu toggle
-    const dropdownBtn = document.getElementById('dropdownBtn');
-    const dropdownMenu = document.getElementById('dropdownMenu');
-    const hamburger = document.getElementById('hamburger');
-    const nav = document.getElementById('nav');
-
-    dropdownBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      dropdownMenu.classList.toggle('active');
-    });
-
-    // Close dropdown when clicking outside
-    document.addEventListener('click', (e) => {
-      if (!e.target.closest('.nav-dropdown')) {
-        dropdownMenu.classList.remove('active');
-      }
-    });
-
-    // Hamburger menu
-    hamburger.addEventListener('click', () => {
-      hamburger.classList.toggle('active');
-      nav.classList.toggle('active');
-    });
-
     // Card details toggle
     function toggleDetails(btn) {
       const details = btn.nextElementSibling;
@@ -1155,14 +979,7 @@
         }
       });
     });
-
-    // Active nav link
-    const currentPage = window.location.pathname.split('/').pop() || 'org-chart.html';
-    document.querySelectorAll('.dropdown-menu a').forEach((link) => {
-      if (link.getAttribute('href') === currentPage || link.getAttribute('href') === 'org-chart.html') {
-        link.classList.add('active');
-      }
-    });
   </script>
+  <script src="../shared/nav.js"></script>
 </body>
 </html>
