@@ -67,7 +67,7 @@ All data points below are sourced. Use this to update index.html.
 ### Zann Kwan, CFA — Managing Partner & CIO, Revo Digital
 - **Photo:** https://www.rafflesgroup.co/wp-content/uploads/2025/05/Zann-Kwan-2023-2-1024x1024.jpg
 - **Previous:** GIC Real Estate, Arthur Andersen, KPMG
-- **Experience:** 25 years financial investment, 9 years digital assets
+- **Experience:** 25+ years financial investment, 12+ years digital assets (since 2013-2014; "9 years" in older bios was from ~2023 snapshot)
 - **Notable:** Introduced Asia's first public Bitcoin ATM (2014)
 - **Sources:** rafflesgroup.co, hubbis.com
 
