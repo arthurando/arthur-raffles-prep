@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Technical Fluency & AI Proposals | Arthur Chan</title>
+  <style>
+    :root {
+      --bg: #0a0a0f;
+      --surface: #12121a;
+      --surface-alt: #1a1a28;
+      --border: #2a2a3a;
+      --accent: #c9a84c;
+      --accent-dim: rgba(201, 168, 76, 0.15);
+      --accent-glow: rgba(201, 168, 76, 0.08);
+      --text: #e8e6e3;
+      --text-dim: #8a8a9a;
+      --danger: #e05252;
+      --success: #4caf7c;
+      --info: #5b8def;
+
+      --font-sans: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      --spacing-xs: 0.5rem;
+      --spacing-sm: 1rem;
+      --spacing-md: 1.5rem;
+      --spacing-lg: 2rem;
+      --spacing-xl: 3rem;
+      --spacing-2xl: 4rem;
+      --radius: 0.5rem;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* Navigation */
+    nav {
+      background-color: var(--surface);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    nav .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: var(--spacing-md);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-brand {
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: 0.05em;
+      color: var(--accent);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .nav-brand:hover {
+      color: var(--text);
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: var(--spacing-md);
+      align-items: center;
+    }
+
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown-toggle {
+      background: none;
+      border: none;
+      color: var(--text);
+      font-family: var(--font-sans);
+      font-size: 1rem;
+      cursor: pointer;
+      padding: var(--spacing-xs) var(--spacing-sm);
+      border-radius: var(--radius);
+      transition: background-color 0.3s ease, color 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .dropdown-toggle:hover {
+      background-color: var(--accent-dim);
+      color: var(--accent);
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: var(--surface-alt);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      min-width: 200px;
+      display: none;
+      flex-direction: column;
+      margin-top: var(--spacing-xs);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    }
+
+    .dropdown.active .dropdown-menu {
+      display: flex;
+    }
+
+    .dropdown-menu a {
+      padding: var(--spacing-sm);
+      color: var(--text);
+      text-decoration: none;
+      border-bottom: 1px solid var(--border);
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .dropdown-menu a:last-child {
+      border-bottom: none;
+    }
+
+    .dropdown-menu a:hover {
+      background-color: var(--accent-dim);
+      color: var(--accent);
+    }
+
+    .dropdown-menu a.active {
+      background-color: var(--accent-dim);
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .hamburger {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--text);
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: var(--spacing-xs);
+    }
+
+    @media (max-width: 768px) {
+      .nav-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: var(--surface);
+        border-top: 1px solid var(--border);
+        flex-direction: column;
+        gap: 0;
+      }
+
+      .nav-menu.active {
+        display: flex;
+      }
+
+      .hamburger {
+        display: block;
+      }
+
+      .dropdown-menu {
+        position: static;
+        border: none;
+        box-shadow: none;
+        background-color: var(--surface-alt);
+        margin-top: 0;
+        border-left: 2px solid var(--accent-dim);
+      }
+    }
+
+    /* Main Container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: var(--spacing-md);
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: var(--spacing-2xl) var(--spacing-md);
+      background: linear-gradient(135deg, var(--surface) 0%, var(--surface-alt) 100%);
+      border-bottom: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: var(--spacing-md);
+      color: var(--accent);
+      letter-spacing: -0.02em;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      color: var(--text-dim);
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.8;
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        padding: var(--spacing-xl) var(--spacing-md);
+      }
+
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+    }
+
+    /* Page Anchors Navigation */
+    .page-anchors {
+      display: flex;
+      gap: var(--spacing-md);
+      margin: var(--spacing-2xl) 0;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: var(--spacing-md);
+      flex-wrap: wrap;
+    }
+
+    .page-anchors a {
+      color: var(--text-dim);
+      text-decoration: none;
+      padding: var(--spacing-xs) var(--spacing-sm);
+      border-radius: var(--radius);
+      transition: all 0.3s ease;
+    }
+
+    .page-anchors a:hover,
+    .page-anchors a.active {
+      color: var(--accent);
+      background-color: var(--accent-dim);
+    }
+
+    /* Alert Boxes */
+    .alert {
+      border-left: 4px solid;
+      padding: var(--spacing-md);
+      margin: var(--spacing-lg) 0;
+      border-radius: var(--radius);
+      background-color: rgba(0, 0, 0, 0.2);
+    }
+
+    .alert.info {
+      border-color: var(--info);
+      background-color: rgba(91, 141, 239, 0.08);
+    }
+
+    .alert.danger {
+      border-color: var(--danger);
+      background-color: rgba(224, 82, 82, 0.08);
+    }
+
+    .alert.success {
+      border-color: var(--success);
+      background-color: rgba(76, 175, 124, 0.08);
+    }
+
+    .alert-title {
+      font-weight: 600;
+      font-size: 0.95rem;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .alert.info .alert-title {
+      color: var(--info);
+    }
+
+    .alert.danger .alert-title {
+      color: var(--danger);
+    }
+
+    .alert.success .alert-title {
+      color: var(--success);
+    }
+
+    .alert p {
+      color: var(--text);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    /* Section Styling */
+    .section {
+      margin: var(--spacing-2xl) 0;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: var(--spacing-lg);
+      padding-bottom: var(--spacing-md);
+      border-bottom: 2px solid var(--accent-dim);
+    }
+
+    @media (max-width: 768px) {
+      .section-title {
+        font-size: 1.5rem;
+      }
+    }
+
+    /* Cards Grid */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: var(--spacing-lg);
+      margin: var(--spacing-lg) 0;
+    }
+
+    .card {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .card:hover {
+      border-color: var(--accent);
+      background-color: var(--surface-alt);
+      box-shadow: 0 0 20px var(--accent-glow);
+    }
+
+    .card.collapsible {
+      cursor: pointer;
+    }
+
+    .card-header {
+      padding: var(--spacing-md);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--spacing-md);
+    }
+
+    .card.collapsible .card-header:hover {
+      background-color: var(--accent-dim);
+    }
+
+    .card-header-title {
+      font-weight: 600;
+      font-size: 1.05rem;
+      color: var(--accent);
+      flex: 1;
+    }
+
+    .card-toggle {
+      color: var(--accent);
+      font-size: 1.2rem;
+      transition: transform 0.3s ease;
+      flex-shrink: 0;
+    }
+
+    .card.open .card-toggle {
+      transform: rotate(180deg);
+    }
+
+    .card-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+
+    .card.open .card-body {
+      max-height: 2000px;
+    }
+
+    .card-content {
+      padding: 0 var(--spacing-md) var(--spacing-md);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    .card-content h3 {
+      color: var(--accent);
+      margin-top: var(--spacing-md);
+      margin-bottom: var(--spacing-xs);
+      font-size: 0.95rem;
+    }
+
+    .card-content p {
+      margin-bottom: var(--spacing-md);
+      font-size: 0.95rem;
+    }
+
+    .card-content ul {
+      list-style: none;
+      padding-left: var(--spacing-md);
+      margin-bottom: var(--spacing-md);
+    }
+
+    .card-content li {
+      margin-bottom: var(--spacing-xs);
+      padding-left: var(--spacing-sm);
+      position: relative;
+      font-size: 0.95rem;
+    }
+
+    .card-content li:before {
+      content: "→";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+    }
+
+    /* Proposal Cards */
+    .proposals-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--spacing-lg);
+      margin: var(--spacing-lg) 0;
+    }
+
+    .proposal-card {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .proposal-header {
+      padding: var(--spacing-md);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--spacing-md);
+      cursor: pointer;
+      background: linear-gradient(90deg, var(--surface) 0%, var(--surface-alt) 100%);
+      transition: all 0.3s ease;
+    }
+
+    .proposal-card:hover .proposal-header {
+      background: linear-gradient(90deg, var(--surface-alt) 0%, var(--surface) 100%);
+      border-color: var(--accent);
+    }
+
+    .proposal-number {
+      font-weight: 700;
+      color: var(--accent);
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    .proposal-title {
+      font-weight: 600;
+      color: var(--accent);
+      flex: 1;
+      font-size: 1.05rem;
+    }
+
+    .proposal-toggle {
+      color: var(--accent);
+      font-size: 1.2rem;
+      transition: transform 0.3s ease;
+      flex-shrink: 0;
+    }
+
+    .proposal-card.open .proposal-toggle {
+      transform: rotate(180deg);
+    }
+
+    .proposal-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+
+    .proposal-card.open .proposal-body {
+      max-height: 2000px;
+    }
+
+    .proposal-content {
+      padding: 0 var(--spacing-md) var(--spacing-md);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    .proposal-content h3 {
+      color: var(--accent);
+      margin-top: var(--spacing-md);
+      margin-bottom: var(--spacing-xs);
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .proposal-content p {
+      margin-bottom: var(--spacing-md);
+      font-size: 0.95rem;
+    }
+
+    .proposal-content ul {
+      list-style: none;
+      padding-left: var(--spacing-md);
+      margin-bottom: var(--spacing-md);
+    }
+
+    .proposal-content li {
+      margin-bottom: var(--spacing-xs);
+      padding-left: var(--spacing-sm);
+      position: relative;
+      font-size: 0.95rem;
+    }
+
+    .proposal-content li:before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: var(--spacing-2xl) var(--spacing-md);
+      margin-top: var(--spacing-2xl);
+      background-color: var(--surface);
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: var(--spacing-lg);
+      margin-bottom: var(--spacing-lg);
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: var(--text-dim);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .footer-links a:hover {
+      color: var(--accent);
+    }
+
+    .footer-credit {
+      color: var(--text-dim);
+      font-size: 0.9rem;
+    }
+
+    /* Utilities */
+    .text-dim {
+      color: var(--text-dim);
+    }
+
+    .text-accent {
+      color: var(--accent);
+    }
+
+    .mb-lg {
+      margin-bottom: var(--spacing-lg);
+    }
+
+    .mt-lg {
+      margin-top: var(--spacing-lg);
+    }
+
+    /* Print Styles */
+    @media print {
+      nav {
+        display: none;
+      }
+
+      .page-anchors {
+        display: none;
+      }
+
+      body {
+        background-color: white;
+        color: black;
+      }
+
+      .section-title,
+      .card-header-title,
+      .proposal-title {
+        color: #333;
+      }
+
+      .card,
+      .proposal-card {
+        border-color: #ccc;
+        background-color: white;
+        page-break-inside: avoid;
+      }
+
+      .card.open .card-body,
+      .proposal-card.open .proposal-body {
+        max-height: none;
+      }
+
+      .alert {
+        border-left: 4px solid #999;
+        background-color: #f5f5f5;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <div class="container">
+      <a href="../index.html" class="nav-brand">ARTHUR CHAN</a>
+      <button class="hamburger" id="hamburgerBtn">☰</button>
+      <div class="nav-menu" id="navMenu">
+        <div class="dropdown" id="rafflesDropdown">
+          <button class="dropdown-toggle" id="rafflesToggle">Raffles ▾</button>
+          <div class="dropdown-menu">
+            <a href="overview.html">Overview</a>
+            <a href="financials.html">Financials &amp; Deal Flow</a>
+            <a href="technical.html" class="active">Technical Fluency</a>
+            <a href="operations.html">Operations</a>
+            <a href="clients.html">Client Intelligence</a>
+            <a href="strategy.html">Strategy</a>
+            <a href="culture.html">Culture</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Anchors -->
+  <div class="container">
+    <div class="page-anchors">
+      <a href="#fluency" class="active">Fluency</a>
+      <a href="#ai-proposals">AI Proposals</a>
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <div class="hero">
+    <div class="container">
+      <h1>Technical Fluency &amp; AI Proposals</h1>
+      <p>Show conceptual fluency. Do NOT claim implementation in financial services — demonstrate domain depth to execute.</p>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="container">
+    <!-- Section 1: Technical Fluency -->
+    <section class="section" id="fluency">
+      <h2 class="section-title">Technical Fluency</h2>
+
+      <div class="cards-grid">
+        <!-- Card 1 -->
+        <div class="card collapsible" data-card="1">
+          <div class="card-header">
+            <div class="card-header-title">Entity &amp; Relationship Modelling for Family Offices</div>
+            <span class="card-toggle">▼</span>
+          </div>
+          <div class="card-body">
+            <div class="card-content">
+              <p>Family office CRM is a <strong>graph problem</strong>, not flat contact DB. Hierarchy:</p>
+              <ul>
+                <li>Family Group → Members → Entities (trusts, SPVs, holdcos)</li>
+                <li>Entities → Accounts → Assets/Positions</li>
+                <li>Each node has compliance profile, jurisdiction, access controls</li>
+              </ul>
+              <p><strong>Polymorphic relationships:</strong> one person = beneficiary of Trust A, director of HoldCo B, LP in Fund C. This matters for:</p>
+              <ul>
+                <li>Data visibility (RLS — who sees what)</li>
+                <li>Regulatory reporting (beneficial ownership, conflict tracking)</li>
+                <li>Performance attribution (entity-level vs. family-level)</li>
+              </ul>
+              <h3>Proof Point</h3>
+              <p>STT Mall hierarchical customer segmentation — modelled 50K+ stores with ownership, franchise, and supply chain relationships.</p>
+              <h3>Industry Reference</h3>
+              <p>Salesforce FSC "household" objects, DealCloud/4Degrees graph-based platforms.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="card collapsible" data-card="2">
+          <div class="card-header">
+            <div class="card-header-title">Compliance, Audit Trails &amp; Data Governance</div>
+            <span class="card-toggle">▼</span>
+          </div>
+          <div class="card-body">
+            <div class="card-content">
+              <p><strong>Event-sourced audit trail:</strong> every state change = immutable event, not overwritten row. Non-negotiable in regulated environments (SFC, MAS).</p>
+              <h3>Row-Level Security (RLS)</h3>
+              <ul>
+                <li>RMs see only their families</li>
+                <li>Compliance sees everything</li>
+                <li>Investment team sees deal pipeline</li>
+                <li>Leadership sees aggregated (no PII below C-level)</li>
+              </ul>
+              <h3>Regulatory Landscape</h3>
+              <ul>
+                <li><strong>HK:</strong> SFC, PDPO, AMLO</li>
+                <li><strong>Singapore:</strong> MAS, PDPA, CDSA</li>
+                <li><strong>Cross-border:</strong> Data residency, conflict of law</li>
+              </ul>
+              <h3>Key Vocabulary</h3>
+              <p>Suitability assessment, investment mandate tracking, beneficial ownership, KYC, AML, STR (suspicious transaction reporting).</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="card collapsible" data-card="3">
+          <div class="card-header">
+            <div class="card-header-title">Deal Flow as a State Machine</div>
+            <span class="card-toggle">▼</span>
+          </div>
+          <div class="card-body">
+            <div class="card-content">
+              <p>Deterministic pipeline, not freeform. Stages:</p>
+              <ul>
+                <li><strong>Sourcing</strong> — Lead capture, source relationship</li>
+                <li><strong>Initial Review</strong> — Mandate fit, quick pass/fail</li>
+                <li><strong>DD</strong> — Deep dive, financials, legal, management</li>
+                <li><strong>IC/Family Review</strong> — Investment Committee gate</li>
+                <li><strong>Commitment</strong> — Legal docs, commitment letter</li>
+                <li><strong>Closing</strong> — Fund transfer, escrow, post-close</li>
+                <li><strong>Post-Investment Monitoring</strong> — Updates, board seats</li>
+              </ul>
+              <p>Each transition requires: mandatory fields, approval gates, timestamp/audit, notifications.</p>
+              <h3>Proof</h3>
+              <p>At KKR, lived this pipeline daily. Built IC presentations = decision gates. Without defined gates, deals die in purgatory.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="card collapsible" data-card="4">
+          <div class="card-header">
+            <div class="card-header-title">Integration Layer — Where CRM Projects Actually Fail</div>
+            <span class="card-toggle">▼</span>
+          </div>
+          <div class="card-body">
+            <div class="card-content">
+              <p>Most CRM failures are integration failures, not feature gaps. Real complexity lives here:</p>
+              <ul>
+                <li><strong>Custodian feeds:</strong> Pershing, IB, private banks — proprietary APIs, FIX protocol, flat-file, 6-month onboarding</li>
+                <li><strong>Market data:</strong> Bloomberg, Reuters (realtime quotes, corp actions)</li>
+                <li><strong>Document management:</strong> Secure storage, version control, client portal access</li>
+                <li><strong>Accounting:</strong> FundCount, Addepar, Masttro (cash flow, NAV, performance)</li>
+                <li><strong>Client communication:</strong> RFO distribution, reporting automation</li>
+              </ul>
+              <h3>Why This Matters</h3>
+              <p>Data quality in = data quality out. A broken custodian feed cascades through reporting, compliance, decision-making.</p>
+              <h3>Proof</h3>
+              <p>STT Mall — integrated Klaviyo, Shopify, Supabase, SendGrid, multiple payment/logistics APIs into unified pipeline. Each integration had unique quirks; coordinating them was the hard part.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="card collapsible" data-card="5">
+          <div class="card-header">
+            <div class="card-header-title">AI-Native Operational Methodology</div>
+            <span class="card-toggle">▼</span>
+          </div>
+          <div class="card-body">
+            <div class="card-content">
+              <div class="alert info">
+                <div class="alert-title">Context Alert</div>
+                <p>Only discuss if asked about dev process or AI capabilities. Frame as methodology, not tooling.</p>
+              </div>
+              <h3>Core Philosophy</h3>
+              <p>I learn new domains fast — chemical engineering to corporate finance to full-stack by immersion. AI-augmented methodology amplifies that speed.</p>
+              <ul>
+                <li><strong>Validate ideas in hours</strong> — Pressure-test decisions through multi-perspective analysis</li>
+                <li><strong>Strategy to working product in days</strong> — Rapid prototyping with structured quality gates</li>
+                <li><strong>Force multiplier for small teams</strong> — Automation, decision frameworks, knowledge capture</li>
+              </ul>
+              <h3>What This Means in Practice</h3>
+              <ul>
+                <li>Structured decision framework (Strategic Council pattern)</li>
+                <li>Test-driven development (TDD) with 80%+ coverage</li>
+                <li>Security review before every commit</li>
+                <li>Immutability-first code (prevent entire classes of bugs)</li>
+                <li>Deterministic execution, probabilistic reasoning</li>
+              </ul>
+              <h3>Privacy-First Approach</h3>
+              <p>Any AI touching client data uses on-premise or private-cloud models only. Methodology is about how work is structured, not running client data through external systems.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="card collapsible" data-card="6">
+          <div class="card-header">
+            <div class="card-header-title">Build vs. Buy — The Right Framework</div>
+            <span class="card-toggle">▼</span>
+          </div>
+          <div class="card-body">
+            <div class="card-content">
+              <h3>The Right Answer</h3>
+              <p><strong>Do NOT build CRM from scratch.</strong> Core CRM should be proven platform:</p>
+              <ul>
+                <li>Salesforce FSC</li>
+                <li>Wealth Dynamix</li>
+                <li>DealCloud</li>
+              </ul>
+              <p>Configured for entity model and workflows.</p>
+              <h3>Where I Add Value</h3>
+              <p><strong>1. Integration layer</strong> — Connecting CRM to custodians, market data, reporting, RFO app</p>
+              <p><strong>2. Internal tooling</strong> — Automations, dashboards, workflow optimisations</p>
+              <p><strong>3. AI-powered features</strong> — Relationship intelligence, automated insights, client recommendations</p>
+              <h3>Why This Positioning Matters</h3>
+              <ul>
+                <li>Shows understanding: regulated environment demands proven platforms</li>
+                <li>Demonstrates value through: customisation, integration, innovation</li>
+                <li>Avoids regulatory risk: no custom auth, compliance, audit trails</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: AI Proposals -->
+    <section class="section" id="ai-proposals">
+      <h2 class="section-title">AI Proposals for Discussion</h2>
+
+      <div class="alert info">
+        <div class="alert-title">Context Alert</div>
+        <p>3x more family offices leveraging AI in 2025 vs 2024. Top investment priorities 2026: AI/automation and data/reporting. Expect agentic interfaces, rise of 'hybrid operator' roles. This is the role Arthur is interviewing for.</p>
+      </div>
+
+      <div class="proposals-grid">
+        <!-- Proposal 1 -->
+        <div class="proposal-card open" data-proposal="1">
+          <div class="proposal-header">
+            <span class="proposal-number">1</span>
+            <span class="proposal-title">Relationship Intelligence Layer</span>
+            <span class="proposal-toggle">▼</span>
+          </div>
+          <div class="proposal-body">
+            <div class="proposal-content">
+              <h3>Problem</h3>
+              <p>As Raffles scales, institutional knowledge about relationships gets lost. Who introduced whom? Co-investment patterns? Warm intros vs. cold?</p>
+
+              <h3>AI Opportunity</h3>
+              <p>Automatically capture and map connections from:</p>
+              <ul>
+                <li>Email flows (who introduced, tone, frequency)</li>
+                <li>Meeting notes (topics, outcomes, follow-ups)</li>
+                <li>Deal activity (co-investors, JV partners, syndications)</li>
+              </ul>
+              <p>Result: Augment RM memory. When new RM joins, instant context on relationship strength, dynamics, deal appetite.</p>
+
+              <h3>Privacy-First Implementation</h3>
+              <p>On-premise/private cloud. No client data leaves org. Rule-based matching first, ML only for pattern recognition on anonymised metadata.</p>
+
+              <h3>Industry Precedent</h3>
+              <p>DealCloud, 4Degrees built around this. Salesforce Einstein in FSC does similar.</p>
+
+              <h3>Arthur's Proof</h3>
+              <p>Built behavioural scoring for 55K+ subscribers (STT Mall). Same pattern: capture implicit signals, surface insights at decision point.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Proposal 2 -->
+        <div class="proposal-card" data-proposal="2">
+          <div class="proposal-header">
+            <span class="proposal-number">2</span>
+            <span class="proposal-title">Intelligent Client Onboarding &amp; KYC Workflow</span>
+            <span class="proposal-toggle">▼</span>
+          </div>
+          <div class="proposal-body">
+            <div class="proposal-content">
+              <h3>Problem</h3>
+              <p>Multi-jurisdiction onboarding complexity. Document collection, identity verification, beneficial ownership, source-of-wealth. Each family = 2-10 entities across 3-4 jurisdictions.</p>
+              <p>Manual: 2-4 weeks, back-and-forth, compliance overhead.</p>
+
+              <h3>AI Solution</h3>
+              <ul>
+                <li><strong>Identify needed docs</strong> by family structure + jurisdictions</li>
+                <li><strong>Extract &amp; validate data</strong> from submitted documents</li>
+                <li><strong>Flag anomalies</strong> (beneficial ownership chains, PEP matches)</li>
+                <li><strong>Audit trail</strong> for regulatory inspection</li>
+              </ul>
+
+              <h3>Privacy-First</h3>
+              <p>On-premise OCR, no external uploads. Human-in-the-loop for compliance decisions (AI recommends, compliance approves).</p>
+
+              <h3>Why Now</h3>
+              <p>UAE/Rwanda expansion multiplies complexity. Scaling with manual processes = bottleneck.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Proposal 3 -->
+        <div class="proposal-card" data-proposal="3">
+          <div class="proposal-header">
+            <span class="proposal-number">3</span>
+            <span class="proposal-title">AI-Powered Client Insights for RFO App</span>
+            <span class="proposal-toggle">▼</span>
+          </div>
+          <div class="proposal-body">
+            <div class="proposal-content">
+              <h3>Problem</h3>
+              <p>RFO app on 3rd upgrade. Architecture is stable, but feature stagnation = vulnerability. Clients expect insights, not just dashboards.</p>
+
+              <h3>What's Next?</h3>
+              <p><strong>AI-powered insight engine:</strong></p>
+              <ul>
+                <li><strong>Personalised insights</strong> — Portfolio-relevant news, ESG flags, sector trends</li>
+                <li><strong>Event/opportunity alerts</strong> by mandate — IPO coming in client's sector? SIFT match for new fund?</li>
+                <li><strong>Natural language queries</strong> — "Show me my HK real estate exposure across all entities" (not dropdown hell)</li>
+                <li><strong>Performance analytics</strong> — AI-generated summaries vs. raw numbers</li>
+              </ul>
+
+              <h3>Privacy-Engineered</h3>
+              <p>AI runs within Raffles infrastructure. Client queries never leave secure environment.</p>
+
+              <h3>Competitive Advantage</h3>
+              <p>Most FO apps are dashboards. AI-powered insight engine becomes retention tool + basis for premium service tier.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Proposal 4 -->
+        <div class="proposal-card" data-proposal="4">
+          <div class="proposal-header">
+            <span class="proposal-number">4</span>
+            <span class="proposal-title">Cross-Entity Reporting Automation</span>
+            <span class="proposal-toggle">▼</span>
+          </div>
+          <div class="proposal-body">
+            <div class="proposal-content">
+              <h3>Problem</h3>
+              <p>Single UHNW family might have 10+ entities across 4 jurisdictions. Consolidated view requires pulling from multiple custodians, reconciling currencies, matching entities.</p>
+              <p>Reality: Every RM hour on manual reconciliation = hour not on relationships.</p>
+
+              <h3>AI-Powered Solution</h3>
+              <ul>
+                <li><strong>Automated ingestion</strong> from custodian feeds (Pershing, IB, etc.)</li>
+                <li><strong>AI-powered reconciliation</strong> — Learn each custodian's format, match to entity hierarchy</li>
+                <li><strong>Anomaly detection</strong> — Flag missing accounts, mismatched balances</li>
+                <li><strong>Currency harmonisation</strong> — Spot-rate vs. historical, audit trail</li>
+              </ul>
+
+              <h3>Why This Matters</h3>
+              <p>#1 operational pain point for MFOs. Every RM hour on manual reconciliation = hour not on relationships. AI handles the drudgery, RMs do client work.</p>
+
+              <h3>Arthur's Proof</h3>
+              <p>Integrated Klaviyo, Shopify, Supabase, SendGrid, payment/logistics APIs into unified pipeline (STT Mall). Each API had its quirks; unified ingestion layer handled translation.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Presentation Warning -->
+      <div class="alert danger mt-lg">
+        <div class="alert-title">Presentation Warning</div>
+        <p><strong>Do NOT open with "I have 4 AI proposals."</strong> Instead: Listen for pain points, then selectively mention most relevant as "something I've been thinking about." This demonstrates strategic thinking, not pitch mode. The proposals above are ammunition for targeted conversation, not a deck.</p>
+      </div>
+    </section>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-links">
+        <a href="../index.html">Home</a>
+        <a href="overview.html">Overview</a>
+        <a href="financials.html">Financials</a>
+        <a href="operations.html">Operations</a>
+        <a href="clients.html">Clients</a>
+        <a href="strategy.html">Strategy</a>
+        <a href="culture.html">Culture</a>
+      </div>
+      <div class="footer-credit">
+        <p>&copy; 2025 Arthur Chan. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Hamburger Menu Toggle
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const navMenu = document.getElementById('navMenu');
+
+    hamburgerBtn.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+    });
+
+    // Dropdown Toggle
+    const rafflesDropdown = document.getElementById('rafflesDropdown');
+    const rafflesToggle = document.getElementById('rafflesToggle');
+
+    rafflesToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      rafflesDropdown.classList.toggle('active');
+    });
+
+    // Close dropdown on link click
+    document.querySelectorAll('.dropdown-menu a').forEach(link => {
+      link.addEventListener('click', () => {
+        rafflesDropdown.classList.remove('active');
+        navMenu.classList.remove('active');
+      });
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', () => {
+      rafflesDropdown.classList.remove('active');
+      navMenu.classList.remove('active');
+    });
+
+    // Collapsible Cards (Fluency Section)
+    document.querySelectorAll('.card.collapsible').forEach(card => {
+      const header = card.querySelector('.card-header');
+      header.addEventListener('click', () => {
+        card.classList.toggle('open');
+      });
+    });
+
+    // Collapsible Proposals
+    document.querySelectorAll('.proposal-card').forEach(card => {
+      const header = card.querySelector('.proposal-header');
+      header.addEventListener('click', () => {
+        card.classList.toggle('open');
+      });
+    });
+
+    // Page Anchors Active State
+    const anchors = document.querySelectorAll('.page-anchors a');
+    anchors.forEach(anchor => {
+      anchor.addEventListener('click', (e) => {
+        e.preventDefault();
+        anchors.forEach(a => a.classList.remove('active'));
+        anchor.classList.add('active');
+        const target = anchor.getAttribute('href');
+        document.querySelector(target).scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+
+    // Smooth scroll for all anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>

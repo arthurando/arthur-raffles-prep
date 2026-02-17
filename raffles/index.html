@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raffles Family Office Overview — Arthur Chan</title>
+    <style>
+        :root {
+            --bg: #0a0a0f;
+            --surface: #12121a;
+            --surface-alt: #1a1a28;
+            --border: #2a2a3a;
+            --accent: #c9a84c;
+            --accent-dim: rgba(201,168,76,0.15);
+            --accent-glow: rgba(201,168,76,0.08);
+            --text: #e8e6e3;
+            --text-dim: #8a8a9a;
+            --danger: #e05252;
+            --success: #4caf7c;
+            --info: #5b8def;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* HEADER & NAVIGATION */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: rgba(10, 10, 15, 0.95);
+            border-bottom: 1px solid var(--border);
+            backdrop-filter: blur(8px);
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .nav-brand {
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            color: var(--accent);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .nav-brand:hover {
+            color: #dbb95f;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            list-style: none;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            color: var(--text);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            padding: 0.5rem 0;
+            border-bottom: 2px solid transparent;
+        }
+
+        .nav-link:hover {
+            color: var(--accent);
+            border-bottom-color: var(--accent);
+        }
+
+        .nav-link.active {
+            color: var(--accent);
+            border-bottom-color: var(--accent);
+        }
+
+        /* DROPDOWN MENU */
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-toggle {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            min-width: 200px;
+            margin-top: 0.5rem;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-8px);
+            transition: var(--transition);
+            list-style: none;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .dropdown:hover .dropdown-menu,
+        .dropdown.active .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-menu li {
+            border-bottom: 1px solid var(--border);
+        }
+
+        .dropdown-menu li:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 0.75rem 1.25rem;
+            color: var(--text);
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 0.9rem;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: var(--surface-alt);
+            color: var(--accent);
+            padding-left: 1.5rem;
+        }
+
+        .dropdown-menu a.active {
+            background-color: var(--accent-dim);
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        /* HAMBURGER MENU */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 0.4rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .hamburger span {
+            width: 24px;
+            height: 2px;
+            background-color: var(--text);
+            border-radius: 1px;
+            transition: var(--transition);
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translateY(9px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translateY(-9px);
+        }
+
+        /* HERO SECTION */
+        .hero {
+            padding: 4rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-size: 2.5rem;
+            line-height: 1.2;
+            margin-bottom: 0.5rem;
+            color: var(--text);
+        }
+
+        .hero-content .subtitle {
+            font-size: 1.1rem;
+            color: var(--accent);
+            margin-bottom: 2rem;
+            font-weight: 500;
+        }
+
+        .hero-narrative {
+            background-color: var(--surface);
+            border: 2px solid var(--accent);
+            border-radius: 0.5rem;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+            color: var(--text);
+            font-size: 0.95rem;
+        }
+
+        .hero-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .tag {
+            display: inline-block;
+            background-color: var(--accent-dim);
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            padding: 0.5rem 1rem;
+            border-radius: 0.25rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .hero-image {
+            position: relative;
+            display: flex;
+            justify-content: center;
+        }
+
+        .hero-image img {
+            width: 100%;
+            max-width: 350px;
+            border-radius: 0.5rem;
+            border: 2px solid var(--accent);
+            box-shadow: 0 20px 40px rgba(201, 168, 76, 0.1);
+            transition: var(--transition);
+        }
+
+        .hero-image img:hover {
+            box-shadow: 0 30px 60px rgba(201, 168, 76, 0.2);
+            transform: translateY(-4px);
+        }
+
+        /* INTELLIGENCE BRIEF SECTION */
+        .intel-section {
+            padding: 4rem 2rem;
+            background-color: var(--surface);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .intel-section h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: var(--text);
+        }
+
+        .intel-section .section-anchor {
+            color: var(--accent);
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+        }
+
+        .intel-table-wrapper {
+            max-width: 1400px;
+            margin: 0 auto;
+            overflow-x: auto;
+        }
+
+        .intel-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+
+        .intel-table thead {
+            background-color: var(--surface-alt);
+            border-bottom: 2px solid var(--accent);
+        }
+
+        .intel-table th {
+            padding: 1rem;
+            text-align: left;
+            color: var(--accent);
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .intel-table td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border);
+            color: var(--text);
+        }
+
+        .intel-table tbody tr:hover {
+            background-color: var(--surface-alt);
+        }
+
+        .intel-table td.source {
+            color: var(--text-dim);
+            font-size: 0.85rem;
+        }
+
+        /* NAVIGATION CARDS SECTION */
+        .cards-section {
+            padding: 4rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .cards-section h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: var(--text);
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background-color: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            padding: 2rem;
+            text-decoration: none;
+            color: var(--text);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 10px 30px rgba(201, 168, 76, 0.1);
+            transform: translateY(-4px);
+            background-color: var(--surface-alt);
+        }
+
+        .card-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+
+        .card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--text);
+        }
+
+        .card p {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            flex-grow: 1;
+        }
+
+        /* FOOTER */
+        footer {
+            background-color: var(--surface);
+            border-top: 1px solid var(--border);
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            color: var(--accent);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            letter-spacing: 0.05em;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 0.9rem;
+            line-height: 1.8;
+            transition: var(--transition);
+        }
+
+        .footer-section a:hover {
+            color: var(--accent);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--border);
+            padding-top: 2rem;
+            text-align: center;
+            color: var(--text-dim);
+            font-size: 0.85rem;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-menu {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                background-color: var(--surface);
+                border: 1px solid var(--border);
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease;
+                gap: 0;
+                padding: 0;
+                margin-top: 0;
+            }
+
+            .nav-menu.active {
+                max-height: 500px;
+                padding: 1rem 0;
+            }
+
+            .nav-item {
+                width: 100%;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .nav-link {
+                display: block;
+                padding: 1rem 2rem;
+                border: none;
+            }
+
+            .dropdown-menu {
+                position: static;
+                opacity: 0;
+                visibility: hidden;
+                max-height: 0;
+                overflow: hidden;
+                transform: none;
+                transition: var(--transition);
+                box-shadow: none;
+                border: none;
+                background-color: var(--surface-alt);
+                margin: 0;
+            }
+
+            .dropdown.active .dropdown-menu {
+                opacity: 1;
+                visibility: visible;
+                max-height: 500px;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                padding: 2rem 1rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .intel-table {
+                font-size: 0.8rem;
+            }
+
+            .intel-table th,
+            .intel-table td {
+                padding: 0.75rem;
+            }
+        }
+
+        /* PRINT STYLES */
+        @media print {
+            header,
+            footer,
+            .cards-section {
+                display: none;
+            }
+
+            body {
+                background-color: white;
+                color: black;
+            }
+
+            .hero,
+            .intel-section {
+                page-break-after: always;
+            }
+
+            .intel-table {
+                border: 1px solid #ccc;
+            }
+
+            .intel-table th,
+            .intel-table td {
+                border: 1px solid #ccc;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER & NAVIGATION -->
+    <header>
+        <nav>
+            <a href="../index.html" class="nav-brand">ARTHUR CHAN</a>
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li class="nav-item">
+                    <a href="../index.html" class="nav-link">Resume</a>
+                </li>
+                <li class="nav-item dropdown" id="rafflesDropdown">
+                    <div class="dropdown-toggle">
+                        <span>Raffles ▾</span>
+                    </div>
+                    <ul class="dropdown-menu">
+                        <li><a href="index.html" class="nav-link active">Overview</a></li>
+                        <li><a href="strategy.html" class="nav-link">Strategy</a></li>
+                        <li><a href="org-chart.html" class="nav-link">Org Chart</a></li>
+                        <li><a href="news.html" class="nav-link">News</a></li>
+                        <li><a href="experience.html" class="nav-link">Experience Bridge</a></li>
+                        <li><a href="technical.html" class="nav-link">Technical</a></li>
+                        <li><a href="questions.html" class="nav-link">Questions</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Arthur Chan Yat Long</h1>
+            <p class="subtitle">Operator-Technologist — Interview Prep for Raffles Family Office CRM Project</p>
+
+            <div class="hero-narrative">
+                I spent 18 years learning where wealth, operations, and technology intersect — from Bloomberg terminals to KKR deal rooms to building the systems that drove HKD 120M in revenue. I discovered that the bottleneck in every organisation is the gap between what leadership wants and what technology delivers. I close that gap — and I close it fast. I learn new domains quickly, and I've built an AI-augmented methodology that amplifies everything I do: strategy to working product in days, not months. One operator, producing the output of a team. Raffles is building something ambitious at exactly the right moment — I want to be the person who makes that ambition executable.
+            </div>
+
+            <div class="hero-tags">
+                <span class="tag">COO • 11 Years</span>
+                <span class="tag">HKD 120M Revenue</span>
+                <span class="tag">55K+ CRM Subscribers</span>
+                <span class="tag">Imperial College London</span>
+                <span class="tag">Bloomberg • ANZ • KKR/Emerald</span>
+                <span class="tag">Proudfoot Consulting</span>
+                <span class="tag">AI-Amplified Operator</span>
+                <span class="tag">Next.js • Python • SQL • AI/LLM</span>
+                <span class="tag">EN • Cantonese • Mandarin</span>
+            </div>
+        </div>
+
+        <div class="hero-image">
+            <img src="https://media.licdn.com/dms/image/v2/D5635AQEYBSG9kp5EDA/profile-framedphoto-shrink_400_400/B56ZwunrnMJMAg-/0/1770308680491?e=1771923600&v=beta&t=GvQ2QhvG7mb9p75t_ZPI9oTrJ0-UIQMx5WPd5wP5Z1I" alt="Arthur Chan Yat Long">
+        </div>
+    </section>
+
+    <!-- INTELLIGENCE BRIEF SECTION -->
+    <section class="intel-section" id="positioning">
+        <div style="max-width: 1400px; margin: 0 auto;">
+            <h2>Raffles Family Office — Intelligence Brief</h2>
+            <p class="section-anchor">📌 Scroll to: <a href="#intel" style="color: var(--accent); text-decoration: none;">Full Intel Table</a></p>
+
+            <div class="intel-table-wrapper" id="intel">
+                <table class="intel-table">
+                    <thead>
+                        <tr>
+                            <th>Attribute</th>
+                            <th>Detail</th>
+                            <th class="source">Source</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Founded</strong></td>
+                            <td>2016</td>
+                            <td class="source">rafflesgroup.co</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Founding AUM</strong></td>
+                            <td>US$1.8 billion</td>
+                            <td class="source">finews.asia</td>
+                        </tr>
+                        <tr>
+                            <td><strong>AUM (2019)</strong></td>
+                            <td>US$2 billion; target US$10B (stated by CMK)</td>
+                            <td class="source">finews.asia</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Current AUM</strong></td>
+                            <td>Not publicly disclosed</td>
+                            <td class="source">—</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Employees</strong></td>
+                            <td>~223 (ZoomInfo est.); plans to double to ~400 within 2–3 years</td>
+                            <td class="source">ZoomInfo, SCMP 2025</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Type</strong></td>
+                            <td>Multi-family office (MFO)</td>
+                            <td class="source">rafflesgroup.co</td>
+                        </tr>
+                        <tr>
+                            <td><strong>HQ</strong></td>
+                            <td>Dual: Hong Kong + Singapore</td>
+                            <td class="source">rafflesgroup.co</td>
+                        </tr>
+                        <tr>
+                            <td><strong>HK Office</strong></td>
+                            <td>32/F, The Center, 99 Queen's Road Central</td>
+                            <td class="source">rafflesgroup.co</td>
+                        </tr>
+                        <tr>
+                            <td><strong>SG Office</strong></td>
+                            <td>50 Collyer Quay, OUE Bayfront</td>
+                            <td class="source">rafflesgroup.co</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Rep Offices</strong></td>
+                            <td>Bangkok, Beijing, Shanghai, Taipei</td>
+                            <td class="source">rafflesgroup.co</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Award</strong></td>
+                            <td>Best Independent Wealth Manager – Greater China (2019)</td>
+                            <td class="source">WealthBriefingAsia</td>
+                        </tr>
+                        <tr>
+                            <td><strong>CMK Roles</strong></td>
+                            <td>Chair (Founder), FOAHK; President, HSBA</td>
+                            <td class="source">foahk.org, SCMP</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Leadership</strong></td>
+                            <td>Chi-man Kwan (Group CEO), Ray Tam (CEO Revo Digital), William Chow (Deputy Group CEO), Kendrick Lee (CEO Singapore)</td>
+                            <td class="source">rafflesgroup.co</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Core Team</strong></td>
+                            <td>~223 employees across HK, SG, regional offices; 35,000 sq ft, capacity 350</td>
+                            <td class="source">ZoomInfo, Family Wealth Report</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Services</strong></td>
+                            <td>Wealth management, investment advisory, succession planning, tax structuring, digital assets</td>
+                            <td class="source">rafflesgroup.co</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Digital Assets</strong></td>
+                            <td>Revo Digital Family Office — Asia's first digital-assets-focused MFO, co-founded with Huobi Technology. SFC-licensed. Led by Ray Tam (CEO) and Zann Kwan (CIO; Asia's first public Bitcoin ATM 2014; ex-GIC, Arthur Andersen, KPMG). Zodia Custody partnership.</td>
+                            <td class="source">rafflesgroup.co</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Technology</strong></td>
+                            <td>Proprietary RFO app with AI function (3rd upgrade). Investing in digital platforms.</td>
+                            <td class="source">rafflesgroup.co</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Growth</strong></td>
+                            <td>Expanding aggressively. HK gov targets 220 additional family offices by 2028. Raffles featured in gov case studies.</td>
+                            <td class="source">info.gov.hk</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Regulatory</strong></td>
+                            <td>SFC (HK), MAS (Singapore). AML/KYC per jurisdiction.</td>
+                            <td class="source">—</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- NAVIGATION CARDS SECTION -->
+    <section class="cards-section">
+        <h2>Explore Raffles</h2>
+        <div class="cards-grid">
+            <a href="strategy.html" class="card">
+                <div class="card-icon">🎯</div>
+                <h3>Strategy</h3>
+                <p>Deep-dive into Raffles' strategic positioning, growth plans, and market opportunity.</p>
+            </a>
+
+            <a href="org-chart.html" class="card">
+                <div class="card-icon">👥</div>
+                <h3>Org Chart</h3>
+                <p>Leadership structure, reporting lines, and key stakeholders across HK and SG.</p>
+            </a>
+
+            <a href="news.html" class="card">
+                <div class="card-icon">📰</div>
+                <h3>News</h3>
+                <p>Recent announcements, awards, and industry coverage of Raffles Group.</p>
+            </a>
+
+            <a href="experience.html" class="card">
+                <div class="card-icon">🌉</div>
+                <h3>Experience Bridge</h3>
+                <p>How my background maps to Raffles' needs: operations, tech, and wealth management.</p>
+            </a>
+
+            <a href="technical.html" class="card">
+                <div class="card-icon">⚙️</div>
+                <h3>Technical</h3>
+                <p>CRM architecture, tech stack, and the systems I'd design for Raffles' growth.</p>
+            </a>
+
+            <a href="questions.html" class="card">
+                <div class="card-icon">❓</div>
+                <h3>Questions</h3>
+                <p>My prepared questions for leadership on strategy, culture, and vision.</p>
+            </a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Arthur Chan — Raffles Interview Prep</h4>
+                <p style="color: var(--text-dim); font-size: 0.9rem; line-height: 1.6;">
+                    Comprehensive interview preparation for the Raffles Family Office CRM Project. All materials prepared with strategic council review and consensus validation.
+                </p>
+            </div>
+
+            <div class="footer-section">
+                <h4>Raffles Pages</h4>
+                <ul>
+                    <li><a href="index.html">Overview</a></li>
+                    <li><a href="strategy.html">Strategy</a></li>
+                    <li><a href="org-chart.html">Org Chart</a></li>
+                    <li><a href="news.html">News</a></li>
+                    <li><a href="experience.html">Experience Bridge</a></li>
+                    <li><a href="technical.html">Technical</a></li>
+                    <li><a href="questions.html">Questions</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="../index.html">Back to Resume</a></li>
+                    <li><a href="https://rafflesgroup.co" target="_blank">Raffles Group Official</a></li>
+                    <li><a href="https://foahk.org" target="_blank">FOAHK</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>Prepared by Strategic Council • Consensus Score: 4/5 • Confidential</p>
+        </div>
+    </footer>
+
+    <script>
+        // Hamburger menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
+        const rafflesDropdown = document.getElementById('rafflesDropdown');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Close menu when link clicked
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Mobile dropdown toggle
+        rafflesDropdown.addEventListener('click', (e) => {
+            if (window.innerWidth <= 768) {
+                e.preventDefault();
+                rafflesDropdown.classList.toggle('active');
+            }
+        });
+
+        // Close dropdown when outside clicked
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.dropdown')) {
+                rafflesDropdown.classList.remove('active');
+            }
+        });
+
+        // Active nav link based on current page
+        document.addEventListener('DOMContentLoaded', () => {
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            document.querySelectorAll('.nav-link').forEach(link => {
+                const href = link.getAttribute('href');
+                if (href === currentPage || (currentPage === '' && href === 'index.html')) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+        });
+
+        // Smooth scroll to anchors
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href !== '#' && document.querySelector(href)) {
+                    e.preventDefault();
+                    document.querySelector(href).scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

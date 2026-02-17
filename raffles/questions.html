@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questions, 90-Day Plan & Landmines | Raffles Interview Prep</title>
+    <style>
+        :root {
+            --bg: #0a0a0f;
+            --surface: #12121a;
+            --surface-alt: #1a1a28;
+            --border: #2a2a3a;
+            --accent: #c9a84c;
+            --accent-dim: rgba(201, 168, 76, 0.15);
+            --accent-glow: rgba(201, 168, 76, 0.08);
+            --text: #e8e6e3;
+            --text-dim: #8a8a9a;
+            --danger: #e05252;
+            --success: #4caf7c;
+            --info: #5b8def;
+            --red-accent: #e05252;
+            --blue-accent: #5b8def;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: var(--surface);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand {
+            font-size: 1.2rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            color: var(--accent);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .brand:hover {
+            color: #e8d5a8;
+        }
+
+        nav {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-toggle {
+            background: none;
+            border: none;
+            color: var(--text-dim);
+            font-family: inherit;
+            font-size: 1rem;
+            cursor: pointer;
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .dropdown-toggle:hover {
+            color: var(--accent);
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--surface-alt);
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            min-width: 220px;
+            margin-top: 0.5rem;
+            display: none;
+            flex-direction: column;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .dropdown-menu.active {
+            display: flex;
+        }
+
+        .dropdown-menu a {
+            padding: 0.75rem 1.5rem;
+            color: var(--text-dim);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: var(--accent-dim);
+            color: var(--accent);
+        }
+
+        .dropdown-menu a.active {
+            background-color: var(--accent-dim);
+            color: var(--accent);
+            border-left: 3px solid var(--accent);
+            padding-left: calc(1.5rem - 3px);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 0.4rem;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 2px;
+            background-color: var(--text);
+            transition: all 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                background-color: var(--surface);
+                border-bottom: 1px solid var(--border);
+                padding: 1rem;
+                gap: 0.5rem;
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .dropdown-menu {
+                position: static;
+                border: none;
+                background-color: var(--surface-alt);
+                box-shadow: none;
+                margin-top: 0;
+            }
+
+            .dropdown-menu.active {
+                display: flex;
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 4rem 2rem;
+            text-align: center;
+            background: linear-gradient(135deg, var(--surface) 0%, var(--surface-alt) 100%);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--text-dim);
+            line-height: 1.8;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+
+        /* Main Content */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Section Styling */
+        section {
+            padding: 4rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        section:last-of-type {
+            border-bottom: none;
+        }
+
+        .section-header {
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .section-note {
+            color: var(--text-dim);
+            font-size: 0.95rem;
+            font-style: italic;
+        }
+
+        /* Question & Answer Cards */
+        .qa-grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .qa-card {
+            background-color: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 0.75rem;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .qa-card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 8px 24px rgba(201, 168, 76, 0.1);
+        }
+
+        .qa-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+        }
+
+        .qa-badge.tough {
+            background-color: rgba(224, 82, 82, 0.2);
+            color: #ff8a8a;
+            border: 1px solid rgba(224, 82, 82, 0.3);
+        }
+
+        .qa-badge.soft {
+            background-color: rgba(91, 141, 239, 0.2);
+            color: #8ab3ff;
+            border: 1px solid rgba(91, 141, 239, 0.3);
+        }
+
+        .q-text {
+            font-size: 1.1rem;
+            color: var(--text);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .a-text {
+            color: var(--text-dim);
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+
+        .proof-label {
+            display: inline-block;
+            color: var(--success);
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-top: 0.5rem;
+            padding: 0.25rem 0;
+        }
+
+        /* Questions to Ask Grid */
+        .smart-questions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .smart-question-card {
+            background-color: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 0.75rem;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .smart-question-card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 8px 24px rgba(201, 168, 76, 0.1);
+        }
+
+        .sq-category {
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            color: var(--accent);
+            text-transform: uppercase;
+            margin-bottom: 0.75rem;
+        }
+
+        .sq-question {
+            font-size: 1rem;
+            color: var(--text);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .sq-why {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            padding-top: 0.75rem;
+            border-top: 1px solid var(--accent-dim);
+        }
+
+        /* 90 Days Framework */
+        .phases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .phase-card {
+            background: linear-gradient(135deg, var(--surface) 0%, var(--surface-alt) 100%);
+            border: 1px solid var(--border);
+            border-radius: 0.75rem;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .phase-card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 8px 24px rgba(201, 168, 76, 0.1);
+        }
+
+        .phase-title {
+            font-size: 1.2rem;
+            color: var(--accent);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .phase-list {
+            list-style: none;
+        }
+
+        .phase-list li {
+            color: var(--text-dim);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .phase-list li:before {
+            content: "▸";
+            color: var(--accent);
+            position: absolute;
+            left: 0;
+        }
+
+        .phase-deliverable {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--accent-dim);
+        }
+
+        .phase-deliverable-label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .phase-deliverable-text {
+            color: var(--text);
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        /* Landmines Section */
+        .landmines-grid {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .landmine-card {
+            background-color: rgba(224, 82, 82, 0.08);
+            border: 1px solid rgba(224, 82, 82, 0.3);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .landmine-icon {
+            font-size: 1.5rem;
+            flex-shrink: 0;
+            width: 2rem;
+            height: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .landmine-content h4 {
+            color: var(--danger);
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .landmine-content p {
+            color: var(--text-dim);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .correct-way {
+            margin-top: 0.75rem;
+            padding-top: 0.75rem;
+            border-top: 1px solid rgba(224, 82, 82, 0.2);
+        }
+
+        .correct-way strong {
+            color: var(--success);
+        }
+
+        /* Success Cards */
+        .strongest-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .strength-card {
+            background: linear-gradient(135deg, rgba(76, 175, 124, 0.1) 0%, rgba(201, 168, 76, 0.05) 100%);
+            border: 1px solid rgba(76, 175, 124, 0.3);
+            border-radius: 0.75rem;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .strength-card:hover {
+            border-color: var(--success);
+            box-shadow: 0 8px 24px rgba(76, 175, 124, 0.15);
+        }
+
+        .strength-title {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--success);
+            margin-bottom: 0.75rem;
+        }
+
+        .strength-title:before {
+            content: "★";
+            font-size: 1.5rem;
+        }
+
+        .strength-text {
+            color: var(--text-dim);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--surface);
+            border-top: 1px solid var(--border);
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            color: var(--accent);
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent);
+        }
+
+        .footer-divider {
+            border-top: 1px solid var(--border);
+            margin: 2rem 0;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            color: var(--text-dim);
+            font-size: 0.85rem;
+        }
+
+        /* Page Anchors Navigation */
+        .anchors {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 2rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .anchor-link {
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+        }
+
+        .anchor-link:hover {
+            color: var(--accent);
+            background-color: var(--accent-dim);
+        }
+
+        /* Utility Classes */
+        .highlight-proof {
+            color: var(--success);
+            font-weight: 600;
+        }
+
+        .highlight-important {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        /* Print Styles */
+        @media print {
+            header {
+                position: static;
+            }
+
+            .hamburger,
+            .dropdown-menu {
+                display: none !important;
+            }
+
+            .qa-card,
+            .smart-question-card,
+            .phase-card,
+            .strength-card {
+                page-break-inside: avoid;
+            }
+
+            section {
+                page-break-inside: avoid;
+            }
+
+            body {
+                background-color: white;
+                color: black;
+            }
+
+            .landmine-card {
+                background-color: #f5f5f5;
+                border-color: #ddd;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            main {
+                padding: 0 1rem;
+            }
+
+            section {
+                padding: 2rem 0;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .qa-card,
+            .smart-question-card,
+            .phase-card {
+                padding: 1.5rem;
+            }
+
+            .smart-questions-grid,
+            .phases-grid,
+            .strongest-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .anchors {
+                gap: 1rem;
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="header-container">
+            <a href="../index.html" class="brand">ARTHUR CHAN</a>
+            <nav>
+                <div class="nav-menu">
+                    <div class="dropdown">
+                        <button class="dropdown-toggle" id="rafflesBtn">Raffles ▾</button>
+                        <div class="dropdown-menu" id="rafflesMenu">
+                            <a href="overview.html">Overview</a>
+                            <a href="context.html">Context & Background</a>
+                            <a href="capabilities.html">Capabilities & Proof</a>
+                            <a href="approach.html">CRM Approach</a>
+                            <a href="questions.html" class="active">Questions & 90 Days</a>
+                            <a href="success.html">Success & Risks</a>
+                            <a href="next-steps.html">Next Steps</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <div class="hero-content">
+            <h1>Questions, 90-Day Plan & Landmines</h1>
+            <p>Hard questions with prepared answers, smart questions to ask them, your first 90 days framework, and what NOT to say.</p>
+        </div>
+    </div>
+
+    <!-- Page Anchors -->
+    <div class="anchors">
+        <a href="#hard-questions" class="anchor-link">Hard Questions</a>
+        <a href="#ask-them" class="anchor-link">Ask Them</a>
+        <a href="#90-days" class="anchor-link">90 Days</a>
+        <a href="#landmines" class="anchor-link">Landmines</a>
+    </div>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Section 1: Hard Questions -->
+        <section id="hard-questions">
+            <div class="section-header">
+                <h2 class="section-title">Hard Questions — Prepared Answers</h2>
+                <p class="section-note">Red = tough/adversarial. Blue = exploratory.</p>
+            </div>
+
+            <div class="qa-grid">
+                <!-- Q1 -->
+                <div class="qa-card">
+                    <span class="qa-badge tough">RED — TOUGH</span>
+                    <p class="q-text">Your CRM experience is e-commerce. What makes you think you can build for a family office?</p>
+                    <div class="a-text">
+                        <p><strong>Acknowledge gap, bridge it.</strong> 55K e-commerce subscribers and 200 UHNW families are different worlds in sensitivity, compliance, relationship depth. But underlying data architecture is structurally the same: hierarchical entities, multi-dimensional scoring, automated workflows, strict access controls. I've built that architecture.</p>
+                        <p style="margin-top: 0.75rem;">Plus I sat in KKR deal rooms, ANZ coverage teams, Proudfoot transformations. I understand investment world from inside.</p>
+                        <div class="proof-label">✓ KKR + ANZ + Proudfoot proof</div>
+                    </div>
+                </div>
+
+                <!-- Q2 -->
+                <div class="qa-card">
+                    <span class="qa-badge tough">RED — TOUGH</span>
+                    <p class="q-text">Walk me through handling a client with assets spanning four jurisdictions with conflicting data residency laws.</p>
+                    <div class="a-text">
+                        <p><strong>Requires collaboration with compliance and legal.</strong> Architecturally: jurisdiction-aware data partitioning with clear policies on cross-border aggregation. HK PDPO and Singapore PDPA have different consent models. I would define governance policy with compliance first, then implement technical architecture to enforce it.</p>
+                        <div class="proof-label">✓ PDPO + PDPA awareness proof</div>
+                    </div>
+                </div>
+
+                <!-- Q3 -->
+                <div class="qa-card">
+                    <span class="qa-badge tough">RED — TOUGH</span>
+                    <p class="q-text">Our clients will not accept their data in any cloud AI system.</p>
+                    <div class="a-text">
+                        <p><strong>Privacy-first architecture.</strong> AI features for client-facing use: on-premise or private-cloud models. No third-party API calls. For internal productivity: anonymised/synthetic data. Start with rule-based automation, layer in private AI models as trust grows.</p>
+                        <div class="proof-label">✓ Privacy-first proof</div>
+                    </div>
+                </div>
+
+                <!-- Q4 -->
+                <div class="qa-card">
+                    <span class="qa-badge tough">RED — TOUGH</span>
+                    <p class="q-text">What is your experience with SFC and MAS regulatory reporting?</p>
+                    <div class="a-text">
+                        <p><strong>Honest + homework.</strong> Haven't built for SFC/MAS specifically. Have worked within regulated institutions — ANZ, Bloomberg. Understand different licensing regimes, reporting cadences, data requirements. Critical CRM touchpoints: audit trails, AML/KYC capture, suitability tracking. I'd translate regulatory requirements into system specs — that translation layer is exactly where I operate best.</p>
+                        <div class="proof-label">✓ ANZ + Bloomberg proof</div>
+                    </div>
+                </div>
+
+                <!-- Q5 -->
+                <div class="qa-card">
+                    <span class="qa-badge tough">RED — TOUGH</span>
+                    <p class="q-text">Why should we trust a self-taught developer with systems handling clients' most sensitive data?</p>
+                    <div class="a-text">
+                        <p><strong>Reframe to "rapid learner with engineering discipline."</strong> Three things:</p>
+                        <p style="margin-top: 0.75rem;"><span class="highlight-important">(1) Core CRM should use proven auditable platforms,</span> not me writing security-critical code solo.</p>
+                        <p style="margin-top: 0.5rem;"><span class="highlight-important">(2) "Self-taught" means I learn fast by doing</span> — chemical engineering to finance to production systems. 55K customer records, real transactions, 11 years.</p>
+                        <p style="margin-top: 0.5rem;"><span class="highlight-important">(3) AI-augmented methodology</span> with automated quality gates — TDD, security review, code review built in. "Imperial engineering degree gave analytical foundation; 11 years gave judgment; AI amplifies both."</p>
+                        <div class="proof-label">✓ 11 years production + TDD proof</div>
+                    </div>
+                </div>
+
+                <!-- Q6 -->
+                <div class="qa-card">
+                    <span class="qa-badge soft">BLUE — EXPLORATORY</span>
+                    <p class="q-text">What happens when you leave? Can someone else maintain what you build?</p>
+                    <div class="a-text">
+                        <p>"This is why I advocate proven platforms as foundation — Salesforce, DealCloud — with deep ecosystem. Custom work follows strict standards: TDD, documentation, standard frameworks. Goal: systems that outlast me."</p>
+                        <div class="proof-label">✓ TDD + Standards proof</div>
+                    </div>
+                </div>
+
+                <!-- Q7 -->
+                <div class="qa-card">
+                    <span class="qa-badge soft">BLUE — EXPLORATORY</span>
+                    <p class="q-text">What CRM platform would you recommend?</p>
+                    <div class="a-text">
+                        <p>"Depends on pain points. Relationship intelligence: DealCloud or 4Degrees. Enterprise customisation: Salesforce FSC. Lighter advisor workflow: Wealthbox or Redtail. But right answer requires understanding current systems, day-to-day struggles, 18-month roadmap. I'd spend first two weeks on proper technology assessment."</p>
+                        <div class="proof-label">✓ Platform knowledge proof</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Smart Questions to Ask Them -->
+        <section id="ask-them">
+            <div class="section-header">
+                <h2 class="section-title">Questions to Ask Raffles</h2>
+                <p class="section-note">Smart questions signal depth. Ask these to demonstrate domain understanding and gather intel.</p>
+            </div>
+
+            <div class="smart-questions-grid">
+                <!-- Q1 -->
+                <div class="smart-question-card">
+                    <div class="sq-category">Current Technology</div>
+                    <p class="sq-question">What systems are you currently using for client relationship management? Looking to replace, augment, or integrate?</p>
+                    <div class="sq-why">
+                        <strong>Why it works:</strong> Opens the door. Shows you're not assuming anything. Real constraints reveal alignment opportunity.
+                    </div>
+                </div>
+
+                <!-- Q2 -->
+                <div class="smart-question-card">
+                    <div class="sq-category">Pain Points</div>
+                    <p class="sq-question">When a new RM joins, how long to get full context on a family's history and relationships?</p>
+                    <div class="sq-why">
+                        <strong>Why it works:</strong> Onboarding speed is a proxy for data organization. Reveals information silos and knowledge gaps you can solve.
+                    </div>
+                </div>
+
+                <!-- Q3 -->
+                <div class="smart-question-card">
+                    <div class="sq-category">App Roadmap</div>
+                    <p class="sq-question">Your RFO app is on its third upgrade — what has the journey taught you about what clients actually value?</p>
+                    <div class="sq-why">
+                        <strong>Why it works:</strong> Specific. Shows you've done homework. Reveals product philosophy and user feedback patterns.
+                    </div>
+                </div>
+
+                <!-- Q4 -->
+                <div class="smart-question-card">
+                    <div class="sq-category">Compliance & Reporting</div>
+                    <p class="sq-question">With Revo Digital now SFC-licensed, how does digital asset reporting integrate with broader client view?</p>
+                    <div class="sq-why">
+                        <strong>Why it works:</strong> Deep domain knowledge. Signals you understand the ecosystem and asset class expansion challenge.
+                    </div>
+                </div>
+
+                <!-- Q5 -->
+                <div class="smart-question-card">
+                    <div class="sq-category">Scale & Jurisdiction</div>
+                    <p class="sq-question">As you expand across markets, how do you manage compliance differences between HK and Singapore?</p>
+                    <div class="sq-why">
+                        <strong>Why it works:</strong> Identifies the hard architectural problem. Shows you think in systems, not features.
+                    </div>
+                </div>
+
+                <!-- Q6 -->
+                <div class="smart-question-card">
+                    <div class="sq-category">Role Definition</div>
+                    <p class="sq-question">What does success look like in 12 months? Technical architect, product owner, or hybrid operator?</p>
+                    <div class="sq-why">
+                        <strong>Why it works:</strong> Clarifies scope and your role. Grounds the conversation in measurable outcomes.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: 90-Day Framework -->
+        <section id="90-days">
+            <div class="section-header">
+                <h2 class="section-title">First 90 Days Framework</h2>
+                <p class="section-note">Have this mental model ready. Adjust based on actual scope.</p>
+            </div>
+
+            <div class="phases-grid">
+                <!-- Phase 1 -->
+                <div class="phase-card">
+                    <h3 class="phase-title">Phase 1 — Days 1-30<br>Listen & Map</h3>
+                    <ul class="phase-list">
+                        <li>Shadow every team member 2+ hours</li>
+                        <li>Map current tech stack, data flows, integration points</li>
+                        <li>Document pain points and workarounds</li>
+                        <li>Understand compliance per jurisdiction</li>
+                        <li>Review RFO app architecture and roadmap</li>
+                        <li>Build vendor/partner relationship map</li>
+                    </ul>
+                    <div class="phase-deliverable">
+                        <span class="phase-deliverable-label">Deliverable</span>
+                        <p class="phase-deliverable-text">Technology Assessment Document</p>
+                    </div>
+                </div>
+
+                <!-- Phase 2 -->
+                <div class="phase-card">
+                    <h3 class="phase-title">Phase 2 — Days 31-60<br>Quick Wins + Strategy</h3>
+                    <ul class="phase-list">
+                        <li>Identify 2-3 high-impact, low-risk improvements</li>
+                        <li>Prototype solutions for most painful workflow</li>
+                        <li>Present CRM strategy: build/buy/integrate recommendation</li>
+                        <li>Define data governance with compliance team</li>
+                        <li>Begin custodian/bank integration assessment</li>
+                    </ul>
+                    <div class="phase-deliverable">
+                        <span class="phase-deliverable-label">Deliverables</span>
+                        <p class="phase-deliverable-text">CRM Strategy Proposal + Quick Win Demos</p>
+                    </div>
+                </div>
+
+                <!-- Phase 3 -->
+                <div class="phase-card">
+                    <h3 class="phase-title">Phase 3 — Days 61-90<br>Execute + Prove</h3>
+                    <ul class="phase-list">
+                        <li>Implement first quick wins in production</li>
+                        <li>Begin CRM platform config or procurement</li>
+                        <li>Build first integration prototype (highest-value source)</li>
+                        <li>Establish dev methodology and quality gates</li>
+                        <li>Present 6-month roadmap to leadership</li>
+                    </ul>
+                    <div class="phase-deliverable">
+                        <span class="phase-deliverable-label">Deliverables</span>
+                        <p class="phase-deliverable-text">Working Quick Wins + Roadmap + Methodology</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Landmines -->
+        <section id="landmines">
+            <div class="section-header">
+                <h2 class="section-title">Landmines — What NOT to Say</h2>
+                <p class="section-note">These will undermine you. Know them. Avoid them.</p>
+            </div>
+
+            <div class="landmines-grid">
+                <!-- Landmine 1 -->
+                <div class="landmine-card">
+                    <div class="landmine-icon">⚠️</div>
+                    <div class="landmine-content">
+                        <h4>DO NOT: "I built a CRM"</h4>
+                        <p>You built a marketing automation and customer intelligence platform for e-commerce. Not a wealth management CRM. This category error will cost you.</p>
+                        <div class="correct-way">
+                            <strong>Say instead:</strong> "Customer intelligence platform with entity modelling and segmentation — architectural patterns translate directly."
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Landmine 2 -->
+                <div class="landmine-card">
+                    <div class="landmine-icon">⚠️</div>
+                    <div class="landmine-content">
+                        <h4>DO NOT: Propose replacing existing stack</h4>
+                        <p>They have app on 3rd upgrade. They're invested. Suggest you'd blow it up and they hear "doesn't understand context."</p>
+                        <div class="correct-way">
+                            <strong>Frame value as:</strong> "additive — extend capabilities, deepen integrations, build on what's working."
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Landmine 3 -->
+                <div class="landmine-card">
+                    <div class="landmine-icon">⚠️</div>
+                    <div class="landmine-content">
+                        <h4>DO NOT: Lead with AI before understanding problems</h4>
+                        <p>AI is a solution. Ask first. "Solution in search of a problem" risk is real with this demographic. They've seen the hype cycle.</p>
+                        <div class="correct-way">
+                            <strong>Approach:</strong> "Understand the workflows first. Then recommend where AI genuinely reduces friction."
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Landmine 4 -->
+                <div class="landmine-card">
+                    <div class="landmine-icon">⚠️</div>
+                    <div class="landmine-content">
+                        <h4>DO NOT: Mention routing data through external LLM APIs</h4>
+                        <p>UHNW families won't tolerate third-party AI. On-premise/private-cloud only. Your AI methodology is for YOUR dev process, not theirs.</p>
+                        <div class="correct-way">
+                            <strong>When asked about AI:</strong> "Any AI touching client data runs on-premise or in private cloud. Zero exposure to external APIs."
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Landmine 5 -->
+                <div class="landmine-card">
+                    <div class="landmine-icon">⚠️</div>
+                    <div class="landmine-content">
+                        <h4>DO NOT: Undersell regulatory complexity</h4>
+                        <p>Never say "just use Supabase" or "compliance is just another feature." Compliance is foundational, not bolt-on.</p>
+                        <div class="correct-way">
+                            <strong>Use:</strong> "Requires close collaboration with compliance team. We build the system; they define the rules. Non-negotiable."
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Landmine 6 -->
+                <div class="landmine-card">
+                    <div class="landmine-icon">⚠️</div>
+                    <div class="landmine-content">
+                        <h4>DO NOT: Describe Claudia/Max by name</h4>
+                        <p>In family office context, "Claudia as Chief of Staff" and "Max the workhorse" sounds whimsical and diminishes credibility.</p>
+                        <div class="correct-way">
+                            <strong>Say instead:</strong> "Structured AI-augmented development methodology with multi-perspective decision analysis and automated quality gates."
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Strongest Cards -->
+        <section>
+            <div class="section-header">
+                <h2 class="section-title">Your Strongest Cards</h2>
+                <p class="section-note">Play these when the moment opens.</p>
+            </div>
+
+            <div class="strongest-cards">
+                <div class="strength-card">
+                    <h3 class="strength-title">The COO Who Codes</h3>
+                    <p class="strength-text">No other candidate has run HKD 120M business AND built the tech stack. You bring operational discipline to engineering. The rare combination.</p>
+                </div>
+
+                <div class="strength-card">
+                    <h3 class="strength-title">The Investor Who Builds</h3>
+                    <p class="strength-text">KKR deal rooms, ANZ coverage. You understand investment workflows from inside. This isn't surface knowledge — it's lived experience.</p>
+                </div>
+
+                <div class="strength-card">
+                    <h3 class="strength-title">The Consultant Who Implements</h3>
+                    <p class="strength-text">Proudfoot: diagnose, model, implement. You don't stop at recommendations. Working systems, not slide decks. Raffles needs execution, not strategy consultants.</p>
+                </div>
+
+                <div class="strength-card">
+                    <h3 class="strength-title">The Trilingual Operator</h3>
+                    <p class="strength-text">EN, Cantonese, Mandarin covering entire Raffles footprint. No translation layer needed. You operate natively across the region.</p>
+                </div>
+
+                <div class="strength-card">
+                    <h3 class="strength-title">The Efficiency Force Multiplier</h3>
+                    <p class="strength-text">10x per person at STT Mall. Raffles ~223 staff → ~400 needs systems to scale. You scale teams through technology.</p>
+                </div>
+
+                <div class="strength-card">
+                    <h3 class="strength-title">The AI-Amplified Rapid Learner</h3>
+                    <p class="strength-text">Learns fast + AI multiplies speed. Strategy to working product in days, not months. Raffles needs fast iteration, not slow assessment cycles.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h4>Raffles Pages</h4>
+                    <ul>
+                        <li><a href="overview.html">Overview</a></li>
+                        <li><a href="context.html">Context & Background</a></li>
+                        <li><a href="capabilities.html">Capabilities & Proof</a></li>
+                        <li><a href="approach.html">CRM Approach</a></li>
+                        <li><a href="success.html">Success & Risks</a></li>
+                        <li><a href="next-steps.html">Next Steps</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="../about.html">About</a></li>
+                        <li><a href="../projects.html">Projects</a></li>
+                        <li><a href="../contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>About</h4>
+                    <ul>
+                        <li>Raffles Interview Prep</li>
+                        <li>Chief Technology Officer</li>
+                        <li>Wealth Management CRM</li>
+                        <li>Hong Kong & Singapore</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-divider"></div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Arthur Chan. All rights reserved. | <a href="../privacy.html" style="color: var(--text-dim); text-decoration: none;">Privacy</a> | <a href="../terms.html" style="color: var(--text-dim); text-decoration: none;">Terms</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Dropdown Menu Toggle
+        const rafflesBtn = document.getElementById('rafflesBtn');
+        const rafflesMenu = document.getElementById('rafflesMenu');
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+
+        rafflesBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            rafflesMenu.classList.toggle('active');
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', () => {
+            rafflesMenu.classList.remove('active');
+        });
+
+        // Hamburger Menu Toggle
+        hamburger.addEventListener('click', (e) => {
+            e.stopPropagation();
+            navMenu.classList.toggle('active');
+        });
+
+        // Close menu when clicking a link
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Add active class to anchor links on scroll
+        const sections = document.querySelectorAll('section[id]');
+        const anchorLinks = document.querySelectorAll('.anchor-link');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            anchorLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').slice(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

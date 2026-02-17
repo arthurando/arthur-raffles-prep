@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Latest News & Developments | Raffles Family Office</title>
+    <style>
+        :root {
+            --bg: #0a0a0f;
+            --surface: #12121a;
+            --surface-alt: #1a1a28;
+            --border: #2a2a3a;
+            --accent: #c9a84c;
+            --accent-dim: rgba(201,168,76,0.15);
+            --accent-glow: rgba(201,168,76,0.08);
+            --text: #e8e6e3;
+            --text-dim: #8a8a9a;
+            --danger: #e05252;
+            --success: #4caf7c;
+            --info: #5b8def;
+            --font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header & Navigation */
+        header {
+            position: sticky;
+            top: 0;
+            background-color: var(--surface);
+            border-bottom: 1px solid var(--border);
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            background-color: rgba(18, 18, 26, 0.95);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-brand {
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            color: var(--accent);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .nav-brand:hover {
+            color: #e8d6a0;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            list-style: none;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            color: var(--text);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .nav-link:hover {
+            color: var(--accent);
+        }
+
+        .dropdown-toggle::after {
+            content: '▾';
+            font-size: 0.7rem;
+            transition: var(--transition);
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--surface-alt);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            min-width: 200px;
+            margin-top: 0.5rem;
+            list-style: none;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+        }
+
+        .nav-item:hover .dropdown-menu {
+            display: block;
+        }
+
+        .nav-item:hover .dropdown-toggle::after {
+            transform: rotate(180deg);
+        }
+
+        .dropdown-menu li {
+            padding: 0;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 0.75rem 1.25rem;
+            color: var(--text);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .dropdown-menu a:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: var(--accent-dim);
+            color: var(--accent);
+        }
+
+        .dropdown-menu a.active {
+            background-color: var(--accent-dim);
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+            background: none;
+            border: none;
+            padding: 0.5rem;
+        }
+
+        .hamburger span {
+            width: 24px;
+            height: 2px;
+            background-color: var(--accent);
+            transition: var(--transition);
+            border-radius: 2px;
+        }
+
+        /* Main Content */
+        main {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            margin-bottom: 4rem;
+            padding: 2rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--accent), #e8d6a0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--text-dim);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* News Cards */
+        .news-grid {
+            display: grid;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .news-card {
+            background-color: var(--surface);
+            border: 1px solid var(--border);
+            border-left: 4px solid var(--info);
+            border-radius: 8px;
+            padding: 2rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .news-card:hover {
+            background-color: var(--surface-alt);
+            border-color: var(--accent);
+            box-shadow: 0 8px 24px rgba(201, 168, 76, 0.1);
+        }
+
+        .news-card.danger {
+            border-left-color: var(--danger);
+        }
+
+        .news-card.danger:hover {
+            box-shadow: 0 8px 24px rgba(224, 82, 82, 0.1);
+        }
+
+        .news-card.success {
+            border-left-color: var(--success);
+        }
+
+        .news-card.success:hover {
+            box-shadow: 0 8px 24px rgba(76, 175, 124, 0.1);
+        }
+
+        .news-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .news-date {
+            font-size: 0.85rem;
+            color: var(--accent);
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            flex-shrink: 0;
+        }
+
+        .news-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 0.75rem;
+            line-height: 1.3;
+        }
+
+        .news-card:hover .news-title {
+            color: var(--accent);
+        }
+
+        .news-subtitle {
+            font-size: 0.95rem;
+            color: var(--text-dim);
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .news-content {
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .news-card.expanded .news-content {
+            max-height: 500px;
+            opacity: 1;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .news-content p {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .news-content p:last-child {
+            margin-bottom: 0;
+        }
+
+        .news-toggle {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--accent);
+            margin-top: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .news-toggle::before {
+            content: '▸';
+            display: inline-block;
+            transition: var(--transition);
+            font-size: 1.1rem;
+        }
+
+        .news-card.expanded .news-toggle::before {
+            transform: rotate(90deg);
+        }
+
+        .source-badge {
+            display: inline-block;
+            background-color: var(--accent-dim);
+            border: 1px solid var(--border);
+            color: var(--accent);
+            padding: 0.35rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            margin-top: 0.75rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--surface);
+            border-top: 1px solid var(--border);
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+            list-style: none;
+        }
+
+        .footer-links a {
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        .footer-text {
+            color: var(--text-dim);
+            font-size: 0.85rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                background-color: var(--surface-alt);
+                border-bottom: 1px solid var(--border);
+                gap: 0;
+                border-radius: 0;
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .nav-item {
+                width: 100%;
+            }
+
+            .nav-link {
+                padding: 1rem 2rem;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .dropdown-menu {
+                position: static;
+                display: none;
+                border: none;
+                border-top: 1px solid var(--border);
+                border-radius: 0;
+                box-shadow: none;
+                margin-top: 0;
+                background-color: var(--bg);
+            }
+
+            .nav-item:hover .dropdown-menu {
+                display: none;
+            }
+
+            .nav-item.active .dropdown-menu {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .dropdown-menu a {
+                padding: 0.75rem 3rem;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .news-card {
+                padding: 1.5rem;
+            }
+
+            .news-header {
+                flex-direction: column;
+            }
+
+            .news-title {
+                font-size: 1.1rem;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            main {
+                padding: 2rem 1rem;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            header, footer, .news-toggle {
+                display: none;
+            }
+
+            body {
+                background-color: white;
+                color: #000;
+            }
+
+            .news-card {
+                background-color: white;
+                border: 1px solid #ccc;
+                page-break-inside: avoid;
+                margin-bottom: 1.5rem;
+            }
+
+            .news-content {
+                max-height: none;
+                opacity: 1;
+                margin-top: 1rem;
+                padding-top: 1rem;
+            }
+
+            .hero {
+                border-bottom-color: #ccc;
+            }
+
+            main {
+                max-width: 100%;
+                padding: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="../index.html" class="nav-brand">ARTHUR CHAN</a>
+            <button class="hamburger" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="overview.html" class="nav-link">Overview</a>
+                </li>
+                <li class="nav-item">
+                    <a href="strategy.html" class="nav-link">Strategy</a>
+                </li>
+                <li class="nav-item">
+                    <a href="org-chart.html" class="nav-link">Org Chart</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">Raffles ▾</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="overview.html">Overview</a></li>
+                        <li><a href="strategy.html">Strategy</a></li>
+                        <li><a href="org-chart.html">Org Chart</a></li>
+                        <li><a href="news.html" class="active">News</a></li>
+                        <li><a href="experience-bridge.html">Experience Bridge</a></li>
+                        <li><a href="technical.html">Technical</a></li>
+                        <li><a href="questions.html">Questions</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="experience-bridge.html" class="nav-link">Experience Bridge</a>
+                </li>
+                <li class="nav-item">
+                    <a href="technical.html" class="nav-link">Technical</a>
+                </li>
+                <li class="nav-item">
+                    <a href="questions.html" class="nav-link">Questions</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>Latest News & Developments</h1>
+            <p>Key recent events to reference in conversation. Shows you've done your homework.</p>
+        </section>
+
+        <section class="news-grid">
+            <!-- News Item 1 -->
+            <article class="news-card danger">
+                <div class="news-header">
+                    <div>
+                        <div class="news-date">February 2026</div>
+                        <h2 class="news-title">Terence Chow Departing as Group COO</h2>
+                        <p class="news-subtitle">Appointed Jul 2024, departing after ~18 months</p>
+                    </div>
+                </div>
+                <div class="news-toggle">View Details</div>
+                <div class="news-content">
+                    <p><strong>Background:</strong> Terence Chow, ex-CEO Asia RBC WM with MBA Ivey, was appointed Group COO in July 2024. He owned technology, operations, business transformation, risk management, and procurement across the organization.</p>
+                    <p><strong>Strategic Significance:</strong> His departure after ~18 months is the single most important signal emerging from Raffles. The CRM project sits in the operational gap he leaves. When discussing this transition:</p>
+                    <p style="margin-left: 1rem; margin-bottom: 0.5rem;">• Do NOT criticise the departure or imply operational issues</p>
+                    <p style="margin-left: 1rem; margin-bottom: 0.5rem;">• Frame the CRM value as <strong>delivering on the tech transformation agenda</strong> he was spearheading</p>
+                    <p style="margin-left: 1rem;">• Emphasize how the system enables his legacy of operational modernization</p>
+                    <span class="source-badge">asianprivatebanker.com, fundselectorasia.com</span>
+                </div>
+            </article>
+
+            <!-- News Item 2 -->
+            <article class="news-card info">
+                <div class="news-header">
+                    <div>
+                        <div class="news-date">February 18–20, 2026</div>
+                        <h2 class="news-title">Consensus Hong Kong 2026</h2>
+                        <p class="news-subtitle">CoinDesk flagship Web3/crypto summit happening this week</p>
+                    </div>
+                </div>
+                <div class="news-toggle">View Details</div>
+                <div class="news-content">
+                    <p><strong>What's Happening:</strong> Consensus Hong Kong 2026 is the flagship Web3 and cryptocurrency summit hosted by CoinDesk, running Feb 18–20.</p>
+                    <p><strong>Raffles Connection:</strong> With Revo Digital having secured SFC Type 4 & 9 licences on Feb 9, 2026 (digital asset portfolio services), the Revo team very likely has a presence at this event.</p>
+                    <p><strong>Conversation Angle:</strong> Ask during your interview: "I noticed Consensus HK is happening right now — is the Revo team attending?" Shows you're monitoring their digital asset expansion in real-time and understand the strategic importance of the event.</p>
+                    <span class="source-badge">consensus-hongkong.coindesk.com, blockhead.co</span>
+                </div>
+            </article>
+
+            <!-- News Item 3 -->
+            <article class="news-card info">
+                <div class="news-header">
+                    <div>
+                        <div class="news-date">October 2025</div>
+                        <h2 class="news-title">Senior Hong Kong Hires: Michael Tung (MD) & Jennie Liang (ED)</h2>
+                        <p class="news-subtitle">UBS, Morgan Stanley, Credit Suisse, Rockpool, Ark Advisors</p>
+                    </div>
+                </div>
+                <div class="news-toggle">View Details</div>
+                <div class="news-content">
+                    <p><strong>Who Joined:</strong> Michael Tung (Managing Director) and Jennie Liang (Executive Director), both drawn from top-tier institutions: UBS, Morgan Stanley, Credit Suisse, Rockpool, and Ark Advisors.</p>
+                    <p><strong>Strategic Context:</strong> Raffles is aggressively scaling Hong Kong relationship manager (RM) capacity. Both Tung and Liang report to Christopher Mitchell Kim (CMK).</p>
+                    <p><strong>Hiring Profile:</strong> Non-traditional RM backgrounds — both come from PE/VC and private banking, not just traditional private banking. Signals Raffles is building a more diverse, tech-fluent advisory team.</p>
+                    <span class="source-badge">fundselectorasia.com, hubbis.com</span>
+                </div>
+            </article>
+
+            <!-- News Item 4 -->
+            <article class="news-card info">
+                <div class="news-header">
+                    <div>
+                        <div class="news-date">October 2025</div>
+                        <h2 class="news-title">Raffles Annual Forum 2025 (10th Anniversary)</h2>
+                        <p class="news-subtitle">Four Seasons Hotel HK — "The Decade Before, A Century Beyond"</p>
+                    </div>
+                </div>
+                <div class="news-toggle">View Details</div>
+                <div class="news-content">
+                    <p><strong>Event Details:</strong> Raffles held its 10th Anniversary Annual Forum at the Four Seasons Hotel Hong Kong with the theme "The Decade Before, A Century Beyond."</p>
+                    <p><strong>Key Attendees & Topics:</strong></p>
+                    <p style="margin-left: 1rem; margin-bottom: 0.5rem;">• <strong>Keynote:</strong> Christopher Hui, Secretary for Financial Services, HKSAR</p>
+                    <p style="margin-left: 1rem; margin-bottom: 0.5rem;">• <strong>Guest:</strong> Yusuf Murangwa, Minister of Finance, Rwanda (signals African expansion)</p>
+                    <p style="margin-left: 1rem; margin-bottom: 0.5rem;">• <strong>AI Megacycle Panel:</strong> Moderated by William Chow, featuring Michael Yue (Google HK MD), Jui Tan (Lanchi Ventures) — AI is front-of-mind strategic topic</p>
+                    <p style="margin-left: 1rem;">• <strong>Luxury Panel:</strong> Kevin Ching (Christie's Asia), Chris Chong (LVMH) — confirms luxury/heritage focus</p>
+                    <span class="source-badge">rafflesgroup.co, info.gov.hk</span>
+                </div>
+            </article>
+
+            <!-- News Item 5 -->
+            <article class="news-card info">
+                <div class="news-header">
+                    <div>
+                        <div class="news-date">May 2025</div>
+                        <h2 class="news-title">Singapore Senior Hires: Terence Seow & Shaun Lim</h2>
+                        <p class="news-subtitle">40+ and 25+ years banking experience respectively</p>
+                    </div>
+                </div>
+                <div class="news-toggle">View Details</div>
+                <div class="news-content">
+                    <p><strong>Who Joined:</strong></p>
+                    <p style="margin-left: 1rem; margin-bottom: 0.5rem;">• <strong>Terence Seow:</strong> 40+ years, previously Citibank, DBS, Bank of Singapore. Veteran of regional banking.</p>
+                    <p style="margin-left: 1rem;">• <strong>Shaun Lim:</strong> 25+ years, from RBC WM, Morgan Stanley, JPM, Credit Suisse. Investment banking and WM depth.</p>
+                    <p><strong>Reporting Structure:</strong> Both based in Singapore, report to Kendrick Lee.</p>
+                    <p><strong>Strategic Signal:</strong> Strengthening Singapore platform with deep regional experience. Combined 65+ years of banking relationships and institutional knowledge.</p>
+                    <span class="source-badge">globalprivatebanker.net, finews.asia</span>
+                </div>
+            </article>
+
+            <!-- News Item 6 -->
+            <article class="news-card info">
+                <div class="news-header">
+                    <div>
+                        <div class="news-date">2025</div>
+                        <h2 class="news-title">Digital Asset Fund Launch</h2>
+                        <p class="news-subtitle">First full digital asset fund through Raffles Assets Management (HK)</p>
+                    </div>
+                </div>
+                <div class="news-toggle">View Details</div>
+                <div class="news-content">
+                    <p><strong>Product Launch:</strong> Raffles Assets Management (HK) launched its first full digital asset fund — actively managed portfolio of top liquid cryptocurrencies, designed for Professional Investors.</p>
+                    <p><strong>Market Positioning:</strong> Fund description emphasizes "growing demand for institutional-grade digital assets" — signals conviction that crypto/digital assets are moving mainstream in family office portfolios.</p>
+                    <p><strong>CRM Implication:</strong> The CRM system needs to accommodate digital assets alongside traditional holdings. Fund operations, performance reporting, and digital-traditional consolidated reporting are critical requirements.</p>
+                    <span class="source-badge">fundselectorasia.com</span>
+                </div>
+            </article>
+
+            <!-- News Item 7 -->
+            <article class="news-card info">
+                <div class="news-header">
+                    <div>
+                        <div class="news-date">2025</div>
+                        <h2 class="news-title">Tishman Speyer / RFO APAC Opportunity Fund I</h2>
+                        <p class="news-subtitle">Partnership with Tishman Speyer, target US$500M</p>
+                    </div>
+                </div>
+                <div class="news-toggle">View Details</div>
+                <div class="news-content">
+                    <p><strong>Partnership:</strong> Raffles partnered with Tishman Speyer (major global real estate developer/operator) to launch the RFO APAC Opportunity Fund I.</p>
+                    <p><strong>Fund Details:</strong> Target capital: US$500M. Focus areas: brown-to-green transitions, living sector, logistics, special situations, credit, distressed assets.</p>
+                    <p><strong>Leadership:</strong> Joe Kwan (PhD) leads the effort, bringing academic rigor and real estate expertise.</p>
+                    <p><strong>Strategic Implication:</strong> Large, structured real estate co-investment vehicles are core to Raffles' product breadth. CRM must track co-investment opportunities, commitment statuses, and performance across multiple fund vehicles.</p>
+                    <span class="source-badge">wealthbriefingasia.com, bloomberg.com</span>
+                </div>
+            </article>
+
+            <!-- News Item 8 -->
+            <article class="news-card info">
+                <div class="news-header">
+                    <div>
+                        <div class="news-date">December 2024</div>
+                        <h2 class="news-title">Abdullatif Kanoo Joins Advisory Board</h2>
+                        <p class="news-subtitle">5th-generation Kanoo Group (Abu Dhabi) — Middle East expansion gateway</p>
+                    </div>
+                </div>
+                <div class="news-toggle">View Details</div>
+                <div class="news-content">
+                    <p><strong>Appointment:</strong> Abdullatif Kanoo, 5th-generation member of the Kanoo Group (Abu Dhabi-based conglomerate), joined Raffles Advisory Board.</p>
+                    <p><strong>Kanoo Group Profile:</strong> Multi-billion-dollar family business spanning shipping, logistics, aviation, real estate, and financial services across the Middle East and Asia.</p>
+                    <p><strong>Strategic Value:</strong> Direct gateway and credibility for UAE market entry and Gulf Cooperation Council (GCC) client acquisition. Kanoo's networks and influence open doors Raffles couldn't otherwise access quickly.</p>
+                    <span class="source-badge">rafflesgroup.co</span>
+                </div>
+            </article>
+
+            <!-- News Item 9 -->
+            <article class="news-card info">
+                <div class="news-header">
+                    <div>
+                        <div class="news-date">2024</div>
+                        <h2 class="news-title">Thailand Office Launch</h2>
+                        <p class="news-subtitle">Bangkok representative office with senior leadership</p>
+                    </div>
+                </div>
+                <div class="news-toggle">View Details</div>
+                <div class="news-content">
+                    <p><strong>New Office:</strong> Raffles established a representative office in Bangkok, Thailand.</p>
+                    <p><strong>Leadership Team:</strong></p>
+                    <p style="margin-left: 1rem; margin-bottom: 0.5rem;">• <strong>Thidatip Thitikarunwong:</strong> Managing Director, Market Head. Previously Credit Suisse, CIMB Thai, UOB, Citi. Deep Thai and regional banking relationships.</p>
+                    <p style="margin-left: 1rem;">• <strong>Dr. Niti Nerngchamnong:</strong> Governance advisor. Ensures compliance with Thai regulatory and corporate governance requirements.</p>
+                    <p><strong>Significance:</strong> Thailand is a gateway to ASEAN wealth. Raffles is establishing on-ground presence to capture high-net-worth individuals and family offices across the region.</p>
+                    <span class="source-badge">asianprivatebanker.com</span>
+                </div>
+            </article>
+
+            <!-- News Item 10 -->
+            <article class="news-card success">
+                <div class="news-header">
+                    <div>
+                        <div class="news-date">2024</div>
+                        <h2 class="news-title">Cerebras Systems Full Exit</h2>
+                        <p class="news-subtitle">Early investment in AI chip company — successful exit</p>
+                    </div>
+                </div>
+                <div class="news-toggle">View Details</div>
+                <div class="news-content">
+                    <p><strong>Investment & Exit:</strong> Raffles made an early-stage investment in Cerebras Systems (AI semiconductor company) and achieved a full exit.</p>
+                    <p><strong>Strategic Win:</strong> Demonstrates Raffles' ability to:</p>
+                    <p style="margin-left: 1rem; margin-bottom: 0.5rem;">• Identify high-growth technology investments early</p>
+                    <p style="margin-left: 1rem; margin-bottom: 0.5rem;">• Hold through maturation (venture-to-scale)</p>
+                    <p style="margin-left: 1rem;">• Exit at favorable valuations</p>
+                    <p><strong>Conversation Angle:</strong> Shows conviction in AI as a long-term theme. Reinforces that tech infrastructure (semiconductor AI, software AI, etc.) is core to Raffles' investment thesis, not a passing fad.</p>
+                    <span class="source-badge">rafflesgroup.co, SCMP 2025</span>
+                </div>
+            </article>
+
+            <!-- News Item 11 -->
+            <article class="news-card info">
+                <div class="news-header">
+                    <div>
+                        <div class="news-date">February 2024</div>
+                        <h2 class="news-title">Dubai Renewable Energy MoU with Sheikh Al Maktoum</h2>
+                        <p class="news-subtitle">Royal family partnership, multi-party deal flows</p>
+                    </div>
+                </div>
+                <div class="news-toggle">View Details</div>
+                <div class="news-content">
+                    <p><strong>Deal Structure:</strong> Raffles signed a Memorandum of Understanding (MoU) for renewable energy investment involving a member of the Al Maktoum royal family (rulers of Dubai).</p>
+                    <p><strong>Strategic Implications:</strong></p>
+                    <p style="margin-left: 1rem; margin-bottom: 0.5rem;">• Access to GCC royal family deal flows and co-investment opportunities</p>
+                    <p style="margin-left: 1rem; margin-bottom: 0.5rem;">• Renewable energy is mega-trend in Middle East (Vision 2030, net-zero mandates)</p>
+                    <p style="margin-left: 1rem;">• Multi-party deal structures require sophisticated CRM to track multiple stakeholders, jurisdictions, and approval workflows</p>
+                    <span class="source-badge">SCMP 2025</span>
+                </div>
+            </article>
+
+            <!-- News Item 12 -->
+            <article class="news-card info">
+                <div class="news-header">
+                    <div>
+                        <div class="news-date">February 9, 2026</div>
+                        <h2 class="news-title">Revo Digital Gets SFC Type 4 & Type 9 Licences</h2>
+                        <p class="news-subtitle">Digital asset portfolio services in Hong Kong — first digital MFO in Asia</p>
+                    </div>
+                </div>
+                <div class="news-toggle">View Details</div>
+                <div class="news-content">
+                    <p><strong>Regulatory Milestone:</strong> Revo Digital (Raffles' digital asset subsidiary) received SFC (Securities and Futures Commission, Hong Kong) Type 4 (advising on securities) and Type 9 (asset management) licences.</p>
+                    <p><strong>Product Capabilities:</strong> Type 4 + 9 = digital asset portfolio advisory + discretionary asset management. Can manage portfolios of digital assets alongside traditional securities.</p>
+                    <p><strong>Competitive Position:</strong> One of the first institutions in Asia to combine digital + traditional portfolio management under a single MFO (Multi-Asset Family Office) license.</p>
+                    <p><strong>Custody Partnership:</strong> Revo uses Zodia Custody for secure digital asset safekeeping.</p>
+                    <p><strong>CRM Requirement:</strong> System must accommodate digital assets, their unique market data, custody arrangements, and regulatory reporting for Hong Kong MFO operations.</p>
+                    <span class="source-badge">blockhead.co (Feb 9, 2026)</span>
+                </div>
+            </article>
+
+            <!-- News Item 13 -->
+            <article class="news-card info">
+                <div class="news-header">
+                    <div>
+                        <div class="news-date">2025</div>
+                        <h2 class="news-title">Geographic Expansion to UAE & Rwanda</h2>
+                        <p class="news-subtitle">Multi-decade, multi-continent growth strategy</p>
+                    </div>
+                </div>
+                <div class="news-toggle">View Details</div>
+                <div class="news-content">
+                    <p><strong>UAE Expansion:</strong> Kanoo Advisory Board appointment (Dec 2024) signals serious UAE ambitions. 2+ years of engagement planned with the Kanoo family to establish presence and deal flow.</p>
+                    <p><strong>Rwanda Expansion:</strong> CMK attended the Inclusive Fintech Forum in Rwanda. Rwanda's Finance Minister, Yusuf Murangwa, was keynote guest at Raffles' Oct 2025 Annual Forum. Signals interest in emerging fintech markets and African growth.</p>
+                    <p><strong>Strategic Implication:</strong> Raffles thinks in multi-decade, multi-continent terms. Each new jurisdiction adds complexity to CRM:</p>
+                    <p style="margin-left: 1rem; margin-bottom: 0.5rem;">• Local regulatory requirements and reporting</p>
+                    <p style="margin-left: 1rem; margin-bottom: 0.5rem;">• Multi-currency and multi-jurisdiction portfolio tracking</p>
+                    <p style="margin-left: 1rem;">• Localized client communication and tax workflows</p>
+                    <span class="source-badge">rafflesgroup.co, info.gov.hk</span>
+                </div>
+            </article>
+
+            <!-- News Item 14 -->
+            <article class="news-card info">
+                <div class="news-header">
+                    <div>
+                        <div class="news-date">Ongoing</div>
+                        <h2 class="news-title">RFO App 3rd Upgrade with Proprietary AI</h2>
+                        <p class="news-subtitle">AI-powered advisory discovery and client preference analysis</p>
+                    </div>
+                </div>
+                <div class="news-toggle">View Details</div>
+                <div class="news-content">
+                    <p><strong>Product Evolution:</strong> The Raffles Family Office app has undergone 3 major upgrades, with the latest iteration incorporating proprietary AI capabilities.</p>
+                    <p><strong>AI Features:</strong> Analyse client data patterns, understand preferences, enable "discovery-based advisory" — AI surfaces opportunities based on each client's unique history and goals.</p>
+                    <p><strong>Strategic Signal:</strong> Raffles is <strong>not skeptical of AI</strong> — they already have it embedded in their product. The question is NOT "should we use AI?" but rather "should we deepen capability internally vs. build on external vendors?"</p>
+                    <p><strong>Conversation Angle:</strong> When discussing CRM, acknowledge their existing AI roadmap. Ask: "How does the CRM layer into your existing AI advisors in the app? What additional data or signals would you surface to the advisory engine?"</p>
+                    <span class="source-badge">rafflesgroup.co</span>
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <ul class="footer-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="overview.html">Overview</a></li>
+                <li><a href="strategy.html">Strategy</a></li>
+                <li><a href="org-chart.html">Org Chart</a></li>
+                <li><a href="experience-bridge.html">Experience Bridge</a></li>
+                <li><a href="technical.html">Technical</a></li>
+                <li><a href="questions.html">Questions</a></li>
+            </ul>
+            <p class="footer-text">Raffles Family Office Interview Prep — Arthur Chan</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+        const dropdowns = document.querySelectorAll('.nav-item.dropdown');
+
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // Close menu when a link is clicked
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                if (!link.classList.contains('dropdown-toggle')) {
+                    navMenu.classList.remove('active');
+                }
+            });
+        });
+
+        // Mobile dropdown toggle
+        dropdowns.forEach(dropdown => {
+            const toggle = dropdown.querySelector('.dropdown-toggle');
+            toggle.addEventListener('click', (e) => {
+                e.preventDefault();
+                dropdown.classList.toggle('active');
+            });
+        });
+
+        // News card expansion
+        const newsCards = document.querySelectorAll('.news-card');
+        newsCards.forEach(card => {
+            const toggle = card.querySelector('.news-toggle');
+            toggle.addEventListener('click', () => {
+                card.classList.toggle('expanded');
+            });
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('nav')) {
+                navMenu.classList.remove('active');
+                dropdowns.forEach(d => d.classList.remove('active'));
+            }
+        });
+    </script>
+</body>
+</html>

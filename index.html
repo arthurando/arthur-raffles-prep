@@ -1,1854 +1,1002 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Interview Prep — Raffles Family Office CRM Project</title>
-<style>
-  :root {
-    --bg: #0a0a0f;
-    --surface: #12121a;
-    --surface-alt: #1a1a28;
-    --border: #2a2a3a;
-    --accent: #c9a84c;
-    --accent-dim: rgba(201, 168, 76, 0.15);
-    --accent-glow: rgba(201, 168, 76, 0.08);
-    --text: #e8e6e3;
-    --text-dim: #8a8a9a;
-    --danger: #e05252;
-    --success: #4caf7c;
-    --info: #5b8def;
-    --font: 'Segoe UI', system-ui, -apple-system, sans-serif;
-    --mono: 'Cascadia Code', 'Fira Code', 'JetBrains Mono', monospace;
-  }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arthur Chan Yat Long — Resume</title>
+    <style>
+        :root {
+            --bg: #0a0a0f;
+            --surface: #12121a;
+            --surface-alt: #1a1a28;
+            --border: #2a2a3a;
+            --accent: #c9a84c;
+            --text: #e8e6e3;
+            --text-dim: #8a8a9a;
+        }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  body {
-    font-family: var(--font);
-    background: var(--bg);
-    color: var(--text);
-    line-height: 1.7;
-    font-size: 15px;
-    -webkit-font-smoothing: antialiased;
-  }
+        html {
+            scroll-behavior: smooth;
+        }
 
-  /* === NAV === */
-  nav {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: rgba(10, 10, 15, 0.95);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--border);
-  }
-  .nav-inner {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 2rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .nav-brand {
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--accent);
-    text-decoration: none;
-    padding: 0.85rem 0;
-    white-space: nowrap;
-    letter-spacing: 0.02em;
-  }
-  .hamburger {
-    display: none;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0.5rem;
-    flex-direction: column;
-    gap: 5px;
-  }
-  .hamburger span {
-    display: block;
-    width: 22px;
-    height: 2px;
-    background: var(--text-dim);
-    border-radius: 1px;
-    transition: all 0.3s;
-  }
-  .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
-  .hamburger.open span:nth-child(2) { opacity: 0; }
-  .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
-  nav ul {
-    list-style: none;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-  }
-  nav a {
-    display: block;
-    padding: 0.85rem 1rem;
-    color: var(--text-dim);
-    text-decoration: none;
-    font-size: 12px;
-    font-weight: 500;
-    letter-spacing: 0.03em;
-    text-transform: uppercase;
-    border-bottom: 2px solid transparent;
-    transition: all 0.2s;
-    white-space: nowrap;
-  }
-  nav a:hover, nav a.active {
-    color: var(--accent);
-    border-bottom-color: var(--accent);
-  }
-  @media (max-width: 900px) {
-    .hamburger { display: flex; }
-    nav ul {
-      display: none;
-      flex-direction: column;
-      position: absolute;
-      top: 100%;
-      left: 0;
-      right: 0;
-      background: rgba(10, 10, 15, 0.98);
-      border-bottom: 1px solid var(--border);
-      padding: 0.5rem 0;
-      max-height: 80vh;
-      overflow-y: auto;
-    }
-    nav ul.open { display: flex; }
-    nav a {
-      padding: 0.75rem 2rem;
-      font-size: 13px;
-      border-bottom: none;
-      border-left: 2px solid transparent;
-    }
-    nav a:hover, nav a.active {
-      border-bottom: none;
-      border-left-color: var(--accent);
-      background: var(--accent-glow);
-    }
-  }
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
 
-  /* === LAYOUT === */
-  .container {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 2rem;
-  }
-  section {
-    padding: 3.5rem 0;
-    border-bottom: 1px solid var(--border);
-  }
-  section:last-child { border-bottom: none; }
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(18, 18, 26, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            padding: 1rem 2rem;
+        }
 
-  /* === TYPOGRAPHY === */
-  h1 {
-    font-size: 2.2rem;
-    font-weight: 700;
-    color: var(--accent);
-    letter-spacing: -0.02em;
-  }
-  h2 {
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin-bottom: 1.5rem;
-    color: var(--text);
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-  }
-  h2 .num {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 32px;
-    height: 32px;
-    background: var(--accent);
-    color: var(--bg);
-    border-radius: 8px;
-    font-size: 14px;
-    font-weight: 700;
-    flex-shrink: 0;
-  }
-  h3 {
-    font-size: 1.1rem;
-    font-weight: 600;
-    margin: 1.5rem 0 0.75rem;
-    color: var(--accent);
-  }
-  p { margin-bottom: 1rem; }
-  strong { color: var(--text); }
-  .dim { color: var(--text-dim); }
-  .small { font-size: 13px; }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-  /* === HERO === */
-  .hero {
-    padding: 4rem 0 3rem;
-    border-bottom: 1px solid var(--border);
-  }
-  .hero-subtitle {
-    font-size: 1.1rem;
-    color: var(--text-dim);
-    margin-top: 0.5rem;
-    font-weight: 400;
-  }
-  .hero-narrative {
-    margin-top: 2rem;
-    padding: 1.5rem 2rem;
-    background: var(--accent-glow);
-    border-left: 3px solid var(--accent);
-    border-radius: 0 8px 8px 0;
-    font-size: 1.05rem;
-    line-height: 1.8;
-    color: var(--text);
-  }
-  .hero-narrative em {
-    color: var(--accent);
-    font-style: normal;
-    font-weight: 600;
-  }
-  .hero-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-top: 1.5rem;
-  }
-  .tag {
-    padding: 0.35rem 0.85rem;
-    background: var(--surface-alt);
-    border: 1px solid var(--border);
-    border-radius: 100px;
-    font-size: 12px;
-    color: var(--text-dim);
-    font-weight: 500;
-  }
-  .tag.gold {
-    border-color: var(--accent);
-    color: var(--accent);
-    background: var(--accent-dim);
-  }
+        .nav-brand {
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-decoration: none;
+            color: var(--accent);
+        }
 
-  /* === CARDS === */
-  .card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 1.25rem;
-  }
-  .card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 1.5rem;
-    transition: border-color 0.2s;
-  }
-  .card:hover {
-    border-color: var(--accent);
-  }
-  .card-label {
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--text-dim);
-    margin-bottom: 0.5rem;
-    font-weight: 600;
-  }
-  .card-title {
-    font-size: 1.05rem;
-    font-weight: 600;
-    margin-bottom: 0.75rem;
-  }
-  .card ul {
-    list-style: none;
-    padding: 0;
-  }
-  .card li {
-    padding: 0.3rem 0;
-    padding-left: 1.2rem;
-    position: relative;
-    font-size: 14px;
-    color: var(--text-dim);
-  }
-  .card li::before {
-    content: '›';
-    position: absolute;
-    left: 0;
-    color: var(--accent);
-    font-weight: 700;
-  }
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
 
-  /* === INTEL TABLE === */
-  .intel-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 1rem 0;
-  }
-  .intel-table th {
-    text-align: left;
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--text-dim);
-    padding: 0.75rem 1rem;
-    border-bottom: 1px solid var(--border);
-    font-weight: 600;
-  }
-  .intel-table td {
-    padding: 0.75rem 1rem;
-    border-bottom: 1px solid rgba(42, 42, 58, 0.5);
-    font-size: 14px;
-    vertical-align: top;
-  }
-  .intel-table tr:hover td {
-    background: var(--accent-glow);
-  }
+        .nav-item {
+            position: relative;
+        }
 
-  /* === COLLAPSIBLE === */
-  details {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    margin-bottom: 1rem;
-    overflow: hidden;
-  }
-  summary {
-    padding: 1.25rem 1.5rem;
-    cursor: pointer;
-    font-weight: 600;
-    font-size: 1rem;
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    user-select: none;
-    transition: background 0.15s;
-  }
-  summary:hover {
-    background: var(--accent-glow);
-  }
-  summary::marker { content: ''; }
-  summary::before {
-    content: '▸';
-    color: var(--accent);
-    font-size: 14px;
-    transition: transform 0.2s;
-  }
-  details[open] summary::before {
-    transform: rotate(90deg);
-  }
-  .detail-body {
-    padding: 0 1.5rem 1.5rem;
-    line-height: 1.8;
-    font-size: 14px;
-  }
-  .detail-body p { margin-bottom: 0.75rem; }
+        .nav-link {
+            text-decoration: none;
+            color: var(--text);
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
 
-  /* === Q&A === */
-  .qa-block {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    margin-bottom: 1rem;
-    overflow: hidden;
-  }
-  .qa-q {
-    padding: 1.25rem 1.5rem;
-    font-weight: 600;
-    border-bottom: 1px solid var(--border);
-    cursor: pointer;
-    display: flex;
-    align-items: flex-start;
-    gap: 0.75rem;
-  }
-  .qa-q::before {
-    content: 'Q';
-    flex-shrink: 0;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 26px;
-    height: 26px;
-    background: var(--danger);
-    color: white;
-    border-radius: 6px;
-    font-size: 12px;
-    font-weight: 700;
-  }
-  .qa-q.soft::before { background: var(--info); }
-  .qa-a {
-    padding: 1.25rem 1.5rem;
-    font-size: 14px;
-    line-height: 1.8;
-    color: var(--text-dim);
-  }
-  .qa-a strong { color: var(--accent); font-weight: 600; }
-  .qa-a .proof {
-    display: inline-block;
-    padding: 0.15rem 0.5rem;
-    background: var(--accent-dim);
-    border-radius: 4px;
-    font-size: 12px;
-    color: var(--accent);
-    font-weight: 600;
-    margin-left: 0.25rem;
-  }
+        .nav-link:hover {
+            color: var(--accent);
+        }
 
-  /* === TIMELINE === */
-  .timeline {
-    position: relative;
-    padding-left: 2rem;
-  }
-  .timeline::before {
-    content: '';
-    position: absolute;
-    left: 7px;
-    top: 0;
-    bottom: 0;
-    width: 2px;
-    background: var(--border);
-  }
-  .tl-item {
-    position: relative;
-    margin-bottom: 1.75rem;
-  }
-  .tl-item::before {
-    content: '';
-    position: absolute;
-    left: -2rem;
-    top: 6px;
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    border: 2px solid var(--accent);
-    background: var(--bg);
-    z-index: 1;
-  }
-  .tl-date {
-    font-size: 12px;
-    color: var(--accent);
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
-  .tl-title {
-    font-weight: 600;
-    font-size: 1rem;
-    margin: 0.25rem 0;
-  }
-  .tl-org {
-    font-size: 13px;
-    color: var(--text-dim);
-  }
-  .tl-relevance {
-    margin-top: 0.5rem;
-    padding: 0.5rem 0.75rem;
-    background: var(--accent-glow);
-    border-radius: 6px;
-    font-size: 13px;
-    color: var(--text-dim);
-    line-height: 1.6;
-  }
-  .tl-relevance strong { color: var(--accent); }
+        .nav-link.active {
+            color: var(--accent);
+        }
 
-  /* === ALERT BOXES === */
-  .alert {
-    padding: 1.25rem 1.5rem;
-    border-radius: 10px;
-    margin: 1rem 0;
-    font-size: 14px;
-    line-height: 1.7;
-  }
-  .alert-danger {
-    background: rgba(224, 82, 82, 0.08);
-    border: 1px solid rgba(224, 82, 82, 0.25);
-  }
-  .alert-danger strong { color: var(--danger); }
-  .alert-success {
-    background: rgba(76, 175, 124, 0.08);
-    border: 1px solid rgba(76, 175, 124, 0.25);
-  }
-  .alert-success strong { color: var(--success); }
-  .alert-info {
-    background: rgba(91, 141, 239, 0.08);
-    border: 1px solid rgba(91, 141, 239, 0.25);
-  }
-  .alert-info strong { color: var(--info); }
+        /* Dropdown */
+        .dropdown {
+            position: relative;
+        }
 
-  /* === 90-DAY PLAN === */
-  .phase-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.25rem;
-    margin-top: 1.25rem;
-  }
-  .phase {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 1.5rem;
-    position: relative;
-    overflow: hidden;
-  }
-  .phase::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-  }
-  .phase:nth-child(1)::before { background: var(--info); }
-  .phase:nth-child(2)::before { background: var(--accent); }
-  .phase:nth-child(3)::before { background: var(--success); }
-  .phase-label {
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    font-weight: 700;
-    margin-bottom: 0.75rem;
-  }
-  .phase:nth-child(1) .phase-label { color: var(--info); }
-  .phase:nth-child(2) .phase-label { color: var(--accent); }
-  .phase:nth-child(3) .phase-label { color: var(--success); }
-  .phase ul {
-    list-style: none;
-    padding: 0;
-  }
-  .phase li {
-    padding: 0.4rem 0;
-    padding-left: 1.2rem;
-    position: relative;
-    font-size: 13px;
-    color: var(--text-dim);
-  }
-  .phase li::before {
-    content: '—';
-    position: absolute;
-    left: 0;
-    color: var(--border);
-  }
+        .dropdown-toggle {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            user-select: none;
+            color: var(--text);
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
 
-  /* === QUESTIONS TO ASK === */
-  .ask-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1rem;
-  }
-  .ask-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 1.25rem;
-  }
-  .ask-category {
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--accent);
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-  }
-  .ask-card p {
-    font-size: 14px;
-    color: var(--text-dim);
-    margin-bottom: 0.5rem;
-    font-style: italic;
-  }
-  .ask-card .why {
-    font-size: 12px;
-    color: var(--text-dim);
-    opacity: 0.7;
-    font-style: normal;
-  }
+        .dropdown-toggle:hover {
+            color: var(--accent);
+        }
 
-  /* === PROFILE PHOTOS === */
-  .profile-photo { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; float: left; margin-right: 1rem; margin-bottom: 0.5rem; border: 2px solid var(--accent); }
-  .profile-source { font-size: 11px; color: var(--text-dim); opacity: 0.6; margin-top: 0.75rem; }
-  .profile-card-clearfix::after { content: ""; display: table; clear: both; }
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--surface-alt);
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            margin-top: 0.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            z-index: 1001;
+        }
 
-  /* === PRINT === */
-  @media print {
-    body { background: white; color: #111; font-size: 12px; }
-    nav { display: none; }
-    .hero-narrative { border-left-color: #333; background: #f5f5f5; }
-    .card, details, .qa-block, .phase, .ask-card { border-color: #ddd; background: #fafafa; }
-    section { padding: 1.5rem 0; break-inside: avoid; }
-    details { break-inside: avoid; }
-    details[open] { break-inside: auto; }
-    h1, h3, .phase-label, .tl-date, .ask-category, .qa-a strong { color: #333 !important; }
-  }
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
 
-  /* === RESPONSIVE === */
-  @media (max-width: 768px) {
-    .container { padding: 0 1rem; }
-    h1 { font-size: 1.6rem; }
-    .phase-grid { grid-template-columns: 1fr; }
-    .card-grid { grid-template-columns: 1fr; }
-    .ask-grid { grid-template-columns: 1fr; }
+        .dropdown-item {
+            display: block;
+            padding: 0.75rem 1rem;
+            color: var(--text);
+            text-decoration: none;
+            transition: all 0.2s ease;
+            border-left: 3px solid transparent;
+        }
 
-    /* --- Mobile tables: stack into cards --- */
-    .intel-table thead { display: none; }
-    .intel-table,
-    .intel-table tbody,
-    .intel-table tr,
-    .intel-table td {
-      display: block;
-      width: 100%;
-    }
-    .intel-table tr {
-      margin-bottom: 1rem;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 0.75rem;
-      background: var(--surface);
-    }
-    .intel-table td {
-      padding: 0.25rem 0;
-      border-bottom: none;
-      font-size: 13px;
-    }
-    .intel-table td:first-child {
-      font-weight: 600;
-      color: var(--accent);
-      font-size: 14px;
-      margin-bottom: 0.25rem;
-    }
-    .intel-table td:last-child {
-      color: var(--text-dim);
-      font-size: 12px;
-    }
+        .dropdown-item:hover {
+            background-color: var(--surface);
+            color: var(--accent);
+            border-left-color: var(--accent);
+        }
 
-    /* Education overlap table */
-    .edu-table thead { display: none; }
-    .edu-table,
-    .edu-table tbody,
-    .edu-table tr,
-    .edu-table td {
-      display: block;
-      width: 100%;
-    }
-    .edu-table tr {
-      margin-bottom: 1rem;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 0.75rem;
-      background: var(--surface);
-    }
-    .edu-table td {
-      padding: 0.25rem 0 !important;
-      border-bottom: none !important;
-      font-size: 13px;
-    }
-    .edu-table td:first-child {
-      font-weight: 600;
-      color: var(--accent);
-      font-size: 14px;
-      margin-bottom: 0.25rem;
-    }
-  }
-</style>
+        .dropdown-item:first-child {
+            border-radius: 0.4rem 0.4rem 0 0;
+        }
+
+        .dropdown-item:last-child {
+            border-radius: 0 0 0.4rem 0.4rem;
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 0.35rem;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 2px;
+            background-color: var(--text);
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        /* Main Content */
+        main {
+            padding-top: 80px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 3rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .hero-content {
+            display: flex;
+            gap: 3rem;
+            align-items: flex-start;
+        }
+
+        .hero-image {
+            flex-shrink: 0;
+        }
+
+        .hero-image img {
+            width: 200px;
+            height: 200px;
+            border-radius: 0.5rem;
+            border: 2px solid var(--accent);
+            object-fit: cover;
+        }
+
+        .hero-text h1 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--accent);
+        }
+
+        .hero-text .tagline {
+            font-size: 1.3rem;
+            color: var(--text-dim);
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .hero-text .meta {
+            font-size: 0.95rem;
+            color: var(--text-dim);
+            line-height: 1.8;
+        }
+
+        /* Sidebar Navigation (On Resume Page) */
+        .resume-sidebar {
+            position: sticky;
+            top: 100px;
+            background-color: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            width: 250px;
+            float: right;
+            margin-left: 2rem;
+        }
+
+        .resume-sidebar h3 {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .resume-sidebar a {
+            display: block;
+            padding: 0.6rem 0;
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 0.9rem;
+            border-left: 2px solid transparent;
+            padding-left: 0.8rem;
+            transition: all 0.2s ease;
+        }
+
+        .resume-sidebar a:hover {
+            color: var(--accent);
+            border-left-color: var(--accent);
+        }
+
+        .resume-sidebar a.active {
+            color: var(--accent);
+            border-left-color: var(--accent);
+            font-weight: 500;
+        }
+
+        /* Sections */
+        section {
+            padding: 3rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        section:last-of-type {
+            border-bottom: none;
+            padding-bottom: 4rem;
+        }
+
+        section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            color: var(--accent);
+            scroll-margin-top: 100px;
+        }
+
+        /* Executive Summary */
+        .summary-text {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: var(--text);
+            margin-bottom: 1.5rem;
+        }
+
+        /* Experience */
+        .experience-item {
+            margin-bottom: 2.5rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .experience-item:last-child {
+            border-bottom: none;
+        }
+
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 0.5rem;
+        }
+
+        .experience-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .experience-company {
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        .experience-dates {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+        }
+
+        .experience-subtitle {
+            color: var(--text-dim);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .experience-bullets {
+            list-style: none;
+            margin-left: 0;
+        }
+
+        .experience-bullets li {
+            margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+            position: relative;
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .experience-bullets li:before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        /* Education */
+        .education-item {
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .education-item:last-child {
+            border-bottom: none;
+        }
+
+        .education-degree {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 0.3rem;
+        }
+
+        .education-school {
+            color: var(--accent);
+            font-weight: 500;
+            margin-bottom: 0.3rem;
+        }
+
+        .education-dates {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .education-notes {
+            color: var(--text-dim);
+            font-size: 0.95rem;
+        }
+
+        /* Skills */
+        .skills-category {
+            margin-bottom: 1.5rem;
+        }
+
+        .skills-category-name {
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+        }
+
+        .skills-list {
+            color: var(--text);
+            line-height: 1.8;
+        }
+
+        /* References */
+        .references-list {
+            list-style: none;
+        }
+
+        .references-item {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .references-item:last-child {
+            border-bottom: none;
+        }
+
+        .reference-name {
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 0.3rem;
+        }
+
+        .reference-title {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--surface);
+            border-top: 1px solid var(--border);
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-dim);
+            font-size: 0.85rem;
+            margin-top: 3rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem;
+            }
+
+            .nav-container {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+
+            .nav-menu {
+                position: fixed;
+                left: 0;
+                top: 70px;
+                right: 0;
+                background-color: var(--surface);
+                flex-direction: column;
+                gap: 0;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .nav-menu.active {
+                max-height: 500px;
+            }
+
+            .nav-item {
+                width: 100%;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .nav-link {
+                padding: 1rem;
+                display: block;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .dropdown-menu {
+                position: static;
+                opacity: 0;
+                visibility: hidden;
+                max-height: 0;
+                overflow: hidden;
+                transform: none;
+                background-color: var(--surface-alt);
+                transition: max-height 0.3s ease;
+                border: none;
+                border-top: 1px solid var(--border);
+                margin: 0;
+                border-radius: 0;
+                box-shadow: none;
+            }
+
+            .nav-item.active .dropdown-menu {
+                opacity: 1;
+                visibility: visible;
+                max-height: 400px;
+            }
+
+            .dropdown-item {
+                padding: 0.8rem 1rem 0.8rem 2rem;
+                border-left: none;
+            }
+
+            .dropdown-item:hover {
+                border-left: none;
+                padding-left: 2rem;
+            }
+
+            .hero-content {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .hero-text h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero-text .tagline {
+                font-size: 1.1rem;
+            }
+
+            .resume-sidebar {
+                position: static;
+                width: 100%;
+                float: none;
+                margin: 2rem 0;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            section {
+                padding: 2rem 0;
+            }
+
+            section h2 {
+                font-size: 1.4rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .experience-header {
+                flex-direction: column;
+                gap: 0.3rem;
+            }
+
+            main {
+                padding-top: 70px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-brand {
+                font-size: 0.9rem;
+            }
+
+            .hero-text h1 {
+                font-size: 1.5rem;
+            }
+
+            .hero-text .tagline {
+                font-size: 1rem;
+            }
+
+            .hero-image img {
+                width: 150px;
+                height: 150px;
+            }
+
+            section h2 {
+                font-size: 1.2rem;
+            }
+
+            .experience-title {
+                font-size: 1rem;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            nav {
+                display: none;
+            }
+
+            .resume-sidebar {
+                display: none;
+            }
+
+            main {
+                padding-top: 0;
+            }
+
+            body {
+                background-color: white;
+                color: #000;
+            }
+
+            section {
+                page-break-inside: avoid;
+                border: none;
+                padding: 0 0 1.5rem 0;
+            }
+
+            section h2 {
+                color: #333;
+                page-break-after: avoid;
+            }
+
+            a {
+                color: #333;
+                text-decoration: none;
+            }
+
+            .experience-title,
+            .experience-company {
+                color: #000;
+            }
+
+            .hero {
+                border: none;
+            }
+
+            footer {
+                border: none;
+                background: white;
+                padding: 1rem 0;
+            }
+        }
+    </style>
 </head>
 <body>
-
-<!-- NAV -->
-<nav>
-  <div class="nav-inner">
-    <a href="#" class="nav-brand">RAFFLES PREP</a>
-    <button class="hamburger" aria-label="Toggle menu">
-      <span></span><span></span><span></span>
-    </button>
-    <ul>
-      <li><a href="#positioning">Positioning</a></li>
-      <li><a href="#intel">Raffles Intel</a></li>
-      <li><a href="#org-chart">Org Chart</a></li>
-      <li><a href="#news">Latest News</a></li>
-      <li><a href="#experience">Experience Bridge</a></li>
-      <li><a href="#fluency">Technical Fluency</a></li>
-      <li><a href="#ai-proposals">AI Proposals</a></li>
-      <li><a href="#questions">Hard Questions</a></li>
-      <li><a href="#ask-them">Questions to Ask</a></li>
-      <li><a href="#ninety-days">First 90 Days</a></li>
-      <li><a href="#landmines">Landmines</a></li>
-      <li><a href="strategy.html" style="color: var(--accent);">Strategy &rarr;</a></li>
-      <li><a href="resume.html" style="color: var(--accent);">Resume &rarr;</a></li>
-    </ul>
-  </div>
-</nav>
-
-<div class="container">
-
-<!-- ==================== HERO ==================== -->
-<section class="hero" id="positioning">
-  <div style="display: flex; align-items: center; gap: 1.5rem; margin-bottom: 0.5rem; flex-wrap: wrap;">
-    <img src="https://media.licdn.com/dms/image/v2/D5635AQEYBSG9kp5EDA/profile-framedphoto-shrink_400_400/B56ZwunrnMJMAg-/0/1770308680491?e=1771923600&v=beta&t=GvQ2QhvG7mb9p75t_ZPI9oTrJ0-UIQMx5WPd5wP5Z1I" alt="Arthur Chan Yat Long" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 3px solid var(--accent); flex-shrink: 0;">
-    <div>
-      <h1 style="margin-bottom: 0.25rem;">Arthur Chan Yat Long</h1>
-      <div class="hero-subtitle">Operator-Technologist &mdash; Interview Prep for Raffles Family Office CRM Project</div>
-    </div>
-  </div>
-
-  <div class="hero-narrative">
-    &ldquo;I spent 18 years learning where <em>wealth, operations, and technology</em> intersect &mdash;
-    from Bloomberg terminals to KKR deal rooms to building a CRM that drove
-    HKD&nbsp;120M in revenue. I discovered that the bottleneck in every organisation is
-    the <em>gap between what leadership wants and what technology delivers</em>.
-    I&rsquo;ve spent the last several years closing that gap myself, building an AI-native
-    methodology that lets me move from strategy to working product in days.
-    Raffles is building something ambitious at exactly the right moment &mdash;
-    I want to be the person who makes that ambition <em>executable</em>.&rdquo;
-  </div>
-
-  <div class="hero-tags">
-    <span class="tag gold">COO &bull; 11 Years</span>
-    <span class="tag gold">HKD 120M Revenue</span>
-    <span class="tag gold">55K+ CRM Subscribers</span>
-    <span class="tag">Imperial College London</span>
-    <span class="tag">Bloomberg &bull; ANZ &bull; KKR/Emerald</span>
-    <span class="tag">Proudfoot Consulting</span>
-    <span class="tag">Next.js &bull; Python &bull; SQL &bull; AI/LLM</span>
-    <span class="tag">EN &bull; Cantonese &bull; Mandarin</span>
-  </div>
-</section>
-
-<!-- ==================== RAFFLES INTEL ==================== -->
-<section id="intel">
-  <h2><span class="num">1</span> Raffles Family Office &mdash; Intelligence Brief</h2>
-
-  <table class="intel-table">
-    <tr><th style="width:180px">Attribute</th><th>Detail</th><th style="width:100px">Source</th></tr>
-    <tr><td><strong>Founded</strong></td><td>2016</td><td class="small dim">rafflesgroup.co</td></tr>
-    <tr><td><strong>Founding AUM</strong></td><td>US$1.8 billion</td><td class="small dim">finews.asia</td></tr>
-    <tr><td><strong>AUM (2019)</strong></td><td>US$2 billion; target US$10B (stated by CMK)</td><td class="small dim">finews.asia</td></tr>
-    <tr><td><strong>Current AUM</strong></td><td>Not publicly disclosed</td><td class="small dim">—</td></tr>
-    <tr><td><strong>Employees</strong></td><td>~223 employees (ZoomInfo est.); plans to double to ~400 within 2&ndash;3 years</td><td class="small dim">ZoomInfo, SCMP 2025</td></tr>
-    <tr><td><strong>Type</strong></td><td>Multi-family office (MFO)</td><td class="small dim">rafflesgroup.co</td></tr>
-    <tr><td><strong>HQ</strong></td><td>Dual: Hong Kong + Singapore</td><td class="small dim">rafflesgroup.co</td></tr>
-    <tr><td><strong>HK Office</strong></td><td>32/F, The Center, 99 Queen's Road Central</td><td class="small dim">rafflesgroup.co</td></tr>
-    <tr><td><strong>SG Office</strong></td><td>50 Collyer Quay, OUE Bayfront</td><td class="small dim">rafflesgroup.co</td></tr>
-    <tr><td><strong>Rep Offices</strong></td><td>Bangkok, Beijing, Shanghai, Taipei</td><td class="small dim">rafflesgroup.co</td></tr>
-    <tr><td><strong>Award</strong></td><td>Best Independent Wealth Manager &ndash; Greater China (2019)</td><td class="small dim">WealthBriefingAsia 7th Singapore Awards</td></tr>
-    <tr><td><strong>CMK Roles</strong></td><td>Chair (Founder), Family Office Association Hong Kong (FOAHK); President, Hong Kong Securities &amp; Brokerage Association (HSBA)</td><td class="small dim">foahk.org, SCMP</td></tr>
-    <tr><td><strong>Leadership</strong></td><td>Chi-man Kwan (Group CEO & Co-Founder), Ray Tam (Co-Founder & CEO Revo Digital), William Chow (Deputy Group CEO), Kendrick Lee (CEO Singapore)</td><td class="small dim">rafflesgroup.co</td></tr>
-    <tr><td><strong>Core Team</strong></td><td>~223 employees across HK, SG, and regional offices; 35,000 sq ft footprint, capacity for 350</td><td class="small dim">ZoomInfo, Family Wealth Report</td></tr>
-    <tr><td><strong>Services</strong></td><td>Wealth management, investment advisory, succession planning, tax structuring, digital assets</td><td class="small dim">rafflesgroup.co</td></tr>
-    <tr><td><strong>Digital Assets</strong></td><td>Revo Digital Family Office — Asia's first digital-assets-focused MFO, co-founded with Huobi Technology. SFC-licensed in HK. Led by Ray Tam (CEO) and Zann Kwan (CIO; introduced Asia's first public Bitcoin ATM in 2014; ex-GIC Real Estate, Arthur Andersen, KPMG). Zodia Custody partnership.</td><td><span class="small dim">rafflesgroup.co</span></td></tr>
-    <tr><td><strong>Technology</strong></td><td>Proprietary RFO app with AI function (3rd upgrade). Investing in digital platforms for client engagement.</td><td><span class="small dim">rafflesgroup.co</span></td></tr>
-    <tr><td><strong>Growth</strong></td><td>Expanding aggressively. HK gov targets 220 additional family offices by 2028. Raffles featured in gov case studies.</td><td><span class="small dim">info.gov.hk</span></td></tr>
-    <tr><td><strong>Regulatory</strong></td><td>SFC (HK), MAS (Singapore) regimes. AML/KYC obligations per jurisdiction.</td><td><span class="small dim">—</span></td></tr>
-  </table>
-
-</section>
-
-<!-- ==================== ORG CHART ==================== -->
-<section id="org-chart">
-  <h2><span class="num">2</span> Organisational Chart (Publicly Available)</h2>
-  <p class="dim small">Reconstructed from public sources: company website, press releases, LinkedIn, news articles (Feb 2026). ~223 employees across HK, SG, and regional offices (ZoomInfo est.; plans to reach ~400 within 2&ndash;3 years per SCMP).</p>
-
-  <div class="alert alert-danger" style="margin-bottom: 1.5rem;">
-    <strong>CRITICAL INTEL: Group COO Terence Chow is departing.</strong> He was appointed Jul 2024 (ex-CEO Asia, RBC Wealth Management) and led technology, operations, business transformation, risk management, and corporate functions. His departure after ~18 months creates a significant gap &mdash; <em>Arthur&rsquo;s CRM/technology role may be filling part of what Terence was responsible for.</em> Do NOT mention this unless they bring it up &mdash; but be ready for it to inform the scope of the role.
-  </div>
-
-  <!-- CSS ORG CHART -->
-  <style>
-    .org { text-align: center; padding: 1.5rem 0; }
-    .org-title { font-size: 14px; font-weight: 700; color: var(--accent); margin-bottom: 0.25rem; letter-spacing: 0.04em; }
-    .org-subtitle { font-size: 12px; color: var(--text-dim); margin-bottom: 1.5rem; }
-    .org-row { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 0.5rem; position: relative; }
-    .org-row::before {
-      content: ''; position: absolute; top: -0.5rem; left: 50%; width: 1px; height: 0.5rem;
-      background: var(--border);
-    }
-    .org-row:first-child::before { display: none; }
-    .org-connector { display: flex; justify-content: center; padding: 0.5rem 0; }
-    .org-connector .line { width: 1px; height: 1.5rem; background: var(--border); }
-    .org-box {
-      background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
-      padding: 0.65rem 1rem; min-width: 155px; text-align: center; transition: border-color 0.2s;
-    }
-    .org-box:hover { border-color: var(--accent); }
-    .org-box.departing { border-color: var(--danger); opacity: 0.7; }
-    .org-box .name { font-weight: 600; font-size: 13px; color: var(--accent); }
-    .org-box.departing .name { color: var(--danger); }
-    .org-box .role { font-size: 11px; color: var(--text-dim); margin-top: 0.1rem; }
-    .org-box .loc { font-size: 10px; color: var(--text-dim); opacity: 0.6; }
-    .org-box .badge {
-      display: inline-block; padding: 0.1rem 0.4rem; border-radius: 3px;
-      font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin-top: 0.2rem;
-    }
-    .org-box .badge-warn { background: rgba(224,82,82,0.15); color: var(--danger); }
-    .org-box .badge-new { background: rgba(76,175,124,0.15); color: var(--success); }
-    .org-section {
-      margin-top: 1.5rem; padding-top: 1rem; border-top: 1px dashed var(--border); text-align: left;
-    }
-    .org-section-title {
-      font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em;
-      color: var(--text-dim); margin-bottom: 0.75rem;
-    }
-    .org-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.4rem; }
-    .org-list-item { font-size: 12px; color: var(--text-dim); padding: 0.25rem 0; }
-    .org-list-item strong { color: var(--text); font-weight: 500; }
-  </style>
-
-  <div style="margin: 1.5rem 0; padding: 2rem; background: var(--surface); border: 1px solid var(--border); border-radius: 12px;">
-    <div class="org">
-      <div class="org-title">RAFFLES FAMILY OFFICE GROUP</div>
-      <div class="org-subtitle">~223 employees &bull; HQ: Hong Kong + Singapore &bull; Target: 400 within 2&ndash;3 years</div>
-
-      <!-- Co-Founders -->
-      <div class="org-row" style="margin-bottom: 0;">
-        <div class="org-box" style="min-width: 320px; border-color: var(--accent);">
-          <div class="name">Chi-man Kwan &bull; Ray Tam &bull; Kendrick Lee</div>
-          <div class="role">Co-Founders</div>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="/" class="nav-brand">ARTHUR CHAN</a>
+            <button class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li class="nav-item dropdown" id="rafflesDropdown">
+                    <div class="dropdown-toggle">
+                        Raffles ▾
+                    </div>
+                    <div class="dropdown-menu">
+                        <a href="raffles/index.html" class="dropdown-item">Overview</a>
+                        <a href="raffles/strategy.html" class="dropdown-item">Strategy</a>
+                        <a href="raffles/org-chart.html" class="dropdown-item">Org Chart</a>
+                        <a href="raffles/news.html" class="dropdown-item">News</a>
+                        <a href="raffles/experience.html" class="dropdown-item">Experience Bridge</a>
+                        <a href="raffles/technical.html" class="dropdown-item">Technical</a>
+                        <a href="raffles/questions.html" class="dropdown-item">Questions</a>
+                    </div>
+                </li>
+            </ul>
         </div>
-      </div>
+    </nav>
 
-      <div class="org-connector"><div class="line"></div></div>
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <!-- Resume Sidebar Navigation -->
+            <aside class="resume-sidebar">
+                <h3>Navigation</h3>
+                <a href="#summary" class="sidebar-nav active">Summary</a>
+                <a href="#experience" class="sidebar-nav">Experience</a>
+                <a href="#education" class="sidebar-nav">Education</a>
+                <a href="#skills" class="sidebar-nav">Skills</a>
+                <a href="#references" class="sidebar-nav">References</a>
+            </aside>
 
-      <!-- C-Suite Row -->
-      <div class="org-row">
-        <div class="org-box">
-          <div class="name">Chi-man Kwan</div>
-          <div class="role">Group CEO</div>
-          <div class="loc">Hong Kong</div>
+            <!-- Hero Section -->
+            <section class="hero">
+                <div class="hero-content">
+                    <div class="hero-image">
+                        <img src="https://media.licdn.com/dms/image/v2/D5635AQEYBSG9kp5EDA/profile-framedphoto-shrink_400_400/B56ZwunrnMJMAg-/0/1770308680491?e=1771923600&v=beta&t=GvQ2QhvG7mb9p75t_ZPI9oTrJ0-UIQMx5WPd5wP5Z1I" alt="Arthur Chan Yat Long">
+                    </div>
+                    <div class="hero-text">
+                        <h1>Arthur Chan Yat Long</h1>
+                        <p class="tagline">"The Operator Who Can See the Whole Board"</p>
+                        <div class="meta">
+                            <div>Hong Kong</div>
+                            <div>English • Cantonese • Mandarin</div>
+                            <div>Full Marathon Finisher 2026</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Executive Summary -->
+            <section id="summary">
+                <h2>Executive Summary</h2>
+                <p class="summary-text">
+                    A uniquely versatile operator who bridges the worlds of institutional finance, management consulting, and entrepreneurial building. With a career spanning Bloomberg's treasury operations, ANZ's investment banking division, KKR's private equity platform, and Alexander Proudfoot's operational consulting practice — combined with eleven years as a founding partner scaling an e-commerce business from a pen-and-paper side venture to HKD 120M peak annual revenue — Arthur brings a combination that is genuinely rare in today's market.
+                </p>
+                <p class="summary-text">
+                    He has the analytical rigor of a banker who financed Alibaba's privatisation. The transformation mindset of a consultant who restructured Lafarge's Chinese operations. The investment lens of a PE professional who deployed capital at KKR. And the scrappy, inventive resilience of a founder who taught himself to code, built AI-powered operational systems, and achieved 10x efficiency gains to keep his business alive through the worst downturn in Hong Kong retail.
+                </p>
+                <p class="summary-text">
+                    What makes Arthur particularly effective is the combination of rapid learning ability and AI-augmented execution. He picks up new domains quickly — from chemical engineering to corporate finance to full-stack development — and has developed an AI-native working methodology that amplifies his output exponentially. What would take a traditional team weeks to prototype, Arthur can validate in days. This is not about replacing people with machines; it is about a seasoned operator who has learned to wield AI as a force multiplier, turning strategic insight into working systems at a pace that redefines what one person can deliver.
+                </p>
+                <p class="summary-text">
+                    Arthur is the person you hire when you need someone who can understand the strategy, design the system, build the technology, and lead the team to execute it. He doesn't just see the whole board — he's played every position on it.
+                </p>
+            </section>
+
+            <!-- Experience -->
+            <section id="experience">
+                <h2>Experience</h2>
+
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div>
+                            <div class="experience-title">Founding Partner &amp; Chief Operating Officer</div>
+                            <div class="experience-company">STT Mall Hong Kong</div>
+                        </div>
+                        <div class="experience-dates">Feb 2015 – Present (11 years)</div>
+                    </div>
+                    <div class="experience-subtitle">E-commerce platform | Korean fashion, cosmetics, skincare</div>
+                    <ul class="experience-bullets">
+                        <li>Growth: Scaled from 2-person to HKD 120M peak revenue with 15+ FT and 20+ PT staff</li>
+                        <li>Ran as side venture alongside ANZ/Emerald Media for first 3 years</li>
+                        <li>Multiple business model pivots</li>
+                        <li>Post-COVID: 10x revenue per employee improvement (HKD 10M per headcount)</li>
+                        <li>Tech (Solo, AI-Augmented): Built entire tech stack — OMS, Pick/Pack/Fulfillment, PO Management, AI-Driven CRM (55K+ subscribers), Content Analytics, Social Media Automation, GEO/SEO</li>
+                        <li>Tech progression: Excel/VBA → Apps Script → Next.js, Python, SQL, AI agents, vector DBs, LLMs, Docker/VPS</li>
+                        <li>Leadership: Oversaw all non-sales functions, coaching-style management, grew team from 2 to 35+</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div>
+                            <div class="experience-title">Investment Associate</div>
+                            <div class="experience-company">Emerald Media Advisors (KKR Platform)</div>
+                        </div>
+                        <div class="experience-dates">Feb 2016 – Feb 2018 (2 years)</div>
+                    </div>
+                    <div class="experience-subtitle">USD 300M fund | PE/VC in media &amp; technology</div>
+                    <ul class="experience-bullets">
+                        <li>Worked with Paul Aiello (Founding CEO, CA Media), Joey Wong (later CFO Lenovo), Tim Malone</li>
+                        <li>Sourced deals across ASEAN media/tech startups</li>
+                        <li>Built financial models and IC presentations for KKR senior leadership</li>
+                        <li>Key deal: aCommerce Series B (~USD 65M) — SE Asia's leading e-commerce enabler</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div>
+                            <div class="experience-title">Associate Director, TMET Coverage</div>
+                            <div class="experience-company">ANZ Banking Group (2nd stint)</div>
+                        </div>
+                        <div class="experience-dates">Nov 2014 – Feb 2016 (1.3 years)</div>
+                    </div>
+                    <div class="experience-subtitle"></div>
+                    <ul class="experience-bullets">
+                        <li>Returned at more senior level (promoted to Associate Director)</li>
+                        <li>Recruited back by headhunter — "boomerang" signal</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div>
+                            <div class="experience-title">Management Consultant</div>
+                            <div class="experience-company">Alexander Proudfoot</div>
+                        </div>
+                        <div class="experience-dates">Sep 2013 – Sep 2014 (1 year)</div>
+                    </div>
+                    <div class="experience-subtitle">Operational transformation consulting</div>
+                    <ul class="experience-bullets">
+                        <li>Embedded with Lafarge China — HR, Finance, Purchasing consolidation</li>
+                        <li>Delivered millions in annual recurring savings</li>
+                        <li>Methodology: interview, map, model, present, implement, measure</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div>
+                            <div class="experience-title">Analyst → Senior Associate, TMET Coverage</div>
+                            <div class="experience-company">ANZ Banking Group (1st stint)</div>
+                        </div>
+                        <div class="experience-dates">Jun 2010 – Sep 2013 (3.3 years)</div>
+                    </div>
+                    <div class="experience-subtitle"></div>
+                    <ul class="experience-bullets">
+                        <li>Covered: TSMC, Tencent, Alibaba, Huawei, Lenovo, IBM</li>
+                        <li>Part of Alibaba's USD 2.5B HKEX privatisation syndicate</li>
+                        <li>DCM, loan financing, syndication, receivables financing, M&amp;A</li>
+                    </ul>
+                </div>
+
+                <div class="experience-item">
+                    <div class="experience-header">
+                        <div>
+                            <div class="experience-title">Regional Treasury / Cash Management, APAC</div>
+                            <div class="experience-company">Bloomberg LP</div>
+                        </div>
+                        <div class="experience-dates">Sep 2008 – Jun 2010 (1.8 years)</div>
+                    </div>
+                    <div class="experience-subtitle"></div>
+                    <ul class="experience-bullets">
+                        <li>Started as temp data entry, earned permanent position</li>
+                        <li>Cleared years of withholding tax reconciliation backlog (Taiwan, Malaysia, Thailand, China)</li>
+                        <li>Seconded to Bloomberg Japan for training</li>
+                        <li>Established regional cash pooling across APAC</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Education -->
+            <section id="education">
+                <h2>Education</h2>
+
+                <div class="education-item">
+                    <div class="education-degree">MEng Chemical Engineering</div>
+                    <div class="education-school">Imperial College London</div>
+                    <div class="education-dates">2004 – 2008</div>
+                    <div class="education-notes">QS #2 globally</div>
+                </div>
+
+                <div class="education-item">
+                    <div class="education-degree">Secondary</div>
+                    <div class="education-school">The Royal School, Dungannon</div>
+                    <div class="education-dates">1999 – 2004</div>
+                    <div class="education-notes">Northern Ireland</div>
+                </div>
+            </section>
+
+            <!-- Skills -->
+            <section id="skills">
+                <h2>Skills</h2>
+
+                <div class="skills-category">
+                    <div class="skills-category-name">Programming</div>
+                    <div class="skills-list">JavaScript, Python, SQL, HTML/CSS, Next.js, React, Node.js, Apps Script, Excel/VBA</div>
+                </div>
+
+                <div class="skills-category">
+                    <div class="skills-category-name">Infrastructure</div>
+                    <div class="skills-list">Docker, VPS/Linux, Caddy, Supabase/PostgreSQL, Cloudflare</div>
+                </div>
+
+                <div class="skills-category">
+                    <div class="skills-category-name">AI</div>
+                    <div class="skills-list">AI-augmented dev methodology, LLM integration, AI agent orchestration, vector DBs, rapid prototyping</div>
+                </div>
+
+                <div class="skills-category">
+                    <div class="skills-category-name">Business</div>
+                    <div class="skills-list">Financial modelling, corporate finance, DCM, M&amp;A, PE/VC, operational transformation, marketing strategy</div>
+                </div>
+
+                <div class="skills-category">
+                    <div class="skills-category-name">Languages</div>
+                    <div class="skills-list">English (Fluent), Cantonese (Native), Mandarin (Fluent)</div>
+                </div>
+
+                <div class="skills-category">
+                    <div class="skills-category-name">Personal</div>
+                    <div class="skills-list">Full marathon finisher (2026)</div>
+                </div>
+            </section>
+
+            <!-- References -->
+            <section id="references">
+                <h2>References</h2>
+                <ul class="references-list">
+                    <li class="references-item">
+                        <div class="reference-name">Sherzad Desai</div>
+                        <div class="reference-title">Executive Director, TMT Coverage, ANZ</div>
+                    </li>
+                    <li class="references-item">
+                        <div class="reference-name">Sachin Goel</div>
+                        <div class="reference-title">Executive Director, TMT Coverage, ANZ</div>
+                    </li>
+                    <li class="references-item">
+                        <div class="reference-name">Benjamin Chen</div>
+                        <div class="reference-title">ex-McKinsey; MD, Crimson Capital</div>
+                    </li>
+                    <li class="references-item">
+                        <div class="reference-name">Paul Aiello</div>
+                        <div class="reference-title">Founding CEO, CA Media / The Chernin Group; Co-Founder, Emerald Media</div>
+                    </li>
+                    <li class="references-item">
+                        <div class="reference-name">Joey Wong</div>
+                        <div class="reference-title">ex-Director, Emerald Media; CFO, Lenovo Asia Pacific (PCSD)</div>
+                    </li>
+                    <li class="references-item">
+                        <div class="reference-name">James Wong</div>
+                        <div class="reference-title">MD, Alexander Proudfoot; Partner, McKinsey &amp; Company</div>
+                    </li>
+                </ul>
+            </section>
         </div>
-        <div class="org-box">
-          <div class="name">Kendrick Lee</div>
-          <div class="role">CEO, Singapore</div>
-          <div class="loc">Singapore &bull; BSc Manchester</div>
-        </div>
-        <div class="org-box">
-          <div class="name">Ray Tam</div>
-          <div class="role">CEO, Revo Digital</div>
-          <div class="loc">ex-BNP Paribas, DBS &bull; Oxford</div>
-        </div>
-      </div>
-
-      <div class="org-connector"><div class="line"></div></div>
-
-      <!-- Senior Leadership -->
-      <div class="org-row">
-        <div class="org-box">
-          <div class="name">William Chow</div>
-          <div class="role">Deputy Group CEO</div>
-          <div class="loc">MSc Op. Research, LSE &bull; ex-BlackRock</div>
-        </div>
-        <div class="org-box departing">
-          <div class="name">Terence Chow</div>
-          <div class="role">Group COO</div>
-          <div class="badge badge-warn">Departing</div>
-          <div class="loc">MBA Ivey &bull; ex-CEO Asia RBC WM</div>
-        </div>
-        <div class="org-box">
-          <div class="name">Zann Kwan, CFA</div>
-          <div class="role">MP &amp; CIO, Revo</div>
-          <div class="loc">ex-GIC, KPMG &bull; 1st Asia BTC ATM</div>
-        </div>
-      </div>
-
-      <div class="org-connector"><div class="line"></div></div>
-
-      <!-- Directors / Heads -->
-      <div class="org-row">
-        <div class="org-box">
-          <div class="name">Michael Tung</div>
-          <div class="role">MD, RM Team HK</div>
-          <div class="badge badge-new">Oct 2025</div>
-          <div class="loc">ex-UBS, Morgan Stanley</div>
-        </div>
-        <div class="org-box">
-          <div class="name">Jennie Liang</div>
-          <div class="role">ED, RM Team HK</div>
-          <div class="badge badge-new">Oct 2025</div>
-          <div class="loc">ex-UBS, Credit Suisse</div>
-        </div>
-        <div class="org-box">
-          <div class="name">Terence Seow</div>
-          <div class="role">MD, Board Advisor</div>
-          <div class="badge badge-new">May 2025</div>
-          <div class="loc">ex-Citibank, DBS, Bank of Singapore</div>
-        </div>
-        <div class="org-box">
-          <div class="name">Shaun Lim</div>
-          <div class="role">MD, RM Singapore</div>
-          <div class="badge badge-new">May 2025</div>
-          <div class="loc">ex-RBC WM, Morgan Stanley, JPM</div>
-        </div>
-      </div>
-
-      <div class="org-connector"><div class="line"></div></div>
-
-      <!-- Regional Heads -->
-      <div class="org-row">
-        <div class="org-box">
-          <div class="name">Kevin King &#40;龚衍晖&#41;</div>
-          <div class="role">MD, Head of Greater China</div>
-        </div>
-        <div class="org-box">
-          <div class="name">Thidatip Thitikarunwong</div>
-          <div class="role">MD, Thailand Market Head</div>
-          <div class="badge badge-new">2024</div>
-          <div class="loc">ex-Credit Suisse, CIMB Thai, UOB</div>
-        </div>
-        <div class="org-box">
-          <div class="name">Joe Kwan, PhD</div>
-          <div class="role">MP, Real Estate</div>
-          <div class="loc">ex-Chelsfield Asia, UBS</div>
-        </div>
-        <div class="org-box">
-          <div class="name">Jo Huang, CFA</div>
-          <div class="role">Head of Private Equity</div>
-          <div class="loc">SuperReturn Asia speaker</div>
-        </div>
-      </div>
-
-      <div class="org-connector"><div class="line"></div></div>
-
-      <!-- Functional Leads -->
-      <div class="org-row">
-        <div class="org-box">
-          <div class="name">Caroline Langston</div>
-          <div class="role">Chief People Officer</div>
-          <div class="badge badge-new">Nov 2025</div>
-          <div class="loc">Neuroscience, King&rsquo;s College London</div>
-        </div>
-        <div class="org-box">
-          <div class="name">Cherie Liu</div>
-          <div class="role">Head of Marketing &amp; Comms</div>
-        </div>
-        <div class="org-box">
-          <div class="name">Gillian Cheng</div>
-          <div class="role">VP, Business Management</div>
-        </div>
-        <div class="org-box">
-          <div class="name">Jupiter Zheng, CFA</div>
-          <div class="role">Revo Digital Team</div>
-        </div>
-      </div>
-
-      <!-- Team Members -->
-      <div class="org-section">
-        <div class="org-section-title">Team Members (partial, from public sources)</div>
-        <div class="org-list">
-          <div class="org-list-item"><strong>Benn Ng</strong> &mdash; Head of Foreign Exchange</div>
-          <div class="org-list-item"><strong>Julien Grunebaum</strong> &mdash; Head of Structured Investments</div>
-          <div class="org-list-item"><strong>Candy Zhou</strong> &mdash; Wealth and Legacy Planning</div>
-          <div class="org-list-item"><strong>Sky Kwah</strong> &mdash; Head of Investment Advisory</div>
-          <div class="org-list-item"><strong>Derek Loh</strong> &mdash; Head of Equities</div>
-          <div class="org-list-item"><strong>Leo Lai</strong> &mdash; Team member</div>
-          <div class="org-list-item"><strong>Leah Ng</strong> &mdash; Team member (SG)</div>
-          <div class="org-list-item"><strong>Ivy Lim</strong> &mdash; Team member</div>
-          <div class="org-list-item"><strong>Christy Wong</strong> &mdash; Asst RM</div>
-          <div class="org-list-item"><strong>Chao Deng</strong> &mdash; Revo Digital</div>
-          <div class="org-list-item"><strong>Jupiter Zheng, CFA</strong> &mdash; Revo Digital</div>
-        </div>
-      </div>
-
-      <!-- Advisory Board -->
-      <div class="org-section">
-        <div class="org-section-title">Independent Advisory Board</div>
-        <div class="org-list">
-          <div class="org-list-item"><strong>Bruno Morel</strong> &mdash; ex-CEO, VP Bank Singapore</div>
-          <div class="org-list-item"><strong>Christina Lau</strong> &mdash; ex-PwC Risk Assurance</div>
-          <div class="org-list-item"><strong>David Chang</strong> &mdash; Vice Chairman Asia, PGIM</div>
-          <div class="org-list-item"><strong>Rizal Wijono</strong> &mdash; ex-MD Micro Connect; Europe FO gateway</div>
-          <div class="org-list-item"><strong>Abdullatif Kanoo</strong> &mdash; 5th-gen Kanoo Group, Abu Dhabi (Dec 2024)</div>
-          <div class="org-list-item"><strong>Dr. Niti Nerngchamnong</strong> &mdash; LL.D., NITI Law Bangkok (Aug 2024)</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <h3>Key Personnel Backgrounds</h3>
-  <div class="card-grid">
-    <div class="card">
-      <div class="card-label">Group CEO</div>
-      <div class="card-title">Chi-man Kwan</div>
-      <ul>
-        <li>Co-Founder, Raffles Family Office</li>
-        <li>Based in Hong Kong</li>
-        <li>Direct reports: William Chow, Terence Chow (departing), Michael Tung, Jennie Liang</li>
-        <li>The person most likely interviewing Arthur</li>
-      </ul>
-    </div>
-    <div class="card">
-      <div class="card-label">Deputy Group CEO</div>
-      <div class="card-title">William Chow</div>
-      <ul>
-        <li>Ex-Deputy CEO, China Life Franklin AM (US$35B AUM)</li>
-        <li>Previous: PINS AM, Value Partners, BlackRock, State Street, UBS</li>
-        <li>Quant background &mdash; MSc Operational Research, LSE</li>
-        <li>Board of Management &amp; Investment Committee member</li>
-      </ul>
-    </div>
-    <div class="card" style="border-color: var(--danger);">
-      <div class="card-label" style="color: var(--danger);">Group COO — DEPARTING</div>
-      <div class="card-title">Terence Chow</div>
-      <ul>
-        <li>Appointed Jul 2024, departing after ~18 months</li>
-        <li>Ex-CEO Asia, RBC Wealth Management (20+ years financial services)</li>
-        <li>Led: technology, operations, business transformation, risk management, procurement</li>
-        <li><strong style="color: var(--danger);">His departure leaves a gap in tech/ops leadership that Arthur may be filling</strong></li>
-      </ul>
-    </div>
-    <div class="card">
-      <div class="card-label">CEO Singapore</div>
-      <div class="card-title">Kendrick Lee</div>
-      <ul>
-        <li>Co-Founder &amp; Managing Partner</li>
-        <li>Promoted to CEO Singapore role</li>
-        <li>Leads Southeast Asian operations</li>
-      </ul>
-    </div>
-    <div class="card">
-      <div class="card-label">CEO Revo Digital</div>
-      <div class="card-title">Ray Tam</div>
-      <ul>
-        <li>Co-Founder, Raffles Family Office</li>
-        <li>Board Committee Member, Family Office Association HK</li>
-        <li>Previous: BNP Paribas Private Banking (Director), DBS, Standard Chartered</li>
-        <li>University of Oxford; Blockchain Strategy Programme (Sa&iuml;d Business School)</li>
-        <li>Board Committee Member, Family Office Association HK</li>
-      </ul>
-    </div>
-    <div class="card">
-      <div class="card-label">CIO Revo Digital</div>
-      <div class="card-title">Zann Kwan, CFA</div>
-      <ul>
-        <li>Managing Partner &amp; CIO, Revo Digital Family Office</li>
-        <li>25+ years financial investment experience, 12+ years in digital assets</li>
-        <li>Introduced Asia&rsquo;s first public Bitcoin ATM (2014)</li>
-        <li>Previous: GIC Real Estate, Arthur Andersen, KPMG</li>
-      </ul>
-    </div>
-    <div class="card">
-      <div class="card-label">MD, Head of Greater China</div>
-      <div class="card-title">Kevin King (龚衍晖)</div>
-      <ul>
-        <li>Managing Director</li>
-        <li>Leads Greater China business development and client relationships</li>
-      </ul>
-    </div>
-    <div class="card">
-      <div class="card-label">Head of Private Equity</div>
-      <div class="card-title">Jo Huang, CFA</div>
-      <ul>
-        <li>Leads PE investment sourcing and portfolio for client families</li>
-        <li>Speaker at SuperReturn Asia</li>
-        <li>Arthur&rsquo;s KKR/Emerald Media PE experience is directly relevant to her team</li>
-      </ul>
-    </div>
-    <div class="card">
-      <div class="card-label">RM Team HK (Oct 2025)</div>
-      <div class="card-title">Michael Tung &amp; Jennie Liang</div>
-      <ul>
-        <li>Tung: MD &mdash; ex-UBS, Morgan Stanley, Rockpool Capital, Ark Advisors</li>
-        <li>Liang: ED &mdash; ex-UBS, Credit Suisse, Rockpool Capital, Ark Advisors</li>
-        <li>Both report directly to Chi-man Kwan</li>
-        <li>Focus: strengthening UHNW relationship management in HK</li>
-      </ul>
-    </div>
-    <div class="card">
-      <div class="card-label">Chief People Officer (Nov 2025)</div>
-      <div class="card-title">Caroline Langston</div>
-      <ul>
-        <li>Newly created role (Nov 2025) &mdash; reports directly to Chi-man Kwan</li>
-        <li>Was RFO&rsquo;s executive coach for 5+ years before promotion</li>
-        <li>20+ years international experience across Asia, Middle East, Europe</li>
-        <li>Background in finance, consulting, and executive development</li>
-        <li>Postgrad in Neuroscience &amp; Psychology of Mental Health, King&rsquo;s College London</li>
-        <li>Pursuing MSc in Neuroscience &amp; Psychology of Mental Health</li>
-        <li>Oversees: people strategy, talent development, cultural initiatives, Raffles Group Academy</li>
-        <li><strong>If she interviews you:</strong> Lead with coaching leadership style, team building, the STT Mall journey from 2&rarr;35+ people</li>
-      </ul>
-    </div>
-    <div class="card">
-      <div class="card-label">Other Functional Leads</div>
-      <div class="card-title">Corporate Functions</div>
-      <ul>
-        <li>Cherie Liu &mdash; Head of Marketing &amp; Communications</li>
-        <li>Gillian Cheng &mdash; VP, Business Management</li>
-      </ul>
-    </div>
-  </div>
-
-  <!-- Deep Profile Cards -->
-  <h3>Key Personnel — Deep Profiles</h3>
-  <p class="dim small">Click each card to expand full background, previous employers, education, and notable quotes.</p>
-
-  <details>
-    <summary>Chi-man Kwan — Group CEO & Co-Founder <span class="dim" style="font-weight:400;font-size:12px;">(Chair &amp; Founder, FOAHK)</span></summary>
-    <div class="detail-body profile-card-clearfix">
-      <img src="https://www.rafflesgroup.co/wp-content/uploads/2025/05/Picture12-1024x1024.png" alt="Chi-man Kwan" class="profile-photo">
-      <p><strong>Background:</strong> 15+ years at BNP Paribas and Standard Chartered in private banking before co-founding Raffles Family Office.</p>
-      <p><strong>Board Role:</strong> Chair (Founder), Family Office Association Hong Kong (FOAHK)</p>
-      <p><strong>Education:</strong> BSc Economics &amp; Business Management, Lancaster University; Executive MBA, Tsinghua&ndash;INSEAD. Adjunct Associate Professor, Faculty of Business &amp; Economics, University of Hong Kong.</p>
-      <p><strong>Notable Quotes:</strong></p>
-      <ul style="margin-left: 1.5rem;">
-        <li>"We aim to have $10 billion in assets by January 2020 and be the biggest in Asia within the next two years." (finews.asia, Jun 2019)</li>
-        <li>"We are looking at taking over smaller asset managers" with $50-200M AUM (finews.asia, Jun 2019)</li>
-        <li>"Asian tycoons don't have the history of managing their own money like their European peers do." (finews.asia)</li>
-        <li>"Caroline has been instrumental in shaping our leadership mindset over the years" (rafflesgroup.co, Nov 2025)</li>
-        <li>Hong Kong's high concentration of wealthy individuals gives it a natural advantage as a wealth management hub (Cable TV interview)</li>
-      </ul>
-      <p class="profile-source">Sources: finews.asia, rafflesgroup.co, wealthbriefingasia.com, Cable TV HK</p>
-    </div>
-  </details>
-
-  <details>
-    <summary>William Chow — Deputy Group CEO <span class="dim" style="font-weight:400;font-size:12px;">(ex-China Life Franklin AM, LSE)</span></summary>
-    <div class="detail-body profile-card-clearfix">
-      <img src="https://www.rafflesgroup.co/wp-content/uploads/2025/05/Picture15-1-1024x1024.png" alt="William Chow" class="profile-photo">
-      <p><strong>Previous:</strong> Deputy CEO, China Life Franklin AM (US$35B AUM); PINS AM; Value Partners; BlackRock; State Street; UBS</p>
-      <p><strong>Education:</strong> MSc Operational Research, London School of Economics (LSE)</p>
-      <p><strong>Role:</strong> Board of Management, Investment Committee. Oversees Advanced Wealth Solutions division.</p>
-      <p><strong>Moderated:</strong> AI panel at Annual Forum 2025 ("The AI Megacycle") with Google HK MD and Managing Partner, Lanchi Ventures</p>
-      <p><strong>Personal:</strong> Competitive table tennis player, amateur historian, avid hiker</p>
-      <p class="profile-source">Sources: rafflesgroup.co, fundselectorasia.com, citywire.com</p>
-    </div>
-  </details>
-
-  <details>
-    <summary>Ray Tam — Co-Founder & CEO, Revo Digital <span class="dim" style="font-weight:400;font-size:12px;">(Oxford Blockchain, FOAHK Board)</span></summary>
-    <div class="detail-body profile-card-clearfix">
-      <img src="https://www.rafflesgroup.co/wp-content/uploads/2025/05/Picture2-1024x1024.png" alt="Ray Tam" class="profile-photo">
-      <p><strong>Previous:</strong> Director, BNP Paribas Private Banking; DBS; Standard Chartered</p>
-      <p><strong>Education:</strong> University of Oxford (per LinkedIn); Oxford Blockchain Strategy Programme (Sa&iuml;d Business School). Secondary: Saint Michael&rsquo;s College, Tenbury Wells (UK boarding school).</p>
-      <p><strong>Board:</strong> Board Committee Member, Family Office Association Hong Kong</p>
-      <p><strong>Revo:</strong> Co-founded with Huobi Technology. SFC Type 4 & Type 9 licences. First digital MFO in Asia.</p>
-      <p class="profile-source">Sources: rafflesgroup.co, fundselectorasia.com, blockhead.co</p>
-    </div>
-  </details>
-
-  <details>
-    <summary>Kendrick Lee — Co-Founder & CEO, Singapore <span class="dim" style="font-weight:400;font-size:12px;">(Leads Southeast Asian operations)</span></summary>
-    <div class="detail-body profile-card-clearfix">
-      <img src="https://www.rafflesgroup.co/wp-content/uploads/2025/05/Picture6-1024x1024.png" alt="Kendrick Lee" class="profile-photo">
-      <p><strong>Title:</strong> Managing Partner & Co-Founder</p>
-      <p><strong>Education:</strong> BSc, University of Manchester</p>
-      <p><strong>Role:</strong> Leads Southeast Asian operations. Shaun Lim reports to him.</p>
-      <p class="profile-source">Sources: rafflesgroup.co</p>
-    </div>
-  </details>
-
-  <details>
-    <summary>Zann Kwan, CFA — Managing Partner & CIO, Revo Digital <span class="dim" style="font-weight:400;font-size:12px;">(Asia's 1st Bitcoin ATM)</span></summary>
-    <div class="detail-body profile-card-clearfix">
-      <img src="https://www.rafflesgroup.co/wp-content/uploads/2025/05/Zann-Kwan-2023-2-1024x1024.jpg" alt="Zann Kwan" class="profile-photo">
-      <p><strong>Previous:</strong> GIC Real Estate, Arthur Andersen, KPMG</p>
-      <p><strong>Experience:</strong> 25 years financial investment, 12+ years digital assets</p>
-      <p><strong>Notable:</strong> Introduced Asia's first public Bitcoin ATM (2014)</p>
-      <p class="profile-source">Sources: rafflesgroup.co, hubbis.com</p>
-    </div>
-  </details>
-
-  <details>
-    <summary>Caroline Langston — Chief People Officer <span class="dim" style="font-weight:400;font-size:12px;">(Nov 2025, ex-executive coach)</span></summary>
-    <div class="detail-body profile-card-clearfix">
-      <img src="https://www.rafflesgroup.co/wp-content/uploads/2025/11/Caroline-Langston-CPO-RFO-777x1024.png" alt="Caroline Langston" class="profile-photo">
-      <p><strong>Appointed:</strong> November 7, 2025 (newly created role)</p>
-      <p><strong>Previous:</strong> RFO executive coach for 5+ years; 20+ years international experience across Asia, Middle East, Europe; senior roles in finance, consulting, executive development</p>
-      <p><strong>Education:</strong> Postgrad in Neuroscience & Psychology of Mental Health, King's College London; pursuing MSc in same field</p>
-      <p><strong>Role:</strong> People strategy, talent development, cultural initiatives, Raffles Group Academy</p>
-      <p><strong>Reports to:</strong> Chi-man Kwan directly</p>
-      <p><strong>CMK quote:</strong> "Caroline has been instrumental in shaping our leadership mindset over the years"</p>
-      <p class="profile-source">Sources: rafflesgroup.co/raffles-family-office-press-release-2025-11-07, fundselectorasia.com</p>
-    </div>
-  </details>
-
-  <details>
-    <summary>Joe Kwan, PhD — Managing Partner, Real Estate <span class="dim" style="font-weight:400;font-size:12px;">(ex-Chelsfield Asia, UBS)</span></summary>
-    <div class="detail-body profile-card-clearfix">
-      <p><strong>Previous:</strong> Co-Founder Sakal Real Estate Partners; Head of Singapore, Chelsfield Asia; Global Fund Manager, UBS Global Asset Management (also Head of Research & Strategy for APAC RE)</p>
-      <p><strong>Role:</strong> Oversees Raffles Real Estate team under Advanced Wealth Solutions</p>
-      <p><strong>Notable:</strong> Led Tishman Speyer/RFO APAC Opportunity Fund I partnership</p>
-      <p class="profile-source">Sources: edgeprop.sg, citywire.com, bloomberg.com</p>
-    </div>
-  </details>
-
-  <details>
-    <summary>Terence Seow — MD, Board Advisor <span class="dim" style="font-weight:400;font-size:12px;">(May 2025, 40+ years experience)</span></summary>
-    <div class="detail-body">
-      <p><strong>Appointed:</strong> May 2025</p>
-      <p><strong>Previous:</strong> 40+ years experience; Citibank, DBS, Bank of Singapore, and other major financial institutions</p>
-      <p><strong>Expertise:</strong> Market trends, global investments, risk analysis, client advisory, investment solutions</p>
-      <p class="profile-source">Sources: globalprivatebanker.net, finews.asia, fundselectorasia.com, citywire.com</p>
-    </div>
-  </details>
-
-  <details>
-    <summary>Shaun Lim — MD, Relationship Management <span class="dim" style="font-weight:400;font-size:12px;">(May 2025, Reports to Kendrick Lee)</span></summary>
-    <div class="detail-body">
-      <p><strong>Appointed:</strong> May 2025</p>
-      <p><strong>Previous:</strong> 25+ years; Market Head North Asia, Royal Bank of Canada WM; Morgan Stanley; J.P. Morgan; Credit Suisse</p>
-      <p><strong>Based:</strong> Singapore, reports to Kendrick Lee</p>
-      <p class="profile-source">Sources: globalprivatebanker.net, finews.asia, fundselectorasia.com, citywire.com</p>
-    </div>
-  </details>
-
-  <div class="alert alert-info" style="margin-top: 1.5rem;">
-    <strong>Reading the org chart:</strong> Raffles has ~223 employees (est. ZoomInfo) and plans to double to ~400 within 2&ndash;3 years (SCMP 2025). Not a tiny boutique. Three co-founders split leadership geographically (HK, Singapore, Digital Assets). <strong>Terence Chow&rsquo;s departure is the most important signal</strong> &mdash; he owned technology, operations, and business transformation. This gap needs filling. William Chow&rsquo;s quant/asset management background means he may absorb some investment oversight, but the tech/ops mandate likely needs a new owner. The Independent Advisory Board&rsquo;s European gateway mandate (Wijono) confirms international expansion is strategic priority.
-  </div>
-
-  <div class="alert alert-success" style="margin-top: 1.5rem;">
-    <strong>Education Overlap &mdash; Rapport Builders</strong><br><br>
-    <strong>Your background:</strong> MEng Chemical Engineering, Imperial College London (QS #2)<br><br>
-    <table class="edu-table" style="width:100%; border-collapse: collapse; font-size: 14px;">
-      <tr style="border-bottom: 1px solid rgba(201,168,76,0.2);">
-        <td style="padding: 6px 8px;"><strong>Chi-man Kwan</strong></td>
-        <td style="padding: 6px 8px;">BSc Economics &amp; Business Mgmt, Lancaster &bull; Executive MBA, Tsinghua&ndash;INSEAD &bull; Adjunct Prof, HKU</td>
-        <td style="padding: 6px 8px; color: var(--accent);"><strong>UK &rarr; Asia arc.</strong> Both started at UK universities, built careers across Asia. His Tsinghua&ndash;INSEAD MBA shows commitment to cross-cultural business &mdash; your trilingual background + Imperial pedigree is a natural bridge.</td>
-      </tr>
-      <tr style="border-bottom: 1px solid rgba(201,168,76,0.2);">
-        <td style="padding: 6px 8px;"><strong>William Chow</strong></td>
-        <td style="padding: 6px 8px;">MSc Operational Research, LSE</td>
-        <td style="padding: 6px 8px; color: var(--accent);"><strong>Strongest overlap.</strong> Both quantitative postgrads from top London universities. His OR background + your ChemEng = shared language around data-driven, systematic thinking. He&rsquo;ll appreciate your analytical approach to CRM architecture.</td>
-      </tr>
-      <tr style="border-bottom: 1px solid rgba(201,168,76,0.2);">
-        <td style="padding: 6px 8px;"><strong>Terence Chow</strong></td>
-        <td style="padding: 6px 8px;">MBA, Ivey Business School</td>
-        <td style="padding: 6px 8px; color: var(--accent);">Elite business school grad. If he&rsquo;s still involved in handover, he&rsquo;ll appreciate structured thinking and implementation rigour.</td>
-      </tr>
-      <tr style="border-bottom: 1px solid rgba(201,168,76,0.2);">
-        <td style="padding: 6px 8px;"><strong>Caroline Langston</strong></td>
-        <td style="padding: 6px 8px;">Postgrad/MSc Neuroscience &amp; Psychology, King&rsquo;s College London</td>
-        <td style="padding: 6px 8px; color: var(--accent);"><strong>London university connection.</strong> Both science-trained at top London institutions. Her neuroscience-meets-leadership angle parallels your engineering-meets-business trajectory.</td>
-      </tr>
-      <tr style="border-bottom: 1px solid rgba(201,168,76,0.2);">
-        <td style="padding: 6px 8px;"><strong>Ray Tam</strong></td>
-        <td style="padding: 6px 8px;">University of Oxford (LinkedIn); Blockchain Strategy Programme, Sa&iuml;d Business School. Saint Michael&rsquo;s College, Tenbury Wells (UK boarding school).</td>
-        <td style="padding: 6px 8px; color: var(--accent);"><strong>UK-educated from secondary level.</strong> Oxford + Imperial are natural allies. Both invested in continuous learning beyond formal degrees.</td>
-      </tr>
-      <tr style="border-bottom: 1px solid rgba(201,168,76,0.2);">
-        <td style="padding: 6px 8px;"><strong>Kendrick Lee</strong></td>
-        <td style="padding: 6px 8px;">BSc, University of Manchester</td>
-        <td style="padding: 6px 8px; color: var(--accent);">UK-educated. Shared British university experience as a conversation opener.</td>
-      </tr>
-      <tr>
-        <td style="padding: 6px 8px;"><strong>Terence Seow</strong></td>
-        <td style="padding: 6px 8px;">BBA, National University of Singapore (Raffles Institution alumnus)</td>
-        <td style="padding: 6px 8px; color: var(--accent);">Singapore-educated veteran. 40+ years in banking gives him deep context on what CRM systems actually need.</td>
-      </tr>
-    </table>
-    <br>
-    <strong>Key theme:</strong> The leadership team skews heavily UK-educated and quantitatively trained. Your Imperial MEng is not just a credential &mdash; it signals you think the same way they do: data-driven, systematic, rigorous. Lead with this shared DNA.
-  </div>
-</section>
-
-<!-- ==================== LATEST NEWS ==================== -->
-<section id="news">
-  <h2><span class="num">3</span> Latest News &amp; Developments</h2>
-  <p class="dim small">Key recent events to reference in conversation. Shows you&rsquo;ve done your homework.</p>
-
-  <div class="qa-block" style="margin-bottom: 1rem;">
-    <div class="qa-q soft" style="color: var(--danger);">Feb 2026 &mdash; Terence Chow Departing as Group COO</div>
-    <div class="qa-a">
-      <strong>This is the single most important signal for your interview.</strong> Terence Chow (ex-CEO Asia, RBC WM; MBA Ivey) was appointed Group COO in July 2024, owning <strong>technology, operations, business transformation, risk management, and procurement</strong>. He is departing after ~18 months. His mandate &mdash; particularly the technology and business transformation portfolio &mdash; now needs a new owner. <strong>Your CRM project likely sits in the gap he leaves behind.</strong> Tread carefully: do not criticise or speculate about his departure. Instead, frame your value as someone who can deliver on the tech transformation agenda. <span class="proof">Source: asianprivatebanker.com, fundselectorasia.com</span>
-    </div>
-  </div>
-
-  <div class="qa-block" style="margin-bottom: 1rem;">
-    <div class="qa-q soft">Feb 18&ndash;20, 2026 &mdash; Consensus Hong Kong 2026</div>
-    <div class="qa-a">
-      CoinDesk&rsquo;s flagship Web3/crypto summit in Hong Kong, happening this week. With Revo Digital having just secured SFC Type 4 &amp; Type 9 licences (Feb 9, 2026), Raffles/Revo likely has a presence. <strong>Ask about it:</strong> &ldquo;I noticed Consensus HK is happening right now &mdash; is the Revo team attending? I&rsquo;d love to understand how the digital asset side feeds into the broader CRM and client intelligence picture.&rdquo; Shows you track the ecosystem in real-time. <span class="proof">Source: consensus-hongkong.coindesk.com, blockhead.co</span>
-    </div>
-  </div>
-
-  <div class="qa-block" style="margin-bottom: 1rem;">
-    <div class="qa-q soft">Oct 2025 &mdash; Senior HK Hires: Michael Tung (MD) &amp; Jennie Liang (ED)</div>
-    <div class="qa-a">
-      Two senior wealth management professionals from UBS, Morgan Stanley, Credit Suisse, Rockpool Capital, and Ark Advisors backgrounds. Signals: <strong>Raffles is aggressively scaling its Hong Kong RM capacity</strong> to serve growing UHNW client demand. Both report directly to Chi-man Kwan. The fact they come from PE/VC and private banking backgrounds (not just traditional RM) suggests Raffles wants relationship managers who understand deal-making, not just portfolio allocation. <span class="proof">Source: fundselectorasia.com, hubbis.com</span>
-    </div>
-  </div>
-
-  <div class="qa-block" style="margin-bottom: 1rem;">
-    <div class="qa-q soft">Oct 2025 &mdash; Raffles Annual Forum 2025 (10th Anniversary)</div>
-    <div class="qa-a">
-      <strong>Venue:</strong> Four Seasons Hotel Hong Kong. <strong>Theme:</strong> "The Decade Before, A Century Beyond" &mdash; marking Raffles' 10th anniversary. Keynote: Christopher Hui (Secretary for Financial Services & Treasury, HKSAR). Guest: Yusuf Murangwa (Minister of Finance and Economic Planning, Rwanda). <strong>AI Panel:</strong> "The AI Megacycle" moderated by William Chow, featuring Michael Yue (Google HK MD) and Jui Tan (Managing Partner, Lanchi Ventures). <strong>Luxury Panel:</strong> Kevin Ching (Chairman, Christie's Asia), Chris Chong (then-LVMH Group President S&amp;SE Asia &amp; Oceania; RFO Board Advisor &mdash; departed LVMH Feb 2026). Signals: Raffles is positioned as a flagship example of HK's family office ecosystem &mdash; government-endorsed credibility, and the forum showcases their thought leadership across AI, luxury, and Africa expansion. <span class="proof">Source: rafflesgroup.co/annual-forum-2025, info.gov.hk</span>
-    </div>
-  </div>
-
-  <div class="qa-block" style="margin-bottom: 1rem;">
-    <div class="qa-q soft">May 2025 &mdash; Singapore Senior Hires: Terence Seow & Shaun Lim</div>
-    <div class="qa-a">
-      <strong>Terence Seow (MD, Board Advisor):</strong> 40+ years experience from Citibank, DBS, Bank of Singapore, and other major financial institutions. Expertise in market trends, global investments, risk analysis, client advisory, and investment solutions. <strong>Shaun Lim (MD, Relationship Management):</strong> 25+ years experience; previously Market Head North Asia at Royal Bank of Canada WM; also held roles at Morgan Stanley, J.P. Morgan, and Credit Suisse. Based in Singapore, reports to Kendrick Lee. Signals: Raffles is strengthening its Singapore platform with senior talent to drive regional growth. <span class="proof">Source: globalprivatebanker.net, finews.asia, fundselectorasia.com, citywire.com</span>
-    </div>
-  </div>
-
-  <div class="qa-block" style="margin-bottom: 1rem;">
-    <div class="qa-q soft">2025 &mdash; Digital Asset Fund Launch</div>
-    <div class="qa-a">
-      Raffles launched its first full digital asset fund through Raffles Assets Management (HK), offering actively managed exposure to top liquid cryptocurrencies for Professional Investors. Addresses "growing demand for managed institutional-grade digital assets." Signals: Digital assets are not a side experiment &mdash; they're a regulated, licensed product line. The CRM needs to accommodate digital asset holdings alongside traditional wealth. <span class="proof">Source: fundselectorasia.com (Apr 16, 2025)</span>
-    </div>
-  </div>
-
-  <div class="qa-block" style="margin-bottom: 1rem;">
-    <div class="qa-q soft">2025 &mdash; Tishman Speyer / RFO APAC Opportunity Fund I</div>
-    <div class="qa-a">
-      Strategic partnership with Tishman Speyer (global real estate investor) to launch the APAC Opportunity Fund I (US$500M target). Focus areas: brown-to-green, living sector, logistics, special situations, credit, and distressed assets. Grants private wealth investors access to institutional-grade real estate opportunities. Led by Joe Kwan, PhD (Managing Partner, Real Estate). Signals: Raffles is expanding its Advanced Wealth Solutions division with alternative asset classes beyond traditional investments. <span class="proof">Source: wealthbriefingasia.com, bloomberg.com</span>
-    </div>
-  </div>
-
-  <div class="qa-block" style="margin-bottom: 1rem;">
-    <div class="qa-q soft">Dec 2024 &mdash; Abdullatif Kanoo Appointed for Middle East Expansion</div>
-    <div class="qa-a">
-      5th-generation member of the Kanoo Group (Abu Dhabi-based conglomerate) joined the Independent Advisory Board. Signals: Raffles is accelerating Middle East expansion with a trusted regional partner. The Kanoo family's extensive business network in the Gulf provides a strategic gateway for UAE market entry. <span class="proof">Source: rafflesgroup.co</span>
-    </div>
-  </div>
-
-  <div class="qa-block" style="margin-bottom: 1rem;">
-    <div class="qa-q soft">2024 &mdash; Thailand Office Launch</div>
-    <div class="qa-a">
-      Raffles opened its Bangkok representative office, appointing <strong>Thidatip Thitikarunwong (MD & Market Head)</strong> to lead operations. Previous: Director at Credit Suisse Private Bank; CIMB Thai Bank; United Overseas Bank; Citi. Also appointed <strong>Dr. Niti Nerngchamnong</strong> (LL.D., Managing Partner NITI Law Office Bangkok) as governance advisor for family succession planning. Harvard Law and Cambridge Judge executive education. Signals: Southeast Asia expansion continues with Thailand as a key market. <span class="proof">Source: asianprivatebanker.com, fundselectorasia.com</span>
-    </div>
-  </div>
-
-  <div class="qa-block" style="margin-bottom: 1rem;">
-    <div class="qa-q soft">2024 &mdash; Cerebras Systems Full Exit</div>
-    <div class="qa-a">
-      Raffles invested early in Cerebras Systems (AI chip company) and achieved a full exit &mdash; reportedly one of their successful alternative investment plays. Signals: Demonstrates Raffles' ability to identify and exit high-growth tech investments. Relevant context for AI-driven CRM conversations &mdash; they understand the AI ecosystem from an investment lens too. <span class="proof">Source: rafflesgroup.co, SCMP 2025</span>
-    </div>
-  </div>
-
-  <div class="qa-block" style="margin-bottom: 1rem;">
-    <div class="qa-q soft">Feb 2024 &mdash; Dubai Renewable Energy MoU with Sheikh Al Maktoum</div>
-    <div class="qa-a">
-      Raffles signed a Memorandum of Understanding for renewable energy investment in partnership with a member of the Al Maktoum royal family. Part of Raffles' broader Middle East expansion strategy. Signals: The Gulf engagement goes beyond family office services into strategic co-investment. Demonstrates the relationship-first approach that the CRM needs to support &mdash; tracking complex multi-party deal flows across jurisdictions. <span class="proof">Source: SCMP 2025, rafflesgroup.co</span>
-    </div>
-  </div>
-
-  <div class="qa-block" style="margin-bottom: 1rem;">
-    <div class="qa-q soft">2025 &mdash; Revo Digital Gets SFC Type 4 & Type 9 Licences</div>
-    <div class="qa-a">
-      Revo Digital Family Office secured SFC licences to provide digital asset portfolio services in Hong Kong. Enables management of digital + traditional asset portfolios. Custody via Zodia Custody partnership. First digital MFO in Asia. Signals: Digital assets are a core strategic pillar, not a side experiment. <span class="proof">Source: blockhead.co (Feb 9, 2026), fundselectorasia.com</span>
-    </div>
-  </div>
-
-  <div class="qa-block" style="margin-bottom: 1rem;">
-    <div class="qa-q soft">2025 &mdash; Geographic Expansion to UAE &amp; Rwanda</div>
-    <div class="qa-a">
-      Raffles is expanding beyond Asia into the <strong>United Arab Emirates</strong> (2+ years of engagement, Abdullatif Kanoo appointed Dec 2024) and <strong>Rwanda</strong> (generational bet on Africa, Chi-man Kwan attended Inclusive Fintech Forum, Rwanda Finance Minister spoke at RFO forum). Signals: Raffles is thinking multi-decade and multi-continent. This adds complexity to CRM requirements: new jurisdictions, new regulatory regimes, new client profiles. The person managing their technology needs to think globally. <span class="proof">Source: rafflesgroup.co, info.gov.hk</span>
-    </div>
-  </div>
-
-  <div class="qa-block" style="margin-bottom: 1rem;">
-    <div class="qa-q soft">2024 &mdash; William Chow Appointed Deputy Group CEO</div>
-    <div class="qa-a">
-      Joined from China Life Franklin Asset Management (US$35B AUM). Previous: PINS AM, Value Partners, BlackRock, State Street, UBS. <strong>Quant background (MSc Operational Research, LSE)</strong>. Appointed to Board of Management and Investment Committee. Signals: Raffles is professionalising its investment governance. Chow brings institutional-grade operational rigour &mdash; the kind of person who would appreciate data-driven, systematic CRM approaches. <span class="proof">Source: fundselectorasia.com, citywire.com</span>
-    </div>
-  </div>
-
-  <div class="qa-block" style="margin-bottom: 1rem;">
-    <div class="qa-q soft">Sep 2023 &mdash; Revo Digital Seed Round</div>
-    <div class="qa-a">
-      Revo Digital Family Office raised its seed round from UOB Venture Management, Signum Capital, and Gate.io. This capitalized the entity that would go on to secure SFC licences and become Asia's first digital multi-family office. Signals: Revo is positioned as a standalone venture within the Raffles ecosystem, not just a product line. The CRM may need to treat Revo as a distinct entity with its own client base, compliance regime, and reporting structure. <span class="proof">Source: crunchbase.com, blockhead.co</span>
-    </div>
-  </div>
-
-  <div class="qa-block">
-    <div class="qa-q soft">Ongoing &mdash; RFO App 3rd Upgrade with Proprietary AI</div>
-    <div class="qa-a">
-      Raffles has been <strong>investing in an AI-powered RFO app</strong>, now on its third upgrade. Using AI to analyse client data, understand preferences, and support their &ldquo;discovery-based advisory&rdquo; approach. Signals: They already value AI in client engagement &mdash; they&rsquo;re not AI-skeptics. The question is whether they want to deepen this capability internally or continue with external vendors. This is your opening if asked about AI. <span class="proof">Source: rafflesgroup.co</span>
-    </div>
-  </div>
-</section>
-
-<!-- ==================== EXPERIENCE BRIDGE ==================== -->
-<section id="experience">
-  <h2><span class="num">4</span> Experience Bridge &mdash; How Your Past Maps to Their Needs</h2>
-
-  <p class="dim">Each story bridges a concrete past experience to a Raffles-relevant capability. Use these as structured STAR answers.</p>
-
-  <details open>
-    <summary>Story 1: Building a CRM from Zero to 55K Subscribers</summary>
-    <div class="detail-body">
-      <p><strong>Situation:</strong> STT Mall had no customer intelligence &mdash; transactions were anonymous, repeat purchase rates unknown, zero segmentation.</p>
-      <p><strong>Task:</strong> Design and build a customer relationship system that could segment, engage, and retain 55,000+ subscribers across email, social, and direct channels.</p>
-      <p><strong>Action:</strong> Built segmentation engine on Supabase/PostgreSQL with Klaviyo integration. Designed behavioural scoring models (purchase frequency, recency, basket composition). Created automated engagement flows triggered by segment transitions. Implemented row-level security for team access control.</p>
-      <p><strong>Result:</strong> 55,497 active subscribers. Automated engagement drove measurable retention improvement. System handled the full customer lifecycle from acquisition through reactivation.</p>
-
-      <div class="alert alert-success">
-        <strong>Bridge to Raffles:</strong> The architectural pattern &mdash; hierarchical entity classification, behavioural scoring, automated engagement, access-controlled views &mdash; maps directly to family office needs. The scale is different (55K consumers vs ~200 UHNW families), but the data architecture is structurally identical: entities with complex relationships, scored by multiple dimensions, triggering personalised workflows.
-      </div>
-
-      <div class="alert alert-danger">
-        <strong>Honest Framing (Critical):</strong> Do NOT say &ldquo;I built a CRM for wealth management.&rdquo; Say: &ldquo;I built a customer intelligence platform for e-commerce. The entity modeling and segmentation patterns translate directly, though I fully appreciate that a family office context adds regulatory compliance, multi-jurisdiction data governance, and the gravity of handling UHNW-sensitive information &mdash; dimensions I&rsquo;m experienced enough to respect and disciplined enough to get right.&rdquo;
-      </div>
-    </div>
-  </details>
-
-  <details>
-    <summary>Story 2: KKR Deal Room &mdash; Understanding Institutional Investment Workflows</summary>
-    <div class="detail-body">
-      <p><strong>Situation:</strong> At Emerald Media (KKR&rsquo;s USD 300M Asia media/tech fund), deal flow management was the core operational challenge &mdash; tracking opportunities from sourcing through IC presentation through post-investment monitoring.</p>
-      <p><strong>Task:</strong> Support the full PE lifecycle: sourcing, due diligence, financial modelling, Investment Committee presentations, portfolio monitoring.</p>
-      <p><strong>Action:</strong> Built financial models and IC presentations for KKR senior leadership. Managed deal pipeline across APAC markets. Coordinated due diligence workstreams across legal, financial, and operational tracks. Key deal: aCommerce Series B (~USD 65M) &mdash; Southeast Asia&rsquo;s leading e-commerce enabler (260+ brands, 1,200+ staff, 5 ASEAN markets).</p>
-      <p><strong>Result:</strong> Direct experience with institutional-grade deal flow management, LP/IC reporting cadence, and the rigour expected when billions are at stake.</p>
-
-      <div class="alert alert-success">
-        <strong>Bridge to Raffles:</strong> Family offices manage deal flow similarly to PE funds &mdash; opportunity tracking, allocation decisions, portfolio monitoring. I have sat in the room where these decisions are made, built the materials that inform them, and understand the data architecture that supports them. I don&rsquo;t just build software for investors &mdash; I have been the investor.
-      </div>
-    </div>
-  </details>
-
-  <details>
-    <summary>Story 3: Operational Transformation at Scale (Proudfoot/Lafarge)</summary>
-    <div class="detail-body">
-      <p><strong>Situation:</strong> At Alexander Proudfoot (specialist operational transformation consultancy), embedded in Lafarge China to consolidate HR, Finance, and Purchasing functions across all Chinese operations.</p>
-      <p><strong>Task:</strong> Interview stakeholders from floor to C-suite, map processes, build financial models with KPIs, and deliver measurable savings through organisational restructuring.</p>
-      <p><strong>Action:</strong> Led stakeholder interviews across the organisation. Built comprehensive process maps and benefits models. Designed the target operating model for consolidated functions. Delivered hands-on implementation, not just recommendations.</p>
-      <p><strong>Result:</strong> Millions in annual recurring savings. The methodology &mdash; diagnose, model, implement, measure &mdash; is exactly how I approach any technology transformation project.</p>
-
-      <div class="alert alert-success">
-        <strong>Bridge to Raffles:</strong> A CRM project is an operational transformation project. The technology is 30% of the work &mdash; the other 70% is understanding how people actually work, mapping existing processes, identifying friction points, and designing systems that people will actually use. Proudfoot trained me to do exactly that.
-      </div>
-    </div>
-  </details>
-
-  <details>
-    <summary>Story 4: COO Through Crisis &mdash; 10x Efficiency Under Pressure</summary>
-    <div class="detail-body">
-      <p><strong>Situation:</strong> Post-COVID, Hong Kong retail collapsed. STT Mall went from HKD 120M peak revenue to severe downturn. 15+ full-time staff and significant operational overhead.</p>
-      <p><strong>Task:</strong> Restructure the business to survive &mdash; without destroying capability or customer relationships.</p>
-      <p><strong>Action:</strong> Led multiple restructurings. Automated manual processes. Redesigned technology infrastructure from the ground up. Made brutal prioritisation decisions about what to keep and what to cut.</p>
-      <p><strong>Result:</strong> 10x improvement in revenue per full-time employee (HKD 10M per headcount). The business survived. Technology was the lever that made it possible.</p>
-
-      <div class="alert alert-success">
-        <strong>Bridge to Raffles:</strong> A small team (~8 people) managing complex UHNW relationships across 6+ cities is the exact problem I solved at STT Mall &mdash; how do you make a lean team punch above its weight through technology? I have the scars from doing this for 11 years.
-      </div>
-    </div>
-  </details>
-
-  <h3>Career Timeline &mdash; Relevance Map</h3>
-  <div class="timeline">
-    <div class="tl-item">
-      <div class="tl-date">2015 &ndash; Present</div>
-      <div class="tl-title">STT Mall Hong Kong</div>
-      <div class="tl-org">Founding Partner &amp; COO</div>
-      <div class="tl-relevance"><strong>Relevance:</strong> Built entire tech stack from scratch. AI-driven CRM (55K+ subscribers). HKD 120M peak revenue. 10x efficiency gains post-restructuring. Proven ability to architect, build, and operate at scale as a solo technical leader.</div>
-    </div>
-    <div class="tl-item">
-      <div class="tl-date">2016 &ndash; 2018</div>
-      <div class="tl-title">Emerald Media / KKR</div>
-      <div class="tl-org">Investment Associate, USD 300M Fund</div>
-      <div class="tl-relevance"><strong>Relevance:</strong> PE deal flow lifecycle. IC presentations for KKR leadership. aCommerce Series B (~USD 65M). Understands LP reporting, portfolio monitoring, deal pipeline management.</div>
-    </div>
-    <div class="tl-item">
-      <div class="tl-date">2013 &ndash; 2014</div>
-      <div class="tl-title">Alexander Proudfoot</div>
-      <div class="tl-org">Management Consultant</div>
-      <div class="tl-relevance"><strong>Relevance:</strong> Operational transformation methodology. Stakeholder interviews, process mapping, benefits modelling, hands-on implementation. Lafarge China: millions in annual savings.</div>
-    </div>
-    <div class="tl-item">
-      <div class="tl-date">2010 &ndash; 2014</div>
-      <div class="tl-title">ANZ Banking Group</div>
-      <div class="tl-org">Analyst &rarr; Associate Director, TMET Coverage</div>
-      <div class="tl-relevance"><strong>Relevance:</strong> Covered TSMC, Tencent, Alibaba, Huawei, Lenovo. Part of Alibaba&rsquo;s USD 2.5B HKEX privatisation syndicate. Deep corporate finance, DCM, M&amp;A. Understands how institutional deals are structured.</div>
-    </div>
-    <div class="tl-item">
-      <div class="tl-date">2008 &ndash; 2010</div>
-      <div class="tl-title">Bloomberg LP</div>
-      <div class="tl-org">Regional Treasury / Cash Management, APAC</div>
-      <div class="tl-relevance"><strong>Relevance:</strong> Cash management, multi-entity fund allocation, APAC banking relationships. Established regional cash pooling functions across multiple banking partners.</div>
-    </div>
-  </div>
-</section>
-
-<!-- ==================== TECHNICAL FLUENCY ==================== -->
-<section id="fluency">
-  <h2><span class="num">5</span> Technical Fluency Cards</h2>
-  <p class="dim">Show conceptual fluency. Do NOT claim implementation in financial services &mdash; demonstrate you understand the domain deeply enough to execute.</p>
-
-  <details>
-    <summary>Entity & Relationship Modelling for Family Offices</summary>
-    <div class="detail-body">
-      <p>Family office CRM is fundamentally a <strong>graph problem</strong>, not a flat contact database.</p>
-      <p><strong>Entity hierarchy:</strong> Family Group &rarr; Family Members &rarr; Entities (trusts, SPVs, holding companies) &rarr; Accounts &rarr; Assets/Positions. Each node carries its own compliance profile, jurisdiction, and access controls.</p>
-      <p><strong>Polymorphic relationships:</strong> A single individual can simultaneously be a beneficiary of Trust A, director of HoldCo B, and LP in Fund C. The data model must handle this natively &mdash; not through workarounds.</p>
-      <p><strong>Your proof point:</strong> At STT Mall, you built hierarchical customer segmentation with behavioural scoring across multiple dimensions. The pattern is structurally identical &mdash; entities with complex, overlapping relationships, scored and classified dynamically.</p>
-      <p><strong>Industry reference:</strong> Salesforce Financial Services Cloud models this with &ldquo;household&rdquo; objects and related account hierarchies. DealCloud and 4Degrees use graph-based relationship intelligence. If Raffles uses Salesforce FSC, you should reference this specific data model.</p>
-    </div>
-  </details>
-
-  <details>
-    <summary>Compliance, Audit Trails & Data Governance</summary>
-    <div class="detail-body">
-      <p><strong>Event-sourced audit trail:</strong> Every state change is an immutable event, not an overwritten row. This is non-negotiable in regulated environments (SFC, MAS). You can always reconstruct the state of any record at any point in time.</p>
-      <p><strong>Row-level security (RLS):</strong> Relationship managers see only their families. Compliance sees everything. Investment team sees deal pipeline. Leadership sees aggregated views. This maps directly to Supabase RLS, which you have implemented at STT Mall.</p>
-      <p><strong>Regulatory landscape:</strong></p>
-      <ul>
-        <li>Hong Kong: SFC licensing, PDPO (data privacy), AMLO (AML/KYC)</li>
-        <li>Singapore: MAS licensing, PDPA (data privacy), CDSA (corruption/drug trafficking proceeds)</li>
-        <li>Cross-border: Data residency requirements may prevent single-region deployment</li>
-      </ul>
-      <p><strong>Key vocabulary to use:</strong> Suitability assessment, investment mandate tracking, beneficial ownership, Know Your Customer (KYC), Anti-Money Laundering (AML), Suspicious Transaction Report (STR).</p>
-    </div>
-  </details>
-
-  <details>
-    <summary>Deal Flow as a State Machine</summary>
-    <div class="detail-body">
-      <p>Family offices track investment opportunities through a <strong>deterministic pipeline</strong> &mdash; not freeform status strings.</p>
-      <p><strong>Typical stages:</strong> Sourcing &rarr; Initial Review &rarr; Due Diligence &rarr; IC/Family Review &rarr; Commitment &rarr; Closing &rarr; Post-Investment Monitoring</p>
-      <p>Each transition should have: mandatory fields, approval gates, timestamp/audit, notification triggers.</p>
-      <p><strong>Your proof point:</strong> At Emerald Media/KKR, you lived this pipeline daily. You built the IC presentations that represented the decision gates. You understand that deal flow is not a to-do list &mdash; it is a governed process with institutional accountability at each stage.</p>
-    </div>
-  </details>
-
-  <details>
-    <summary>Integration Layer &mdash; Where CRM Projects Actually Fail</summary>
-    <div class="detail-body">
-      <p>Most family office CRM implementations fail not on the CRM itself but on <strong>integrations</strong>:</p>
-      <ul>
-        <li><strong>Custodian feeds:</strong> Pershing, Interactive Brokers, private banks &mdash; each with proprietary APIs, FIX protocol, or flat-file feeds with 6-month onboarding cycles</li>
-        <li><strong>Market data:</strong> Bloomberg terminal integration, Reuters, pricing feeds</li>
-        <li><strong>Document management:</strong> Secure storage with version control, client portal distribution</li>
-        <li><strong>Accounting/reporting:</strong> CRMs handle relationships; financial reporting requires reconciled accounting data (FundCount, Addepar, Masttro)</li>
-      </ul>
-      <p><strong>Your proof point:</strong> At STT Mall, you integrated Klaviyo, Shopify, Supabase, SendGrid, and multiple payment/logistics APIs into a unified operational stack. Integration architecture is a core competency.</p>
-    </div>
-  </details>
-
-  <details>
-    <summary>AI-Native Operational Methodology</summary>
-    <div class="detail-body">
-      <div class="alert alert-info">
-        <strong>Calibration:</strong> Only discuss this if asked about your development process or AI capabilities. Do NOT lead with it. Frame as operational methodology, not tooling.
-      </div>
-
-      <p><strong>High-level framing:</strong> &ldquo;I&rsquo;ve developed an AI-native operational methodology that separates strategic decisions from bulk execution. It lets me validate ideas in hours, pressure-test decisions through multi-perspective analysis, and maintain strategic coherence across complex projects.&rdquo;</p>
-
-      <p><strong>What to emphasise:</strong></p>
-      <ul>
-        <li>Force multiplier for small teams &mdash; one technical person producing the throughput of three</li>
-        <li>Strategic Council concept: structured multi-perspective analysis before major decisions (5 lenses: architecture, risks, strategy, feasibility, synthesis)</li>
-        <li>Quality gates: test-driven development, security review, code review &mdash; automated pipeline</li>
-        <li>Allows rapid prototyping and iteration &mdash; from idea to working prototype in days, not months</li>
-      </ul>
-
-      <p><strong>What to NOT say:</strong></p>
-      <ul>
-        <li>Do NOT mention specific LLM providers routing UHNW client data (privacy red flag)</li>
-        <li>Do NOT mention token costs or model routing (sounds engineering, not strategic)</li>
-        <li>Do NOT describe Claudia/Max by name (sounds whimsical in a family office context)</li>
-        <li>Frame as &ldquo;AI-augmented development methodology&rdquo; &mdash; not &ldquo;I have an AI Chief of Staff&rdquo;</li>
-      </ul>
-
-      <p><strong>If pressed on data privacy:</strong> &ldquo;Any AI capabilities touching client data would use on-premise or private-cloud models only. I understand that UHNW client data cannot touch third-party APIs. The methodology is about how I structure work and make decisions, not about running client data through external systems.&rdquo;</p>
-    </div>
-  </details>
-
-  <details>
-    <summary>Build vs. Buy &mdash; The Right Framework</summary>
-    <div class="detail-body">
-      <p>This is likely the most important positioning question. Do NOT propose building a CRM from scratch.</p>
-
-      <p><strong>The right answer:</strong> &ldquo;The core CRM should be a proven platform (Salesforce Financial Services Cloud, Wealth Dynamix, DealCloud) configured for your specific entity model and workflows. Where I add value is in three areas:&rdquo;</p>
-
-      <ol style="padding-left: 1.5rem; margin: 1rem 0;">
-        <li style="margin-bottom: 0.5rem;"><strong>Integration layer</strong> &mdash; connecting the CRM to custodians, market data, reporting systems, and your RFO app</li>
-        <li style="margin-bottom: 0.5rem;"><strong>Internal tooling</strong> &mdash; automations, dashboards, workflow optimisations that are too specific for off-the-shelf</li>
-        <li style="margin-bottom: 0.5rem;"><strong>AI-powered features</strong> &mdash; relationship intelligence, automated insights, client engagement recommendations (prototyped and validated before production)</li>
-      </ol>
-
-      <p><strong>Why this positioning wins:</strong> It shows you understand that a regulated environment demands proven, auditable platforms for core functions &mdash; while demonstrating you can add value through customisation, integration, and innovation on top of that foundation.</p>
-    </div>
-  </details>
-</section>
-
-<!-- ==================== AI PROPOSALS ==================== -->
-<section id="ai-proposals">
-  <h2><span class="num">6</span> AI Proposals for Discussion</h2>
-  <p class="dim">These are conversation starters, not sales pitches. Only raise if the discussion naturally turns to technology or AI. Frame as &ldquo;ideas worth exploring&rdquo; &mdash; not &ldquo;here&rsquo;s what I would build.&rdquo;</p>
-
-  <div class="alert alert-info" style="margin-bottom: 1.5rem;">
-    <strong>Industry context:</strong> 3x more family offices are leveraging AI in 2025 vs 2024. Top investment priorities for 2026: AI/automation and data/reporting split evenly. Expect agentic interfaces embedded in dashboards and the rise of &ldquo;hybrid operator&rdquo; roles blending domain expertise with AI oversight. <em>This is the role Arthur is interviewing for.</em>
-  </div>
-
-  <details open>
-    <summary>Proposal 1: Relationship Intelligence Layer</summary>
-    <div class="detail-body">
-      <p><strong>The problem:</strong> As Raffles scales (new RMs, new markets, new clients), institutional knowledge about relationships gets lost. Who introduced whom? Which families have co-invested? What are the connection patterns between clients?</p>
-      <p><strong>The AI opportunity:</strong> A relationship intelligence layer that automatically captures and maps connections from emails, meeting notes, and deal activity. Not replacing the RM&rsquo;s judgment &mdash; augmenting their memory. When a new RM joins (like Tung and Liang just did), they get instant context on every family&rsquo;s history and network.</p>
-      <p><strong>Privacy-first approach:</strong> All processing on-premise or private cloud. No client data leaves the organisation&rsquo;s infrastructure. Rule-based matching first, ML layer only for pattern recognition on anonymised metadata.</p>
-      <p><strong>Industry precedent:</strong> DealCloud and 4Degrees are built entirely around this concept. Salesforce Einstein offers it within FSC. The question is whether Raffles wants to adopt a platform solution or build a proprietary layer that becomes a competitive moat.</p>
-      <p><strong>Your proof point:</strong> Built behavioural scoring and automated segmentation for 55K+ subscribers at STT Mall. The pattern &mdash; ingesting interaction data, classifying relationships, triggering personalised actions &mdash; is the same.</p>
-    </div>
-  </details>
-
-  <details>
-    <summary>Proposal 2: Intelligent Client Onboarding &amp; KYC Workflow</summary>
-    <div class="detail-body">
-      <p><strong>The problem:</strong> Onboarding a UHNW family is a compliance-heavy, multi-jurisdiction process. Document collection, identity verification, beneficial ownership mapping, source-of-wealth validation &mdash; each jurisdiction (HK, SG, UAE, Rwanda) has different requirements.</p>
-      <p><strong>The AI opportunity:</strong> An intelligent onboarding workflow that: (1) identifies which documents are needed based on family structure and jurisdictions, (2) extracts and validates key data from submitted documents using document AI, (3) flags anomalies or missing information before compliance review, (4) maintains an audit trail of every step.</p>
-      <p><strong>Privacy-first approach:</strong> Document processing via on-premise OCR and extraction models. No client documents uploaded to external APIs. Human-in-the-loop for all compliance decisions &mdash; AI assists, never decides.</p>
-      <p><strong>Why this matters now:</strong> Raffles is expanding to UAE and Rwanda. Each new jurisdiction multiplies the onboarding complexity. Automating the 80% that is mechanical (document collection, data extraction, checklist completion) frees compliance staff for the 20% that requires judgment.</p>
-    </div>
-  </details>
-
-  <details>
-    <summary>Proposal 3: AI-Powered Client Insights for the RFO App</summary>
-    <div class="detail-body">
-      <p><strong>The problem:</strong> Raffles&rsquo; RFO app is on its 3rd upgrade with a proprietary AI function. The question is: what&rsquo;s the next evolution that deepens client engagement?</p>
-      <p><strong>The AI opportunity:</strong> Personalised insights surfaced through the app: (1) portfolio-relevant news and market movements tailored to each family&rsquo;s holdings and interests, (2) event and opportunity alerts based on the family&rsquo;s investment mandate and deal flow preferences, (3) natural language queries &mdash; &ldquo;show me my Hong Kong real estate exposure across all entities&rdquo; &mdash; instead of navigating dashboards.</p>
-      <p><strong>Privacy-first approach:</strong> The AI model runs within Raffles&rsquo; infrastructure. Client queries and portfolio data never leave the secure environment. Insights are generated by matching public market data against private portfolio positions &mdash; only the matching logic touches sensitive data.</p>
-      <p><strong>Competitive advantage:</strong> Most family office apps are portfolio reporting dashboards. An AI-powered insight engine that proactively surfaces opportunities and risks &mdash; tailored to each family &mdash; becomes a reason clients stay with Raffles over competitors.</p>
-    </div>
-  </details>
-
-  <details>
-    <summary>Proposal 4: Cross-Entity Reporting Automation</summary>
-    <div class="detail-body">
-      <p><strong>The problem:</strong> A single UHNW family might have 10+ entities (personal accounts, trusts, SPVs, holdcos, LPs) across 4 jurisdictions. Producing a consolidated family view requires pulling data from multiple custodians, reconciling currencies, and presenting it coherently.</p>
-      <p><strong>The AI opportunity:</strong> Automated data ingestion from custodian feeds (structured and unstructured) with AI-powered reconciliation. The system learns each custodian&rsquo;s reporting format, maps positions to a unified schema, and flags discrepancies for human review. Result: consolidated family reports generated in hours instead of days.</p>
-      <p><strong>Why this matters:</strong> This is the #1 operational pain point for multi-family offices. Every RM hour spent on manual reconciliation is an hour not spent on client relationships. Automating reporting directly improves the client experience AND the RM&rsquo;s productivity.</p>
-      <p><strong>Your proof point:</strong> At STT Mall, you integrated Klaviyo, Shopify, Supabase, SendGrid, and multiple payment/logistics APIs into a unified data pipeline. Multi-source data integration and reconciliation is a core competency.</p>
-    </div>
-  </details>
-
-  <div class="alert alert-danger" style="margin-top: 1.5rem;">
-    <strong>How to present these:</strong> Do NOT open with &ldquo;I have 4 AI proposals.&rdquo; Instead, listen for their pain points, then selectively mention the most relevant idea as &ldquo;something I&rsquo;ve been thinking about&rdquo; or &ldquo;one area where I see an opportunity.&rdquo; If they bite, go deeper. If they don&rsquo;t, move on. The goal is to demonstrate you think about their business strategically &mdash; not to pitch.
-  </div>
-</section>
-
-<!-- ==================== HARD QUESTIONS ==================== -->
-<section id="questions">
-  <h2><span class="num">7</span> Hard Questions &mdash; Prepared Answers</h2>
-  <p class="dim">Red = tough/adversarial. Blue = exploratory. Click to expand answers.</p>
-
-  <div class="qa-block">
-    <div class="qa-q">&ldquo;Your CRM experience is e-commerce. What makes you think you can build for a family office?&rdquo;</div>
-    <div class="qa-a">
-      <strong>Acknowledge the gap, then bridge it.</strong> &ldquo;You&rsquo;re right that the domain is different &mdash; 55,000 e-commerce subscribers and 200 UHNW families are different worlds in terms of sensitivity, compliance, and relationship depth. But the underlying data architecture is structurally the same: hierarchical entities with complex relationships, multi-dimensional scoring, automated workflows, and strict access controls. I&rsquo;ve built that architecture. What I bring additionally is that I&rsquo;m not just a developer &mdash; I sat in KKR deal rooms, I covered TMT at ANZ, I did operational transformations at Proudfoot. I understand the investment world from the inside.&rdquo; <span class="proof">KKR + ANZ + Proudfoot</span>
-    </div>
-  </div>
-
-  <div class="qa-block">
-    <div class="qa-q">&ldquo;Walk me through how you would handle a client whose assets span four jurisdictions with conflicting data residency laws.&rdquo;</div>
-    <div class="qa-a">
-      <strong>Show you understand the complexity without overclaiming.</strong> &ldquo;This is exactly the kind of problem where technology alone isn&rsquo;t the answer &mdash; it requires collaboration with compliance and legal. Architecturally, you&rsquo;d need jurisdiction-aware data partitioning: different data residency zones with clear policies on what data can be aggregated cross-border and what must stay local. In HK and Singapore specifically, PDPO and PDPA have different consent models for cross-border data transfer. I would work with your compliance team to define the data governance policy first, then implement the technical architecture to enforce it. I&rsquo;ve implemented row-level security and multi-tenant data architecture &mdash; this is an extension of that pattern, but the governance layer must come from compliance, not engineering.&rdquo; <span class="proof">PDPO + PDPA awareness</span>
-    </div>
-  </div>
-
-  <div class="qa-block">
-    <div class="qa-q">&ldquo;Our clients will not accept their data in any cloud AI system. How do you build AI features under that constraint?&rdquo;</div>
-    <div class="qa-a">
-      <strong>Show privacy-first thinking.</strong> &ldquo;That&rsquo;s the right stance for UHNW clients. AI features for client-facing use should run on-premise or private-cloud models &mdash; no third-party API calls with client data. For internal productivity and development processes, AI tools can be used with anonymised or synthetic data. The approach I&rsquo;d take: start with rule-based automation for compliance workflows and client engagement triggers, then layer in private AI models for things like relationship intelligence and natural language search across documents. The AI methodology I use for my own development process is separate from what touches client data.&rdquo; <span class="proof">Privacy-first architecture</span>
-    </div>
-  </div>
-
-  <div class="qa-block">
-    <div class="qa-q">&ldquo;What is your experience with SFC and MAS regulatory reporting?&rdquo;</div>
-    <div class="qa-a">
-      <strong>Honest answer + demonstrate you&rsquo;ve done the homework.</strong> &ldquo;I haven&rsquo;t built regulatory reporting systems for SFC or MAS specifically. What I have done is work within regulated financial institutions &mdash; ANZ and Bloomberg &mdash; where I saw these frameworks operate from the inside. I understand that SFC and MAS have different licensing regimes, different reporting cadences, and different data requirements. For a CRM project, the critical touchpoints are: ensuring audit trails meet regulatory standards, AML/KYC data capture is complete and timely, and suitability assessments are tracked per client per product. I&rsquo;d work closely with your compliance team to translate regulatory requirements into system specifications &mdash; that translation layer between business requirements and technical implementation is exactly where I operate best.&rdquo; <span class="proof">ANZ + Bloomberg regulatory exposure</span>
-    </div>
-  </div>
-
-  <div class="qa-block">
-    <div class="qa-q">&ldquo;Why should we trust a self-taught developer with systems handling our clients&rsquo; most sensitive data?&rdquo;</div>
-    <div class="qa-a">
-      <strong>Reframe from &ldquo;self-taught&rdquo; to &ldquo;self-directed learner who builds production systems.&rdquo;</strong> &ldquo;Fair question. Two things: First, I&rsquo;m not proposing to be your sole engineer writing security-critical code without oversight &mdash; core CRM and compliance systems should use proven, auditable platforms with vendor support. Second, what &lsquo;self-taught&rsquo; actually means in my case: I&rsquo;ve built and operated production systems handling 55,000 customer records, processing real transactions, for 11 years. I practice test-driven development, security review, and code review as standard methodology. My engineering degree from Imperial College gave me the analytical foundation. What I offer isn&rsquo;t a junior developer &mdash; it&rsquo;s a COO who understands technology deeply enough to bridge the gap between what you need and what vendors deliver.&rdquo; <span class="proof">11 years production + TDD</span>
-    </div>
-  </div>
-
-  <div class="qa-block">
-    <div class="qa-q">&ldquo;What happens when you leave? Can someone else maintain what you build?&rdquo;</div>
-    <div class="qa-a">
-      <strong>Show you think about sustainability.</strong> &ldquo;This is why I advocate for proven platforms as the foundation &mdash; Salesforce, DealCloud, whatever you choose &mdash; with a deep ecosystem of developers who can maintain them. The custom work I build on top follows strict standards: test-driven development means every feature has automated tests that verify behaviour. Everything is documented. I use standard frameworks and patterns, not proprietary abstractions. My goal is to build systems that outlast me &mdash; I learned that lesson at STT Mall, where I built infrastructure that other team members could operate independently.&rdquo; <span class="proof">TDD + Standards</span>
-    </div>
-  </div>
-
-  <div class="qa-block">
-    <div class="qa-q soft">&ldquo;What CRM platform would you recommend for a family office like ours?&rdquo;</div>
-    <div class="qa-a">
-      <strong>Show breadth, but deflect to discovery.</strong> &ldquo;It depends on your primary pain points. If relationship intelligence and deal sourcing are priorities, DealCloud or 4Degrees are purpose-built. If you need enterprise-grade customisation with household entity modeling, Salesforce Financial Services Cloud is the standard. If you want something lighter with strong advisor workflow, Wealthbox or Redtail. But honestly, the right answer requires understanding what you&rsquo;re currently using, what your team actually struggles with day-to-day, and what your 18-month roadmap looks like. I&rsquo;d want to spend my first two weeks doing a proper technology assessment before recommending anything.&rdquo; <span class="proof">Platform knowledge + consulting discipline</span>
-    </div>
-  </div>
-
-  <div class="qa-block">
-    <div class="qa-q soft">&ldquo;How would you approach the first 90 days?&rdquo;</div>
-    <div class="qa-a">
-      See the <a href="#ninety-days" style="color: var(--accent);">First 90 Days framework</a> below.
-    </div>
-  </div>
-</section>
-
-<!-- ==================== QUESTIONS TO ASK ==================== -->
-<section id="ask-them">
-  <h2><span class="num">8</span> Questions to Ask Raffles</h2>
-  <p class="dim">Smart questions signal depth. Ask these to demonstrate domain understanding and gather intel.</p>
-
-  <div class="ask-grid">
-    <div class="ask-card">
-      <div class="ask-category">Current Technology</div>
-      <p>&ldquo;What systems are you currently using for client relationship management? Are you looking to replace, augment, or integrate?&rdquo;</p>
-      <div class="why">Signals: you know the answer matters. Tells you if this is a build, buy, or integrate conversation.</div>
-    </div>
-    <div class="ask-card">
-      <div class="ask-category">Pain Points</div>
-      <p>&ldquo;When a new relationship manager joins, how long does it take them to get full context on a family&rsquo;s history and relationships?&rdquo;</p>
-      <div class="why">Signals: you understand onboarding friction. This is a concrete pain point for growing teams.</div>
-    </div>
-    <div class="ask-card">
-      <div class="ask-category">RFO App</div>
-      <p>&ldquo;Your RFO app is on its third upgrade &mdash; what has the journey taught you about what your clients actually value in a digital experience?&rdquo;</p>
-      <div class="why">Signals: you&rsquo;ve researched them. Flatters their innovation. Gives you product insight.</div>
-    </div>
-    <div class="ask-card">
-      <div class="ask-category">Digital Assets</div>
-      <p>&ldquo;With Revo Digital now SFC-licensed, how does digital asset reporting integrate with your broader client view? Is that a solved problem or an open challenge?&rdquo;</p>
-      <div class="why">Signals: you understand their digital asset play is separate and creates integration complexity.</div>
-    </div>
-    <div class="ask-card">
-      <div class="ask-category">Scale</div>
-      <p>&ldquo;As you expand across markets, how do you manage the differences in compliance requirements between HK and Singapore?&rdquo;</p>
-      <div class="why">Signals: you understand multi-jurisdiction is hard. Opens a conversation where your tech skills can solve real problems.</div>
-    </div>
-    <div class="ask-card">
-      <div class="ask-category">Team & Role</div>
-      <p>&ldquo;What does success look like for this role in 12 months? Are you looking for someone closer to a technical architect, a product owner, or a hybrid operator?&rdquo;</p>
-      <div class="why">Signals: you&rsquo;re thinking about fit, not just getting the job. Also gives you critical positioning intel.</div>
-    </div>
-  </div>
-</section>
-
-<!-- ==================== FIRST 90 DAYS ==================== -->
-<section id="ninety-days">
-  <h2><span class="num">9</span> First 90 Days Framework</h2>
-  <p class="dim">Have this mental model ready. Adjust based on what you learn about the role&rsquo;s actual scope.</p>
-
-  <div class="phase-grid">
-    <div class="phase">
-      <div class="phase-label">Days 1&ndash;30: Listen & Map</div>
-      <ul>
-        <li>Shadow every team member for at least 2 hours each</li>
-        <li>Map current tech stack, data flows, and integration points</li>
-        <li>Document existing pain points and workarounds</li>
-        <li>Understand compliance requirements per jurisdiction</li>
-        <li>Review RFO app architecture and roadmap</li>
-        <li>Build relationship map of external vendors and partners</li>
-        <li>Deliver: Technology Assessment Document</li>
-      </ul>
-    </div>
-    <div class="phase">
-      <div class="phase-label">Days 31&ndash;60: Quick Wins + Strategy</div>
-      <ul>
-        <li>Identify 2&ndash;3 high-impact, low-risk improvements</li>
-        <li>Prototype solutions for the most painful workflow friction</li>
-        <li>Present CRM strategy: build/buy/integrate recommendation</li>
-        <li>Define data governance framework with compliance team</li>
-        <li>Begin integration assessment with custodians/banks</li>
-        <li>Deliver: CRM Strategy Proposal + Quick Win Demos</li>
-      </ul>
-    </div>
-    <div class="phase">
-      <div class="phase-label">Days 61&ndash;90: Execute + Prove</div>
-      <ul>
-        <li>Implement first quick wins in production</li>
-        <li>Begin CRM platform configuration or procurement</li>
-        <li>Build first integration prototype (highest-value data source)</li>
-        <li>Establish development methodology and quality gates</li>
-        <li>Present 6-month roadmap to leadership</li>
-        <li>Deliver: Working Quick Wins + Roadmap + Methodology</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<!-- ==================== LANDMINES ==================== -->
-<section id="landmines">
-  <h2><span class="num">10</span> Landmines &mdash; What NOT to Say</h2>
-
-  <div class="alert alert-danger" style="margin-bottom: 1rem;">
-    <strong>DO NOT say &ldquo;I built a CRM&rdquo;</strong><br>
-    You built a marketing automation and customer intelligence platform for e-commerce. That&rsquo;s impressive, but it is not a wealth management CRM. Overclaiming here will destroy credibility with anyone who has used Salesforce FSC or DealCloud. Say: &ldquo;I built a customer intelligence platform with entity modelling and segmentation &mdash; the architectural patterns translate directly.&rdquo;
-  </div>
-
-  <div class="alert alert-danger" style="margin-bottom: 1rem;">
-    <strong>DO NOT propose replacing their existing stack</strong><br>
-    They already have an app on its 3rd upgrade. They have existing systems. You are there to augment, integrate, and improve &mdash; not to tear everything down and rebuild. Frame your value as additive.
-  </div>
-
-  <div class="alert alert-danger" style="margin-bottom: 1rem;">
-    <strong>DO NOT lead with AI before understanding their problems</strong><br>
-    AI is a solution. They have not told you the problem yet. Ask first, then selectively mention AI capabilities where relevant. Leading with &ldquo;I have an AI methodology&rdquo; in a family office context risks sounding like a solution in search of a problem.
-  </div>
-
-  <div class="alert alert-danger" style="margin-bottom: 1rem;">
-    <strong>DO NOT mention routing data through external LLM APIs</strong><br>
-    UHNW families will not tolerate their data touching third-party AI services. If asked about AI, emphasise on-premise/private-cloud models and rule-based automation first. Your personal AI methodology is for YOUR development process, not for processing client data.
-  </div>
-
-  <div class="alert alert-danger" style="margin-bottom: 1rem;">
-    <strong>DO NOT undersell regulatory complexity</strong><br>
-    Never say &ldquo;we can just use Supabase&rdquo; or &ldquo;compliance is just another feature.&rdquo; Show respect for the regulatory environment. Use phrases like: &ldquo;This requires close collaboration with your compliance team&rdquo; and &ldquo;The governance framework should drive the technical architecture, not the other way around.&rdquo;
-  </div>
-
-  <div class="alert alert-danger" style="margin-bottom: 1rem;">
-    <strong>DO NOT describe Claudia/Max by name</strong><br>
-    In a family office context, saying &ldquo;I have an AI Chief of Staff named Claudia and an execution partner named Max&rdquo; sounds whimsical. Frame it as: &ldquo;I&rsquo;ve developed a structured AI-augmented development methodology that includes multi-perspective decision analysis and automated quality gates.&rdquo;
-  </div>
-
-  <div class="alert alert-success" style="margin-top: 2rem;">
-    <strong>YOUR STRONGEST CARDS (play these)</strong><br><br>
-    <strong>1. The COO who codes.</strong> No other candidate has run a HKD 120M business AND built the technology stack that powered it.<br><br>
-    <strong>2. The investor who builds.</strong> You sat in KKR deal rooms and ANZ coverage teams. You understand investment workflows from the inside, not from a requirements document.<br><br>
-    <strong>3. The consultant who implements.</strong> Proudfoot trained you to diagnose, model, and implement &mdash; not just recommend. You don&rsquo;t deliver slide decks; you deliver working systems.<br><br>
-    <strong>4. The trilingual operator.</strong> English, Cantonese, Mandarin &mdash; covering Raffles&rsquo; entire footprint from Hong Kong to Singapore to mainland China.<br><br>
-    <strong>5. The efficiency force multiplier.</strong> You made a lean team produce 10x more per person at STT Mall. Raffles has ~223 employees and plans to double to ~400 &mdash; a growth-stage firm that needs systems to scale without proportional headcount. You know exactly how to build that leverage.
-  </div>
-</section>
-
-</div>
-
-<footer style="text-align: center; padding: 3rem; color: var(--text-dim); font-size: 12px; border-top: 1px solid var(--border);">
-  Prepared by Strategic Council &bull; Consensus Score: 4/5 &bull; Confidential &mdash; Interview Prep Only
-</footer>
-
-<script>
-  // Hamburger menu toggle
-  const hamburger = document.querySelector('.hamburger');
-  const navMenu = document.querySelector('nav ul');
-  hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('open');
-    navMenu.classList.toggle('open');
-  });
-
-  // Smooth scroll for internal nav links + close menu on click
-  document.querySelectorAll('nav a').forEach(link => {
-    link.addEventListener('click', (e) => {
-      const href = link.getAttribute('href');
-      // Close mobile menu on any click
-      hamburger.classList.remove('open');
-      navMenu.classList.remove('open');
-      // Only smooth-scroll for internal anchors
-      if (href && href.startsWith('#')) {
-        e.preventDefault();
-        const target = document.querySelector(href);
-        if (target) {
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      }
-    });
-  });
-
-  // Active nav highlighting on scroll
-  const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('nav a[href^="#"]');
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        navLinks.forEach(link => {
-          link.classList.toggle('active',
-            link.getAttribute('href') === '#' + entry.target.id
-          );
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>Interview Prep Portfolio • Confidential</p>
+    </footer>
+
+    <script>
+        // Hamburger Menu Toggle
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
+        const rafflesDropdown = document.getElementById('rafflesDropdown');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
         });
-      }
-    });
-  }, { rootMargin: '-20% 0px -75% 0px' });
 
-  sections.forEach(section => observer.observe(section));
-</script>
+        // Mobile Dropdown Toggle
+        rafflesDropdown.addEventListener('click', (e) => {
+            if (window.innerWidth <= 768) {
+                e.preventDefault();
+                rafflesDropdown.classList.toggle('active');
+            }
+        });
 
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('nav')) {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            }
+        });
+
+        // Sidebar Navigation Active State
+        const sidebarLinks = document.querySelectorAll('.sidebar-nav');
+        const sections = document.querySelectorAll('section[id]');
+
+        function updateSidebarNav() {
+            let current = '';
+
+            sections.forEach((section) => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (window.scrollY >= sectionTop - 150) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            sidebarLinks.forEach((link) => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').slice(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', updateSidebarNav);
+
+        // Smooth scroll for sidebar links
+        sidebarLinks.forEach((link) => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href').slice(1);
+                const targetSection = document.getElementById(targetId);
+                if (targetSection) {
+                    targetSection.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Set initial active link
+        updateSidebarNav();
+    </script>
 </body>
 </html>

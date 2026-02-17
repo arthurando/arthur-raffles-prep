@@ -1,0 +1,1340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interview Strategy — Raffles Family Office | Arthur Chan</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #0a0a0f;
+            --surface: #12121a;
+            --surface-alt: #1a1a28;
+            --border: #2a2a3a;
+            --accent: #c9a84c;
+            --accent-dim: rgba(201, 168, 76, 0.15);
+            --accent-glow: rgba(201, 168, 76, 0.08);
+            --text: #e8e6e3;
+            --text-dim: #8a8a9a;
+            --danger: #e05252;
+            --success: #4caf7c;
+            --info: #5b8def;
+            --purple: #a78bfa;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        /* HEADER & NAVIGATION */
+        header {
+            background-color: var(--surface);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .brand {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--accent);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .brand:hover {
+            color: var(--text);
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        nav {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-dropdown {
+            position: relative;
+        }
+
+        .dropdown-toggle {
+            background: none;
+            border: none;
+            color: var(--text);
+            cursor: pointer;
+            padding: 0.5rem 0;
+            transition: color 0.3s;
+            font-size: 1rem;
+        }
+
+        .dropdown-toggle:hover {
+            color: var(--accent);
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--surface-alt);
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            min-width: 180px;
+            margin-top: 0.5rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .dropdown-menu.active {
+            display: block;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 0.75rem 1.25rem;
+            color: var(--text);
+            text-decoration: none;
+            transition: all 0.3s;
+            border-left: 3px solid transparent;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: var(--accent-dim);
+            border-left-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .dropdown-menu a.active {
+            background-color: var(--accent-dim);
+            border-left-color: var(--accent);
+            color: var(--accent);
+        }
+
+        /* PAGE ANCHORS */
+        .page-anchors {
+            display: flex;
+            gap: 1rem;
+            margin-left: auto;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        .page-anchors a {
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: all 0.3s;
+        }
+
+        .page-anchors a:hover {
+            color: var(--accent);
+        }
+
+        /* MAIN CONTENT */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            text-align: center;
+            margin-bottom: 4rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 2rem;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .hero .subtitle {
+            font-size: 1.25rem;
+            color: var(--text-dim);
+            margin-bottom: 1rem;
+        }
+
+        .hero .note {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            font-style: italic;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* SECTIONS */
+        section {
+            margin-bottom: 4rem;
+        }
+
+        section h2 {
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--accent-dim);
+        }
+
+        /* THESIS BOX */
+        .thesis-box {
+            background-color: var(--surface-alt);
+            border: 2px solid var(--accent);
+            border-radius: 0.75rem;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        /* COMPARISON CARDS */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .card {
+            background-color: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .card:hover {
+            border-color: var(--accent);
+            background-color: var(--surface-alt);
+            box-shadow: 0 0 20px var(--accent-glow);
+        }
+
+        .card h3 {
+            color: var(--accent);
+            margin-bottom: 0.75rem;
+            font-size: 1.1rem;
+        }
+
+        .card-subtitle {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .card p {
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        /* ALERT BOXES */
+        .alert {
+            border-left: 4px solid;
+            background-color: var(--surface);
+            padding: 1.25rem;
+            margin-bottom: 1.5rem;
+            border-radius: 0.5rem;
+            border: 1px solid;
+        }
+
+        .alert.danger {
+            border-left-color: var(--danger);
+            border-color: var(--danger);
+            background-color: rgba(224, 82, 82, 0.08);
+        }
+
+        .alert.info {
+            border-left-color: var(--info);
+            border-color: var(--info);
+            background-color: rgba(91, 141, 239, 0.08);
+        }
+
+        .alert.success {
+            border-left-color: var(--success);
+            border-color: var(--success);
+            background-color: rgba(76, 175, 124, 0.08);
+        }
+
+        .alert.purple {
+            border-left-color: var(--purple);
+            border-color: var(--purple);
+            background-color: rgba(167, 139, 250, 0.08);
+        }
+
+        .alert h4 {
+            color: var(--text);
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .alert p {
+            color: var(--text);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* PERSONA CARDS */
+        .persona-card {
+            background-color: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .persona-card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 0 15px var(--accent-glow);
+        }
+
+        .persona-name {
+            color: var(--accent);
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .persona-role {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .persona-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .persona-column h4 {
+            color: var(--accent);
+            font-size: 0.9rem;
+            margin-bottom: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .persona-column p {
+            color: var(--text);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* FLOW STEPS */
+        .flow-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .flow-step {
+            background-color: var(--surface);
+            border-left: 4px solid var(--accent);
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            position: relative;
+        }
+
+        .flow-step h3 {
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .flow-step .timing {
+            display: inline-block;
+            background-color: var(--accent-dim);
+            color: var(--accent);
+            padding: 0.25rem 0.75rem;
+            border-radius: 0.25rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .flow-step p {
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .flow-step .goal {
+            margin-top: 0.75rem;
+            color: var(--text-dim);
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        /* TABLE */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 2rem;
+            background-color: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 0.75rem;
+            overflow: hidden;
+        }
+
+        th {
+            background-color: var(--surface-alt);
+            color: var(--accent);
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            border-bottom: 2px solid var(--accent-dim);
+        }
+
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border);
+            color: var(--text);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover {
+            background-color: var(--surface-alt);
+        }
+
+        /* NARRATIVE CARDS */
+        .narrative-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .narrative-card {
+            background-color: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .narrative-card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 0 15px var(--accent-glow);
+        }
+
+        .narrative-card h3 {
+            color: var(--accent);
+            margin-bottom: 0.75rem;
+            font-size: 1rem;
+        }
+
+        .narrative-card p {
+            color: var(--text);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* CLOSING STRATEGY */
+        .closing-scenarios {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .closing-scenario {
+            border-left: 4px solid;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+        }
+
+        .closing-scenario.success {
+            border-left-color: var(--success);
+            background-color: rgba(76, 175, 124, 0.08);
+        }
+
+        .closing-scenario.info {
+            border-left-color: var(--info);
+            background-color: rgba(91, 141, 239, 0.08);
+        }
+
+        .closing-scenario.purple {
+            border-left-color: var(--purple);
+            background-color: rgba(167, 139, 250, 0.08);
+        }
+
+        .closing-scenario h3 {
+            color: var(--text);
+            margin-bottom: 0.75rem;
+        }
+
+        .closing-scenario p {
+            color: var(--text);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .after-interview {
+            background-color: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .after-interview h4 {
+            color: var(--accent);
+            margin-bottom: 0.75rem;
+            font-size: 0.95rem;
+        }
+
+        .after-interview p {
+            color: var(--text);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* CHECKLIST */
+        .checklist-group {
+            background-color: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .checklist-group h3 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .checklist-items {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--text);
+            font-size: 0.95rem;
+        }
+
+        .checklist-item input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            accent-color: var(--accent);
+        }
+
+        /* VOCABULARY TABLE */
+        .vocabulary-table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 0.75rem;
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+
+        .vocabulary-table th {
+            background-color: var(--surface-alt);
+            color: var(--accent);
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            border-bottom: 2px solid var(--accent-dim);
+        }
+
+        .vocabulary-table td {
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .vocabulary-table tr:hover {
+            background-color: var(--surface-alt);
+        }
+
+        .vocabulary-table .dont {
+            color: var(--danger);
+        }
+
+        .vocabulary-table .do {
+            color: var(--success);
+        }
+
+        /* FOOTER */
+        footer {
+            background-color: var(--surface);
+            border-top: 1px solid var(--border);
+            padding: 2rem;
+            text-align: center;
+            color: var(--text-dim);
+        }
+
+        .footer-links {
+            margin-bottom: 1rem;
+        }
+
+        .footer-links a {
+            color: var(--accent);
+            text-decoration: none;
+            margin: 0 1rem;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--text);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .nav-toggle {
+                display: block;
+            }
+
+            nav {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background-color: var(--surface);
+                border-bottom: 1px solid var(--border);
+                padding: 1rem;
+                gap: 1rem;
+            }
+
+            nav.mobile-open {
+                display: flex;
+            }
+
+            .page-anchors {
+                margin-left: 0;
+                margin-top: 1rem;
+                justify-content: flex-start;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1rem;
+            }
+
+            section h2 {
+                font-size: 1.5rem;
+            }
+
+            .persona-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            main {
+                padding: 2rem 1rem;
+            }
+
+            .header-container {
+                padding: 1rem;
+            }
+
+            table {
+                font-size: 0.9rem;
+            }
+
+            th, td {
+                padding: 0.75rem;
+            }
+        }
+
+        /* PRINT STYLES */
+        @media print {
+            .nav-toggle,
+            .page-anchors,
+            nav {
+                display: none;
+            }
+
+            body {
+                background-color: white;
+                color: black;
+            }
+
+            section {
+                page-break-inside: avoid;
+            }
+
+            .card,
+            .persona-card,
+            .alert {
+                page-break-inside: avoid;
+            }
+        }
+
+        /* SMOOTH SCROLL ACTIVE NAV */
+        .dropdown-menu a {
+            position: relative;
+        }
+
+        .dropdown-menu a.active::after {
+            content: '';
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 6px;
+            height: 6px;
+            background-color: var(--accent);
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="../index.html" class="brand">ARTHUR CHAN</a>
+            <button class="nav-toggle" id="navToggle">☰</button>
+            <nav id="navMenu">
+                <div class="nav-dropdown">
+                    <button class="dropdown-toggle" id="rafflesToggle">Raffles ▾</button>
+                    <div class="dropdown-menu" id="rafflesMenu">
+                        <a href="index.html">Overview</a>
+                        <a href="strategy.html" class="active">Strategy</a>
+                        <a href="org-chart.html">Org Chart</a>
+                        <a href="news.html">News</a>
+                        <a href="experience.html">Experience Bridge</a>
+                        <a href="technical.html">Technical</a>
+                        <a href="questions.html">Questions</a>
+                    </div>
+                </div>
+            </nav>
+            <div class="page-anchors">
+                <a href="#thesis">Thesis</a>
+                <a href="#signals">Signals</a>
+                <a href="#personas">Personas</a>
+                <a href="#conversation">Conversation</a>
+                <a href="#scenarios">Scenarios</a>
+                <a href="#narratives">Narratives</a>
+                <a href="#close">Close</a>
+                <a href="#checklist">Checklist</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>Interview Strategy</h1>
+            <div class="subtitle">Raffles Family Office — CRM Project &amp; Beyond</div>
+            <div class="note">Synthesised from Strategic Council deliberation (4/5 consensus), public intelligence on 20+ Raffles personnel, industry analysis, and Arthur's 18-year career mapping.</div>
+        </section>
+
+        <!-- SECTION 1: CORE THESIS -->
+        <section id="thesis">
+            <h2>Core Thesis — Why You, Why Now</h2>
+            <div class="thesis-box">
+                I am the operator who codes — the only candidate who has run a HKD 120M business, sat in KKR deal rooms, led operational transformations at Proudfoot, AND built the AI-driven technology that powered all of it. I learn fast, I build faster, and AI amplifies everything I do — turning one person into the output of a team.
+            </div>
+
+            <div class="cards-grid">
+                <div class="card">
+                    <h3>vs Traditional Developer</h3>
+                    <div class="card-subtitle">"You understand the business"</div>
+                    <p>Developer builds what told, you build what's needed. You've sat in investor/consultant/operator chairs, translate between RM needs and system needs. No requirements doc needed.</p>
+                </div>
+
+                <div class="card">
+                    <h3>vs Management Consultant</h3>
+                    <div class="card-subtitle">"You ship working systems"</div>
+                    <p>Consultants deliver decks, you deliver working software. Proudfoot trained methodology, STT Mall proved execution. No handoff risk.</p>
+                </div>
+
+                <div class="card">
+                    <h3>vs Salesforce Partner</h3>
+                    <div class="card-subtitle">"You think beyond configuration"</div>
+                    <p>Partner configures what exists, you see what's missing. Integration layer, custom AI, internal tooling. Evaluate vendors, not just implement. Understand build vs buy from running own business.</p>
+                </div>
+
+                <div class="card">
+                    <h3>vs In-House Hire</h3>
+                    <div class="card-subtitle">"Zero ramp-up time on business context"</div>
+                    <p>Junior hire takes 6-12 months, you bring Bloomberg/ANZ/KKR day one. Speak the language: deal flow, IC, AUM, mandates, suitability. Trilingual covering APAC.</p>
+                </div>
+
+                <div class="card">
+                    <h3>vs Anyone Without AI-Augmented Methodology</h3>
+                    <div class="card-subtitle">"Fundamentally different speed"</div>
+                    <p>Learn new domains fast, AI amplifies speed. One operator = small team output. Structured methodology, not just tools.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: INTELLIGENCE SIGNALS -->
+        <section id="signals">
+            <h2>Intelligence Signals — What the Data Tells Us</h2>
+
+            <div class="alert danger">
+                <h4>Signal 1 — The COO Gap</h4>
+                <p>Terence Chow departing after 18 months. Owned technology, operations, business transformation, risk management, procurement. Massive leadership vacuum in tech/ops. CRM role may be scoped wider.</p>
+            </div>
+
+            <div class="alert info">
+                <h4>Signal 2 — Aggressive Scaling</h4>
+                <p>Five senior hires in 18 months. Expanding UAE/Rwanda. 121 employees growing. HK gov endorsement. Growth mode, not maintenance.</p>
+            </div>
+
+            <div class="alert purple">
+                <h4>Signal 3 — AI is Already in Play</h4>
+                <p>RFO app 3rd upgrade with AI. Revo Digital SFC-licensed. William Chow quant background. Not AI-skeptics — AI-practitioners. Position as deepening, not starting from scratch.</p>
+            </div>
+
+            <div class="alert success">
+                <h4>Signal 4 — Relationship-Centric Culture</h4>
+                <p>Recent hires from PE/VC and private banking. Jo Huang heads PE. Rizal Wijono European FO gateway. Deal-making, relationship-driven family office. KKR/ANZ experience directly relevant.</p>
+            </div>
+
+            <div class="alert info">
+                <h4>Signal 5 — Multi-Jurisdiction Complexity</h4>
+                <p>HK + SG dual HQ. UAE + Rwanda expansion. SFC and MAS licences. PDPO and PDPA compliance. Digital assets across borders. Technology must handle multi-jurisdictional data governance.</p>
+            </div>
+        </section>
+
+        <!-- SECTION 3: PERSONAS -->
+        <section id="personas">
+            <h2>Read the Room — Who You Might Meet</h2>
+
+            <div class="persona-card">
+                <div class="persona-name">Chi-man Kwan</div>
+                <div class="persona-role">Group CEO</div>
+                <div class="persona-grid">
+                    <div class="persona-column">
+                        <h4>What He Cares About</h4>
+                        <p>Vision, growth, scale, UHNW understanding, culture fit, Raffles ambition</p>
+                    </div>
+                    <div class="persona-column">
+                        <h4>Your Play</h4>
+                        <p>Lead with operator story: HKD 120M, 35+ staff, survived downturn, 10x efficiency. Reference KKR/ANZ. Ask about 3-year vision.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="persona-card">
+                <div class="persona-name">William Chow</div>
+                <div class="persona-role">Deputy CEO</div>
+                <div class="persona-grid">
+                    <div class="persona-column">
+                        <h4>What He Cares About</h4>
+                        <p>Data, systems, investment governance, risk, operational rigour. Quant (MSc OR, LSE)</p>
+                    </div>
+                    <div class="persona-column">
+                        <h4>Your Play</h4>
+                        <p>Go deeper on architecture, entity modelling, RLS, event-sourced audit trails. Mention TDD, quality gates. Use "deterministic pipeline."</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="persona-card">
+                <div class="persona-name">Ray Tam</div>
+                <div class="persona-role">CEO Revo Digital</div>
+                <div class="persona-grid">
+                    <div class="persona-column">
+                        <h4>What He Cares About</h4>
+                        <p>Digital innovation, digital assets, client experience, RFO app, bridging traditional/crypto</p>
+                    </div>
+                    <div class="persona-column">
+                        <h4>Your Play</h4>
+                        <p>Show understanding of digital assets integration. Ask about traditional portfolio reporting with crypto. Reference RFO app's 3rd upgrade. Position AI methodology as deepening what Revo started.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="persona-card">
+                <div class="persona-name">Jo Huang, CFA</div>
+                <div class="persona-role">Head of PE</div>
+                <div class="persona-grid">
+                    <div class="persona-column">
+                        <h4>What She Cares About</h4>
+                        <p>Deal flow, co-investment pipeline, LP reporting, portfolio monitoring</p>
+                    </div>
+                    <div class="persona-column">
+                        <h4>Your Play</h4>
+                        <p>KKR/Emerald shines. IC presentations, deal pipeline, aCommerce Series B. Speak her language: sourcing, DD, IC, portfolio monitoring.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="persona-card">
+                <div class="persona-name">Caroline Langston</div>
+                <div class="persona-role">Chief People Officer</div>
+                <div class="persona-grid">
+                    <div class="persona-column">
+                        <h4>What She Cares About</h4>
+                        <p>Culture fit, team dynamics, growth potential, leadership style</p>
+                    </div>
+                    <div class="persona-column">
+                        <h4>Your Play</h4>
+                        <p>Coaching leadership from STT Mall. "I give people tools and frameworks." Building from 2 to 35+. Mention marathon. Be warm, not just impressive.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: CONVERSATION FLOW -->
+        <section id="conversation">
+            <h2>Conversation Flow — Steering the Interview</h2>
+
+            <div class="flow-steps">
+                <div class="flow-step">
+                    <h3>
+                        <span>1. First 5 minutes — Establish Credibility Fast</span>
+                        <span class="timing">0-5 min</span>
+                    </h3>
+                    <p>Lead with: <strong>"18 years at intersection of finance and technology — Bloomberg, ANZ (Alibaba privatisation), KKR ($300M fund), own business (entire tech stack). I learn fast and AI-augmented methodology lets me move from problem to working solution faster than expected."</strong></p>
+                    <div class="goal"><strong>Goal:</strong> Within 60 seconds, not a typical developer.</div>
+                </div>
+
+                <div class="flow-step">
+                    <h3>
+                        <span>2. Minutes 5-15 — Listen, Don't Pitch</span>
+                        <span class="timing">5-15 min</span>
+                    </h3>
+                    <p><strong>Ask:</strong> "What's the core problem you're trying to solve with this CRM project?" <strong>Listen for:</strong> CRM vs broader tech/ops, building or buying, current systems, stakeholders.</p>
+                    <div class="goal"><strong>Goal:</strong> Understand their framing before you respond.</div>
+                </div>
+
+                <div class="flow-step">
+                    <h3>
+                        <span>3. Minutes 15-30 — Bridge Experience to Needs</span>
+                        <span class="timing">15-30 min</span>
+                    </h3>
+                    <p>Select stories based on what they said. Deal flow → KKR. Client engagement → STT Mall CRM. Process improvement → Proudfoot. Scale → STT Mall 10x.</p>
+                    <div class="goal"><strong>Goal:</strong> Show, don't tell. Every story is a proof point.</div>
+                </div>
+
+                <div class="flow-step">
+                    <h3>
+                        <span>4. Minutes 30-40 — Demonstrate Domain Depth</span>
+                        <span class="timing">30-40 min</span>
+                    </h3>
+                    <p>Entity modelling for family structures, multi-jurisdiction compliance, build-vs-buy framework, custodian integration. <strong>Vocabulary:</strong> "suitability assessment", "beneficial ownership", "mandate tracking."</p>
+                    <div class="goal"><strong>Goal:</strong> You're not learning the domain — you already know it.</div>
+                </div>
+
+                <div class="flow-step">
+                    <h3>
+                        <span>5. Minutes 40-50 — Plant the AI Seed (Only if Natural)</span>
+                        <span class="timing">40-50 min</span>
+                    </h3>
+                    <p>"One of the things that makes me effective is that I pick up new domains quickly — and I've developed an AI-augmented methodology..."</p>
+                    <div class="goal"><strong>Goal:</strong> Don't force it. Only if there's a natural opening.</div>
+                </div>
+
+                <div class="flow-step">
+                    <h3>
+                        <span>6. Last 10 minutes — Close with First 90 Days</span>
+                        <span class="timing">Last 10 min</span>
+                    </h3>
+                    <p>"I've been thinking about first 90 days. My approach is listen-first: two weeks shadowing before recommending anything."</p>
+                    <div class="goal"><strong>Goal:</strong> Leave them seeing you in the role.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: SCENARIO PLANNING -->
+        <section id="scenarios">
+            <h2>Scenario Planning — What If...</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Scenario</th>
+                        <th>Your Response</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>They want Salesforce config, not custom build</td>
+                        <td>"I can evaluate and manage vendors better because I understand both business and technical capabilities."</td>
+                    </tr>
+                    <tr>
+                        <td>They mention Terence Chow's departure</td>
+                        <td>"That's a significant mandate — exactly the combination I've spent 11 years doing at STT Mall."</td>
+                    </tr>
+                    <tr>
+                        <td>They focus heavily on compliance</td>
+                        <td>Lean into Proudfoot methodology. "Technology follows policy, not the other way around."</td>
+                    </tr>
+                    <tr>
+                        <td>They seem skeptical of "self-taught developer"</td>
+                        <td>"I learn fast — chemical engineering to finance to production systems. AI-augmented methodology with TDD, security review. I'm an operator who bridges what you need and what technology delivers."</td>
+                    </tr>
+                    <tr>
+                        <td>Salary/rate expectations</td>
+                        <td>"Flexible, focused on fit and scope. Would love to understand full scope first."</td>
+                    </tr>
+                    <tr>
+                        <td>Whiteboard/demo</td>
+                        <td>Draw entity model. Family Group → Members → Entities → Accounts → Assets. Polymorphic relationships. RLS.</td>
+                    </tr>
+                    <tr>
+                        <td>Multiple interviewers, rapid-fire</td>
+                        <td>Shorter answers, one proof point per answer. Read personas. One tailored question per interviewer.</td>
+                    </tr>
+                    <tr>
+                        <td>Already have preferred candidate</td>
+                        <td>Go bolder. "You won't find another candidate who has run a $15M+ operation, sat in institutional deal rooms, AND can build the systems themselves."</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- SECTION 6: KEY NARRATIVES -->
+        <section id="narratives">
+            <h2>Key Narratives — Stories to Weave In</h2>
+
+            <div class="narrative-cards">
+                <div class="narrative-card">
+                    <h3>The Origin Story</h3>
+                    <p><strong>"I ran two lives for three years"</strong> — side venture + banking. Shows drive, time management.</p>
+                </div>
+
+                <div class="narrative-card">
+                    <h3>The Survival Story</h3>
+                    <p><strong>"10x or die"</strong> — post-COVID collapse, rebuilt everything. Shows resilience.</p>
+                </div>
+
+                <div class="narrative-card">
+                    <h3>The Credibility Story</h3>
+                    <p><strong>"I was in the room for Alibaba"</strong> — bank financing syndicate, KKR IC presentations.</p>
+                </div>
+
+                <div class="narrative-card">
+                    <h3>The Builder Story</h3>
+                    <p><strong>"I taught myself to code because nobody else would build what I needed"</strong> — tech progression, 7 systems, AI discovery.</p>
+                </div>
+
+                <div class="narrative-card">
+                    <h3>The AI Multiplier Story</h3>
+                    <p><strong>"AI doesn't replace thinking — it amplifies it"</strong> — structured methodology, idea to system in days.</p>
+                </div>
+
+                <div class="narrative-card">
+                    <h3>The Consultant Story</h3>
+                    <p><strong>"Proudfoot taught me to implement, not just recommend"</strong> — embedded with Lafarge, methodology.</p>
+                </div>
+
+                <div class="narrative-card">
+                    <h3>The Language Story</h3>
+                    <p><strong>"I can cover your entire footprint"</strong> — EN/Cantonese/Mandarin, all Raffles APAC cities.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 7: CLOSING STRATEGY -->
+        <section id="close">
+            <h2>Closing Strategy</h2>
+
+            <div class="closing-scenarios">
+                <div class="closing-scenario success">
+                    <h3>If Conversation Went Well</h3>
+                    <p>"I want to be direct: this is the most exciting opportunity I've seen. I learn fast, AI amplifies everything, don't need months to ramp up."</p>
+                </div>
+
+                <div class="closing-scenario info">
+                    <h3>If They Focused on Narrow CRM Scope</h3>
+                    <p>"Even if this starts as a CRM project, I see it as the foundation for something much bigger."</p>
+                </div>
+
+                <div class="closing-scenario purple">
+                    <h3>If They Raised Concerns</h3>
+                    <p>"I understand the gaps. What I am is someone who learns fast, builds faster, has judgment to know what matters."</p>
+                </div>
+            </div>
+
+            <h3 style="color: var(--accent); margin-top: 2rem; margin-bottom: 1rem;">After Interview</h3>
+
+            <div class="after-interview">
+                <h4>Same Day</h4>
+                <p>Thank-you email, reference specific conversation moment.</p>
+            </div>
+
+            <div class="after-interview">
+                <h4>Within 48 Hours</h4>
+                <p>Optional one-pager "First 90 Days" tailored to interview.</p>
+            </div>
+        </section>
+
+        <!-- SECTION 8: CHECKLIST -->
+        <section id="checklist">
+            <h2>Pre-Interview Checklist</h2>
+
+            <div class="checklist-group">
+                <h3>Night Before</h3>
+                <div class="checklist-items">
+                    <label class="checklist-item">
+                        <input type="checkbox">
+                        <span>Review Raffles personnel list and recent news</span>
+                    </label>
+                    <label class="checklist-item">
+                        <input type="checkbox">
+                        <span>Map key personas and their priorities</span>
+                    </label>
+                    <label class="checklist-item">
+                        <input type="checkbox">
+                        <span>Prepare 3-5 short stories with proof points</span>
+                    </label>
+                    <label class="checklist-item">
+                        <input type="checkbox">
+                        <span>Practice entity model sketch (2 min version)</span>
+                    </label>
+                    <label class="checklist-item">
+                        <input type="checkbox">
+                        <span>Write down 2-3 thoughtful questions to ask them</span>
+                    </label>
+                    <label class="checklist-item">
+                        <input type="checkbox">
+                        <span>Set up Zoom/Teams test 15 min early</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="checklist-group">
+                <h3>Morning Of</h3>
+                <div class="checklist-items">
+                    <label class="checklist-item">
+                        <input type="checkbox">
+                        <span>Dress well — Raffles is conservative</span>
+                    </label>
+                    <label class="checklist-item">
+                        <input type="checkbox">
+                        <span>Test camera, microphone, internet (video interview)</span>
+                    </label>
+                    <label class="checklist-item">
+                        <input type="checkbox">
+                        <span>Have water nearby</span>
+                    </label>
+                    <label class="checklist-item">
+                        <input type="checkbox">
+                        <span>Minimize distractions (phone silent, email closed)</span>
+                    </label>
+                    <label class="checklist-item">
+                        <input type="checkbox">
+                        <span>Print vocabulary cheat sheet for reference</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="checklist-group">
+                <h3>During Interview</h3>
+                <div class="checklist-items">
+                    <label class="checklist-item">
+                        <input type="checkbox">
+                        <span>First 60 seconds: establish credibility with multi-domain background</span>
+                    </label>
+                    <label class="checklist-item">
+                        <input type="checkbox">
+                        <span>Ask open-ended questions; listen 50% of the time</span>
+                    </label>
+                    <label class="checklist-item">
+                        <input type="checkbox">
+                        <span>Use correct terminology from vocabulary list</span>
+                    </label>
+                    <label class="checklist-item">
+                        <input type="checkbox">
+                        <span>Reference specific knowledge of Raffles signals</span>
+                    </label>
+                    <label class="checklist-item">
+                        <input type="checkbox">
+                        <span>If whiteboard moment: entity model → RLS → audit trails</span>
+                    </label>
+                    <label class="checklist-item">
+                        <input type="checkbox">
+                        <span>End with first 90-day approach (listen-first)</span>
+                    </label>
+                </div>
+            </div>
+
+            <h3 style="color: var(--accent); margin-top: 2rem; margin-bottom: 1rem;">Vocabulary Cheat Sheet</h3>
+
+            <table class="vocabulary-table">
+                <thead>
+                    <tr>
+                        <th class="dont">Don't Say</th>
+                        <th class="do">Say Instead</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="dont">Clients</td>
+                        <td class="do">Families</td>
+                    </tr>
+                    <tr>
+                        <td class="dont">Accounts</td>
+                        <td class="do">Entities</td>
+                    </tr>
+                    <tr>
+                        <td class="dont">Requirements</td>
+                        <td class="do">Mandates</td>
+                    </tr>
+                    <tr>
+                        <td class="dont">Salespeople</td>
+                        <td class="do">Relationship Managers</td>
+                    </tr>
+                    <tr>
+                        <td class="dont">End Users</td>
+                        <td class="do">Principal Families</td>
+                    </tr>
+                    <tr>
+                        <td class="dont">Needs Analysis</td>
+                        <td class="do">Suitability Assessment</td>
+                    </tr>
+                    <tr>
+                        <td class="dont">Who Owns What</td>
+                        <td class="do">Beneficial Ownership</td>
+                    </tr>
+                    <tr>
+                        <td class="dont">Sales Funnel</td>
+                        <td class="do">Deal Flow Pipeline</td>
+                    </tr>
+                    <tr>
+                        <td class="dont">Data Imports</td>
+                        <td class="do">Custodian Feeds</td>
+                    </tr>
+                    <tr>
+                        <td class="dont">Admin Settings</td>
+                        <td class="do">Governance Framework</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-links">
+            <a href="../index.html">← Back Home</a>
+            <a href="index.html">Raffles Overview</a>
+            <a href="org-chart.html">Org Chart</a>
+            <a href="questions.html">Questions</a>
+        </div>
+        <p>&copy; 2026 Arthur Chan. Interview Strategy Guide.</p>
+    </footer>
+
+    <script>
+        // Navigation Toggle
+        const navToggle = document.getElementById('navToggle');
+        const navMenu = document.getElementById('navMenu');
+        const rafflesToggle = document.getElementById('rafflesToggle');
+        const rafflesMenu = document.getElementById('rafflesMenu');
+
+        navToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('mobile-open');
+        });
+
+        rafflesToggle.addEventListener('click', (e) => {
+            e.preventDefault();
+            rafflesMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu when link is clicked
+        document.querySelectorAll('.dropdown-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('mobile-open');
+            });
+        });
+
+        // Active nav link based on page anchors
+        const pageAnchors = document.querySelectorAll('.page-anchors a');
+        pageAnchors.forEach(anchor => {
+            anchor.addEventListener('click', (e) => {
+                pageAnchors.forEach(a => a.classList.remove('active'));
+                anchor.classList.add('active');
+            });
+        });
+
+        // Intersection Observer for smooth scroll active section
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.page-anchors a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').slice(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.nav-dropdown')) {
+                rafflesMenu.classList.remove('active');
+            }
+        });
+
+        // Smooth scroll for dropdown links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

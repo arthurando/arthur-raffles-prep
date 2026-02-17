@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experience Bridge — Arthur Chan</title>
+    <style>
+        :root {
+            --bg: #0a0a0f;
+            --surface: #12121a;
+            --surface-alt: #1a1a28;
+            --border: #2a2a3a;
+            --accent: #c9a84c;
+            --accent-dim: rgba(201, 168, 76, 0.15);
+            --accent-glow: rgba(201, 168, 76, 0.08);
+            --text: #e8e6e3;
+            --text-dim: #8a8a9a;
+            --danger: #e05252;
+            --success: #4caf7c;
+            --info: #5b8def;
+            --font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: var(--font-family);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* HEADER & NAVIGATION */
+        header {
+            background-color: var(--surface);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand {
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-decoration: none;
+            color: var(--accent);
+            transition: opacity 0.3s ease;
+        }
+
+        .brand:hover {
+            opacity: 0.8;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            list-style: none;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            color: var(--text);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-link:hover {
+            color: var(--accent);
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-toggle::after {
+            content: '▾';
+            font-size: 0.7rem;
+            margin-left: 0.3rem;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background-color: var(--surface-alt);
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            min-width: 200px;
+            list-style: none;
+            margin-top: 0.5rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        .dropdown-menu li {
+            padding: 0;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 0.75rem 1rem;
+            color: var(--text);
+            text-decoration: none;
+            font-size: 0.9rem;
+            border-bottom: 1px solid var(--border);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .dropdown-menu a:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: var(--accent-dim);
+            color: var(--accent);
+        }
+
+        .dropdown-menu a.active {
+            color: var(--accent);
+            background-color: var(--accent-dim);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 0.4rem;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 2px;
+            background-color: var(--accent);
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        /* HERO SECTION */
+        .hero {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 1.5rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+            letter-spacing: 0.05em;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--text-dim);
+            max-width: 600px;
+            margin: 0 auto 1.5rem;
+        }
+
+        .hero-note {
+            background-color: var(--accent-dim);
+            border-left: 3px solid var(--accent);
+            padding: 1rem;
+            border-radius: 0.4rem;
+            max-width: 700px;
+            margin: 0 auto;
+            color: var(--text);
+            font-size: 0.95rem;
+        }
+
+        /* PAGE NAVIGATION */
+        .page-nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .page-nav a {
+            padding: 0.6rem 1.2rem;
+            background-color: var(--surface-alt);
+            border: 1px solid var(--border);
+            color: var(--text);
+            text-decoration: none;
+            border-radius: 0.4rem;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .page-nav a:hover {
+            background-color: var(--accent-dim);
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        /* STORIES SECTION */
+        .section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 1.5rem;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            color: var(--accent);
+            letter-spacing: 0.05em;
+        }
+
+        .stories-grid {
+            display: grid;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .story-card {
+            background-color: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 0.6rem;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .story-card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 0 20px var(--accent-glow);
+        }
+
+        .story-header {
+            padding: 1.5rem;
+            background-color: var(--surface-alt);
+            border-bottom: 1px solid var(--border);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
+        }
+
+        .story-header:hover {
+            background-color: rgba(201, 168, 76, 0.05);
+        }
+
+        .story-header h3 {
+            font-size: 1.1rem;
+            color: var(--accent);
+            flex: 1;
+        }
+
+        .story-toggle {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            font-weight: bold;
+            transition: transform 0.3s ease;
+        }
+
+        .story-toggle.open {
+            transform: rotate(180deg);
+        }
+
+        .story-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .story-content.open {
+            max-height: 2000px;
+        }
+
+        .story-body {
+            padding: 1.5rem;
+        }
+
+        .story-item {
+            margin-bottom: 1.5rem;
+        }
+
+        .story-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .story-label {
+            font-weight: 600;
+            color: var(--accent);
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.4rem;
+        }
+
+        .story-text {
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        /* ALERT BOXES */
+        .alert {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            border-left: 3px solid;
+            border-radius: 0.4rem;
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+
+        .alert-success {
+            border-color: var(--success);
+            background-color: rgba(76, 175, 124, 0.08);
+        }
+
+        .alert-success .alert-label {
+            color: var(--success);
+        }
+
+        .alert-danger {
+            border-color: var(--danger);
+            background-color: rgba(224, 82, 82, 0.08);
+        }
+
+        .alert-danger .alert-label {
+            color: var(--danger);
+        }
+
+        .alert-label {
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+        }
+
+        .alert-text {
+            color: var(--text);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* TIMELINE */
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 24px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--accent), transparent);
+        }
+
+        .timeline-item {
+            margin-bottom: 2rem;
+            margin-left: 80px;
+            position: relative;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -56px;
+            top: 0;
+            width: 24px;
+            height: 24px;
+            background-color: var(--surface);
+            border: 2px solid var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .timeline-dot::after {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background-color: var(--accent);
+            border-radius: 50%;
+        }
+
+        .timeline-period {
+            font-size: 0.85rem;
+            color: var(--accent);
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            margin-bottom: 0.4rem;
+        }
+
+        .timeline-role {
+            font-size: 1.05rem;
+            color: var(--text);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-relevance {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            line-height: 1.6;
+        }
+
+        /* FOOTER */
+        footer {
+            background-color: var(--surface);
+            border-top: 1px solid var(--border);
+            margin-top: 4rem;
+            padding: 2rem 1.5rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            color: var(--accent);
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.6rem;
+        }
+
+        .footer-links a {
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
+            color: var(--text-dim);
+            font-size: 0.85rem;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .nav-menu {
+                gap: 1rem;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                flex-direction: column;
+                background-color: var(--surface-alt);
+                padding: 1rem;
+                gap: 0;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .nav-item {
+                width: 100%;
+            }
+
+            .nav-link {
+                padding: 0.75rem 0;
+                border-bottom: 1px solid var(--border);
+                width: 100%;
+            }
+
+            .dropdown-menu {
+                position: static;
+                display: none;
+                border: none;
+                background-color: var(--surface);
+                box-shadow: none;
+                min-width: auto;
+                margin-top: 0;
+            }
+
+            .dropdown.active .dropdown-menu {
+                display: block;
+            }
+
+            .dropdown-toggle::after {
+                transform: rotate(-90deg);
+                transition: transform 0.3s ease;
+            }
+
+            .dropdown.active .dropdown-toggle::after {
+                transform: rotate(0deg);
+            }
+
+            .timeline::before {
+                left: 10px;
+            }
+
+            .timeline-item {
+                margin-left: 50px;
+            }
+
+            .timeline-dot {
+                left: -32px;
+                width: 20px;
+                height: 20px;
+            }
+
+            .timeline-dot::after {
+                width: 6px;
+                height: 6px;
+            }
+
+            .page-nav {
+                flex-direction: column;
+            }
+
+            .page-nav a {
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+        /* PRINT STYLES */
+        @media print {
+            header {
+                position: static;
+            }
+
+            .page-nav {
+                display: none;
+            }
+
+            .story-content {
+                max-height: none !important;
+            }
+
+            .footer {
+                display: none;
+            }
+
+            body {
+                background-color: white;
+                color: black;
+            }
+
+            .section {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER & NAVIGATION -->
+    <header>
+        <nav>
+            <a href="../index.html" class="brand">ARTHUR CHAN</a>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" id="rafflesDropdown">Raffles ▾</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="experience.html" class="active">Experience Bridge</a></li>
+                        <li><a href="values.html">Core Values</a></li>
+                        <li><a href="approach.html">Approach</a></li>
+                        <li><a href="technical.html">Technical Foundation</a></li>
+                        <li><a href="reference.html">Reference</a></li>
+                        <li><a href="closing.html">Closing Statement</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <h1>Experience Bridge</h1>
+        <p>How Your Past Maps to Their Needs</p>
+        <div class="hero-note">
+            <strong>Note:</strong> Each story bridges a concrete past experience to a Raffles-relevant capability. Use as structured STAR answers.
+        </div>
+    </section>
+
+    <!-- PAGE NAVIGATION -->
+    <div class="page-nav">
+        <a href="#stories">Stories</a>
+        <a href="#timeline">Timeline</a>
+    </div>
+
+    <!-- STORIES SECTION -->
+    <section id="stories" class="section">
+        <h2 class="section-title">Four Stories</h2>
+        <div class="stories-grid">
+            <!-- STORY 1: CRM -->
+            <div class="story-card">
+                <div class="story-header" onclick="toggleStory(this)">
+                    <h3>Building a CRM from Zero to 55K Subscribers</h3>
+                    <div class="story-toggle open">▲</div>
+                </div>
+                <div class="story-content open">
+                    <div class="story-body">
+                        <div class="story-item">
+                            <div class="story-label">Situation</div>
+                            <div class="story-text">STT Mall had no customer intelligence — transactions anonymous, repeat rates unknown, zero segmentation.</div>
+                        </div>
+
+                        <div class="story-item">
+                            <div class="story-label">Task</div>
+                            <div class="story-text">Design CRM to segment, engage, retain 55,000+ subscribers across email, social, direct channels.</div>
+                        </div>
+
+                        <div class="story-item">
+                            <div class="story-label">Action</div>
+                            <div class="story-text">Built segmentation on Supabase/PostgreSQL with Klaviyo integration. Behavioural scoring (purchase frequency, recency, basket). Automated engagement flows. RLS for team access. AI-augmented development methodology.</div>
+                        </div>
+
+                        <div class="story-item">
+                            <div class="story-label">Result</div>
+                            <div class="story-text">55,497 active subscribers. Automated engagement drove retention. Full lifecycle. All by one person, AI-amplified.</div>
+                        </div>
+
+                        <div class="alert alert-success">
+                            <div class="alert-label">Bridge to Raffles</div>
+                            <div class="alert-text">Architecture pattern — hierarchical entity classification, behavioural scoring, automated engagement, access-controlled views — maps directly to family office. Scale different (55K consumers vs ~200 UHNW families) but data architecture structurally identical.</div>
+                        </div>
+
+                        <div class="alert alert-danger">
+                            <div class="alert-label">Honest Framing</div>
+                            <div class="alert-text">Do NOT say "I built a CRM for wealth management." Say: "I built a customer intelligence platform for e-commerce. The entity modeling and segmentation patterns translate directly, though I fully appreciate that family office adds regulatory compliance, multi-jurisdiction data governance, and UHNW-sensitive information."</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STORY 2: KKR -->
+            <div class="story-card">
+                <div class="story-header" onclick="toggleStory(this)">
+                    <h3>KKR Deal Room — Understanding Institutional Investment Workflows</h3>
+                    <div class="story-toggle">▲</div>
+                </div>
+                <div class="story-content">
+                    <div class="story-body">
+                        <div class="story-item">
+                            <div class="story-label">Situation</div>
+                            <div class="story-text">Emerald Media (KKR's USD 300M fund), deal flow management was core challenge.</div>
+                        </div>
+
+                        <div class="story-item">
+                            <div class="story-label">Task</div>
+                            <div class="story-text">Support full PE lifecycle: sourcing, DD, financial modelling, IC presentations, portfolio monitoring.</div>
+                        </div>
+
+                        <div class="story-item">
+                            <div class="story-label">Action</div>
+                            <div class="story-text">Built models and IC presentations for KKR leadership. Managed deal pipeline across APAC. Key deal: aCommerce Series B (~USD 65M).</div>
+                        </div>
+
+                        <div class="story-item">
+                            <div class="story-label">Result</div>
+                            <div class="story-text">Direct experience with institutional-grade deal flow, LP/IC reporting cadence.</div>
+                        </div>
+
+                        <div class="alert alert-success">
+                            <div class="alert-label">Bridge to Raffles</div>
+                            <div class="alert-text">Family offices manage deal flow similarly to PE funds. "I have sat in the room where decisions are made, built the materials, understand the data architecture."</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STORY 3: Proudfoot/Lafarge -->
+            <div class="story-card">
+                <div class="story-header" onclick="toggleStory(this)">
+                    <h3>Operational Transformation at Scale (Proudfoot/Lafarge)</h3>
+                    <div class="story-toggle">▲</div>
+                </div>
+                <div class="story-content">
+                    <div class="story-body">
+                        <div class="story-item">
+                            <div class="story-label">Situation</div>
+                            <div class="story-text">Embedded in Lafarge China to consolidate HR, Finance, Purchasing across all Chinese operations.</div>
+                        </div>
+
+                        <div class="story-item">
+                            <div class="story-label">Task</div>
+                            <div class="story-text">Interview stakeholders floor to C-suite, map processes, build financial models with KPIs.</div>
+                        </div>
+
+                        <div class="story-item">
+                            <div class="story-label">Action</div>
+                            <div class="story-text">Led interviews, built process maps, designed target operating model, hands-on implementation.</div>
+                        </div>
+
+                        <div class="story-item">
+                            <div class="story-label">Result</div>
+                            <div class="story-text">Millions in annual recurring savings.</div>
+                        </div>
+
+                        <div class="alert alert-success">
+                            <div class="alert-label">Bridge to Raffles</div>
+                            <div class="alert-text">"A CRM project is an operational transformation project. Technology is 30% — the other 70% is understanding how people work, mapping processes, designing systems people will use."</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STORY 4: COO Crisis -->
+            <div class="story-card">
+                <div class="story-header" onclick="toggleStory(this)">
+                    <h3>COO Through Crisis — 10x Efficiency Under Pressure</h3>
+                    <div class="story-toggle">▲</div>
+                </div>
+                <div class="story-content">
+                    <div class="story-body">
+                        <div class="story-item">
+                            <div class="story-label">Situation</div>
+                            <div class="story-text">Post-COVID, HK retail collapsed. HKD 120M to severe downturn.</div>
+                        </div>
+
+                        <div class="story-item">
+                            <div class="story-label">Task</div>
+                            <div class="story-text">Restructure business to survive without destroying capability.</div>
+                        </div>
+
+                        <div class="story-item">
+                            <div class="story-label">Action</div>
+                            <div class="story-text">Multiple restructurings, automated manual processes, redesigned tech from ground up, brutal prioritisation.</div>
+                        </div>
+
+                        <div class="story-item">
+                            <div class="story-label">Result</div>
+                            <div class="story-text">10x improvement in revenue per FTE (HKD 10M per headcount).</div>
+                        </div>
+
+                        <div class="alert alert-success">
+                            <div class="alert-label">Bridge to Raffles</div>
+                            <div class="alert-text">"A small team managing complex UHNW relationships across 6+ cities is the exact problem I solved — how to make a lean team punch above its weight through technology."</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TIMELINE SECTION -->
+    <section id="timeline" class="section">
+        <h2 class="section-title">Career Timeline</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-period">2015 – Present</div>
+                <div class="timeline-role">STT Mall HK — Founding Partner &amp; COO</div>
+                <div class="timeline-relevance"><strong>Relevance:</strong> Built entire tech stack, AI-driven CRM 55K+, HKD 120M, 10x efficiency, AI-augmented methodology.</div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-period">2016 – 2018</div>
+                <div class="timeline-role">Emerald Media / KKR — Investment Associate, USD 300M Fund</div>
+                <div class="timeline-relevance"><strong>Relevance:</strong> PE deal flow, IC presentations, aCommerce Series B.</div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-period">2013 – 2014</div>
+                <div class="timeline-role">Alexander Proudfoot — Management Consultant</div>
+                <div class="timeline-relevance"><strong>Relevance:</strong> Operational transformation, stakeholder interviews, Lafarge China millions saved.</div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-period">2010 – 2014</div>
+                <div class="timeline-role">ANZ Banking Group — Analyst → Associate Director, TMET</div>
+                <div class="timeline-relevance"><strong>Relevance:</strong> Covered TSMC, Tencent, Alibaba, Huawei. Alibaba USD 2.5B privatisation. DCM, M&amp;A.</div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-period">2008 – 2010</div>
+                <div class="timeline-role">Bloomberg LP — Regional Treasury, APAC</div>
+                <div class="timeline-relevance"><strong>Relevance:</strong> Cash management, multi-entity fund allocation, APAC banking relationships.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Raffles Pages</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="experience.html">Experience Bridge</a></li>
+                    <li><a href="values.html">Core Values</a></li>
+                    <li><a href="approach.html">Approach</a></li>
+                    <li><a href="technical.html">Technical Foundation</a></li>
+                    <li><a href="reference.html">Reference</a></li>
+                    <li><a href="closing.html">Closing Statement</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Navigation</h4>
+                <ul class="footer-links">
+                    <li><a href="../index.html">Main Portfolio</a></li>
+                    <li><a href="#stories">Stories</a></li>
+                    <li><a href="#timeline">Timeline</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Connect</h4>
+                <ul class="footer-links">
+                    <li><a href="https://linkedin.com/in/arthurchanhk" target="_blank">LinkedIn</a></li>
+                    <li><a href="mailto:arthur@sttmall.com">Email</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Arthur Chan. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Toggle story card details
+        function toggleStory(headerElement) {
+            const card = headerElement.closest('.story-card');
+            const content = card.querySelector('.story-content');
+            const toggle = headerElement.querySelector('.story-toggle');
+
+            content.classList.toggle('open');
+            toggle.classList.toggle('open');
+        }
+
+        // Hamburger menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu on link click
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Handle dropdown menu on mobile
+        const rafflesDropdown = document.getElementById('rafflesDropdown');
+        rafflesDropdown.addEventListener('click', (e) => {
+            if (window.innerWidth <= 768) {
+                e.preventDefault();
+                const dropdown = e.target.closest('.dropdown');
+                dropdown.classList.toggle('active');
+            }
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.dropdown')) {
+                document.querySelectorAll('.dropdown').forEach(d => {
+                    d.classList.remove('active');
+                });
+            }
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#' && document.querySelector(href)) {
+                    e.preventDefault();
+                    document.querySelector(href).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

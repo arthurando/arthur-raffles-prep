@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Org Chart — Raffles Family Office</title>
+  <style>
+    :root {
+      --bg: #0a0a0f;
+      --surface: #12121a;
+      --surface-alt: #1a1a28;
+      --border: #2a2a3a;
+      --accent: #c9a84c;
+      --accent-dim: rgba(201, 168, 76, 0.15);
+      --accent-glow: rgba(201, 168, 76, 0.08);
+      --text: #e8e6e3;
+      --text-dim: #8a8a9a;
+      --danger: #e05252;
+      --success: #4caf7c;
+      --info: #5b8def;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* ===== HEADER & NAVIGATION ===== */
+    header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .header-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand {
+      font-size: 1.2rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: var(--accent);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .brand:hover {
+      color: var(--text);
+    }
+
+    nav {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .nav-dropdown {
+      position: relative;
+    }
+
+    .dropdown-trigger {
+      background: none;
+      border: none;
+      color: var(--text);
+      cursor: pointer;
+      font-size: 1rem;
+      padding: 0.5rem 0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: color 0.2s;
+    }
+
+    .dropdown-trigger:hover {
+      color: var(--accent);
+    }
+
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: var(--surface-alt);
+      border: 1px solid var(--border);
+      border-radius: 0.5rem;
+      min-width: 200px;
+      margin-top: 0.5rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .dropdown-menu.active {
+      display: block;
+    }
+
+    .dropdown-menu a {
+      display: block;
+      padding: 0.75rem 1rem;
+      color: var(--text);
+      text-decoration: none;
+      border-bottom: 1px solid var(--border);
+      transition: background-color 0.2s, color 0.2s;
+    }
+
+    .dropdown-menu a:last-child {
+      border-bottom: none;
+    }
+
+    .dropdown-menu a:hover {
+      background-color: var(--accent-dim);
+      color: var(--accent);
+    }
+
+    .dropdown-menu a.active {
+      background-color: var(--accent-dim);
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 0.4rem;
+    }
+
+    .hamburger span {
+      width: 24px;
+      height: 2px;
+      background-color: var(--text);
+      transition: all 0.3s;
+    }
+
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(45deg) translate(8px, 8px);
+    }
+
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(7px, -7px);
+    }
+
+    .page-anchors {
+      display: flex;
+      gap: 1rem;
+      font-size: 0.9rem;
+    }
+
+    .page-anchors a {
+      color: var(--text-dim);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .page-anchors a:hover {
+      color: var(--accent);
+    }
+
+    /* ===== MAIN CONTENT ===== */
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      margin-bottom: 3rem;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--accent);
+      letter-spacing: 0.02em;
+    }
+
+    .hero .subtitle {
+      font-size: 1.1rem;
+      color: var(--text-dim);
+      margin-bottom: 0.75rem;
+    }
+
+    .hero .note {
+      font-size: 0.95rem;
+      color: var(--text-dim);
+      font-style: italic;
+    }
+
+    /* ===== ALERTS ===== */
+    .alert {
+      padding: 1.5rem;
+      border-radius: 0.5rem;
+      margin-bottom: 2rem;
+      border-left: 4px solid;
+    }
+
+    .alert-danger {
+      background-color: rgba(224, 82, 82, 0.1);
+      border-left-color: var(--danger);
+      color: var(--text);
+    }
+
+    .alert-info {
+      background-color: rgba(91, 141, 239, 0.1);
+      border-left-color: var(--info);
+      color: var(--text);
+    }
+
+    .alert h3 {
+      margin-bottom: 0.5rem;
+      color: var(--text);
+      font-size: 1.05rem;
+    }
+
+    .alert p {
+      margin-bottom: 0.5rem;
+      line-height: 1.7;
+    }
+
+    .alert p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* ===== SECTION TITLES ===== */
+    .section-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin: 2.5rem 0 1.5rem 0;
+      color: var(--accent);
+      padding-bottom: 0.75rem;
+      border-bottom: 2px solid var(--accent-dim);
+    }
+
+    /* ===== ORG CHART (CSS) ===== */
+    .org-chart {
+      margin: 2rem 0;
+      overflow-x: auto;
+      padding: 2rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 0.5rem;
+    }
+
+    .org-row {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+    }
+
+    .org-box {
+      background: var(--surface-alt);
+      border: 2px solid var(--border);
+      border-radius: 0.5rem;
+      padding: 1rem;
+      text-align: center;
+      min-width: 160px;
+      transition: all 0.3s;
+      position: relative;
+    }
+
+    .org-box:hover {
+      border-color: var(--accent);
+      background: rgba(201, 168, 76, 0.05);
+      box-shadow: 0 0 12px var(--accent-glow);
+    }
+
+    .org-box.departing {
+      border-color: var(--danger);
+    }
+
+    .org-box.departing::before {
+      content: 'DEPARTING';
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--danger);
+      color: white;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 0.25rem 0.5rem;
+      border-radius: 0.25rem;
+      letter-spacing: 0.05em;
+    }
+
+    .org-box .title {
+      font-weight: 700;
+      color: var(--accent);
+      font-size: 1rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .org-box .role {
+      font-size: 0.9rem;
+      color: var(--text-dim);
+      margin-bottom: 0.25rem;
+    }
+
+    .org-box .credentials {
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      line-height: 1.4;
+    }
+
+    .badge {
+      display: inline-block;
+      background: var(--accent-dim);
+      border: 1px solid var(--border);
+      color: var(--accent);
+      font-size: 0.75rem;
+      padding: 0.3rem 0.6rem;
+      border-radius: 0.25rem;
+      margin: 0.25rem 0;
+      font-weight: 600;
+    }
+
+    .badge.green {
+      background: rgba(76, 175, 124, 0.1);
+      border-color: var(--success);
+      color: var(--success);
+    }
+
+    .badge.red {
+      background: rgba(224, 82, 82, 0.1);
+      border-color: var(--danger);
+      color: var(--danger);
+    }
+
+    /* ===== GRID SECTIONS ===== */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .grid-item {
+      background: var(--surface-alt);
+      border: 1px solid var(--border);
+      padding: 1.25rem;
+      border-radius: 0.5rem;
+      transition: all 0.3s;
+    }
+
+    .grid-item:hover {
+      border-color: var(--accent);
+      background: rgba(201, 168, 76, 0.03);
+    }
+
+    .grid-item .name {
+      font-weight: 700;
+      color: var(--accent);
+      font-size: 1.05rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .grid-item .role {
+      color: var(--text-dim);
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .grid-item .details {
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      line-height: 1.5;
+    }
+
+    /* ===== PERSONNEL CARDS ===== */
+    .card {
+      background: var(--surface-alt);
+      border: 1px solid var(--border);
+      border-radius: 0.5rem;
+      overflow: hidden;
+      transition: all 0.3s;
+    }
+
+    .card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 0 20px var(--accent-glow);
+    }
+
+    .card.departing {
+      border-color: var(--danger);
+    }
+
+    .card-image {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      background: var(--surface);
+    }
+
+    .card-body {
+      padding: 1.5rem;
+    }
+
+    .card-name {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 0.25rem;
+    }
+
+    .card-title {
+      font-size: 0.95rem;
+      color: var(--text-dim);
+      margin-bottom: 0.75rem;
+    }
+
+    .card-description {
+      font-size: 0.9rem;
+      color: var(--text-dim);
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    .card-toggle {
+      background: var(--accent-dim);
+      border: 1px solid var(--border);
+      color: var(--accent);
+      padding: 0.5rem 1rem;
+      border-radius: 0.25rem;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.85rem;
+      transition: all 0.2s;
+    }
+
+    .card-toggle:hover {
+      background: var(--accent);
+      color: var(--bg);
+    }
+
+    .card-details {
+      display: none;
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.9rem;
+      color: var(--text-dim);
+      line-height: 1.7;
+    }
+
+    .card-details.active {
+      display: block;
+    }
+
+    .card-details img {
+      width: 100%;
+      max-width: 200px;
+      height: auto;
+      margin: 1rem 0;
+      border-radius: 0.5rem;
+      border: 1px solid var(--border);
+    }
+
+    /* ===== EDUCATION TABLE ===== */
+    .education-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+    }
+
+    .education-table th {
+      background: var(--surface-alt);
+      color: var(--accent);
+      font-weight: 700;
+      padding: 1rem;
+      text-align: left;
+      border: 1px solid var(--border);
+    }
+
+    .education-table td {
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+
+    .education-table tr:nth-child(even) {
+      background: rgba(201, 168, 76, 0.02);
+    }
+
+    .education-table .overlap {
+      color: var(--success);
+      font-weight: 600;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      margin-top: 3rem;
+      padding: 2rem 0;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      color: var(--text-dim);
+      font-size: 0.9rem;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      nav {
+        display: none;
+      }
+
+      nav.active {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        right: 0;
+        background: var(--surface);
+        border-bottom: 1px solid var(--border);
+        gap: 0;
+        padding: 1rem;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .page-anchors {
+        display: none;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .org-row {
+        gap: 1rem;
+      }
+
+      .org-box {
+        min-width: 140px;
+        font-size: 0.9rem;
+      }
+    }
+
+    /* ===== PRINT ===== */
+    @media print {
+      header, footer {
+        display: none;
+      }
+
+      main {
+        padding: 0;
+      }
+
+      .alert {
+        break-inside: avoid;
+      }
+
+      .card {
+        break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <a href="../index.html" class="brand">ARTHUR CHAN</a>
+      <nav id="nav">
+        <div class="nav-dropdown">
+          <button class="dropdown-trigger" id="dropdownBtn">Raffles ▾</button>
+          <div class="dropdown-menu" id="dropdownMenu">
+            <a href="index.html">Overview</a>
+            <a href="strategy.html">Strategy</a>
+            <a href="org-chart.html" class="active">Org Chart</a>
+            <a href="news.html">News</a>
+            <a href="experience.html">Experience Bridge</a>
+            <a href="technical.html">Technical</a>
+            <a href="questions.html">Questions</a>
+          </div>
+        </div>
+      </nav>
+      <div class="page-anchors">
+        <a href="#org-chart">Org Chart</a>
+        <a href="#personnel">Personnel</a>
+        <a href="#profiles">Profiles</a>
+        <a href="#education">Education</a>
+      </div>
+      <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <h1>Organisational Chart</h1>
+      <p class="subtitle">Raffles Family Office — Publicly Available Personnel Data (Feb 2026)</p>
+      <p class="note">~223 employees across HK, SG, regional offices. Plans to reach ~400 within 2–3 years.</p>
+    </section>
+
+    <!-- CRITICAL ALERT -->
+    <div class="alert alert-danger">
+      <h3>CRITICAL INTEL: Terence Chow (Group COO) Departing</h3>
+      <p><strong>Appointment:</strong> July 2024 (ex-CEO Asia, RBC Wealth Management). Tenure: ~18 months.</p>
+      <p><strong>Responsibility scope:</strong> Technology, operations, business transformation, risk management, corporate functions.</p>
+      <p><strong>Strategic implication:</strong> His departure creates a significant gap. Arthur's CRM/technology role may be filling part of what Terence was responsible for. <em>Do NOT mention this unless they bring it up — but be ready for it to inform the scope of the role.</em></p>
+    </div>
+
+    <!-- ORG CHART -->
+    <section id="org-chart">
+      <h2 class="section-title">Organisational Structure</h2>
+
+      <!-- Row 1: Co-Founders -->
+      <div class="org-chart">
+        <div class="org-row">
+          <div class="org-box">
+            <div class="title">Chi-man Kwan</div>
+            <div class="role">Co-Founder</div>
+          </div>
+          <div class="org-box">
+            <div class="title">Ray Tam</div>
+            <div class="role">Co-Founder</div>
+          </div>
+          <div class="org-box">
+            <div class="title">Kendrick Lee</div>
+            <div class="role">Co-Founder</div>
+          </div>
+        </div>
+
+        <!-- Row 2: C-Suite -->
+        <div class="org-row">
+          <div class="org-box">
+            <div class="title">Chi-man Kwan</div>
+            <div class="role">Group CEO</div>
+            <div class="credentials">Hong Kong</div>
+          </div>
+          <div class="org-box">
+            <div class="title">Kendrick Lee</div>
+            <div class="role">CEO, Singapore</div>
+            <div class="credentials">BSc Manchester</div>
+          </div>
+          <div class="org-box">
+            <div class="title">Ray Tam</div>
+            <div class="role">CEO, Revo Digital</div>
+            <div class="credentials">Ex-BNP Paribas, DBS<br>Oxford</div>
+          </div>
+        </div>
+
+        <!-- Row 3: Senior Leadership -->
+        <div class="org-row">
+          <div class="org-box">
+            <div class="title">William Chow</div>
+            <div class="role">Deputy Group CEO</div>
+            <div class="credentials">MSc Op. Research, LSE<br>Ex-BlackRock</div>
+          </div>
+          <div class="org-box departing">
+            <div class="title">Terence Chow</div>
+            <div class="role">Group COO</div>
+            <div class="credentials">MBA Ivey<br>Ex-CEO Asia RBC WM</div>
+          </div>
+          <div class="org-box">
+            <div class="title">Zann Kwan, CFA</div>
+            <div class="role">MP &amp; CIO, Revo</div>
+            <div class="credentials">Ex-GIC, KPMG<br>1st Asia BTC ATM</div>
+          </div>
+        </div>
+
+        <!-- Row 4: Directors -->
+        <div class="org-row">
+          <div class="org-box">
+            <div class="title">Michael Tung</div>
+            <div class="role">MD, RM Team HK</div>
+            <div class="credentials"><span class="badge green">Oct 2025</span><br>Ex-UBS, Morgan Stanley</div>
+          </div>
+          <div class="org-box">
+            <div class="title">Jennie Liang</div>
+            <div class="role">ED, RM Team HK</div>
+            <div class="credentials"><span class="badge green">Oct 2025</span><br>Ex-UBS, Credit Suisse</div>
+          </div>
+          <div class="org-box">
+            <div class="title">Terence Seow</div>
+            <div class="role">MD, Board Advisor</div>
+            <div class="credentials"><span class="badge">May 2025</span><br>Ex-Citibank, DBS</div>
+          </div>
+          <div class="org-box">
+            <div class="title">Shaun Lim</div>
+            <div class="role">MD, RM Singapore</div>
+            <div class="credentials"><span class="badge">May 2025</span><br>Ex-RBC WM, Morgan Stanley</div>
+          </div>
+        </div>
+
+        <!-- Row 5: Regional Heads -->
+        <div class="org-row">
+          <div class="org-box">
+            <div class="title">Kevin King</div>
+            <div class="role">MD, Head of Greater China</div>
+            <div class="credentials">龚衍晖</div>
+          </div>
+          <div class="org-box">
+            <div class="title">Thidatip Thitikarunwong</div>
+            <div class="role">MD, Thailand Market Head</div>
+            <div class="credentials"><span class="badge">2024</span><br>Ex-Credit Suisse</div>
+          </div>
+          <div class="org-box">
+            <div class="title">Joe Kwan, PhD</div>
+            <div class="role">MP, Real Estate</div>
+            <div class="credentials">Ex-Chelsfield Asia, UBS</div>
+          </div>
+          <div class="org-box">
+            <div class="title">Jo Huang, CFA</div>
+            <div class="role">Head of PE</div>
+            <div class="credentials">SuperReturn Asia speaker</div>
+          </div>
+        </div>
+
+        <!-- Row 6: Functional -->
+        <div class="org-row">
+          <div class="org-box">
+            <div class="title">Caroline Langston</div>
+            <div class="role">Chief People Officer</div>
+            <div class="credentials"><span class="badge green">Nov 2025</span><br>King's College London</div>
+          </div>
+          <div class="org-box">
+            <div class="title">Cherie Liu</div>
+            <div class="role">Head of Marketing &amp; Comms</div>
+          </div>
+          <div class="org-box">
+            <div class="title">Gillian Cheng</div>
+            <div class="role">VP, Business Management</div>
+          </div>
+          <div class="org-box">
+            <div class="title">Jupiter Zheng, CFA</div>
+            <div class="role">Revo Digital Team</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ORG CHART READING -->
+    <div class="alert alert-info">
+      <h3>Reading the Chart</h3>
+      <p><strong>Three co-founders, three geographies:</strong> Chi-man Kwan (HK), Kendrick Lee (SG), Ray Tam (Revo Digital). Each leads a pillar with distinct reporting lines.</p>
+      <p><strong>Terence Chow's departure is the most important signal:</strong> Appointed Jul 2024, departing after ~18 months. He led technology, operations, and business transformation. His exit creates a vacuum Arthur's CRM/technology role may partially fill.</p>
+      <p><strong>Advisory board includes European gateway players:</strong> Rizal Wijono (Micro Connect Europe), Abdullatif Kanoo (Kanoo Group Abu Dhabi), and Christina Lau (ex-PwC) signal international expansion and wealth management gatekeeping.</p>
+    </div>
+
+    <!-- TEAM MEMBERS -->
+    <section id="personnel">
+      <h2 class="section-title">Team Members</h2>
+      <div class="grid">
+        <div class="grid-item">
+          <div class="name">Benn Ng</div>
+          <div class="role">Head of FX</div>
+        </div>
+        <div class="grid-item">
+          <div class="name">Julien Grunebaum</div>
+          <div class="role">Head of Structured Investments</div>
+        </div>
+        <div class="grid-item">
+          <div class="name">Candy Zhou</div>
+          <div class="role">Wealth &amp; Legacy Planning</div>
+        </div>
+        <div class="grid-item">
+          <div class="name">Sky Kwah</div>
+          <div class="role">Head of Investment Advisory</div>
+        </div>
+        <div class="grid-item">
+          <div class="name">Derek Loh</div>
+          <div class="role">Head of Equities</div>
+        </div>
+        <div class="grid-item">
+          <div class="name">Leo Lai</div>
+          <div class="role">Team Member</div>
+        </div>
+        <div class="grid-item">
+          <div class="name">Leah Ng</div>
+          <div class="role">Team Member, SG</div>
+        </div>
+        <div class="grid-item">
+          <div class="name">Ivy Lim</div>
+          <div class="role">Relationship Manager</div>
+        </div>
+        <div class="grid-item">
+          <div class="name">Christy Wong</div>
+          <div class="role">Assistant RM</div>
+        </div>
+        <div class="grid-item">
+          <div class="name">Chao Deng</div>
+          <div class="role">Revo Digital</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ADVISORY BOARD -->
+    <section>
+      <h2 class="section-title">Advisory Board</h2>
+      <div class="grid">
+        <div class="grid-item">
+          <div class="name">Bruno Morel</div>
+          <div class="role">Advisory Board</div>
+          <div class="details">Ex-CEO VP Bank Singapore</div>
+        </div>
+        <div class="grid-item">
+          <div class="name">Christina Lau</div>
+          <div class="role">Advisory Board</div>
+          <div class="details">Ex-PwC Risk Assurance</div>
+        </div>
+        <div class="grid-item">
+          <div class="name">David Chang</div>
+          <div class="role">Advisory Board</div>
+          <div class="details">Vice Chairman Asia, PGIM</div>
+        </div>
+        <div class="grid-item">
+          <div class="name">Rizal Wijono</div>
+          <div class="role">Advisory Board</div>
+          <div class="details">Ex-MD Micro Connect (Europe FO gateway)</div>
+        </div>
+        <div class="grid-item">
+          <div class="name">Abdullatif Kanoo</div>
+          <div class="role">Advisory Board</div>
+          <div class="details">5th-gen Kanoo Group Abu Dhabi <span class="badge">Dec 2024</span></div>
+        </div>
+        <div class="grid-item">
+          <div class="name">Dr. Niti Nerngchamnong</div>
+          <div class="role">Advisory Board</div>
+          <div class="details">LL.D., NITI Law Bangkok <span class="badge">Aug 2024</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- KEY PERSONNEL CARDS -->
+    <section id="profiles">
+      <h2 class="section-title">Key Personnel</h2>
+
+      <!-- 1. Chi-man Kwan -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin: 2rem 0;">
+        <div class="card">
+          <img src="https://www.rafflesgroup.co/wp-content/uploads/2025/05/Picture12-1024x1024.png" alt="Chi-man Kwan" class="card-image">
+          <div class="card-body">
+            <div class="card-name">Chi-man Kwan</div>
+            <div class="card-title">Group CEO &amp; Co-Founder</div>
+            <div class="card-description">15+ years BNP Paribas &amp; StanChart. Chair FOAHK. Leadership philosophy: taking over smaller AMs, targeting $10B AUM, building regional hubs, growing to ~400 employees within 2–3 years. <strong>Most likely interviewer.</strong></div>
+            <button class="card-toggle" onclick="toggleDetails(this)">View Full Profile</button>
+            <div class="card-details">
+              <p><strong>Education:</strong> BSc Lancaster, EMBA Tsinghua-INSEAD, Adjunct Prof HKU</p>
+              <p><strong>Direct reports:</strong> William Chow, Terence Chow (departing), Michael Tung, Jennie Liang</p>
+              <p><strong>Key quotes:</strong> "$10 billion target." "Taking over smaller asset managers." "Asian tycoons are the new ultra-wealthy." "Caroline and the people strategy." "Hong Kong as Asia's wealth hub." "Once in a century opportunity."</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. William Chow -->
+        <div class="card">
+          <img src="https://www.rafflesgroup.co/wp-content/uploads/2025/05/Picture15-1-1024x1024.png" alt="William Chow" class="card-image">
+          <div class="card-body">
+            <div class="card-name">William Chow</div>
+            <div class="card-title">Deputy Group CEO</div>
+            <div class="card-description">Ex-China Life Franklin (US$35B AUM), PINS AM, Value Partners, BlackRock, State Street, UBS. Quantitative background. Board of Management, Investment Committee. <strong>Strongest education overlap with Arthur (both LSE postgrad quant).</strong></div>
+            <button class="card-toggle" onclick="toggleDetails(this)">View Full Profile</button>
+            <div class="card-details">
+              <p><strong>Education:</strong> MSc Operations Research, LSE</p>
+              <p><strong>Background:</strong> BlackRock, State Street, UBS. Deep asset management expertise.</p>
+              <p><strong>Interests:</strong> Table tennis, history, hiking. Moderated AI panel at Annual Forum 2025.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Ray Tam -->
+        <div class="card">
+          <img src="https://www.rafflesgroup.co/wp-content/uploads/2025/05/Picture2-1024x1024.png" alt="Ray Tam" class="card-image">
+          <div class="card-body">
+            <div class="card-name">Ray Tam</div>
+            <div class="card-title">CEO, Revo Digital &amp; Co-Founder</div>
+            <div class="card-description">Director BNP Paribas, DBS, StanChart. FOAHK Board. Co-founded Revo with Huobi. SFC Type 4 &amp; 9 licensed. Arthur's blockchain/digital asset background highly relevant to Revo strategy.</div>
+            <button class="card-toggle" onclick="toggleDetails(this)">View Full Profile</button>
+            <div class="card-details">
+              <p><strong>Education:</strong> Oxford, Blockchain Strategy Saïd</p>
+              <p><strong>Background:</strong> St Michael's College Tenbury Wells. Oxford graduate. Blockchain expertise.</p>
+              <p><strong>Key role:</strong> Leading Raffles' digital asset &amp; crypto wealth segment.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. Kendrick Lee -->
+        <div class="card">
+          <img src="https://www.rafflesgroup.co/wp-content/uploads/2025/05/Picture6-1024x1024.png" alt="Kendrick Lee" class="card-image">
+          <div class="card-body">
+            <div class="card-name">Kendrick Lee</div>
+            <div class="card-title">CEO Singapore &amp; Co-Founder</div>
+            <div class="card-description">Managing Partner &amp; Co-Founder. Leads SE Asian operations and Singapore wealth management hub. Shaun Lim reports to him. Direct access to regional market strategy.</div>
+            <button class="card-toggle" onclick="toggleDetails(this)">View Full Profile</button>
+            <div class="card-details">
+              <p><strong>Education:</strong> BSc Manchester</p>
+              <p><strong>Role:</strong> Managing Partner, CEO Singapore. Regional expansion authority.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. Zann Kwan, CFA -->
+        <div class="card">
+          <img src="https://www.rafflesgroup.co/wp-content/uploads/2025/05/Zann-Kwan-2023-2-1024x1024.jpg" alt="Zann Kwan" class="card-image">
+          <div class="card-body">
+            <div class="card-name">Zann Kwan, CFA</div>
+            <div class="card-title">CIO &amp; MP, Revo Digital</div>
+            <div class="card-description">25+ years financial services, 12+ years digital assets. Pioneered Asia's first public Bitcoin ATM in 2014. Ex-GIC, Arthur Andersen, KPMG. Arthur's KKR &amp; crypto experience directly relevant.</div>
+            <button class="card-toggle" onclick="toggleDetails(this)">View Full Profile</button>
+            <div class="card-details">
+              <p><strong>Background:</strong> GIC (sovereign wealth), Arthur Andersen, KPMG. Deep financial architecture expertise.</p>
+              <p><strong>Key achievement:</strong> Launched Asia's first Bitcoin ATM, 2014. Pioneer in digital asset adoption.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6. Caroline Langston -->
+        <div class="card">
+          <img src="https://www.rafflesgroup.co/wp-content/uploads/2025/11/Caroline-Langston-CPO-RFO-777x1024.png" alt="Caroline Langston" class="card-image">
+          <div class="card-body">
+            <div class="card-name">Caroline Langston</div>
+            <div class="card-title">Chief People Officer (Nov 2025)</div>
+            <div class="card-description">Newly created strategic role. Was RFO coach for 5+ years. Leading people strategy, talent development, cultural initiatives, Raffles Group Academy. <strong>If she interviews: lead with coaching leadership, team scaling from STT Mall (2 people → 35+).</strong></div>
+            <button class="card-toggle" onclick="toggleDetails(this)">View Full Profile</button>
+            <div class="card-details">
+              <p><strong>Education:</strong> Postgrad Neuroscience, King's College London (pursuing MSc)</p>
+              <p><strong>Background:</strong> 20+ years international experience. RFO internal coach. Neuroscience training signals people-psychology focus.</p>
+              <p><strong>Key initiative:</strong> Raffles Group Academy — structured talent development. Reports to Chi-man Kwan directly.</p>
+              <p><strong>London connection:</strong> King's College London education — shared UK university background with Arthur.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 7. Kevin King -->
+        <div class="card">
+          <div class="card-body">
+            <div class="card-name">Kevin King</div>
+            <div class="card-title">MD, Head of Greater China</div>
+            <div class="card-description">Leads Greater China wealth management operations. Strategic regional expansion role.</div>
+            <button class="card-toggle" onclick="toggleDetails(this)">View Full Profile</button>
+            <div class="card-details">
+              <p><strong>Chinese name:</strong> 龚衍晖</p>
+              <p><strong>Key role:</strong> Greater China market leadership, regional wealth hub strategy.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 8. Jo Huang, CFA -->
+        <div class="card">
+          <div class="card-body">
+            <div class="card-name">Jo Huang, CFA</div>
+            <div class="card-title">Head of PE</div>
+            <div class="card-description">SuperReturn Asia speaker. Leads private equity strategy for family offices. <strong>Arthur's KKR experience directly relevant.</strong></div>
+            <button class="card-toggle" onclick="toggleDetails(this)">View Full Profile</button>
+            <div class="card-details">
+              <p><strong>Key credential:</strong> CFA charterholder. SuperReturn Asia thought leader.</p>
+              <p><strong>Relevance to Arthur:</strong> KKR background in PE operations, portfolio strategy, impact alignment.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 9. Michael Tung &amp; Jennie Liang -->
+        <div class="card">
+          <div class="card-body">
+            <div class="card-name">Michael Tung &amp; Jennie Liang</div>
+            <div class="card-title">RM Team HK (Oct 2025)</div>
+            <div class="card-description"><span class="badge green">Oct 2025</span> Both ex-UBS, Credit Suisse, Rockpool, Ark Advisors. Lead client relationship management for HK wealth. Report to Chi-man Kwan.</div>
+            <button class="card-toggle" onclick="toggleDetails(this)">View Full Profile</button>
+            <div class="card-details">
+              <p><strong>Michael Tung (MD, RM Team HK):</strong> Ex-UBS, Morgan Stanley. ~15+ years WM experience.</p>
+              <p><strong>Jennie Liang (ED, RM Team HK):</strong> Ex-UBS, Credit Suisse. Relationship management expertise.</p>
+              <p><strong>Recent hire:</strong> Oct 2025 signifies scaling HK client operations.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 10. Joe Kwan, PhD -->
+        <div class="card">
+          <div class="card-body">
+            <div class="card-name">Joe Kwan, PhD</div>
+            <div class="card-title">MP, Real Estate</div>
+            <div class="card-description">Ex-Sakal RE Partners, Chelsfield Asia, UBS GAM. Oversees Advanced Wealth Solutions real estate team. Led Tishman Speyer/RFO APAC Fund I.</div>
+            <button class="card-toggle" onclick="toggleDetails(this)">View Full Profile</button>
+            <div class="card-details">
+              <p><strong>PhD holder:</strong> Real estate research/strategy expertise.</p>
+              <p><strong>Key achievement:</strong> Led Tishman Speyer/RFO APAC Fund I. Direct real estate infrastructure knowledge.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 11. Terence Seow -->
+        <div class="card">
+          <div class="card-body">
+            <div class="card-name">Terence Seow</div>
+            <div class="card-title">MD, Board Advisor</div>
+            <div class="card-description"><span class="badge">May 2025</span> 40+ years banking. Citibank, DBS, Bank of Singapore. Market trends, risk analysis, board-level advisory.</div>
+            <button class="card-toggle" onclick="toggleDetails(this)">View Full Profile</button>
+            <div class="card-details">
+              <p><strong>Experience:</strong> 40+ years in banking and wealth management. Deep regulatory &amp; risk expertise.</p>
+              <p><strong>Role:</strong> Board advisor. Strategic governance input.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 12. Shaun Lim -->
+        <div class="card">
+          <div class="card-body">
+            <div class="card-name">Shaun Lim</div>
+            <div class="card-title">MD, RM Singapore</div>
+            <div class="card-description"><span class="badge">May 2025</span> 25+ years. RBC WM Market Head North Asia, Morgan Stanley, JPM, Credit Suisse. Based SG, reports to Kendrick Lee.</div>
+            <button class="card-toggle" onclick="toggleDetails(this)">View Full Profile</button>
+            <div class="card-details">
+              <p><strong>Background:</strong> RBC WM (Market Head North Asia), Morgan Stanley, JPM, Credit Suisse. Top-tier WM experience.</p>
+              <p><strong>Role:</strong> Singapore RM leadership. Regional wealth relationship strategy.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EDUCATION OVERLAP -->
+    <section id="education">
+      <h2 class="section-title">Education &amp; Rapport Mapping</h2>
+      <div class="alert alert-info">
+        <h3>Arthur's Background</h3>
+        <p><strong>MEng Chemical Engineering, Imperial College London (QS #2)</strong> — Signals quantitative, rigorous, elite UK tech background. This maps strongly to leadership who are UK-educated &amp; quantitatively trained.</p>
+      </div>
+
+      <table class="education-table">
+        <thead>
+          <tr>
+            <th>Name / Role</th>
+            <th>Education</th>
+            <th>Overlap &amp; Rapport Angle</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Chi-man Kwan</strong> (Group CEO)</td>
+            <td>BSc Lancaster, EMBA Tsinghua-INSEAD, Adjunct Prof HKU</td>
+            <td><span class="overlap">✓ UK → Asia arc</span> Lancaster is top-tier UK institution. EMBA signals postgrad rigor. HKU connection shows long HK presence.</td>
+          </tr>
+          <tr>
+            <td><strong>William Chow</strong> (Deputy Group CEO)</td>
+            <td>MSc Operations Research, LSE</td>
+            <td><span class="overlap">✓✓ STRONGEST OVERLAP</span> Both quant postgrads from London. MSc OR (LSE) + MEng (Imperial) = aligned quantitative thinking, elite London universities.</td>
+          </tr>
+          <tr>
+            <td><strong>Terence Chow</strong> (Group COO, Departing)</td>
+            <td>MBA Ivey</td>
+            <td><span class="overlap">✓ Elite business school</span> Ivey is top-tier MBA. Business transformation background aligns with operational scaling mindset.</td>
+          </tr>
+          <tr>
+            <td><strong>Caroline Langston</strong> (Chief People Officer)</td>
+            <td>Postgrad Neuroscience, King's College London (pursuing MSc)</td>
+            <td><span class="overlap">✓✓ LONDON CONNECTION</span> King's College London — shared top-tier London university. Neuroscience signals evidence-based people strategy, interdisciplinary thinking.</td>
+          </tr>
+          <tr>
+            <td><strong>Ray Tam</strong> (CEO Revo Digital)</td>
+            <td>Oxford, Blockchain Strategy Saïd</td>
+            <td><span class="overlap">✓ UK-educated from secondary (St Michael's College Tenbury Wells)</span> Oxford + Saïd MBA = elite UK tech/blockchain education. Arthur's blockchain strategy alignment.</td>
+          </tr>
+          <tr>
+            <td><strong>Kendrick Lee</strong> (CEO Singapore)</td>
+            <td>BSc Manchester</td>
+            <td><span class="overlap">✓ UK-educated</span> Manchester is top-tier UK engineering/science hub. Engineering mindset similar to MEng.</td>
+          </tr>
+          <tr>
+            <td><strong>Terence Seow</strong> (MD, Board Advisor)</td>
+            <td>BBA NUS</td>
+            <td><span class="overlap">✓ Asian-educated, 40+ years banking context</span> NUS is top Asian university. Deep regional banking expertise contextualizes Arthur's growth trajectory.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="alert alert-info">
+        <h3>Key Insight</h3>
+        <p><strong>Leadership skews UK-educated and quantitatively trained.</strong> Your MEng (Imperial) signals the same thinking pattern as Chi-man (Lancaster), William (LSE), Ray (Oxford), and Kendrick (Manchester). This is no accident — Raffles attracts UK-educated talent who went East.</p>
+        <p><strong>Quantitative edge:</strong> If asked about CRM, mention that your approach draws from both engineering rigor (MEng) and the operational scale mindset of William Chow's quantitative background.</p>
+        <p><strong>Caroline's neuroscience background:</strong> If she's your interviewer, lead with your coaching leadership at STT Mall (2 people → 35+) and how you've structured talent development systematically. She will appreciate evidence-based people strategy.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Arthur Chan. Raffles Family Office org chart compiled from publicly available sources as of Feb 2026.</p>
+  </footer>
+
+  <script>
+    // Dropdown menu toggle
+    const dropdownBtn = document.getElementById('dropdownBtn');
+    const dropdownMenu = document.getElementById('dropdownMenu');
+    const hamburger = document.getElementById('hamburger');
+    const nav = document.getElementById('nav');
+
+    dropdownBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      dropdownMenu.classList.toggle('active');
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.nav-dropdown')) {
+        dropdownMenu.classList.remove('active');
+      }
+    });
+
+    // Hamburger menu
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      nav.classList.toggle('active');
+    });
+
+    // Card details toggle
+    function toggleDetails(btn) {
+      const details = btn.nextElementSibling;
+      details.classList.toggle('active');
+      btn.textContent = details.classList.contains('active') ? 'Hide Details' : 'View Full Profile';
+    }
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+
+    // Active nav link
+    const currentPage = window.location.pathname.split('/').pop() || 'org-chart.html';
+    document.querySelectorAll('.dropdown-menu a').forEach((link) => {
+      if (link.getAttribute('href') === currentPage || link.getAttribute('href') === 'org-chart.html') {
+        link.classList.add('active');
+      }
+    });
+  </script>
+</body>
+</html>
