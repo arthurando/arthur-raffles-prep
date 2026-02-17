@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Interview Prep — Raffles Family Office CRM Project</title>
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --surface: #12121a;
+    --surface-alt: #1a1a28;
+    --border: #2a2a3a;
+    --accent: #c9a84c;
+    --accent-dim: rgba(201, 168, 76, 0.15);
+    --accent-glow: rgba(201, 168, 76, 0.08);
+    --text: #e8e6e3;
+    --text-dim: #8a8a9a;
+    --danger: #e05252;
+    --success: #4caf7c;
+    --info: #5b8def;
+    --font: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    --mono: 'Cascadia Code', 'Fira Code', 'JetBrains Mono', monospace;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: var(--font);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    font-size: 15px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* === NAV === */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(10, 10, 15, 0.92);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+  }
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 0;
+    max-width: 1100px;
+    margin: 0 auto;
+    overflow-x: auto;
+  }
+  nav a {
+    display: block;
+    padding: 1rem 1.25rem;
+    color: var(--text-dim);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  nav a:hover, nav a.active {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+
+  /* === LAYOUT === */
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+  section {
+    padding: 3.5rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  section:last-child { border-bottom: none; }
+
+  /* === TYPOGRAPHY === */
+  h1 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: -0.02em;
+  }
+  h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  h2 .num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background: var(--accent);
+    color: var(--bg);
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 1.5rem 0 0.75rem;
+    color: var(--accent);
+  }
+  p { margin-bottom: 1rem; }
+  strong { color: var(--text); }
+  .dim { color: var(--text-dim); }
+  .small { font-size: 13px; }
+
+  /* === HERO === */
+  .hero {
+    padding: 4rem 0 3rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .hero-subtitle {
+    font-size: 1.1rem;
+    color: var(--text-dim);
+    margin-top: 0.5rem;
+    font-weight: 400;
+  }
+  .hero-narrative {
+    margin-top: 2rem;
+    padding: 1.5rem 2rem;
+    background: var(--accent-glow);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 8px 8px 0;
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--text);
+  }
+  .hero-narrative em {
+    color: var(--accent);
+    font-style: normal;
+    font-weight: 600;
+  }
+  .hero-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+  }
+  .tag {
+    padding: 0.35rem 0.85rem;
+    background: var(--surface-alt);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    font-size: 12px;
+    color: var(--text-dim);
+    font-weight: 500;
+  }
+  .tag.gold {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-dim);
+  }
+
+  /* === CARDS === */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.25rem;
+  }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: border-color 0.2s;
+  }
+  .card:hover {
+    border-color: var(--accent);
+  }
+  .card-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-dim);
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+  .card-title {
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+  }
+  .card ul {
+    list-style: none;
+    padding: 0;
+  }
+  .card li {
+    padding: 0.3rem 0;
+    padding-left: 1.2rem;
+    position: relative;
+    font-size: 14px;
+    color: var(--text-dim);
+  }
+  .card li::before {
+    content: '›';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  /* === INTEL TABLE === */
+  .intel-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+  }
+  .intel-table th {
+    text-align: left;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-dim);
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--border);
+    font-weight: 600;
+  }
+  .intel-table td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid rgba(42, 42, 58, 0.5);
+    font-size: 14px;
+    vertical-align: top;
+  }
+  .intel-table tr:hover td {
+    background: var(--accent-glow);
+  }
+
+  /* === COLLAPSIBLE === */
+  details {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    margin-bottom: 1rem;
+    overflow: hidden;
+  }
+  summary {
+    padding: 1.25rem 1.5rem;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    user-select: none;
+    transition: background 0.15s;
+  }
+  summary:hover {
+    background: var(--accent-glow);
+  }
+  summary::marker { content: ''; }
+  summary::before {
+    content: '▸';
+    color: var(--accent);
+    font-size: 14px;
+    transition: transform 0.2s;
+  }
+  details[open] summary::before {
+    transform: rotate(90deg);
+  }
+  .detail-body {
+    padding: 0 1.5rem 1.5rem;
+    line-height: 1.8;
+    font-size: 14px;
+  }
+  .detail-body p { margin-bottom: 0.75rem; }
+
+  /* === Q&A === */
+  .qa-block {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    margin-bottom: 1rem;
+    overflow: hidden;
+  }
+  .qa-q {
+    padding: 1.25rem 1.5rem;
+    font-weight: 600;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+  .qa-q::before {
+    content: 'Q';
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    background: var(--danger);
+    color: white;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 700;
+  }
+  .qa-q.soft::before { background: var(--info); }
+  .qa-a {
+    padding: 1.25rem 1.5rem;
+    font-size: 14px;
+    line-height: 1.8;
+    color: var(--text-dim);
+  }
+  .qa-a strong { color: var(--accent); font-weight: 600; }
+  .qa-a .proof {
+    display: inline-block;
+    padding: 0.15rem 0.5rem;
+    background: var(--accent-dim);
+    border-radius: 4px;
+    font-size: 12px;
+    color: var(--accent);
+    font-weight: 600;
+    margin-left: 0.25rem;
+  }
+
+  /* === TIMELINE === */
+  .timeline {
+    position: relative;
+    padding-left: 2rem;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 7px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--border);
+  }
+  .tl-item {
+    position: relative;
+    margin-bottom: 1.75rem;
+  }
+  .tl-item::before {
+    content: '';
+    position: absolute;
+    left: -2rem;
+    top: 6px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 2px solid var(--accent);
+    background: var(--bg);
+    z-index: 1;
+  }
+  .tl-date {
+    font-size: 12px;
+    color: var(--accent);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .tl-title {
+    font-weight: 600;
+    font-size: 1rem;
+    margin: 0.25rem 0;
+  }
+  .tl-org {
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+  .tl-relevance {
+    margin-top: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    background: var(--accent-glow);
+    border-radius: 6px;
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+  .tl-relevance strong { color: var(--accent); }
+
+  /* === ALERT BOXES === */
+  .alert {
+    padding: 1.25rem 1.5rem;
+    border-radius: 10px;
+    margin: 1rem 0;
+    font-size: 14px;
+    line-height: 1.7;
+  }
+  .alert-danger {
+    background: rgba(224, 82, 82, 0.08);
+    border: 1px solid rgba(224, 82, 82, 0.25);
+  }
+  .alert-danger strong { color: var(--danger); }
+  .alert-success {
+    background: rgba(76, 175, 124, 0.08);
+    border: 1px solid rgba(76, 175, 124, 0.25);
+  }
+  .alert-success strong { color: var(--success); }
+  .alert-info {
+    background: rgba(91, 141, 239, 0.08);
+    border: 1px solid rgba(91, 141, 239, 0.25);
+  }
+  .alert-info strong { color: var(--info); }
+
+  /* === 90-DAY PLAN === */
+  .phase-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+    margin-top: 1.25rem;
+  }
+  .phase {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .phase::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+  }
+  .phase:nth-child(1)::before { background: var(--info); }
+  .phase:nth-child(2)::before { background: var(--accent); }
+  .phase:nth-child(3)::before { background: var(--success); }
+  .phase-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+  }
+  .phase:nth-child(1) .phase-label { color: var(--info); }
+  .phase:nth-child(2) .phase-label { color: var(--accent); }
+  .phase:nth-child(3) .phase-label { color: var(--success); }
+  .phase ul {
+    list-style: none;
+    padding: 0;
+  }
+  .phase li {
+    padding: 0.4rem 0;
+    padding-left: 1.2rem;
+    position: relative;
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+  .phase li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--border);
+  }
+
+  /* === QUESTIONS TO ASK === */
+  .ask-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1rem;
+  }
+  .ask-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.25rem;
+  }
+  .ask-category {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+  .ask-card p {
+    font-size: 14px;
+    color: var(--text-dim);
+    margin-bottom: 0.5rem;
+    font-style: italic;
+  }
+  .ask-card .why {
+    font-size: 12px;
+    color: var(--text-dim);
+    opacity: 0.7;
+    font-style: normal;
+  }
+
+  /* === PRINT === */
+  @media print {
+    body { background: white; color: #111; font-size: 12px; }
+    nav { display: none; }
+    .hero-narrative { border-left-color: #333; background: #f5f5f5; }
+    .card, details, .qa-block, .phase, .ask-card { border-color: #ddd; background: #fafafa; }
+    section { padding: 1.5rem 0; break-inside: avoid; }
+    details { break-inside: avoid; }
+    details[open] { break-inside: auto; }
+    h1, h3, .phase-label, .tl-date, .ask-category, .qa-a strong { color: #333 !important; }
+  }
+
+  /* === RESPONSIVE === */
+  @media (max-width: 768px) {
+    .container { padding: 0 1rem; }
+    h1 { font-size: 1.6rem; }
+    .phase-grid { grid-template-columns: 1fr; }
+    .card-grid { grid-template-columns: 1fr; }
+    nav a { padding: 0.75rem; font-size: 11px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <ul>
+    <li><a href="#positioning">Positioning</a></li>
+    <li><a href="#intel">Raffles Intel</a></li>
+    <li><a href="#experience">Experience Bridge</a></li>
+    <li><a href="#fluency">Technical Fluency</a></li>
+    <li><a href="#questions">Hard Questions</a></li>
+    <li><a href="#ask-them">Questions to Ask</a></li>
+    <li><a href="#ninety-days">First 90 Days</a></li>
+    <li><a href="#landmines">Landmines</a></li>
+  </ul>
+</nav>
+
+<div class="container">
+
+<!-- ==================== HERO ==================== -->
+<section class="hero" id="positioning">
+  <h1>Arthur Chan Yat Long</h1>
+  <div class="hero-subtitle">Operator-Technologist &mdash; Interview Prep for Raffles Family Office CRM Project</div>
+
+  <div class="hero-narrative">
+    &ldquo;I spent 18 years learning where <em>wealth, operations, and technology</em> intersect &mdash;
+    from Bloomberg terminals to KKR deal rooms to building a CRM that drove
+    HKD&nbsp;120M in revenue. I discovered that the bottleneck in every organisation is
+    the <em>gap between what leadership wants and what technology delivers</em>.
+    I&rsquo;ve spent the last several years closing that gap myself, building an AI-native
+    methodology that lets me move from strategy to working product in days.
+    Raffles is building something ambitious at exactly the right moment &mdash;
+    I want to be the person who makes that ambition <em>executable</em>.&rdquo;
+  </div>
+
+  <div class="hero-tags">
+    <span class="tag gold">COO &bull; 11 Years</span>
+    <span class="tag gold">HKD 120M Revenue</span>
+    <span class="tag gold">55K+ CRM Subscribers</span>
+    <span class="tag">Imperial College London</span>
+    <span class="tag">Bloomberg &bull; ANZ &bull; KKR/Emerald</span>
+    <span class="tag">Proudfoot Consulting</span>
+    <span class="tag">Next.js &bull; Python &bull; SQL &bull; AI/LLM</span>
+    <span class="tag">EN &bull; Cantonese &bull; Mandarin</span>
+  </div>
+</section>
+
+<!-- ==================== RAFFLES INTEL ==================== -->
+<section id="intel">
+  <h2><span class="num">1</span> Raffles Family Office &mdash; Intelligence Brief</h2>
+
+  <table class="intel-table">
+    <tr><th style="width:180px">Attribute</th><th>Detail</th></tr>
+    <tr><td><strong>Type</strong></td><td>Multi-family office (MFO) serving ultra-high-net-worth (UHNW) families</td></tr>
+    <tr><td><strong>HQ</strong></td><td>Dual: Hong Kong + Singapore. Presence in Shanghai, Beijing, Taipei, Bangkok</td></tr>
+    <tr><td><strong>Leadership</strong></td><td>Chi-man Kwan (Group CEO & Co-Founder), William Chow (Deputy Group CEO), Kendrick Lee (Founder & Managing Partner)</td></tr>
+    <tr><td><strong>Core Team</strong></td><td>~8 members reported (likely larger with recent senior hires: Michael Tung as MD, Jennie Liang as ED)</td></tr>
+    <tr><td><strong>Services</strong></td><td>Wealth management, investment advisory, succession planning, tax structuring, digital assets</td></tr>
+    <tr><td><strong>Digital Assets</strong></td><td>Revo Digital Family Office (subsidiary) &mdash; SFC-licensed for digital asset portfolio services in HK. Zodia Custody partnership.</td></tr>
+    <tr><td><strong>Technology</strong></td><td>Proprietary RFO app with AI function (3rd upgrade). Investing in digital platforms for client engagement.</td></tr>
+    <tr><td><strong>Growth</strong></td><td>Expanding aggressively. HK gov targets 220 additional family offices by 2028. Raffles featured in gov case studies.</td></tr>
+    <tr><td><strong>Regulatory</strong></td><td>SFC (HK), MAS (Singapore) regimes. AML/KYC obligations per jurisdiction.</td></tr>
+  </table>
+
+  <h3>Likely Pain Points (Hypotheses)</h3>
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-label">Data Fragmentation</div>
+      <div class="card-title">Client data across multiple systems</div>
+      <ul>
+        <li>Portfolio data in one system, contacts in another, documents in a third</li>
+        <li>No single source of truth for family relationship maps</li>
+        <li>Manual reconciliation between custodian reports and internal records</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-label">Scaling Operations</div>
+      <div class="card-title">Growing pains from rapid expansion</div>
+      <ul>
+        <li>Small team (~8) managing complex UHNW relationships across 6+ cities</li>
+        <li>Senior hires need onboarding tooling and client handoff processes</li>
+        <li>New jurisdictions add compliance overhead</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-label">Client Experience</div>
+      <div class="card-title">RFO app needs deeper integration</div>
+      <ul>
+        <li>App on 3rd upgrade &mdash; suggests iterating toward product-market fit</li>
+        <li>Client portal may not yet connect to back-office operations</li>
+        <li>Digital asset reporting is a new complexity layer</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-label">Compliance at Scale</div>
+      <div class="card-title">Multi-jurisdiction regulatory burden</div>
+      <ul>
+        <li>SFC (HK) and MAS (Singapore) have different licensing and reporting regimes</li>
+        <li>PDPO (HK) vs PDPA (Singapore) data privacy requirements</li>
+        <li>AML/KYC workflows differ by entity type and jurisdiction</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== EXPERIENCE BRIDGE ==================== -->
+<section id="experience">
+  <h2><span class="num">2</span> Experience Bridge &mdash; How Your Past Maps to Their Needs</h2>
+
+  <p class="dim">Each story bridges a concrete past experience to a Raffles-relevant capability. Use these as structured STAR answers.</p>
+
+  <details open>
+    <summary>Story 1: Building a CRM from Zero to 55K Subscribers</summary>
+    <div class="detail-body">
+      <p><strong>Situation:</strong> STT Mall had no customer intelligence &mdash; transactions were anonymous, repeat purchase rates unknown, zero segmentation.</p>
+      <p><strong>Task:</strong> Design and build a customer relationship system that could segment, engage, and retain 55,000+ subscribers across email, social, and direct channels.</p>
+      <p><strong>Action:</strong> Built segmentation engine on Supabase/PostgreSQL with Klaviyo integration. Designed behavioural scoring models (purchase frequency, recency, basket composition). Created automated engagement flows triggered by segment transitions. Implemented row-level security for team access control.</p>
+      <p><strong>Result:</strong> 55,497 active subscribers. Automated engagement drove measurable retention improvement. System handled the full customer lifecycle from acquisition through reactivation.</p>
+
+      <div class="alert alert-success">
+        <strong>Bridge to Raffles:</strong> The architectural pattern &mdash; hierarchical entity classification, behavioural scoring, automated engagement, access-controlled views &mdash; maps directly to family office needs. The scale is different (55K consumers vs ~200 UHNW families), but the data architecture is structurally identical: entities with complex relationships, scored by multiple dimensions, triggering personalised workflows.
+      </div>
+
+      <div class="alert alert-danger">
+        <strong>Honest Framing (Critical):</strong> Do NOT say &ldquo;I built a CRM for wealth management.&rdquo; Say: &ldquo;I built a customer intelligence platform for e-commerce. The entity modeling and segmentation patterns translate directly, though I fully appreciate that a family office context adds regulatory compliance, multi-jurisdiction data governance, and the gravity of handling UHNW-sensitive information &mdash; dimensions I&rsquo;m experienced enough to respect and disciplined enough to get right.&rdquo;
+      </div>
+    </div>
+  </details>
+
+  <details>
+    <summary>Story 2: KKR Deal Room &mdash; Understanding Institutional Investment Workflows</summary>
+    <div class="detail-body">
+      <p><strong>Situation:</strong> At Emerald Media (KKR&rsquo;s USD 300M Asia media/tech fund), deal flow management was the core operational challenge &mdash; tracking opportunities from sourcing through IC presentation through post-investment monitoring.</p>
+      <p><strong>Task:</strong> Support the full PE lifecycle: sourcing, due diligence, financial modelling, Investment Committee presentations, portfolio monitoring.</p>
+      <p><strong>Action:</strong> Built financial models and IC presentations for KKR senior leadership. Managed deal pipeline across APAC markets. Coordinated due diligence workstreams across legal, financial, and operational tracks. Key deal: aCommerce Series B (~USD 65M) &mdash; Southeast Asia&rsquo;s leading e-commerce enabler (260+ brands, 1,400+ staff, 5 ASEAN markets).</p>
+      <p><strong>Result:</strong> Direct experience with institutional-grade deal flow management, LP/IC reporting cadence, and the rigour expected when billions are at stake.</p>
+
+      <div class="alert alert-success">
+        <strong>Bridge to Raffles:</strong> Family offices manage deal flow similarly to PE funds &mdash; opportunity tracking, allocation decisions, portfolio monitoring. I have sat in the room where these decisions are made, built the materials that inform them, and understand the data architecture that supports them. I don&rsquo;t just build software for investors &mdash; I have been the investor.
+      </div>
+    </div>
+  </details>
+
+  <details>
+    <summary>Story 3: Operational Transformation at Scale (Proudfoot/Lafarge)</summary>
+    <div class="detail-body">
+      <p><strong>Situation:</strong> At Alexander Proudfoot (specialist operational transformation consultancy), embedded in Lafarge China to consolidate HR, Finance, and Purchasing functions across all Chinese operations.</p>
+      <p><strong>Task:</strong> Interview stakeholders from floor to C-suite, map processes, build financial models with KPIs, and deliver measurable savings through organisational restructuring.</p>
+      <p><strong>Action:</strong> Led stakeholder interviews across the organisation. Built comprehensive process maps and benefits models. Designed the target operating model for consolidated functions. Delivered hands-on implementation, not just recommendations.</p>
+      <p><strong>Result:</strong> Millions in annual recurring savings. The methodology &mdash; diagnose, model, implement, measure &mdash; is exactly how I approach any technology transformation project.</p>
+
+      <div class="alert alert-success">
+        <strong>Bridge to Raffles:</strong> A CRM project is an operational transformation project. The technology is 30% of the work &mdash; the other 70% is understanding how people actually work, mapping existing processes, identifying friction points, and designing systems that people will actually use. Proudfoot trained me to do exactly that.
+      </div>
+    </div>
+  </details>
+
+  <details>
+    <summary>Story 4: COO Through Crisis &mdash; 10x Efficiency Under Pressure</summary>
+    <div class="detail-body">
+      <p><strong>Situation:</strong> Post-COVID, Hong Kong retail collapsed. STT Mall went from HKD 120M peak revenue to severe downturn. 15+ full-time staff and significant operational overhead.</p>
+      <p><strong>Task:</strong> Restructure the business to survive &mdash; without destroying capability or customer relationships.</p>
+      <p><strong>Action:</strong> Led multiple restructurings. Automated manual processes. Redesigned technology infrastructure from the ground up. Made brutal prioritisation decisions about what to keep and what to cut.</p>
+      <p><strong>Result:</strong> 10x improvement in revenue per full-time employee (HKD 10M per headcount). The business survived. Technology was the lever that made it possible.</p>
+
+      <div class="alert alert-success">
+        <strong>Bridge to Raffles:</strong> A small team (~8 people) managing complex UHNW relationships across 6+ cities is the exact problem I solved at STT Mall &mdash; how do you make a lean team punch above its weight through technology? I have the scars from doing this for 11 years.
+      </div>
+    </div>
+  </details>
+
+  <h3>Career Timeline &mdash; Relevance Map</h3>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-date">2008 &ndash; 2010</div>
+      <div class="tl-title">Bloomberg LP</div>
+      <div class="tl-org">Regional Treasury / Cash Management, APAC</div>
+      <div class="tl-relevance"><strong>Relevance:</strong> Cash management, multi-entity fund allocation, APAC banking relationships. Established regional cash pooling functions across multiple banking partners.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">2010 &ndash; 2014</div>
+      <div class="tl-title">ANZ Banking Group</div>
+      <div class="tl-org">Analyst → Associate Director, TMET Coverage</div>
+      <div class="tl-relevance"><strong>Relevance:</strong> Covered TSMC, Tencent, Alibaba, Huawei, Lenovo. Part of Alibaba&rsquo;s USD 2.5B HKEX privatisation syndicate. Deep corporate finance, DCM, M&amp;A. Understands how institutional deals are structured.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">2013 &ndash; 2014</div>
+      <div class="tl-title">Alexander Proudfoot</div>
+      <div class="tl-org">Management Consultant</div>
+      <div class="tl-relevance"><strong>Relevance:</strong> Operational transformation methodology. Stakeholder interviews, process mapping, benefits modelling, hands-on implementation. Lafarge China: millions in annual savings.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">2016 &ndash; 2018</div>
+      <div class="tl-title">Emerald Media / KKR</div>
+      <div class="tl-org">Investment Associate, USD 300M Fund</div>
+      <div class="tl-relevance"><strong>Relevance:</strong> PE deal flow lifecycle. IC presentations for KKR leadership. aCommerce Series B (~USD 65M). Understands LP reporting, portfolio monitoring, deal pipeline management.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">2015 &ndash; Present</div>
+      <div class="tl-title">STT Mall Hong Kong</div>
+      <div class="tl-org">Founding Partner & COO</div>
+      <div class="tl-relevance"><strong>Relevance:</strong> Built entire tech stack from scratch. AI-driven CRM (55K+ subscribers). HKD 120M peak revenue. 10x efficiency gains post-restructuring. Proven ability to architect, build, and operate at scale as a solo technical leader.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== TECHNICAL FLUENCY ==================== -->
+<section id="fluency">
+  <h2><span class="num">3</span> Technical Fluency Cards</h2>
+  <p class="dim">Show conceptual fluency. Do NOT claim implementation in financial services &mdash; demonstrate you understand the domain deeply enough to execute.</p>
+
+  <details>
+    <summary>Entity & Relationship Modelling for Family Offices</summary>
+    <div class="detail-body">
+      <p>Family office CRM is fundamentally a <strong>graph problem</strong>, not a flat contact database.</p>
+      <p><strong>Entity hierarchy:</strong> Family Group &rarr; Family Members &rarr; Entities (trusts, SPVs, holding companies) &rarr; Accounts &rarr; Assets/Positions. Each node carries its own compliance profile, jurisdiction, and access controls.</p>
+      <p><strong>Polymorphic relationships:</strong> A single individual can simultaneously be a beneficiary of Trust A, director of HoldCo B, and LP in Fund C. The data model must handle this natively &mdash; not through workarounds.</p>
+      <p><strong>Your proof point:</strong> At STT Mall, you built hierarchical customer segmentation with behavioural scoring across multiple dimensions. The pattern is structurally identical &mdash; entities with complex, overlapping relationships, scored and classified dynamically.</p>
+      <p><strong>Industry reference:</strong> Salesforce Financial Services Cloud models this with &ldquo;household&rdquo; objects and related account hierarchies. DealCloud and 4Degrees use graph-based relationship intelligence. If Raffles uses Salesforce FSC, you should reference this specific data model.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>Compliance, Audit Trails & Data Governance</summary>
+    <div class="detail-body">
+      <p><strong>Event-sourced audit trail:</strong> Every state change is an immutable event, not an overwritten row. This is non-negotiable in regulated environments (SFC, MAS). You can always reconstruct the state of any record at any point in time.</p>
+      <p><strong>Row-level security (RLS):</strong> Relationship managers see only their families. Compliance sees everything. Investment team sees deal pipeline. Leadership sees aggregated views. This maps directly to Supabase RLS, which you have implemented at STT Mall.</p>
+      <p><strong>Regulatory landscape:</strong></p>
+      <ul>
+        <li>Hong Kong: SFC licensing, PDPO (data privacy), AMLO (AML/KYC)</li>
+        <li>Singapore: MAS licensing, PDPA (data privacy), CDSA (corruption/drug trafficking proceeds)</li>
+        <li>Cross-border: Data residency requirements may prevent single-region deployment</li>
+      </ul>
+      <p><strong>Key vocabulary to use:</strong> Suitability assessment, investment mandate tracking, beneficial ownership, Know Your Customer (KYC), Anti-Money Laundering (AML), Suspicious Transaction Report (STR).</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>Deal Flow as a State Machine</summary>
+    <div class="detail-body">
+      <p>Family offices track investment opportunities through a <strong>deterministic pipeline</strong> &mdash; not freeform status strings.</p>
+      <p><strong>Typical stages:</strong> Sourcing &rarr; Initial Review &rarr; Due Diligence &rarr; IC/Family Review &rarr; Commitment &rarr; Closing &rarr; Post-Investment Monitoring</p>
+      <p>Each transition should have: mandatory fields, approval gates, timestamp/audit, notification triggers.</p>
+      <p><strong>Your proof point:</strong> At Emerald Media/KKR, you lived this pipeline daily. You built the IC presentations that represented the decision gates. You understand that deal flow is not a to-do list &mdash; it is a governed process with institutional accountability at each stage.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>Integration Layer &mdash; Where CRM Projects Actually Fail</summary>
+    <div class="detail-body">
+      <p>Most family office CRM implementations fail not on the CRM itself but on <strong>integrations</strong>:</p>
+      <ul>
+        <li><strong>Custodian feeds:</strong> Pershing, Interactive Brokers, private banks &mdash; each with proprietary APIs, FIX protocol, or flat-file feeds with 6-month onboarding cycles</li>
+        <li><strong>Market data:</strong> Bloomberg terminal integration, Reuters, pricing feeds</li>
+        <li><strong>Document management:</strong> Secure storage with version control, client portal distribution</li>
+        <li><strong>Accounting/reporting:</strong> CRMs handle relationships; financial reporting requires reconciled accounting data (FundCount, Addepar, Masttro)</li>
+      </ul>
+      <p><strong>Your proof point:</strong> At STT Mall, you integrated Klaviyo, Shopify, Supabase, SendGrid, and multiple payment/logistics APIs into a unified operational stack. Integration architecture is a core competency.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>AI-Native Operational Methodology</summary>
+    <div class="detail-body">
+      <div class="alert alert-info">
+        <strong>Calibration:</strong> Only discuss this if asked about your development process or AI capabilities. Do NOT lead with it. Frame as operational methodology, not tooling.
+      </div>
+
+      <p><strong>High-level framing:</strong> &ldquo;I&rsquo;ve developed an AI-native operational methodology that separates strategic decisions from bulk execution. It lets me validate ideas in hours, pressure-test decisions through multi-perspective analysis, and maintain strategic coherence across complex projects.&rdquo;</p>
+
+      <p><strong>What to emphasise:</strong></p>
+      <ul>
+        <li>Force multiplier for small teams &mdash; one technical person producing the throughput of three</li>
+        <li>Strategic Council concept: structured multi-perspective analysis before major decisions (5 lenses: architecture, risks, strategy, feasibility, synthesis)</li>
+        <li>Quality gates: test-driven development, security review, code review &mdash; automated pipeline</li>
+        <li>Allows rapid prototyping and iteration &mdash; from idea to working prototype in days, not months</li>
+      </ul>
+
+      <p><strong>What to NOT say:</strong></p>
+      <ul>
+        <li>Do NOT mention specific LLM providers routing UHNW client data (privacy red flag)</li>
+        <li>Do NOT mention token costs or model routing (sounds engineering, not strategic)</li>
+        <li>Do NOT describe Claudia/Max by name (sounds whimsical in a family office context)</li>
+        <li>Frame as &ldquo;AI-augmented development methodology&rdquo; &mdash; not &ldquo;I have an AI Chief of Staff&rdquo;</li>
+      </ul>
+
+      <p><strong>If pressed on data privacy:</strong> &ldquo;Any AI capabilities touching client data would use on-premise or private-cloud models only. I understand that UHNW client data cannot touch third-party APIs. The methodology is about how I structure work and make decisions, not about running client data through external systems.&rdquo;</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>Build vs. Buy &mdash; The Right Framework</summary>
+    <div class="detail-body">
+      <p>This is likely the most important positioning question. Do NOT propose building a CRM from scratch.</p>
+
+      <p><strong>The right answer:</strong> &ldquo;The core CRM should be a proven platform (Salesforce Financial Services Cloud, Wealth Dynamix, DealCloud) configured for your specific entity model and workflows. Where I add value is in three areas:&rdquo;</p>
+
+      <ol style="padding-left: 1.5rem; margin: 1rem 0;">
+        <li style="margin-bottom: 0.5rem;"><strong>Integration layer</strong> &mdash; connecting the CRM to custodians, market data, reporting systems, and your RFO app</li>
+        <li style="margin-bottom: 0.5rem;"><strong>Internal tooling</strong> &mdash; automations, dashboards, workflow optimisations that are too specific for off-the-shelf</li>
+        <li style="margin-bottom: 0.5rem;"><strong>AI-powered features</strong> &mdash; relationship intelligence, automated insights, client engagement recommendations (prototyped and validated before production)</li>
+      </ol>
+
+      <p><strong>Why this positioning wins:</strong> It shows you understand that a regulated environment demands proven, auditable platforms for core functions &mdash; while demonstrating you can add value through customisation, integration, and innovation on top of that foundation.</p>
+    </div>
+  </details>
+</section>
+
+<!-- ==================== HARD QUESTIONS ==================== -->
+<section id="questions">
+  <h2><span class="num">4</span> Hard Questions &mdash; Prepared Answers</h2>
+  <p class="dim">Red = tough/adversarial. Blue = exploratory. Click to expand answers.</p>
+
+  <div class="qa-block">
+    <div class="qa-q">&ldquo;Your CRM experience is e-commerce. What makes you think you can build for a family office?&rdquo;</div>
+    <div class="qa-a">
+      <strong>Acknowledge the gap, then bridge it.</strong> &ldquo;You&rsquo;re right that the domain is different &mdash; 55,000 e-commerce subscribers and 200 UHNW families are different worlds in terms of sensitivity, compliance, and relationship depth. But the underlying data architecture is structurally the same: hierarchical entities with complex relationships, multi-dimensional scoring, automated workflows, and strict access controls. I&rsquo;ve built that architecture. What I bring additionally is that I&rsquo;m not just a developer &mdash; I sat in KKR deal rooms, I covered TMT at ANZ, I did operational transformations at Proudfoot. I understand the investment world from the inside.&rdquo; <span class="proof">KKR + ANZ + Proudfoot</span>
+    </div>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-q">&ldquo;Walk me through how you would handle a client whose assets span four jurisdictions with conflicting data residency laws.&rdquo;</div>
+    <div class="qa-a">
+      <strong>Show you understand the complexity without overclaiming.</strong> &ldquo;This is exactly the kind of problem where technology alone isn&rsquo;t the answer &mdash; it requires collaboration with compliance and legal. Architecturally, you&rsquo;d need jurisdiction-aware data partitioning: different data residency zones with clear policies on what data can be aggregated cross-border and what must stay local. In HK and Singapore specifically, PDPO and PDPA have different consent models for cross-border data transfer. I would work with your compliance team to define the data governance policy first, then implement the technical architecture to enforce it. I&rsquo;ve implemented row-level security and multi-tenant data architecture &mdash; this is an extension of that pattern, but the governance layer must come from compliance, not engineering.&rdquo; <span class="proof">PDPO + PDPA awareness</span>
+    </div>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-q">&ldquo;Our clients will not accept their data in any cloud AI system. How do you build AI features under that constraint?&rdquo;</div>
+    <div class="qa-a">
+      <strong>Show privacy-first thinking.</strong> &ldquo;That&rsquo;s the right stance for UHNW clients. AI features for client-facing use should run on-premise or private-cloud models &mdash; no third-party API calls with client data. For internal productivity and development processes, AI tools can be used with anonymised or synthetic data. The approach I&rsquo;d take: start with rule-based automation for compliance workflows and client engagement triggers, then layer in private AI models for things like relationship intelligence and natural language search across documents. The AI methodology I use for my own development process is separate from what touches client data.&rdquo; <span class="proof">Privacy-first architecture</span>
+    </div>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-q">&ldquo;What is your experience with SFC and MAS regulatory reporting?&rdquo;</div>
+    <div class="qa-a">
+      <strong>Honest answer + demonstrate you&rsquo;ve done the homework.</strong> &ldquo;I haven&rsquo;t built regulatory reporting systems for SFC or MAS specifically. What I have done is work within regulated financial institutions &mdash; ANZ and Bloomberg &mdash; where I saw these frameworks operate from the inside. I understand that SFC and MAS have different licensing regimes, different reporting cadences, and different data requirements. For a CRM project, the critical touchpoints are: ensuring audit trails meet regulatory standards, AML/KYC data capture is complete and timely, and suitability assessments are tracked per client per product. I&rsquo;d work closely with your compliance team to translate regulatory requirements into system specifications &mdash; that translation layer between business requirements and technical implementation is exactly where I operate best.&rdquo; <span class="proof">ANZ + Bloomberg regulatory exposure</span>
+    </div>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-q">&ldquo;Why should we trust a self-taught developer with systems handling our clients&rsquo; most sensitive data?&rdquo;</div>
+    <div class="qa-a">
+      <strong>Reframe from &ldquo;self-taught&rdquo; to &ldquo;self-directed learner who builds production systems.&rdquo;</strong> &ldquo;Fair question. Two things: First, I&rsquo;m not proposing to be your sole engineer writing security-critical code without oversight &mdash; core CRM and compliance systems should use proven, auditable platforms with vendor support. Second, what &lsquo;self-taught&rsquo; actually means in my case: I&rsquo;ve built and operated production systems handling 55,000 customer records, processing real transactions, for 11 years. I practice test-driven development, security review, and code review as standard methodology. My engineering degree from Imperial College gave me the analytical foundation. What I offer isn&rsquo;t a junior developer &mdash; it&rsquo;s a COO who understands technology deeply enough to bridge the gap between what you need and what vendors deliver.&rdquo; <span class="proof">11 years production + TDD</span>
+    </div>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-q">&ldquo;What happens when you leave? Can someone else maintain what you build?&rdquo;</div>
+    <div class="qa-a">
+      <strong>Show you think about sustainability.</strong> &ldquo;This is why I advocate for proven platforms as the foundation &mdash; Salesforce, DealCloud, whatever you choose &mdash; with a deep ecosystem of developers who can maintain them. The custom work I build on top follows strict standards: test-driven development means every feature has automated tests that verify behaviour. Everything is documented. I use standard frameworks and patterns, not proprietary abstractions. My goal is to build systems that outlast me &mdash; I learned that lesson at STT Mall, where I built infrastructure that other team members could operate independently.&rdquo; <span class="proof">TDD + Standards</span>
+    </div>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-q soft">&ldquo;What CRM platform would you recommend for a family office like ours?&rdquo;</div>
+    <div class="qa-a">
+      <strong>Show breadth, but deflect to discovery.</strong> &ldquo;It depends on your primary pain points. If relationship intelligence and deal sourcing are priorities, DealCloud or 4Degrees are purpose-built. If you need enterprise-grade customisation with household entity modeling, Salesforce Financial Services Cloud is the standard. If you want something lighter with strong advisor workflow, Wealthbox or Redtail. But honestly, the right answer requires understanding what you&rsquo;re currently using, what your team actually struggles with day-to-day, and what your 18-month roadmap looks like. I&rsquo;d want to spend my first two weeks doing a proper technology assessment before recommending anything.&rdquo; <span class="proof">Platform knowledge + consulting discipline</span>
+    </div>
+  </div>
+
+  <div class="qa-block">
+    <div class="qa-q soft">&ldquo;How would you approach the first 90 days?&rdquo;</div>
+    <div class="qa-a">
+      See the <a href="#ninety-days" style="color: var(--accent);">First 90 Days framework</a> below.
+    </div>
+  </div>
+</section>
+
+<!-- ==================== QUESTIONS TO ASK ==================== -->
+<section id="ask-them">
+  <h2><span class="num">5</span> Questions to Ask Raffles</h2>
+  <p class="dim">Smart questions signal depth. Ask these to demonstrate domain understanding and gather intel.</p>
+
+  <div class="ask-grid">
+    <div class="ask-card">
+      <div class="ask-category">Current Technology</div>
+      <p>&ldquo;What systems are you currently using for client relationship management? Are you looking to replace, augment, or integrate?&rdquo;</p>
+      <div class="why">Signals: you know the answer matters. Tells you if this is a build, buy, or integrate conversation.</div>
+    </div>
+    <div class="ask-card">
+      <div class="ask-category">Pain Points</div>
+      <p>&ldquo;When a new relationship manager joins, how long does it take them to get full context on a family&rsquo;s history and relationships?&rdquo;</p>
+      <div class="why">Signals: you understand onboarding friction. This is a concrete pain point for growing teams.</div>
+    </div>
+    <div class="ask-card">
+      <div class="ask-category">RFO App</div>
+      <p>&ldquo;Your RFO app is on its third upgrade &mdash; what has the journey taught you about what your clients actually value in a digital experience?&rdquo;</p>
+      <div class="why">Signals: you&rsquo;ve researched them. Flatters their innovation. Gives you product insight.</div>
+    </div>
+    <div class="ask-card">
+      <div class="ask-category">Digital Assets</div>
+      <p>&ldquo;With Revo Digital now SFC-licensed, how does digital asset reporting integrate with your broader client view? Is that a solved problem or an open challenge?&rdquo;</p>
+      <div class="why">Signals: you understand their digital asset play is separate and creates integration complexity.</div>
+    </div>
+    <div class="ask-card">
+      <div class="ask-category">Scale</div>
+      <p>&ldquo;As you expand across markets, how do you manage the differences in compliance requirements between HK and Singapore?&rdquo;</p>
+      <div class="why">Signals: you understand multi-jurisdiction is hard. Opens a conversation where your tech skills can solve real problems.</div>
+    </div>
+    <div class="ask-card">
+      <div class="ask-category">Team & Role</div>
+      <p>&ldquo;What does success look like for this role in 12 months? Are you looking for someone closer to a technical architect, a product owner, or a hybrid operator?&rdquo;</p>
+      <div class="why">Signals: you&rsquo;re thinking about fit, not just getting the job. Also gives you critical positioning intel.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== FIRST 90 DAYS ==================== -->
+<section id="ninety-days">
+  <h2><span class="num">6</span> First 90 Days Framework</h2>
+  <p class="dim">Have this mental model ready. Adjust based on what you learn about the role&rsquo;s actual scope.</p>
+
+  <div class="phase-grid">
+    <div class="phase">
+      <div class="phase-label">Days 1&ndash;30: Listen & Map</div>
+      <ul>
+        <li>Shadow every team member for at least 2 hours each</li>
+        <li>Map current tech stack, data flows, and integration points</li>
+        <li>Document existing pain points and workarounds</li>
+        <li>Understand compliance requirements per jurisdiction</li>
+        <li>Review RFO app architecture and roadmap</li>
+        <li>Build relationship map of external vendors and partners</li>
+        <li>Deliver: Technology Assessment Document</li>
+      </ul>
+    </div>
+    <div class="phase">
+      <div class="phase-label">Days 31&ndash;60: Quick Wins + Strategy</div>
+      <ul>
+        <li>Identify 2&ndash;3 high-impact, low-risk improvements</li>
+        <li>Prototype solutions for the most painful workflow friction</li>
+        <li>Present CRM strategy: build/buy/integrate recommendation</li>
+        <li>Define data governance framework with compliance team</li>
+        <li>Begin integration assessment with custodians/banks</li>
+        <li>Deliver: CRM Strategy Proposal + Quick Win Demos</li>
+      </ul>
+    </div>
+    <div class="phase">
+      <div class="phase-label">Days 61&ndash;90: Execute + Prove</div>
+      <ul>
+        <li>Implement first quick wins in production</li>
+        <li>Begin CRM platform configuration or procurement</li>
+        <li>Build first integration prototype (highest-value data source)</li>
+        <li>Establish development methodology and quality gates</li>
+        <li>Present 6-month roadmap to leadership</li>
+        <li>Deliver: Working Quick Wins + Roadmap + Methodology</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== LANDMINES ==================== -->
+<section id="landmines">
+  <h2><span class="num">7</span> Landmines &mdash; What NOT to Say</h2>
+
+  <div class="alert alert-danger" style="margin-bottom: 1rem;">
+    <strong>DO NOT say &ldquo;I built a CRM&rdquo;</strong><br>
+    You built a marketing automation and customer intelligence platform for e-commerce. That&rsquo;s impressive, but it is not a wealth management CRM. Overclaiming here will destroy credibility with anyone who has used Salesforce FSC or DealCloud. Say: &ldquo;I built a customer intelligence platform with entity modelling and segmentation &mdash; the architectural patterns translate directly.&rdquo;
+  </div>
+
+  <div class="alert alert-danger" style="margin-bottom: 1rem;">
+    <strong>DO NOT propose replacing their existing stack</strong><br>
+    They already have an app on its 3rd upgrade. They have existing systems. You are there to augment, integrate, and improve &mdash; not to tear everything down and rebuild. Frame your value as additive.
+  </div>
+
+  <div class="alert alert-danger" style="margin-bottom: 1rem;">
+    <strong>DO NOT lead with AI before understanding their problems</strong><br>
+    AI is a solution. They have not told you the problem yet. Ask first, then selectively mention AI capabilities where relevant. Leading with &ldquo;I have an AI methodology&rdquo; in a family office context risks sounding like a solution in search of a problem.
+  </div>
+
+  <div class="alert alert-danger" style="margin-bottom: 1rem;">
+    <strong>DO NOT mention routing data through external LLM APIs</strong><br>
+    UHNW families will not tolerate their data touching third-party AI services. If asked about AI, emphasise on-premise/private-cloud models and rule-based automation first. Your personal AI methodology is for YOUR development process, not for processing client data.
+  </div>
+
+  <div class="alert alert-danger" style="margin-bottom: 1rem;">
+    <strong>DO NOT undersell regulatory complexity</strong><br>
+    Never say &ldquo;we can just use Supabase&rdquo; or &ldquo;compliance is just another feature.&rdquo; Show respect for the regulatory environment. Use phrases like: &ldquo;This requires close collaboration with your compliance team&rdquo; and &ldquo;The governance framework should drive the technical architecture, not the other way around.&rdquo;
+  </div>
+
+  <div class="alert alert-danger" style="margin-bottom: 1rem;">
+    <strong>DO NOT describe Claudia/Max by name</strong><br>
+    In a family office context, saying &ldquo;I have an AI Chief of Staff named Claudia and an execution partner named Max&rdquo; sounds whimsical. Frame it as: &ldquo;I&rsquo;ve developed a structured AI-augmented development methodology that includes multi-perspective decision analysis and automated quality gates.&rdquo;
+  </div>
+
+  <div class="alert alert-success" style="margin-top: 2rem;">
+    <strong>YOUR STRONGEST CARDS (play these)</strong><br><br>
+    <strong>1. The COO who codes.</strong> No other candidate has run a HKD 120M business AND built the technology stack that powered it.<br><br>
+    <strong>2. The investor who builds.</strong> You sat in KKR deal rooms and ANZ coverage teams. You understand investment workflows from the inside, not from a requirements document.<br><br>
+    <strong>3. The consultant who implements.</strong> Proudfoot trained you to diagnose, model, and implement &mdash; not just recommend. You don&rsquo;t deliver slide decks; you deliver working systems.<br><br>
+    <strong>4. The trilingual operator.</strong> English, Cantonese, Mandarin &mdash; covering Raffles&rsquo; entire footprint from Hong Kong to Singapore to mainland China.<br><br>
+    <strong>5. The efficiency force multiplier.</strong> You made a lean team produce 10x more per person at STT Mall. Raffles has ~8 core team members &mdash; you know exactly how to make a small team punch above its weight.
+  </div>
+</section>
+
+</div>
+
+<footer style="text-align: center; padding: 3rem; color: var(--text-dim); font-size: 12px; border-top: 1px solid var(--border);">
+  Prepared by Strategic Council &bull; Consensus Score: 4/5 &bull; Confidential &mdash; Interview Prep Only
+</footer>
+
+<script>
+  // Smooth scroll for nav links
+  document.querySelectorAll('nav a').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const target = document.querySelector(link.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+  // Active nav highlighting on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('nav a');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(link => {
+          link.classList.toggle('active',
+            link.getAttribute('href') === '#' + entry.target.id
+          );
+        });
+      }
+    });
+  }, { rootMargin: '-20% 0px -75% 0px' });
+
+  sections.forEach(section => observer.observe(section));
+</script>
+
+</body>
+</html>
