@@ -29,7 +29,7 @@ All data points below are sourced. Use this to update index.html.
 - **Photo:** https://www.rafflesgroup.co/wp-content/uploads/2025/05/Picture12-1024x1024.png
 - **Previous:** 15+ years at BNP Paribas and Standard Chartered (private banking)
 - **Board:** Founding Chairman, FOAHK; President, Hong Kong Securities & Brokers Association (HSBA)
-- **Education:** Not publicly disclosed
+- **Education:** BSc Economics & Business Management, Lancaster University; Executive MBA, Tsinghua-INSEAD; Adjunct Associate Professor, Faculty of Business & Economics, HKU
 - **Notable quotes:**
   - "We aim to have $10 billion in assets by January 2020 and be the biggest in Asia within the next two years." (finews.asia, Jun 2019)
   - "We are looking at taking over smaller asset managers" with $50-200M AUM (finews.asia, Jun 2019)
@@ -52,7 +52,7 @@ All data points below are sourced. Use this to update index.html.
 ### Ray Tam — Co-Founder & CEO, Revo Digital Family Office
 - **Photo:** https://www.rafflesgroup.co/wp-content/uploads/2025/05/Picture2-1024x1024.png
 - **Previous:** Director, BNP Paribas Private Banking; DBS; Standard Chartered
-- **Education:** Oxford Blockchain Strategy Programme (certificate, NOT a degree)
+- **Education:** Oxford Blockchain Strategy Programme (Said Business School, certificate)
 - **Board:** Board Committee Member, Family Office Association Hong Kong
 - **Revo:** Co-founded with Huobi Technology. SFC Type 4 & Type 9 licences. First digital MFO in Asia.
 - **Sources:** rafflesgroup.co, fundselectorasia.com, blockhead.co
