@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arthur Chan Yat Long — Full Resume</title>
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --surface: #12121a;
+    --surface-alt: #1a1a28;
+    --border: #2a2a3a;
+    --accent: #c9a84c;
+    --accent-dim: rgba(201, 168, 76, 0.15);
+    --accent-glow: rgba(201, 168, 76, 0.08);
+    --text: #e8e6e3;
+    --text-dim: #8a8a9a;
+    --danger: #e05252;
+    --success: #4caf7c;
+    --info: #5b8def;
+    --font: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: var(--font);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    font-size: 15px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* === NAV === */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(10, 10, 15, 0.92);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+  }
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 0;
+    max-width: 900px;
+    margin: 0 auto;
+    overflow-x: auto;
+  }
+  nav a {
+    display: block;
+    padding: 1rem 1.25rem;
+    color: var(--text-dim);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  nav a:hover, nav a.active {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+  nav a.back {
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  /* === LAYOUT === */
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+  section {
+    padding: 2.5rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  section:last-child { border-bottom: none; }
+
+  /* === TYPOGRAPHY === */
+  h1 {
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: -0.02em;
+  }
+  h2 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  h3 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.25rem;
+  }
+  p { margin-bottom: 0.85rem; }
+  .dim { color: var(--text-dim); }
+  .small { font-size: 13px; }
+
+  /* === HERO === */
+  .hero {
+    padding: 3.5rem 0 2.5rem;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+  }
+  .hero-tagline {
+    font-size: 1.1rem;
+    color: var(--text-dim);
+    margin-top: 0.35rem;
+    font-weight: 400;
+    font-style: italic;
+  }
+  .hero-meta {
+    margin-top: 1rem;
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+  .hero-meta span {
+    display: inline-block;
+    margin: 0 0.75rem;
+  }
+  .hero-meta span::before {
+    content: '';
+    display: inline-block;
+    width: 4px;
+    height: 4px;
+    background: var(--accent);
+    border-radius: 50%;
+    margin-right: 0.5rem;
+    vertical-align: middle;
+  }
+
+  /* === SUMMARY === */
+  .summary {
+    padding: 1.75rem 2rem;
+    background: var(--accent-glow);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 8px 8px 0;
+    font-size: 14.5px;
+    line-height: 1.85;
+    color: var(--text-dim);
+  }
+
+  /* === EXPERIENCE === */
+  .role {
+    margin-bottom: 2.25rem;
+    position: relative;
+  }
+  .role:last-child { margin-bottom: 0; }
+  .role-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 0.25rem;
+  }
+  .role-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--text);
+  }
+  .role-date {
+    font-size: 12px;
+    color: var(--accent);
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+    padding-top: 0.15rem;
+  }
+  .role-org {
+    font-size: 14px;
+    color: var(--text-dim);
+    margin-bottom: 0.75rem;
+    font-style: italic;
+  }
+  .role-desc {
+    font-size: 14px;
+    color: var(--text-dim);
+    line-height: 1.75;
+    margin-bottom: 0.75rem;
+  }
+  .role ul {
+    list-style: none;
+    padding: 0;
+  }
+  .role li {
+    padding: 0.3rem 0 0.3rem 1.4rem;
+    position: relative;
+    font-size: 14px;
+    color: var(--text-dim);
+    line-height: 1.65;
+  }
+  .role li::before {
+    content: '\2023';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 16px;
+  }
+
+  /* === SUB-SECTIONS within a role === */
+  .role-sub {
+    margin-top: 0.75rem;
+    margin-bottom: 0.5rem;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--accent);
+    opacity: 0.8;
+  }
+
+  /* === SKILLS GRID === */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.25rem;
+  }
+  .skill-group {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.25rem;
+  }
+  .skill-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+  .skill-group p {
+    font-size: 14px;
+    color: var(--text-dim);
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  /* === EDUCATION === */
+  .edu-item {
+    margin-bottom: 1.25rem;
+  }
+  .edu-item:last-child { margin-bottom: 0; }
+  .edu-degree {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .edu-school {
+    font-size: 14px;
+    color: var(--text-dim);
+  }
+  .edu-note {
+    font-size: 12px;
+    color: var(--text-dim);
+    opacity: 0.7;
+    margin-top: 0.15rem;
+  }
+
+  /* === REFERENCES === */
+  .ref-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 0.75rem;
+  }
+  .ref-item {
+    padding: 0.75rem 1rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 14px;
+  }
+  .ref-name {
+    font-weight: 600;
+    color: var(--text);
+  }
+  .ref-role {
+    font-size: 12px;
+    color: var(--text-dim);
+    margin-top: 0.15rem;
+  }
+
+  /* === PRINT === */
+  @media print {
+    body { background: white; color: #1a1a1a; font-size: 10.5pt; }
+    nav { display: none; }
+    .container { max-width: 100%; padding: 0 15mm; }
+    h1 { font-size: 22pt; color: #222; }
+    h2 { color: #333; border-bottom-color: #ddd; font-size: 11pt; }
+    .hero { padding: 10mm 0 5mm; }
+    .hero-tagline { color: #555; }
+    section { padding: 5mm 0; }
+    .summary { background: #f8f6f0; border-left-color: #999; }
+    .role-title { color: #111; }
+    .role-date { color: #555; }
+    .role li::before { color: #555; }
+    .skill-group, .ref-item { background: #fafafa; border-color: #e0e0e0; }
+    .skill-label, .role-sub { color: #555; }
+    a { color: #333; }
+
+    @page {
+      size: A4;
+      margin: 15mm;
+    }
+  }
+
+  /* === RESPONSIVE === */
+  @media (max-width: 768px) {
+    .container { padding: 0 1rem; }
+    h1 { font-size: 1.8rem; }
+    .role-header { flex-direction: column; }
+    .skills-grid { grid-template-columns: 1fr; }
+    nav a { padding: 0.75rem; font-size: 11px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <ul>
+    <li><a href="index.html" class="back">&larr; Interview Prep</a></li>
+    <li><a href="#summary">Summary</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#references">References</a></li>
+  </ul>
+</nav>
+
+<div class="container">
+
+<!-- ==================== HERO ==================== -->
+<section class="hero">
+  <h1>Arthur Chan Yat Long</h1>
+  <div class="hero-tagline">The Operator Who Can See the Whole Board</div>
+  <div class="hero-meta">
+    <span>Hong Kong</span>
+    <span>English &bull; Cantonese &bull; Mandarin</span>
+    <span>Full Marathon Finisher 2026</span>
+  </div>
+</section>
+
+<!-- ==================== SUMMARY ==================== -->
+<section id="summary">
+  <h2>Executive Summary</h2>
+  <div class="summary">
+    A uniquely versatile operator who bridges the worlds of institutional finance, management consulting, and entrepreneurial building. With a career spanning Bloomberg&rsquo;s treasury operations, ANZ&rsquo;s investment banking division, KKR&rsquo;s private equity platform, and Alexander Proudfoot&rsquo;s operational consulting practice &mdash; combined with eleven years as a founding partner scaling an e-commerce business from a pen-and-paper side venture to HKD&nbsp;120M peak annual revenue &mdash; Arthur brings a combination that is genuinely rare in today&rsquo;s market.
+    <br><br>
+    He has the analytical rigor of a banker who financed Alibaba&rsquo;s privatisation. The transformation mindset of a consultant who restructured Lafarge&rsquo;s Chinese operations. The investment lens of a PE professional who deployed capital at KKR. And the scrappy, inventive resilience of a founder who taught himself to code, built autonomous AI systems, and achieved 10x efficiency gains to keep his business alive through the worst downturn in Hong Kong retail.
+    <br><br>
+    Arthur is the person you hire when you need someone who can understand the strategy, design the system, build the technology, and lead the team to execute it. He doesn&rsquo;t just see the whole board &mdash; he&rsquo;s played every position on it.
+  </div>
+</section>
+
+<!-- ==================== EXPERIENCE ==================== -->
+<section id="experience">
+  <h2>Professional Experience</h2>
+
+  <!-- STT MALL -->
+  <div class="role">
+    <div class="role-header">
+      <div>
+        <h3>Founding Partner &amp; Chief Operating Officer</h3>
+        <div class="role-org">STT Mall Hong Kong &mdash; E-commerce platform | Korean fashion, cosmetics, skincare</div>
+      </div>
+      <div class="role-date">Feb 2015 &ndash; Present (11 years)</div>
+    </div>
+    <p class="role-desc">Co-founded a Hong Kong-based e-commerce platform specializing in Korean fashion, cosmetics, and skincare for mid-to-high income women aged 35&ndash;55. What began as a side venture &mdash; with Arthur handling logistics, pick-packing, and deliveries while his wife managed sales &mdash; evolved into a full-scale operation that redefined what a lean team can achieve with the right systems.</p>
+
+    <div class="role-sub">Growth &amp; Scale</div>
+    <ul>
+      <li>Scaled from 2-person operation to HKD 120M peak annual revenue with 15+ full-time and 20+ part-time staff</li>
+      <li>Ran STT Mall as a side venture alongside corporate roles (ANZ, Emerald Media) for the first three years before going full-time</li>
+      <li>Evolved the business model through multiple pivots: luxury resale &rarr; overseas outlet clothing &rarr; supermarket goods &rarr; Korean fashion, cosmetics, and skincare</li>
+    </ul>
+
+    <div class="role-sub">Post-COVID Turnaround</div>
+    <ul>
+      <li>Navigated a severe post-COVID downturn in Hong Kong retail through multiple rounds of restructuring</li>
+      <li>Redesigned every system to eliminate single points of failure while maintaining or improving output with fewer resources</li>
+      <li>Achieved 10x improvement in revenue per full-time employee: HKD 10M per headcount, up from approximately HKD 1M in prior years</li>
+    </ul>
+
+    <div class="role-sub">Technology &amp; Innovation (Solo Developer)</div>
+    <ul>
+      <li>Designed and built the entire technology infrastructure from scratch &mdash; no engineering team, no contractors</li>
+      <li>Order Management System &mdash; end-to-end order lifecycle tracking and fulfillment</li>
+      <li>Pick, Pack &amp; Fulfillment System &mdash; integrated with outsourced warehouse operations</li>
+      <li>Purchase Order Management &mdash; supplier ordering, tracking, and inventory</li>
+      <li>AI-Driven CRM System &mdash; customer analytics, segmentation, and automated engagement with 55,000+ subscribers</li>
+      <li>Content Analytics &amp; Creation Engine &mdash; AI-powered content recommendation and generation</li>
+      <li>Social Media Automation &mdash; scheduling, posting, and performance tracking across platforms</li>
+      <li>GEO/SEO Implementation &mdash; search optimisation driving organic traffic</li>
+      <li>Tech progression: Excel/VBA &rarr; Google Sheets/Apps Script &rarr; Next.js, Python, SQL, Claude Code, AI agents, vector databases, LLMs, Docker/VPS</li>
+    </ul>
+
+    <div class="role-sub">Leadership &amp; Operations</div>
+    <ul>
+      <li>Oversaw all non-sales functions: IT, finance, HR, accounting, operations, marketing, supplier partnerships, and strategic business development</li>
+      <li>Groomed managers with a coaching-style leadership approach &mdash; providing tools, frameworks, and ideas to help them solve problems independently</li>
+      <li>Formulated and executed marketing campaigns, secured major brand and distributor partnerships</li>
+    </ul>
+  </div>
+
+  <!-- EMERALD MEDIA -->
+  <div class="role">
+    <div class="role-header">
+      <div>
+        <h3>Investment Associate</h3>
+        <div class="role-org">Emerald Media Advisors (KKR Platform) &mdash; USD 300M fund | PE/VC in media &amp; technology</div>
+      </div>
+      <div class="role-date">Feb 2016 &ndash; Feb 2018 (2 years)</div>
+    </div>
+    <p class="role-desc">Joined a USD 300M fund under KKR Asia focused on media and technology investments across the Asia-Pacific region. Worked as part of a small, high-caliber team alongside Paul Aiello (ex-CA Capital), Joey Wong (later CFO of Lenovo Group), and Tim Malone on the full PE/VC investment lifecycle.</p>
+    <ul>
+      <li>Sourced deals across the media and technology startup ecosystem, building relationships with founders and co-investors across ASEAN</li>
+      <li>Built detailed financial models for target companies and prepared Investment Committee presentations for KKR senior leadership</li>
+      <li>Key investment: aCommerce (Series B, ~USD 65M) &mdash; Southeast Asia&rsquo;s leading e-commerce enabler serving 260+ brand clients including Samsung, Unilever, Nestl&eacute;, L&rsquo;Or&eacute;al, Philips, and Mars across 5 ASEAN markets with 1,400+ staff</li>
+      <li>Coordinated with external parties (legal counsel, auditors, deal teams, corporate partners) through deal execution</li>
+    </ul>
+  </div>
+
+  <!-- ANZ 2nd -->
+  <div class="role">
+    <div class="role-header">
+      <div>
+        <h3>Associate Director, TMET Coverage</h3>
+        <div class="role-org">ANZ Banking Group (Second Stint) &mdash; Corporate Banking &amp; Finance</div>
+      </div>
+      <div class="role-date">Nov 2014 &ndash; Feb 2016 (1.3 years)</div>
+    </div>
+    <p class="role-desc">Returned to ANZ&rsquo;s Telecom, Media, Entertainment &amp; Technology team at a more senior level (promoted to Associate Director) after a year in management consulting. Continued originating and executing corporate banking and corporate finance transactions across the TMT sector.</p>
+    <ul>
+      <li>Covered the same broad TMT ecosystem at a more senior level with greater client responsibility</li>
+      <li>Recruited back by headhunter &mdash; a &ldquo;boomerang&rdquo; signal indicating strong relationships and recognised competence</li>
+    </ul>
+  </div>
+
+  <!-- PROUDFOOT -->
+  <div class="role">
+    <div class="role-header">
+      <div>
+        <h3>Management Consultant</h3>
+        <div class="role-org">Alexander Proudfoot &mdash; Operational transformation consulting</div>
+      </div>
+      <div class="role-date">Sep 2013 &ndash; Sep 2014 (1 year)</div>
+    </div>
+    <p class="role-desc">Joined a specialist operational transformation consultancy known for embedding consultants within client organisations to drive lasting behavioural and process change &mdash; not just delivering slide decks, but implementing improvements alongside the client&rsquo;s own teams.</p>
+
+    <div class="role-sub">Methodology</div>
+    <ul>
+      <li>Conducted business interviews across all organisational levels &mdash; from factory floor workers to top management</li>
+      <li>Mapped entire business logic and process flows, identifying pain points felt by different stakeholders</li>
+      <li>Developed strategic improvement plans with projected financial benefits</li>
+      <li>Split into implementation teams working directly with client employees to ensure changes stick permanently</li>
+    </ul>
+
+    <div class="role-sub">Key Engagement &mdash; Lafarge China</div>
+    <ul>
+      <li>Spearheaded the function consolidation project: combining HR, Finance, and Purchasing into a unified shared services team across all Chinese operations</li>
+      <li>Specialised in benefits calculation and tracking &mdash; built sophisticated financial models with KPIs across all improvement streams</li>
+      <li>Delivered millions in annual recurring savings through process optimisation and organisational restructuring</li>
+    </ul>
+  </div>
+
+  <!-- ANZ 1st -->
+  <div class="role">
+    <div class="role-header">
+      <div>
+        <h3>Analyst &rarr; Senior Associate, TMET Coverage</h3>
+        <div class="role-org">ANZ Banking Group (First Stint) &mdash; Corporate Banking &amp; Finance</div>
+      </div>
+      <div class="role-date">Jun 2010 &ndash; Sep 2013 (3.3 years)</div>
+    </div>
+    <p class="role-desc">Joined ANZ&rsquo;s Telecom, Media, Entertainment &amp; Technology industry team responsible for corporate banking and corporate finance across the TMT sector in Asia.</p>
+
+    <div class="role-sub">Coverage Universe</div>
+    <ul>
+      <li>Semiconductors &amp; Fabs: TSMC</li>
+      <li>Internet: Tencent, Alibaba</li>
+      <li>Hardware: Huawei, Lenovo, IBM</li>
+      <li>Media &amp; Cinema Operators, Mobile Handset OEMs, and the full TMT supply chain</li>
+    </ul>
+
+    <div class="role-sub">Deal Execution</div>
+    <ul>
+      <li>Part of the bank financing syndicate for Alibaba&rsquo;s landmark USD 2.5B privatisation from HKEX (2012) &mdash; one of the most significant take-private deals in Asian corporate history</li>
+      <li>Originated and executed DCM, loan financing and syndication, receivables financing, privatisations, and M&amp;A</li>
+      <li>Responsible for market sizing, industry analysis, company profiling, internal and external pitch documents, credit memos</li>
+      <li>Coordinated across internal stakeholders (credit, legal, product, relationship management) and external parties</li>
+    </ul>
+  </div>
+
+  <!-- BLOOMBERG -->
+  <div class="role">
+    <div class="role-header">
+      <div>
+        <h3>Regional Treasury / Cash Management, APAC</h3>
+        <div class="role-org">Bloomberg LP &mdash; APAC Finance Operations</div>
+      </div>
+      <div class="role-date">Sep 2008 &ndash; Jun 2010 (1.8 years)</div>
+    </div>
+    <p class="role-desc">Started as a temporary data entry analyst on Bloomberg&rsquo;s Data Analytical team. Earned a permanent position and promotion through initiative and exceptional performance.</p>
+    <ul>
+      <li>Identified and cleared years of accumulated withholding tax reconciliation backlog across APAC markets: Taiwan, Malaysia, Thailand, China</li>
+      <li>Seconded to Bloomberg Japan to train their team on withholding tax reconciliation processes</li>
+      <li>Promoted to the APAC Regional Controller&rsquo;s team within Treasury, responsible for cash and treasury management</li>
+      <li>Established regional cash management functions: cash pooling and sub-accounts across multiple banking partners for Bloomberg&rsquo;s APAC entities</li>
+      <li>Managed accounts payable and receivable operations, budgeted and allocated funds across APAC affiliates &mdash; handling hundreds of thousands to millions monthly</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ==================== EDUCATION ==================== -->
+<section id="education">
+  <h2>Education</h2>
+
+  <div class="edu-item">
+    <div class="edu-degree">MEng Chemical Engineering</div>
+    <div class="edu-school">Imperial College London &mdash; 2004&ndash;2008</div>
+    <div class="edu-note">Ranked #2 globally, #1 in UK/Europe (QS World University Rankings 2024)</div>
+  </div>
+
+  <div class="edu-item">
+    <div class="edu-degree">Secondary Education</div>
+    <div class="edu-school">The Royal School, Dungannon &mdash; Northern Ireland, 1999&ndash;2004</div>
+    <div class="edu-note">Founded 1608 | Public mixed boarding school, County Tyrone</div>
+  </div>
+</section>
+
+<!-- ==================== SKILLS ==================== -->
+<section id="skills">
+  <h2>Skills &amp; Technical Proficiency</h2>
+
+  <div class="skills-grid">
+    <div class="skill-group">
+      <div class="skill-label">Programming &amp; Development</div>
+      <p>JavaScript, Python, SQL, HTML/CSS, Next.js, React, Node.js, Google Apps Script, Excel/VBA</p>
+    </div>
+    <div class="skill-group">
+      <div class="skill-label">Infrastructure &amp; Deployment</div>
+      <p>Docker, VPS/Linux server management, Caddy reverse proxy, Supabase/PostgreSQL, Cloudflare</p>
+    </div>
+    <div class="skill-group">
+      <div class="skill-label">AI &amp; Data</div>
+      <p>Claude Code, LLM integration, AI agent orchestration, vector databases, MCP servers, business intelligence tools</p>
+    </div>
+    <div class="skill-group">
+      <div class="skill-label">Business</div>
+      <p>Financial modelling, corporate finance, DCM, M&amp;A, PE/VC deal execution, operational transformation, benefits tracking, marketing strategy, e-commerce operations, supply chain management</p>
+    </div>
+    <div class="skill-group">
+      <div class="skill-label">Languages</div>
+      <p>English (Fluent) &bull; Cantonese (Native) &bull; Mandarin (Fluent)</p>
+    </div>
+    <div class="skill-group">
+      <div class="skill-label">Personal</div>
+      <p>Full marathon finisher (2026, after 8-year hiatus) &mdash; the same resilience that carries through business challenges carries across the finish line</p>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== REFERENCES ==================== -->
+<section id="references">
+  <h2>Acknowledgments &amp; References</h2>
+  <p class="dim" style="margin-bottom: 1.25rem;">Extraordinary individuals who mentored, challenged, and shaped the way I think about business and leadership. All available as professional references upon request.</p>
+
+  <div class="ref-grid">
+    <div class="ref-item">
+      <div class="ref-name">Sherzad Desai</div>
+      <div class="ref-role">Executive Director, TMT Coverage, ANZ</div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-name">Sachin Goel</div>
+      <div class="ref-role">Executive Director, TMT Coverage, ANZ</div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-name">Benjamin Chen</div>
+      <div class="ref-role">ex-McKinsey &amp; Company; Founder, Crimson Capital</div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-name">Paul Aiello</div>
+      <div class="ref-role">Principal, The Churning Group &amp; CA Capital; Founder, Emerald Media Advisors</div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-name">Joey Wong</div>
+      <div class="ref-role">ex-Director, Emerald Media Advisors; CFO, Lenovo Group</div>
+    </div>
+    <div class="ref-item">
+      <div class="ref-name">James Wong</div>
+      <div class="ref-role">Managing Director, Alexander Proudfoot; Partner, McKinsey &amp; Company</div>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<footer style="text-align: center; padding: 2.5rem; color: var(--text-dim); font-size: 12px; border-top: 1px solid var(--border);">
+  <a href="index.html" style="color: var(--accent); text-decoration: none;">&larr; Back to Interview Prep</a>
+</footer>
+
+<script>
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('nav a[href^="#"]');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(link => {
+          link.classList.toggle('active', link.getAttribute('href') === '#' + entry.target.id);
+        });
+      }
+    });
+  }, { rootMargin: '-20% 0px -75% 0px' });
+  sections.forEach(section => observer.observe(section));
+</script>
+
+</body>
+</html>
